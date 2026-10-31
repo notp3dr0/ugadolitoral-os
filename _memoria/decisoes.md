@@ -17,3 +17,5 @@ regra de trabalho. O que não entra: tarefa feita (isso é o diário).
 ---
 
 <!-- as decisões entram abaixo, a mais nova por último -->
+- **2026-10-31** (Pedro) [sistema]: o GitHub deste sistema é `notp3dr0/ugadolitoral-os` (privado). Por quê: `dobralabs/ccos-ratos` é o repositório do kit, e o contexto do negócio é seu.
+- **2026-10-31** (Pedro) [skills]: a skill de proposta reaproveita o modelo `proposta-comercial` com dois modos (prospecção e inbound), em vez de ser uma skill nova. Por quê: o modelo já cobria o inbound e só faltava a prospecção.

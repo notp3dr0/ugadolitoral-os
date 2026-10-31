@@ -6,10 +6,9 @@
 > Pendência que sai desta lista sai com motivo (feito, virou projeto, mandaram soltar), nunca em silêncio.
 
 ## Onde paramos
-Acabei de configurar o sistema com o /setup (2026-10-31), no computador `nautilus`. Próximo passo: /mapear.
+1ª rodada do /mapear feita (2026-10-31): 3 skills criadas (/proposta-comercial, /story-trabalho, /cacar-referencias), sistema no GitHub (notp3dr0/ugadolitoral-os), no computador `nautilus`. Próximo passo: testar as skills.
 
 ## Pendências
-- Rodar /mapear pra criar as primeiras skills do dia a dia (2026-10-31).
 - Decidir quais skills do Codex trazer pra cá (aprender-ratos, carrossel-ratos, publicar-social-ratos, instagram-reference e outras). Ler os arquivos reais antes (2026-10-31).
 - Criar um segundo sistema só pra Ludique e Sunika (BI, SEO/GEO, campanhas, Black Friday 27/11/2026) (2026-10-31).
 - Definir paleta, fontes e logo do Uga do Litoral; ainda em branco no guia de marca (2026-10-31).

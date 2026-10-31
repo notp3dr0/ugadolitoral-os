@@ -30,3 +30,4 @@ Português brasileiro, direto, natural e informal, sem formalidade artificial. P
 - Projetos distintos mantêm contextos separados: antes de agir, identificar se é Uga, PAÓ, Instituto Semear ou Let's Tribunal.
 - Diferenciar sempre fato confirmado, proposta, pendência e implementação testada.
 - Nunca expor credenciais.
+- Antes de qualquer etapa de design ou motion, me avisar pra eu trocar o modelo (2026-10-31).

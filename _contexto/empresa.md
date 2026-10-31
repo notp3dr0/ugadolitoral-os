@@ -15,5 +15,6 @@
 - **Fora deste sistema:** Ludique (infantil) e Sunika (sneakers) são trabalho de empresa familiar, com Data Warehouse/BI, SEO/GEO e campanhas. Vão ter um sistema próprio, separado. Não misturar decisões, marcas nem chaves.
 - **Equipamentos conhecidos:** Canon R10 e Sony ZV-E10 (confirmar se continuam os principais).
 - **Máquinas:** dois computadores Windows. Casa = `nautilus`; trabalho = ainda sem nome.
+- **Serviços que ofereço hoje (2026-10-31):** fotografia, edição, acompanhamento artístico, ensaios, shows e assistência. Chamado nos stories: agenda aberta.
 - **Vem do Codex:** uso o Codex há bastante tempo, e há skills lá (Instagram, carrossel, imagem, motion, Cloudflare) que podem ser trazidas para cá pelo `/mapear`.
 - **Não sei / não definido:** cargo e participação formal nas empresas, faturamento, regime de contratação, paleta e logo oficiais do Uga, ferramenta de agenda, financeiro, CRM, edição de foto e vídeo, agendamento de posts. Não preencher por suposição.

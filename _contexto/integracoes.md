@@ -8,8 +8,8 @@
 
 | integração | pra quê | como o agente alcança | estado | última checagem |
 |---|---|---|---|---|
-| GitHub | código dos projetos | CLI (`gh`, logado como notp3dr0, escopos repo, read:org, gist) | ligada | 2026-10-31 |
-| Google Drive | biblioteca de arquivos e assets | MCP (conector do claude.ai) | ligada | 2026-10-31 |
+| GitHub | código dos projetos e este sistema (`notp3dr0/ugadolitoral-os`) | CLI (`gh`, logado como notp3dr0, escopos repo, read:org, gist) | ligada | 2026-10-31 |
+| Google Drive | biblioteca de arquivos e assets; as skills usam a pasta MEUS TRABALHOS > FOTOS | MCP (conector do claude.ai) | ligada (pasta lida em 2026-10-31) | 2026-10-31 |
 | Gmail | email | MCP (conector do claude.ai) | ligada | 2026-10-31 |
 | context7 | documentação atualizada de bibliotecas (React etc.) | MCP (`npx`) | ligada (caiu uma vez na primeira conexão; o pacote roda; rever na próxima sessão) | 2026-10-31 |
 | Obsidian | base de conhecimento e documentação | só você, na mão (arquivos Markdown) | não ligada | 2026-10-31 |
@@ -21,6 +21,9 @@
 | Vercel | hospedagem do portfólio, ver e alterar o código | MCP (conector do claude.ai) | ligada | 2026-10-31 |
 | Instagram (@uga_do_litoral) | publicar e ler posts | API Meta (`.env`) ou exportação de dados | não ligada | 2026-10-31 |
 | Codex | outro agente, skills antigas | só você, na mão | não ligada | 2026-10-31 |
+| Playwright | renderizar HTML em PNG (story, peças visuais) | CLI/MCP, ainda sem instalar | não ligada (o /story-trabalho precisa) | 2026-10-31 |
+| Remotion | motion em MP4 (story animado) | CLI, ainda sem instalar | não ligada (ou trazer a skill de motion do Codex) | 2026-10-31 |
+| WebSearch e WebFetch | pesquisa de referências na web (/cacar-referencias) | nativas do Claude Code | disponíveis, ainda não testadas nesta skill | 2026-10-31 |
 
 ## Os sete assuntos que todo negócio tem
 
