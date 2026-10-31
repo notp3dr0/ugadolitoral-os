@@ -1,14 +1,16 @@
 <!-- Teto deste arquivo: 180 linhas. Ele carrega em toda conversa, então cada linha aqui é paga sempre.
      O que cresce vai pras pastas (o mapa da seção 3 diz qual). A /faxina avisa quando estourar. -->
-# [Nome do negócio] · RatosOS
+# Uga do Litoral · RatosOS
 
-Se você acabou de instalar: rode `/setup` (uns 5 minutos). Depois, `/mapear` pra criar as
-habilidades do seu dia a dia. Neste arquivo, "você" é o dono do sistema; as instruções são pro agente.
+Neste arquivo, "você" é o dono do sistema; as instruções são pro agente.
 
 ## 1. O que é este sistema
 
-<!-- /setup preenche este bloco (4 a 8 linhas): o que esta pasta representa, quem você é, o que
-     faz e pra quem, o que mais produz aqui. Sem lista de ferramentas nem tom de voz: isso tem casa própria. -->
+Workspace pessoal do Pedro Augusto, fotógrafo e diretor criativo (Uga do Litoral). Meu negócio é a
+minha identidade artística e autoral, pra quem curte música, rap, moda, cultura urbana, e pra artistas
+e marcas que contratam. Aqui eu cuido do Instagram e do portfólio, toco a PAÓ (agência audiovisual,
+com o Instituto Semear de primeiro cliente) e desenvolvo projetos como o Let's Tribunal. O que me
+diferencia: autoral e bem executado, sem cara de template. Ludique e Sunika ficam num sistema separado.
 
 **Regras gerais**
 
@@ -148,3 +150,7 @@ oferta. Não oferecer em sessão trivial.
 - `.claude/` · as habilidades (skills) deste sistema
 - `.ratosos` · a versão do kit (uma linha). Não apague: é como a atualização sabe de onde você parte
 <!-- pastas de trabalho abaixo, criadas pelo /setup conforme o negócio -->
+- `uga-do-litoral/` · a marca autoral: `instagram/` (carrosséis, legendas, calendário) e `portfolio/` (o site interativo)
+- `pao/` · a agência audiovisual; `instituto-semear/` é o primeiro cliente
+- `projetos/` · projetos internos, uma pasta por projeto (Let's Tribunal e outros; o `/novo-projeto` cria)
+- `referencias/` · prints e inspirações (Luan, Figo, Awwwards)
