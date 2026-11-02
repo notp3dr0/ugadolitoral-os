@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Storyboard · Um gesto · Instituto Semear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,800;1,300;1,800&display=swap" rel="stylesheet">
+<style>
+  :root { --papel:#EDEDED; --marrom:#975F30; --amarelo:#FFBB00; --oliva:#85933C; --oliva2:#5E682C;
+          --azul:#237B9F; --azul2:#196282; --petroleo:#0F3A4A; --tinta:#1F1F1F; --anota:#D2452B; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#E3E0D9; color:var(--tinta); font-family:Poppins, sans-serif; padding:48px 56px 80px; }
+  header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; }
+  h1 { font-size:34px; font-weight:800; color:var(--marrom); letter-spacing:-.5px; }
+  h1 span { font-weight:300; color:var(--tinta); }
+  .meta { font-size:13px; line-height:1.6; text-align:right; color:#555; }
+  .aviso { background:#fff8e6; border-left:4px solid var(--amarelo); padding:12px 16px; font-size:13px; margin-bottom:28px; max-width:1100px; }
+  .quadro { display:grid; grid-template-columns:150px 720px 230px 1fr; gap:22px; background:#fff;
+            border-radius:14px; padding:22px; margin-bottom:18px; align-items:start; }
+  .num { font-size:44px; font-weight:800; color:var(--marrom); line-height:1; }
+  .titulo { font-size:17px; font-weight:600; margin-top:6px; }
+  .tempo { font-size:13px; color:#666; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .barra { height:6px; background:#eee; border-radius:3px; margin-top:12px; position:relative; overflow:hidden; }
+  .barra i { position:absolute; top:0; bottom:0; background:var(--oliva); border-radius:3px; }
+  .tela svg { display:block; width:100%; height:auto; border-radius:6px; box-shadow:0 0 0 1px #ddd; }
+  .tela small { display:block; font-size:11px; color:#888; margin-top:6px; letter-spacing:.5px; text-transform:uppercase; }
+  .texto { font-size:13px; line-height:1.55; }
+  .texto dt { font-weight:600; color:var(--marrom); font-size:11px; letter-spacing:1px; text-transform:uppercase; margin-top:10px; }
+  .texto dt:first-child { margin-top:0; }
+  .texto dd { margin:2px 0 0; }
+  .vo { font-style:italic; }
+  footer { font-size:12px; color:#666; margin-top:24px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Um gesto <span>· storyboard v3</span></h1>
+  <div class="meta">Instituto Semear · PAÓ<br>27,0 s · 16:9 e 9:16 · 2026-11-02<br>roteiro: roteiro-v3.md</div>
+</header>
+<div class="aviso">Desenhos <b>provisórios</b> (árvore, pessoinhas, mãos e estampa refeitos à mão a partir dos posts públicos). Na versão final tudo isso sai do SVG oficial do Semear. Setas e tracejados <span style="color:var(--anota)">vermelhos</span> são anotação de movimento e não aparecem no filme.</div>
+<div id="board"></div>
+<footer>Cores e fonte: pao/instituto-semear/marca/design-guide.md · Poppins confirmada no site isemear.org.br (2026-11-02).</footer>
+
+<script>
+const C = { papel:'#EDEDED', marrom:'#975F30', amarelo:'#FFBB00', oliva:'#85933C', oliva2:'#5E682C',
+            azul:'#237B9F', azul2:'#196282', petroleo:'#0F3A4A', tinta:'#1F1F1F', anota:'#D2452B', cinza:'#C4C4C4' };
+
+// gerador determinístico, pra o storyboard sair igual toda vez
+function rng(seed){ return () => (seed = (seed*16807) % 2147483647) / 2147483647; }
+
+// pessoinha da copa: corpo de braços abertos + cabeça. modo: 'cor' | 'contorno' | 'fraca'
+function pessoa(x, y, s, rot, modo='cor'){
+  const corpo = 'M0,-14 L0,8 M0,-10 L-24,-24 M0,-10 L24,-24 M0,8 L-17,30 M0,8 L17,30';
+  const t = `translate(${x},${y}) rotate(${rot}) scale(${s})`;
+  if (modo === 'cor') return `<g transform="${t}">
+      <path d="${corpo}" stroke="${C.oliva}" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="0" cy="-30" r="10" fill="${C.amarelo}"/></g>`;
+  const cor = modo === 'fraca' ? '#DADADA' : C.cinza;
+  return `<g transform="${t}">
+      <path d="${corpo}" stroke="${cor}" stroke-width="13" stroke-linecap="round" fill="none"/>
+      <path d="${corpo}" stroke="${C.papel}" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <circle cx="0" cy="-30" r="10" fill="none" stroke="${cor}" stroke-width="2"/></g>`;
+}
+
+// mãos-tronco (metade esquerda espelhada). base no (x,y), altura ~360*s
+function maos(x, y, s, sobe=1){
+  const metade = `M0,-175 Q-40,-215 -95,-265 L-150,-345 Q-178,-362 -186,-333 Q-120,-230 -45,-150 Q-30,-80 -64,0 L0,0 Z
+                  M-96,-262 Q-72,-302 -54,-292 Q-64,-268 -82,-252 Z`;
+  return `<g transform="translate(${x},${y}) scale(${s},${s*sobe})" fill="${C.marrom}">
+      <path d="${metade}"/><path d="${metade}" transform="scale(-1,1)"/></g>`;
+}
+
+function chao(x1, x2, y){ return `<path d="M${x1},${y} Q${(x1+x2)/2},${y-6} ${x2},${y} L${x2},${y+5} Q${(x1+x2)/2},${y+1} ${x1},${y+5} Z" fill="${C.marrom}"/>`; }
+
+// módulo da estampa, em contorno ou preenchido
+function modulo(x, y, t, tipo, cor, cheio){
+  const f = cheio ? `fill="${cor}" stroke="none"` : `fill="none" stroke="${cor}" stroke-width="${Math.max(2,t/40)}"`;
+  const h = t/2;
+  switch (tipo % 6){
+    case 0: return `<circle cx="${x+h}" cy="${y+h}" r="${h*.9}" ${f}/><circle cx="${x+h}" cy="${y+h}" r="${h*.45}" ${cheio?`fill="${C.papel}"`:f}/>`;
+    case 1: return `<path d="M${x},${y+t} A${h},${h} 0 0 1 ${x+t},${y+t} Z" ${f}/>`;
+    case 2: return `<path d="M${x},${y} L${x+t},${y} A${t},${t} 0 0 1 ${x},${y+t} Z" ${f}/>`;
+    case 3: return [0,90,180,270].map(a=>`<ellipse cx="${x+h}" cy="${y+h-h*.45}" rx="${h*.22}" ry="${h*.45}" transform="rotate(${a} ${x+h} ${y+h})" ${f}/>`).join('');
+    case 4: return `<rect x="${x+t*.08}" y="${y+t*.08}" width="${t*.84}" height="${t*.84}" ${f}/>`;
+    default: { let s=''; for(let i=0;i<3;i++) for(let j=0;j<3;j++){ const cx=x+t*(.2+.3*i), cy=y+t*(.2+.3*j);
+               s+=`<path d="M${cx},${cy-t*.07} L${cx+t*.07},${cy+t*.06} L${cx-t*.07},${cy+t*.06} Z" ${cheio?`fill="${cor}"`:f}/>`; } return s; }
+  }
+}
+function faixaEstampa(x, y, cols, rows, t, cheio, seed, alfa=1){
+  const r = rng(seed), cores=[C.azul,C.amarelo,C.oliva,C.marrom,C.azul2,C.oliva2]; let s=`<g opacity="${alfa}">`;
+  for(let i=0;i<cols;i++) for(let j=0;j<rows;j++) s+=modulo(x+i*t, y+j*t, t, Math.floor(r()*6), cores[Math.floor(r()*6)], cheio && r()>.25);
+  return s+'</g>';
+}
+
+function legenda(W, y, linhas, tam, estilo='fala'){
+  return linhas.map((l,i)=>`<text x="${W/2}" y="${y+i*tam*1.3}" text-anchor="middle" font-family="Poppins" font-size="${tam}"
+     ${estilo==='gesto'?'font-style="italic" font-weight="300"':'font-weight="600"'} fill="${estilo==='gesto'?C.tinta:C.marrom}">${l}</text>`).join('');
+}
+function seta(x1,y1,x2,y2){ return `<path d="M${x1},${y1} L${x2},${y2}" stroke="${C.anota}" stroke-width="3" stroke-dasharray="8 7" fill="none" marker-end="url(#ponta)"/>`; }
+
+// posições da copa (girassol) e da rede
+function copa(cx, cy, R, n, seed){ const r=rng(seed), out=[]; for(let i=0;i<n;i++){ const a=i*2.39996, d=R*Math.sqrt((i+.5)/n);
+  out.push([cx+d*Math.cos(a), cy+d*Math.sin(a)*.92, (r()-.5)*70]); } return out; }
+function rede(x0,y0,w,h,cols,rows,seed){ const r=rng(seed), out=[]; for(let i=0;i<cols;i++) for(let j=0;j<rows;j++)
+  out.push([x0+(i+.5+(r()-.5)*.7)*w/cols, y0+(j+.5+(r()-.5)*.7)*h/rows, (r()-.5)*80]); return out; }
+function ligar(pts, k){ let s=''; pts.forEach((p,i)=>{ pts.map((q,j)=>[j,Math.hypot(p[0]-q[0],p[1]-q[1])]).filter(a=>a[0]!==i)
+  .sort((a,b)=>a[1]-b[1]).slice(0,k).forEach(([j])=>{ if(j>i) s+=`<line x1="${p[0]}" y1="${p[1]}" x2="${pts[j][0]}" y2="${pts[j][1]}"/>`; }); });
+  return `<g stroke="${C.oliva2}" stroke-width="2.5" stroke-linecap="round" opacity=".55">${s}</g>`; }
+
+function logo(cx, cy, s, vertical){
+  const arv = copa(0,-250,120,22,7).map(p=>pessoa(p[0],p[1],.75,p[2])).join('') + maos(0,0,.62) + chao(-150,150,0);
+  const simbolo = `<g transform="translate(${vertical?cx:cx-210*s},${vertical?cy-40*s:cy+150*s}) scale(${s*(vertical?.7:.55)})">${arv}</g>`;
+  const tx = vertical ? cx : cx-60*s, ty = vertical ? cy+150*s : cy+55*s, anc = vertical ? 'middle' : 'start';
+  return simbolo + `<text x="${tx+(vertical?0:6*s)}" y="${ty-58*s}" font-family="Poppins" font-weight="400" font-size="${22*s}" letter-spacing="${9*s}" fill="${C.marrom}" text-anchor="${anc}">INSTITUTO</text>
+    <text x="${tx}" y="${ty+10*s}" font-family="Poppins" font-weight="800" font-size="${92*s}" letter-spacing="${-3*s}" fill="${C.marrom}" text-anchor="${anc}">semear</text>`;
+}
+
+function cena(k, W, H){
+  const V = H > W, cx = W/2, gy = V ? H*.68 : H*.78, base = V ? 1.25 : 1, capY = V ? H*.80 : H*.90, tam = V ? 50 : 40;
+  let s = '';
+  if (k===1){
+    // gancho: a árvore inteira (fantasma, 0,0–0,4 s) rebobinando até a semente
+    const R = V ? W*.32 : H*.22, top = V ? H*.36 : H*.36;
+    const pts = copa(cx, top, R, 26, 21);
+    s += `<g opacity=".28">${pts.map(p=>pessoa(p[0],p[1],(V?1.05:.9)*base*.9,p[2])).join('')}${maos(cx, gy, V?1.0:.8)}</g>`;
+    s += pts.filter((p,i)=>i%4===1).map(p=>seta(p[0], p[1], p[0]+(cx-p[0])*.55, p[1]+(gy-40-p[1])*.55)).join('');
+    s += chao(cx-W*.36, cx+W*.36, gy) + `<circle cx="${cx}" cy="${gy-16}" r="${15*base}" fill="${C.amarelo}"/>`;
+    s += `<text x="${V?W*.06:W*.03}" y="${V?H*.05:H*.07}" font-family="Poppins" font-size="${V?28:24}" fill="${C.anota}">0,0–0,4 s árvore inteira · 0,4–1,1 s rebobina até a semente</text>`;
+    s += V ? legenda(W, H*.80, ['Toda <tspan font-weight="800">mudança</tspan> começa','com 1 <tspan font-weight="800">gesto</tspan>.'], 62, 'gesto')
+           : legenda(W, H*.91, ['Toda <tspan font-weight="800">mudança</tspan> começa com 1 <tspan font-weight="800">gesto</tspan>.'], 50, 'gesto');
+  }
+  if (k===2){
+    const px = cx + (V?0:W*.07), py = gy - H*(V?.24:.33);
+    s += chao(cx-W*.42, cx+W*.42, gy) + `<circle cx="${cx}" cy="${gy-16}" r="${34*base}" fill="none" stroke="${C.amarelo}" stroke-width="3" opacity=".6"/>`;
+    s += `<circle cx="${cx}" cy="${gy-16}" r="${15*base}" fill="${C.amarelo}"/>`;
+    s += `<path d="M${cx},${gy-34} C${cx},${gy-H*.12} ${px},${py+H*.12} ${px},${py+40*base}" stroke="${C.oliva2}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    s += pessoa(px, py, 1.5*base, -8) + pessoa(cx-W*.26, gy-H*(V?.42:.5), 1.1*base, 20, 'fraca') + pessoa(cx+W*(V?.28:.3), gy-H*(V?.48:.22), 1*base, -25, 'fraca');
+    s += seta(px+60*base, py+90, px+60*base, py+10);
+    s += legenda(W, capY, ['A bolsa me trouxe tranquilidade.'], V?44:tam);
+  }
+  if (k===3){
+    s += faixaEstampa(V?0:-20, V?0:-20, V?8:5, V?1:2, V?135:110, false, 3, .55);
+    if (!V) s += faixaEstampa(W-330, H-250, 3, 2, 110, false, 4, .55);
+    const pts = V ? [[cx,gy-H*.2,-8],[cx-W*.25,gy-H*.33,18],[cx+W*.22,gy-H*.43,-22]]
+                  : [[cx+W*.07,gy-H*.33,-8],[cx-W*.17,gy-H*.45,18],[cx+W*.27,gy-H*.55,-22]];
+    s += chao(cx-W*.42, cx+W*.42, gy) + `<circle cx="${cx}" cy="${gy-16}" r="${15*base}" fill="${C.amarelo}"/>`;
+    s += `<g stroke="${C.oliva2}" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M${cx},${gy-34} Q${cx},${pts[0][1]+60} ${pts[0][0]},${pts[0][1]+40}"/>
+      <path d="M${pts[0][0]},${pts[0][1]} Q${(pts[0][0]+pts[1][0])/2},${pts[0][1]-10} ${pts[1][0]},${pts[1][1]+30}"/>
+      <path d="M${pts[0][0]},${pts[0][1]} Q${(pts[0][0]+pts[2][0])/2},${pts[0][1]-20} ${pts[2][0]},${pts[2][1]+30}"/>
+      <path d="M${pts[1][0]},${pts[1][1]} Q${cx},${Math.min(pts[1][1],pts[2][1])-60} ${pts[2][0]},${pts[2][1]}" stroke-dasharray="2 9"/></g>`;
+    s += pts.map(p=>pessoa(p[0],p[1],1.35*base,p[2])).join('') + pessoa(cx-W*.38, gy-H*.2, 1*base, 30, 'fraca');
+    s += legenda(W, capY, ['A mentoria me mostrou caminhos.'], V?44:tam);
+  }
+  if (k===4){
+    s += V ? faixaEstampa(0,0,8,1,135,true,5) + faixaEstampa(0,H-135,8,1,135,true,6)
+           : faixaEstampa(-30,-30,4,2,120,true,5) + faixaEstampa(W-450,H-210,4,2,120,true,6);
+    const pts = V ? rede(60,H*.13,W-120,H*.56,4,7,11) : rede(W*.12,H*.1,W*.76,H*.66,8,4,11);
+    s += ligar(pts, 3) + pts.map((p,i)=>pessoa(p[0],p[1],(.85+(i%3)*.15)*base,p[2], i%9===4?'contorno':'cor')).join('');
+    s += `<rect x="${W*.04}" y="${H*.04}" width="${W*.92}" height="${H*.92}" fill="none" stroke="${C.anota}" stroke-width="2" stroke-dasharray="10 8"/>
+          <text x="${W*.05}" y="${H*.04-8}" font-family="Poppins" font-size="${V?26:20}" fill="${C.anota}">zoom out 115% → 100%</text>`;
+    s += `<rect x="${W/2-(V?440:380)}" y="${capY-(V?62:52)}" width="${V?880:760}" height="${V?150:92}" rx="14" fill="${C.papel}" opacity=".9"/>`;
+    s += legenda(W, capY, V?['E a rede me fez','sentir pertencente.']:['E a rede me fez sentir pertencente.'], V?44:tam);
+    s += `<text x="${W/2}" y="${capY+(V?120:40)}" text-anchor="middle" font-family="Poppins" font-size="${V?24:20}" fill="${C.tinta}">da carta de Alan Cruz Silva, Jovem-Semente</text>`;
+  }
+  if (k===5){
+    const R = V ? W*.36 : H*.26, top = V ? H*.27 : H*.3;
+    s += copa(cx, top, R, 26, 21).map(p=>pessoa(p[0],p[1],(V?1.15:1)*base*.95,p[2])).join('');
+    s += maos(cx, gy, V?1.15:.95) + chao(cx-W*(V?.4:.25), cx+W*(V?.4:.25), gy);
+    s += seta(cx-W*(V?.3:.18), gy-30, cx-W*(V?.3:.18), gy-H*.25) + seta(cx+W*(V?.3:.18), gy-30, cx+W*(V?.3:.18), gy-H*.25);
+  }
+  if (k===6){
+    s += `<g opacity=".35">${copa(cx, V?H*.3:H*.33, V?W*.3:H*.22, 26, 21).map(p=>pessoa(p[0],p[1],.9*base,p[2])).join('')}</g>`;
+    s += logo(cx, V?H*.45:H*.47, V?1.6:1.25, V);
+    s += seta(cx-W*.2, H*.16, cx-W*.08, H*.3) + seta(cx+W*.2, H*.16, cx+W*.08, H*.3);
+  }
+  if (k===7){
+    s += logo(cx, V?H*.45:H*.47, V?1.6:1.25, V);
+    s += `<rect x="${cx-(V?360:420)}" y="${V?H*.17:H*.18}" width="${V?720:840}" height="${V?H*.56:H*.62}" fill="none" stroke="${C.anota}" stroke-width="2" stroke-dasharray="10 8"/>
+          <text x="${cx}" y="${V?H*.17-14:H*.18-12}" text-anchor="middle" font-family="Poppins" font-size="${V?24:20}" fill="${C.anota}">placeholder · entra o SVG oficial</text>`;
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="ponta" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="${C.anota}"/></marker>
+    <filter id="grao"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .05 0"/></filter></defs>
+    <rect width="${W}" height="${H}" fill="${C.papel}"/><rect width="${W}" height="${H}" filter="url(#grao)"/>${s}</svg>`;
+}
+
+const Q = [
+  { t:'Gancho', a:0, b:3, img:'Abre com a árvore inteira (0,0–0,4 s). Ela rebobina: pessoinhas voltam pro centro, mãos descem, tudo vira uma semente que cai e pousa em 1,1 s. Mostra o fim e volta: curiosidade sem som.',
+    vo:'<span class="vo">Locutora: “Toda mudança começa com um gesto.”</span> (0,5–2,8) · texto palavra por palavra', som:'Whoosh invertido no rebobinar · “toc” grave de marimba (Dó) no pouso · room tone de papel.',
+    v:'Chão a 68% da altura. Frase em duas linhas, maior.' },
+  { t:'Acende', a:3, b:7, img:'A semente pulsa. Uma linha oliva sobe até uma pessoinha em contorno que já estava ali; ao toque, ela ganha cor e abre os braços. Outras duas esperam, fracas, ao fundo.',
+    vo:'<span class="vo">Voz masc. (carta do Alan): “A bolsa me trouxe tranquilidade.”</span> (3,8–6,2)', som:'Pulso grave · risco de lápis · nota Mi na kalimba quando acende · entra o violão de nylon.',
+    v:'Pessoinha no eixo central, acima da semente.' },
+  { t:'Caminhos', a:7, b:11.5, img:'A linha se ramifica e acende a 2ª e a 3ª pessoinha. Elas se ligam entre si. A estampa do Semear se desenha em contorno nos cantos.',
+    vo:'<span class="vo">Voz masc.: “A mentoria me mostrou caminhos.”</span> (8,0–10,3)', som:'Notas Sol e Lá, uma por pessoinha · roçar de papel · pad de cordas quente.',
+    v:'Ramificação vertical em zigue-zague; estampa só no topo.' },
+  { t:'Rede', a:11.5, b:16.5, img:'Câmera recua devagar. Dezenas de pessoinhas acendem em ondas, linhas cruzam a tela. A estampa passa de contorno a preenchida. O quadro mais cheio.',
+    vo:'<span class="vo">Voz masc.: “E a rede me fez sentir pertencente.”</span> (12,3–15,0) + crédito', som:'Cascata pentatônica · shaker e palmas abafadas · a música cresce.',
+    v:'Rede no miolo; estampa preenchida em faixas no topo e no rodapé.' },
+  { t:'Árvore', a:16.5, b:21, img:'As linhas recolhem. As pessoinhas sobem e formam a copa, cada uma no seu tempo. Do chão sobem duas mãos que viram o tronco. É a árvore do gancho: promessa cumprida.',
+    vo:'<span class="vo">Locutora: “Um gesto. Uma rede inteira florescendo.”</span> (17,2–20,0)', som:'Pico da trilha, acorde aberto · folhas farfalhando · meio segundo de quase-silêncio em 20,4 s.',
+    v:'Árvore maior, ~60% da altura.' },
+  { t:'Pouso', a:21, b:24, img:'A árvore encolhe e encaixa sobre o símbolo oficial (dissolve de 8 frames). O lettering “INSTITUTO semear” entra por opacidade. Sem deformar a marca.',
+    vo:'<span class="vo">Locutora: “Instituto Semear.”</span> (21,6–23,0)', som:'Dó agudo, eco do “toc” do início · último acorde do violão.',
+    v:'Logo empilhada, se existir; senão a horizontal centralizada.' },
+  { t:'Marca', a:24, b:27, img:'Só a logo oficial, parada, centralizada, sobre o papel. Nada mais.',
+    vo:'—', som:'O acorde decai · último 0,8 s em silêncio.',
+    v:'Igual, centralizada.' },
+];
+
+document.getElementById('board').innerHTML = Q.map((q,i)=>`
+  <section class="quadro" id="q${i+1}">
+    <div><div class="num">${String(i+1).padStart(2,'0')}</div><div class="titulo">${q.t}</div>
+      <div class="tempo">${q.a.toFixed(1).replace('.',',')} – ${q.b.toFixed(1).replace('.',',')} s · ${(q.b-q.a).toFixed(1).replace('.',',')} s</div>
+      <div class="barra"><i style="left:${q.a/27*100}%;width:${(q.b-q.a)/27*100}%"></i></div></div>
+    <div class="tela">${cena(i+1,1920,1080)}<small>16:9 · 1920×1080</small></div>
+    <div class="tela">${cena(i+1,1080,1920)}<small>9:16 · 1080×1920</small></div>
+    <dl class="texto"><dt>Imagem</dt><dd>${q.img}</dd><dt>Voz / texto</dt><dd>${q.vo}</dd><dt>Som</dt><dd>${q.som}</dd><dt>No vertical</dt><dd>${q.v}</dd></dl>
+  </section>`).join('');
+</script>
+</body>
+</html>

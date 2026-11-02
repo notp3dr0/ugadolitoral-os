@@ -1,0 +1,126 @@
+{
+  "tts_provider": "gemini",
+  "voice_id": "Achird",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "masc-Achird",
+      "path": "assets/voice/masc-Achird.wav",
+      "duration_s": 8.8,
+      "words": [
+        {
+          "id": "w0",
+          "text": "A",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "id": "w1",
+          "text": "bolsa",
+          "start": 0.32,
+          "end": 0.8
+        },
+        {
+          "id": "w2",
+          "text": "me",
+          "start": 0.8,
+          "end": 0.96
+        },
+        {
+          "id": "w3",
+          "text": "trouxe",
+          "start": 0.96,
+          "end": 1.44
+        },
+        {
+          "id": "w4",
+          "text": "tranquilidade.",
+          "start": 1.44,
+          "end": 2.88
+        },
+        {
+          "id": "w5",
+          "text": "A",
+          "start": 2.88,
+          "end": 3.2
+        },
+        {
+          "id": "w6",
+          "text": "mentoria",
+          "start": 3.2,
+          "end": 3.76
+        },
+        {
+          "id": "w7",
+          "text": "me",
+          "start": 3.84,
+          "end": 4
+        },
+        {
+          "id": "w8",
+          "text": "mostrou",
+          "start": 4,
+          "end": 4.56
+        },
+        {
+          "id": "w9",
+          "text": "caminhos",
+          "start": 4.56,
+          "end": 5.28
+        },
+        {
+          "id": "w10",
+          "text": "e",
+          "start": 5.52,
+          "end": 5.68
+        },
+        {
+          "id": "w11",
+          "text": "a",
+          "start": 5.68,
+          "end": 5.84
+        },
+        {
+          "id": "w12",
+          "text": "rede",
+          "start": 5.84,
+          "end": 6.4
+        },
+        {
+          "id": "w13",
+          "text": "me",
+          "start": 6.4,
+          "end": 6.48
+        },
+        {
+          "id": "w14",
+          "text": "fez",
+          "start": 6.48,
+          "end": 6.8
+        },
+        {
+          "id": "w15",
+          "text": "sentir",
+          "start": 6.8,
+          "end": 7.44
+        },
+        {
+          "id": "w16",
+          "text": "pertencente.",
+          "start": 7.6,
+          "end": 8.64
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 8.8
+}

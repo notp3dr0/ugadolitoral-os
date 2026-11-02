@@ -1,0 +1,108 @@
+{
+  "tts_provider": "gemini",
+  "voice_id": "Sulafat",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "fem-Sulafat",
+      "path": "assets/voice/fem-Sulafat.wav",
+      "duration_s": 8.76,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Toda",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "id": "w1",
+          "text": "mudança",
+          "start": 0.64,
+          "end": 1.44
+        },
+        {
+          "id": "w2",
+          "text": "começa",
+          "start": 1.44,
+          "end": 2.08
+        },
+        {
+          "id": "w3",
+          "text": "com",
+          "start": 2.08,
+          "end": 2.32
+        },
+        {
+          "id": "w4",
+          "text": "um",
+          "start": 2.32,
+          "end": 2.56
+        },
+        {
+          "id": "w5",
+          "text": "gesto.",
+          "start": 2.56,
+          "end": 3.2
+        },
+        {
+          "id": "w6",
+          "text": "Um",
+          "start": 3.52,
+          "end": 3.84
+        },
+        {
+          "id": "w7",
+          "text": "gesto.",
+          "start": 3.84,
+          "end": 4.56
+        },
+        {
+          "id": "w8",
+          "text": "Uma",
+          "start": 4.56,
+          "end": 4.88
+        },
+        {
+          "id": "w9",
+          "text": "rede",
+          "start": 4.88,
+          "end": 5.28
+        },
+        {
+          "id": "w10",
+          "text": "inteira",
+          "start": 5.28,
+          "end": 5.76
+        },
+        {
+          "id": "w11",
+          "text": "florescendo.",
+          "start": 5.76,
+          "end": 7.04
+        },
+        {
+          "id": "w12",
+          "text": "Instituto",
+          "start": 7.2,
+          "end": 7.92
+        },
+        {
+          "id": "w13",
+          "text": "Semear.",
+          "start": 7.92,
+          "end": 8.72
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 8.76
+}

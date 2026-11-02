@@ -1,0 +1,91 @@
+{
+  "tts_provider": "gemini",
+  "voice_id": "Achird",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "carta-bolsa",
+      "path": "assets/voice/carta-bolsa.wav",
+      "duration_s": 2.92,
+      "words": [
+        {
+          "id": "w0",
+          "text": "A",
+          "start": 0.16,
+          "end": 0.4
+        },
+        {
+          "id": "w1",
+          "text": "bolsa",
+          "start": 0.4,
+          "end": 1.04
+        },
+        {
+          "id": "w2",
+          "text": "me",
+          "start": 1.04,
+          "end": 1.2
+        },
+        {
+          "id": "w3",
+          "text": "trouxe",
+          "start": 1.2,
+          "end": 1.76
+        },
+        {
+          "id": "w4",
+          "text": "tranquilidade.",
+          "start": 1.76,
+          "end": 2.72
+        }
+      ]
+    },
+    {
+      "id": "carta-mentoria",
+      "path": "assets/voice/carta-mentoria.wav",
+      "duration_s": 2.68,
+      "words": [
+        {
+          "id": "w0",
+          "text": "A",
+          "start": 0.16,
+          "end": 0.32
+        },
+        {
+          "id": "w1",
+          "text": "mentoria",
+          "start": 0.32,
+          "end": 0.8
+        },
+        {
+          "id": "w2",
+          "text": "me",
+          "start": 1.04,
+          "end": 1.2
+        },
+        {
+          "id": "w3",
+          "text": "mostrou",
+          "start": 1.2,
+          "end": 1.68
+        },
+        {
+          "id": "w4",
+          "text": "caminhos.",
+          "start": 1.68,
+          "end": 2.48
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 5.6
+}

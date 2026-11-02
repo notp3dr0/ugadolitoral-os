@@ -1,0 +1,108 @@
+{
+  "tts_provider": "gemini",
+  "voice_id": "Kore",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "fem-Kore",
+      "path": "assets/voice/fem-Kore.wav",
+      "duration_s": 8.2,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Toda",
+          "start": 0,
+          "end": 0.32
+        },
+        {
+          "id": "w1",
+          "text": "mudança",
+          "start": 0.56,
+          "end": 1.2
+        },
+        {
+          "id": "w2",
+          "text": "começa",
+          "start": 1.2,
+          "end": 1.76
+        },
+        {
+          "id": "w3",
+          "text": "com",
+          "start": 1.76,
+          "end": 2
+        },
+        {
+          "id": "w4",
+          "text": "um",
+          "start": 2,
+          "end": 2.16
+        },
+        {
+          "id": "w5",
+          "text": "gesto.",
+          "start": 2.16,
+          "end": 2.88
+        },
+        {
+          "id": "w6",
+          "text": "Um",
+          "start": 2.88,
+          "end": 3.2
+        },
+        {
+          "id": "w7",
+          "text": "gesto.",
+          "start": 3.2,
+          "end": 4
+        },
+        {
+          "id": "w8",
+          "text": "Uma",
+          "start": 4,
+          "end": 4.32
+        },
+        {
+          "id": "w9",
+          "text": "rede",
+          "start": 4.32,
+          "end": 4.8
+        },
+        {
+          "id": "w10",
+          "text": "inteira",
+          "start": 4.8,
+          "end": 5.28
+        },
+        {
+          "id": "w11",
+          "text": "florescendo.",
+          "start": 5.28,
+          "end": 6.48
+        },
+        {
+          "id": "w12",
+          "text": "Instituto",
+          "start": 6.48,
+          "end": 7.12
+        },
+        {
+          "id": "w13",
+          "text": "Semear",
+          "start": 7.28,
+          "end": 8
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 8.2
+}

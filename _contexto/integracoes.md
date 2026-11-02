@@ -22,7 +22,11 @@
 | Instagram (@uga_do_litoral) | publicar e ler posts | API Meta (`.env`) ou exportação de dados | não ligada | 2026-10-31 |
 | Codex | outro agente, skills antigas | só você, na mão | não ligada | 2026-10-31 |
 | Playwright | renderizar HTML em PNG (story, peças visuais) | CLI/MCP, ainda sem instalar | não ligada (o /story-trabalho precisa) | 2026-10-31 |
-| Remotion | motion em MP4 (story animado) | CLI, ainda sem instalar | não ligada (ou trazer a skill de motion do Codex) | 2026-10-31 |
+| Remotion | motion em MP4 (story animado) | repos + Remotion Skills baixados em `projetos/estudio-motion/repos/`; CLI ainda sem instalar | não ligada | 2026-11-02 |
+| HyperFrames | motion e vídeo em HTML (o filme do Semear saiu por ele) | CLI `npx hyperframes` + skills globais (hyperframes, media-use); login HeyGen (ugadolitoral@gmail.com, plano grátis) | ligada: trilha do catálogo liberada; voz HeyGen exige plano pago | 2026-11-02 |
+| Gemini API (voz) | locução em PT-BR (TTS) | variável `GEMINI_API_KEY` em `~/.hyperframes/gemini.env` (fora do git); plano grátis = 3 pedidos/min | ligada (trocar a chave, exposta em 2026-11-02) | 2026-11-02 |
+| VoiceStudio | voz local, clonagem e design de voz (reserva) | app em `D:VoiceStudioapp`, API em http://127.0.0.1:3900, GPU GTX 1660 Super | instalado, sem modelo baixado | 2026-11-02 |
+| FFmpeg + Parakeet | encode de vídeo e transcrição local (legendas) | FFmpeg via winget; Parakeet via `npx hyperframes models install` | ligada | 2026-11-02 |
 | WebSearch e WebFetch | pesquisa de referências na web (/cacar-referencias) | nativas do Claude Code | disponíveis, ainda não testadas nesta skill | 2026-10-31 |
 
 ## Os sete assuntos que todo negócio tem

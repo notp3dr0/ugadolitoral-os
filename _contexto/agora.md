@@ -6,7 +6,7 @@
 > Pendência que sai desta lista sai com motivo (feito, virou projeto, mandaram soltar), nunca em silêncio.
 
 ## Onde paramos
-1ª rodada do /mapear feita (2026-10-31): 3 skills criadas (/proposta-comercial, /story-trabalho, /cacar-referencias), sistema no GitHub (notp3dr0/ugadolitoral-os), no computador `nautilus`. Próximo passo: testar as skills.
+Filme institucional "Um gesto" do Instituto Semear entregue e aprovado (2026-11-02): 16:9 e 9:16 em `pao/instituto-semear/filme-institucional/entregas/`. Projeto editável em `filme-institucional/hyperframes/`. Detalhes em `pao/instituto-semear/andamento.md`.
 
 ## Pendências
 - Decidir quais skills do Codex trazer pra cá (aprender-ratos, carrossel-ratos, publicar-social-ratos, instagram-reference e outras). Ler os arquivos reais antes (2026-10-31).
@@ -18,10 +18,14 @@
 - Vercel ligada: dá para ler e alterar o código do portfólio (ugadolitoral.vercel.app). Trabalho do portfólio vai em `uga-do-litoral/portfolio/` (2026-10-31).
 - n8n: adiado por decisão sua. Atenção: seu claude.ai já tem um conector n8n conectado (ugadolitoral.app.n8n.cloud), então ele pode aparecer aqui (2026-10-31).
 - Nomear o computador do trabalho (sugestão: `trabalho`) quando instalar lá (2026-10-31).
-- mapear: motion (trazer a skill do Codex ou usar Remotion) (2026-10-31).
 - mapear: carrosséis da PAÓ e do Instituto Semear (modelo `carrossel` do kit ou `carrossel-ratos`) (2026-10-31).
 - mapear: Ludique e Sunika (cadastro de produto, SEO, fotos oficiais), no sistema separado (2026-10-31).
 - Testar as 3 skills novas (`/proposta-comercial`, `/story-trabalho`, `/cacar-referencias`) e ligar Playwright e Remotion pro story (2026-10-31).
 
+- Ouvir a dicção da voz Gemini no filme do Semear; regerar só a fala que soar estranha (2026-11-02).
+- Versão Remotion do filme do Semear, se ainda fizer sentido (2026-11-02).
+- Trocar as 3 chaves do Gemini, que apareceram na conversa (aistudio.google.com/apikey) (2026-11-02).
+- Instalar a skill `/ogilvy-copy` (vem da Ratos, ratosdeia.com.br/skills) (2026-11-02).
+
 ## Quente agora
-Frentes ativas: Let's Tribunal, Radar de Conteúdo IA do Instituto Semear, portfólio interativo do Uga e site da PAÓ. Sem prazos firmes definidos.
+Frentes ativas: filme institucional do Semear (entregue, em ajuste fino), Let's Tribunal, Radar de Conteúdo IA do Instituto Semear, portfólio interativo do Uga e site da PAÓ. Sem prazos firmes definidos.

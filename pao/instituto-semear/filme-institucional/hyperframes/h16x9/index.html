@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #EDEDED; }
+      #filme { z-index: 1; }
+      #legendas { z-index: 2; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="27" data-width="1920" data-height="1080">
+      <div id="filme" data-composition-id="filme" data-composition-src="compositions/filme.html" data-start="0" data-duration="27" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="legendas" data-composition-id="legendas" data-composition-src="compositions/legendas.html" data-start="0" data-duration="27" data-track-index="2" data-track-kind="captions" data-width="1920" data-height="1080"></div>
+      <audio id="trilha" class="clip" src="assets/bgm/trilha.wav" data-start="0" data-duration="26.6" data-track-index="3" data-volume="1" data-fade-in="0.3" data-fade-out="2.4" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.5},{&quot;t&quot;:0.35,&quot;v&quot;:0.32},{&quot;t&quot;:15.1,&quot;v&quot;:0.32},{&quot;t&quot;:15.5,&quot;v&quot;:0.85},{&quot;t&quot;:16.7,&quot;v&quot;:0.85},{&quot;t&quot;:16.95,&quot;v&quot;:0.32},{&quot;t&quot;:21.4,&quot;v&quot;:0.32},{&quot;t&quot;:21.7,&quot;v&quot;:0.8},{&quot;t&quot;:22.05,&quot;v&quot;:0.8},{&quot;t&quot;:22.2,&quot;v&quot;:0.35},{&quot;t&quot;:24.2,&quot;v&quot;:0.35},{&quot;t&quot;:24.5,&quot;v&quot;:0.7}]}]}"></audio>
+      <audio id="voz-gesto" class="clip" src="assets/voice/loc-gesto.wav" data-start="0.3" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-bolsa" class="clip" src="assets/voice/carta-bolsa.wav" data-start="3.75" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-mentoria" class="clip" src="assets/voice/carta-mentoria.wav" data-start="7.85" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-rede" class="clip" src="assets/voice/carta-rede.wav" data-start="12.2" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-florescendo" class="clip" src="assets/voice/loc-rede.wav" data-start="16.9" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-marca" class="clip" src="assets/voice/loc-marca.wav" data-start="22.15" data-track-index="5" data-volume="1"></audio>
+      <audio id="sfx-rebobina" class="clip" src="assets/sfx/whoosh.mp3" data-start="0.54" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-semente" class="clip" src="assets/sfx/pop.mp3" data-start="1.03" data-track-index="4" data-volume="0.9"></audio>
+      <audio id="sfx-acende-a" class="clip" src="assets/sfx/pop.mp3" data-start="4.41" data-track-index="4" data-volume="0.7"></audio>
+      <audio id="sfx-acende-b" class="clip" src="assets/sfx/click-soft.mp3" data-start="8.16" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-acende-c" class="clip" src="assets/sfx/pop.mp3" data-start="9.31" data-track-index="4" data-volume="0.6" data-playback-rate="1.12"></audio>
+      <audio id="sfx-pouso" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="21.54" data-track-index="4" data-volume="0.4" data-playback-rate="0.85"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

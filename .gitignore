@@ -63,3 +63,16 @@ build/
 
 # config de skill de ads: costuma ter só ID, mas é onde chave costuma escorregar
 contas.yaml
+
+# estudio de motion: repos clonados de terceiros (pesados, nao sao nossos). Sobe so o indice em .md
+projetos/estudio-motion/repos/
+
+# script de projeto (gerador do filme do Semear e afins)
+!*.cjs
+
+# caches e artefatos do HyperFrames e do media-use (se recriam sozinhos)
+.thumbnails/
+.waveform-cache/
+.hyperframes/
+.media/
+renders/

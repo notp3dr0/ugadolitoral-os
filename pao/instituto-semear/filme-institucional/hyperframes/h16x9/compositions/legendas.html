@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .c-grupo { position: absolute; left: 0; width: 1920px; top: 0; height: 1080px; text-align: center; font-family: Poppins; }
+    .c-linha { position: absolute; left: 210px; width: 1500px; bottom: 110px; color: #975F30; font-weight: 600; font-size: 54px; line-height: 1.18; letter-spacing: -0.01em; }
+    .c-gesto .c-linha { color: #1F1F1F; font-weight: 300; font-style: italic; font-size: 58px; }
+    .c-gesto .c-b { font-weight: 800; }
+    .c-w { display: inline-block; }
+    .c-cred { position: absolute; left: 0; width: 1920px; top: 988px; color: #1F1F1F; font-size: 26px; font-weight: 400; }
+  </style>
+  <div id="root" data-composition-id="legendas" data-width="1920" data-height="1080">
+    <div id="c-g" class="clip c-grupo c-gesto" data-start="0.5" data-duration="3.3" data-track-index="0"><div class="c-linha"><span id="c-g0" class="c-w">Toda</span> <span id="c-g1" class="c-w c-b">mudança</span> <span id="c-g2" class="c-w">começa</span> <span id="c-g3" class="c-w">com</span> <span id="c-g4" class="c-w">1</span> <span id="c-g5" class="c-w c-b">gesto.</span></div></div>
+    <div id="c-b" class="clip c-grupo" data-start="3.85" data-duration="2.9" data-track-index="0"><div class="c-linha"><span id="c-b0" class="c-w">A</span> <span id="c-b1" class="c-w">bolsa</span> <span id="c-b2" class="c-w">me</span> <span id="c-b3" class="c-w">trouxe</span> <span id="c-b4" class="c-w">tranquilidade.</span></div></div>
+    <div id="c-m" class="clip c-grupo" data-start="7.95" data-duration="2.65" data-track-index="0"><div class="c-linha"><span id="c-m0" class="c-w">A</span> <span id="c-m1" class="c-w">mentoria</span> <span id="c-m2" class="c-w">me</span> <span id="c-m3" class="c-w">mostrou</span> <span id="c-m4" class="c-w">caminhos.</span></div></div>
+    <div id="c-r" class="clip c-grupo" data-start="12.3" data-duration="3" data-track-index="0"><div class="c-linha"><span id="c-r0" class="c-w">E</span> <span id="c-r1" class="c-w">a</span> <span id="c-r2" class="c-w">rede</span> <span id="c-r3" class="c-w">me</span> <span id="c-r4" class="c-w">fez</span> <span id="c-r5" class="c-w">sentir</span> <span id="c-r6" class="c-w">pertencente.</span></div><div id="c-rcred" class="c-cred">da carta de Alan Cruz Silva, Jovem-Semente</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#c-g0", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.54);
+    tl.fromTo("#c-g1", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 1.1);
+    tl.fromTo("#c-g2", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 1.82);
+    tl.fromTo("#c-g3", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 2.38);
+    tl.fromTo("#c-g4", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 2.62);
+    tl.fromTo("#c-g5", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 2.94);
+    tl.to("#c-g .c-linha, #c-g .c-cred", { opacity: 0, duration: 0.15, ease: "power2.in" }, 3.65);
+    tl.fromTo("#c-b0", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 3.91);
+    tl.fromTo("#c-b1", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 4.15);
+    tl.fromTo("#c-b2", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 4.79);
+    tl.fromTo("#c-b3", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 4.95);
+    tl.fromTo("#c-b4", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 5.51);
+    tl.to("#c-b .c-linha, #c-b .c-cred", { opacity: 0, duration: 0.15, ease: "power2.in" }, 6.6);
+    tl.fromTo("#c-m0", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 8.01);
+    tl.fromTo("#c-m1", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 8.17);
+    tl.fromTo("#c-m2", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 8.89);
+    tl.fromTo("#c-m3", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 9.05);
+    tl.fromTo("#c-m4", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 9.53);
+    tl.to("#c-m .c-linha, #c-m .c-cred", { opacity: 0, duration: 0.15, ease: "power2.in" }, 10.45);
+    tl.fromTo("#c-r0", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 12.36);
+    tl.fromTo("#c-r1", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 12.6);
+    tl.fromTo("#c-r2", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 12.76);
+    tl.fromTo("#c-r3", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 13.24);
+    tl.fromTo("#c-r4", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 13.4);
+    tl.fromTo("#c-r5", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 13.72);
+    tl.fromTo("#c-r6", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 14.12);
+    tl.fromTo("#c-rcred", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 12.76);
+    tl.to("#c-r .c-linha, #c-r .c-cred", { opacity: 0, duration: 0.15, ease: "power2.in" }, 15.15);
+    window.__timelines["legendas"] = tl;
+  </script>
+</template>

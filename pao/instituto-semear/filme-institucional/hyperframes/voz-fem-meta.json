@@ -1,0 +1,122 @@
+{
+  "tts_provider": "gemini",
+  "voice_id": "Sulafat",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "loc-gesto",
+      "path": "assets/voice/loc-gesto.wav",
+      "duration_s": 3.44,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Toda",
+          "start": 0.24,
+          "end": 0.56
+        },
+        {
+          "id": "w1",
+          "text": "mudança",
+          "start": 0.8,
+          "end": 1.52
+        },
+        {
+          "id": "w2",
+          "text": "começa",
+          "start": 1.52,
+          "end": 2.08
+        },
+        {
+          "id": "w3",
+          "text": "com",
+          "start": 2.08,
+          "end": 2.32
+        },
+        {
+          "id": "w4",
+          "text": "um",
+          "start": 2.32,
+          "end": 2.64
+        },
+        {
+          "id": "w5",
+          "text": "gesto.",
+          "start": 2.64,
+          "end": 3.28
+        }
+      ]
+    },
+    {
+      "id": "loc-rede",
+      "path": "assets/voice/loc-rede.wav",
+      "duration_s": 4.6,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Um",
+          "start": 0.24,
+          "end": 0.56
+        },
+        {
+          "id": "w1",
+          "text": "gesto.",
+          "start": 0.56,
+          "end": 1.36
+        },
+        {
+          "id": "w2",
+          "text": "Uma",
+          "start": 1.68,
+          "end": 2.16
+        },
+        {
+          "id": "w3",
+          "text": "rede",
+          "start": 2.16,
+          "end": 2.8
+        },
+        {
+          "id": "w4",
+          "text": "inteira",
+          "start": 2.8,
+          "end": 3.36
+        },
+        {
+          "id": "w5",
+          "text": "florescendo.",
+          "start": 3.36,
+          "end": 4.48
+        }
+      ]
+    },
+    {
+      "id": "loc-marca",
+      "path": "assets/voice/loc-marca.wav",
+      "duration_s": 2.16,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Instituto",
+          "start": 0.24,
+          "end": 1.2
+        },
+        {
+          "id": "w1",
+          "text": "Semear.",
+          "start": 1.2,
+          "end": 2
+        }
+      ]
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 10.2
+}

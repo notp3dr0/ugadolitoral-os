@@ -154,4 +154,5 @@ Este sistema está no GitHub: depois do `/atualizar`, oferecer o `/syncar` na me
 - `uga-do-litoral/` · a marca autoral: `instagram/` (carrosséis, legendas, calendário) e `portfolio/` (o site interativo)
 - `pao/` · a agência audiovisual; `instituto-semear/` é o primeiro cliente
 - `projetos/` · projetos internos, uma pasta por projeto (Let's Tribunal e outros; o `/novo-projeto` cria)
+  - `projetos/estudio-motion/` · o kit de 20 repositórios de motion (repos fora do git; índice no README)
 - `referencias/` · prints e inspirações (Luan, Figo, Awwwards)
