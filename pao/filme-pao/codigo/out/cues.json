@@ -1,0 +1,638 @@
+[
+ {
+  "t": 0,
+  "nome": "amb-noite",
+  "vol": 0.6,
+  "plano": "001-002"
+ },
+ {
+  "t": 0,
+  "nome": "teclas",
+  "vol": 0.5,
+  "plano": "001-002"
+ },
+ {
+  "t": 2.1,
+  "nome": "ideia",
+  "vol": 0.5,
+  "plano": "001-002"
+ },
+ {
+  "t": 2.8,
+  "nome": "ui-abre",
+  "vol": 0.4,
+  "plano": "003"
+ },
+ {
+  "t": 2.95,
+  "nome": "digita",
+  "vol": 0.6,
+  "plano": "003"
+ },
+ {
+  "t": 5.1,
+  "nome": "apaga",
+  "vol": 0.5,
+  "plano": "004"
+ },
+ {
+  "t": 6,
+  "nome": "digita",
+  "vol": 0.6,
+  "plano": "005"
+ },
+ {
+  "t": 8.2,
+  "nome": "digita",
+  "vol": 0.5,
+  "plano": "006"
+ },
+ {
+  "t": 9.95,
+  "nome": "enviar",
+  "vol": 0.7,
+  "plano": "006"
+ },
+ {
+  "t": 10.4,
+  "nome": "teclas-rapido",
+  "vol": 0.6,
+  "plano": "007-008"
+ },
+ {
+  "t": 12,
+  "nome": "subida",
+  "vol": 0.6,
+  "plano": "007-008"
+ },
+ {
+  "t": 12.55,
+  "nome": "luz-1",
+  "vol": 0.6,
+  "plano": "009-010"
+ },
+ {
+  "t": 13.05,
+  "nome": "luz-2",
+  "vol": 0.6,
+  "plano": "009-010"
+ },
+ {
+  "t": 13.55,
+  "nome": "luz-3",
+  "vol": 0.7,
+  "plano": "009-010"
+ },
+ {
+  "t": 13.8,
+  "nome": "pop",
+  "vol": 0.4,
+  "plano": "009-010"
+ },
+ {
+  "t": 14,
+  "nome": "pop",
+  "vol": 0.4,
+  "plano": "009-010"
+ },
+ {
+  "t": 14.2,
+  "nome": "pop",
+  "vol": 0.4,
+  "plano": "009-010"
+ },
+ {
+  "t": 14.4,
+  "nome": "pop",
+  "vol": 0.4,
+  "plano": "009-010"
+ },
+ {
+  "t": 15.3,
+  "nome": "pop",
+  "vol": 0.35,
+  "plano": "011-013"
+ },
+ {
+  "t": 15.42,
+  "nome": "pop",
+  "vol": 0.35,
+  "plano": "011-013"
+ },
+ {
+  "t": 15.54,
+  "nome": "pop",
+  "vol": 0.35,
+  "plano": "011-013"
+ },
+ {
+  "t": 15.66,
+  "nome": "pop",
+  "vol": 0.35,
+  "plano": "011-013"
+ },
+ {
+  "t": 15.78,
+  "nome": "pop",
+  "vol": 0.35,
+  "plano": "011-013"
+ },
+ {
+  "t": 16.4,
+  "nome": "pao-oh",
+  "vol": 0.8,
+  "plano": "011-013"
+ },
+ {
+  "t": 17.85,
+  "nome": "pao-uau",
+  "vol": 0.9,
+  "plano": "014"
+ },
+ {
+  "t": 18.9,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "015"
+ },
+ {
+  "t": 19.3,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "015"
+ },
+ {
+  "t": 19.7,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "015"
+ },
+ {
+  "t": 20.1,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "015"
+ },
+ {
+  "t": 20.5,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "015"
+ },
+ {
+  "t": 20.8,
+  "nome": "ponte-piano",
+  "vol": 0.8,
+  "plano": "016-017"
+ },
+ {
+  "t": 23.1,
+  "nome": "amb-sala",
+  "vol": 0.6,
+  "plano": "018"
+ },
+ {
+  "t": 25.9,
+  "nome": "pao-hm",
+  "vol": 0.7,
+  "plano": "020"
+ },
+ {
+  "t": 27.2,
+  "nome": "pao-susto",
+  "vol": 0.9,
+  "plano": "021"
+ },
+ {
+  "t": 27.5,
+  "nome": "asas",
+  "vol": 0.5,
+  "plano": "021"
+ },
+ {
+  "t": 28.55,
+  "nome": "papel",
+  "vol": 0.6,
+  "plano": "022"
+ },
+ {
+  "t": 30.15,
+  "nome": "ui-card",
+  "vol": 0.5,
+  "plano": "023"
+ },
+ {
+  "t": 32.1,
+  "nome": "transicao",
+  "vol": 0.6,
+  "plano": "024"
+ },
+ {
+  "t": 33.6,
+  "nome": "amb-console",
+  "vol": 0.5,
+  "plano": "025"
+ },
+ {
+  "t": 33.9,
+  "nome": "ui-bip",
+  "vol": 0.4,
+  "plano": "025"
+ },
+ {
+  "t": 35.25,
+  "nome": "asas",
+  "vol": 0.4,
+  "plano": "026"
+ },
+ {
+  "t": 35.72,
+  "nome": "clique-macio",
+  "vol": 0.9,
+  "plano": "026"
+ },
+ {
+  "t": 35.72,
+  "nome": "pao-hm",
+  "vol": 0.5,
+  "plano": "026"
+ },
+ {
+  "t": 36.75,
+  "nome": "digita",
+  "vol": 0.6,
+  "plano": "027"
+ },
+ {
+  "t": 38.4,
+  "nome": "pao-suspiro",
+  "vol": 0.6,
+  "plano": "027"
+ },
+ {
+  "t": 39.3,
+  "nome": "digita",
+  "vol": 0.6,
+  "plano": "028"
+ },
+ {
+  "t": 40.82,
+  "nome": "enviar",
+  "vol": 0.7,
+  "plano": "028"
+ },
+ {
+  "t": 41.3,
+  "nome": "amb-sala",
+  "vol": 0.5,
+  "plano": "029"
+ },
+ {
+  "t": 41.5,
+  "nome": "espiar",
+  "vol": 0.5,
+  "plano": "029"
+ },
+ {
+  "t": 42.8,
+  "nome": "pao-hm",
+  "vol": 0.6,
+  "plano": "030"
+ },
+ {
+  "t": 43.7,
+  "nome": "passinho",
+  "vol": 0.4,
+  "plano": "031-032"
+ },
+ {
+  "t": 44.5,
+  "nome": "passinho",
+  "vol": 0.4,
+  "plano": "031-032"
+ },
+ {
+  "t": 45.45,
+  "nome": "ui-card",
+  "vol": 0.5,
+  "plano": "033-034"
+ },
+ {
+  "t": 47.2,
+  "nome": "transicao",
+  "vol": 0.5,
+  "plano": "035-036"
+ },
+ {
+  "t": 47.2,
+  "nome": "passos",
+  "vol": 0.5,
+  "plano": "035-036"
+ },
+ {
+  "t": 49.4,
+  "nome": "teclas",
+  "vol": 0.5,
+  "plano": "037"
+ },
+ {
+  "t": 49.7,
+  "nome": "ui-bip",
+  "vol": 0.4,
+  "plano": "037"
+ },
+ {
+  "t": 50.1,
+  "nome": "ui-bip",
+  "vol": 0.4,
+  "plano": "037"
+ },
+ {
+  "t": 50.9,
+  "nome": "check",
+  "vol": 0.5,
+  "plano": "038"
+ },
+ {
+  "t": 51.15,
+  "nome": "check",
+  "vol": 0.5,
+  "plano": "038"
+ },
+ {
+  "t": 51.4,
+  "nome": "check",
+  "vol": 0.5,
+  "plano": "038"
+ },
+ {
+  "t": 52.28,
+  "nome": "clique-macio",
+  "vol": 0.8,
+  "plano": "039"
+ },
+ {
+  "t": 53.2,
+  "nome": "pao-hm",
+  "vol": 0.5,
+  "plano": "040"
+ },
+ {
+  "t": 54.8,
+  "nome": "ui-rola",
+  "vol": 0.4,
+  "plano": "042"
+ },
+ {
+  "t": 56.42,
+  "nome": "postar",
+  "vol": 1,
+  "plano": "043"
+ },
+ {
+  "t": 57,
+  "nome": "espera",
+  "vol": 0.6,
+  "plano": "044"
+ },
+ {
+  "t": 60.3,
+  "nome": "pao-suspiro",
+  "vol": 0.6,
+  "plano": "047"
+ },
+ {
+  "t": 61.3,
+  "nome": "zumbido",
+  "vol": 0.3,
+  "plano": "048"
+ },
+ {
+  "t": 62.05,
+  "nome": "pao-hnn",
+  "vol": 0.8,
+  "plano": "049"
+ },
+ {
+  "t": 62.25,
+  "nome": "asas",
+  "vol": 0.4,
+  "plano": "049"
+ },
+ {
+  "t": 63.1,
+  "nome": "amb-console",
+  "vol": 0.5,
+  "plano": "050"
+ },
+ {
+  "t": 63.1,
+  "nome": "passos",
+  "vol": 0.5,
+  "plano": "050"
+ },
+ {
+  "t": 64.3,
+  "nome": "mecanica",
+  "vol": 0.6,
+  "plano": "051"
+ },
+ {
+  "t": 65.4,
+  "nome": "ui-bip",
+  "vol": 0.4,
+  "plano": "052"
+ },
+ {
+  "t": 67.05,
+  "nome": "ui-bip",
+  "vol": 0.4,
+  "plano": "054-055"
+ },
+ {
+  "t": 67.3,
+  "nome": "ui-bip",
+  "vol": 0.4,
+  "plano": "054-055"
+ },
+ {
+  "t": 68.87,
+  "nome": "postar",
+  "vol": 1,
+  "plano": "056"
+ },
+ {
+  "t": 69.3,
+  "nome": "amb-sala",
+  "vol": 0.5,
+  "plano": "057"
+ },
+ {
+  "t": 71.3,
+  "nome": "amb-console",
+  "vol": 0.4,
+  "plano": "059-061"
+ },
+ {
+  "t": 72.7,
+  "nome": "pao-suspiro",
+  "vol": 0.5,
+  "plano": "059-061"
+ },
+ {
+  "t": 74.9,
+  "nome": "amb-console",
+  "vol": 0.4,
+  "plano": "063-066"
+ },
+ {
+  "t": 75.2,
+  "nome": "pao-suspiro",
+  "vol": 0.6,
+  "plano": "063-066"
+ },
+ {
+  "t": 76.8,
+  "nome": "oculos",
+  "vol": 0.7,
+  "plano": "063-066"
+ },
+ {
+  "t": 77.45,
+  "nome": "oculos-mesa",
+  "vol": 0.8,
+  "plano": "063-066"
+ },
+ {
+  "t": 78.3,
+  "nome": "afunda",
+  "vol": 0.5,
+  "plano": "063-066"
+ },
+ {
+  "t": 80.25,
+  "nome": "clique-pesado",
+  "vol": 1,
+  "plano": "067"
+ },
+ {
+  "t": 81.2,
+  "nome": "mecanismo",
+  "vol": 0.8,
+  "plano": "068-069"
+ },
+ {
+  "t": 82.9,
+  "nome": "musica-leve",
+  "vol": 0,
+  "plano": "070-072"
+ },
+ {
+  "t": 83.4,
+  "nome": "pao-oh",
+  "vol": 0.4,
+  "plano": "070-072"
+ },
+ {
+  "t": 84.5,
+  "nome": "pulinho",
+  "vol": 0.6,
+  "plano": "070-072"
+ },
+ {
+  "t": 85.5,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "073"
+ },
+ {
+  "t": 85.9,
+  "nome": "notif",
+  "vol": 0.4,
+  "plano": "073"
+ },
+ {
+  "t": 86.3,
+  "nome": "notif",
+  "vol": 0.45,
+  "plano": "073"
+ },
+ {
+  "t": 86.9,
+  "nome": "notif",
+  "vol": 0.45,
+  "plano": "074"
+ },
+ {
+  "t": 87.3,
+  "nome": "notif",
+  "vol": 0.45,
+  "plano": "074"
+ },
+ {
+  "t": 87.7,
+  "nome": "notif",
+  "vol": 0.5,
+  "plano": "074"
+ },
+ {
+  "t": 88.4,
+  "nome": "likes",
+  "vol": 0.7,
+  "plano": "075-077"
+ },
+ {
+  "t": 91.3,
+  "nome": "amb-sala",
+  "vol": 0.45,
+  "plano": "078-079"
+ },
+ {
+  "t": 91.5,
+  "nome": "pao-ofego",
+  "vol": 0.7,
+  "plano": "078-079"
+ },
+ {
+  "t": 94,
+  "nome": "pao-hm",
+  "vol": 0.4,
+  "plano": "080"
+ },
+ {
+  "t": 95.1,
+  "nome": "pao-choro",
+  "vol": 0.6,
+  "plano": "081"
+ },
+ {
+  "t": 96.75,
+  "nome": "comentario-acende",
+  "vol": 1,
+  "plano": "082"
+ },
+ {
+  "t": 96.8,
+  "nome": "pao-surpresa",
+  "vol": 0.8,
+  "plano": "082"
+ },
+ {
+  "t": 98.25,
+  "nome": "rede-acende",
+  "vol": 0.9,
+  "plano": "083"
+ },
+ {
+  "t": 100.4,
+  "nome": "pao-riso",
+  "vol": 0.7,
+  "plano": "084"
+ },
+ {
+  "t": 109.55,
+  "nome": "assinatura",
+  "vol": 1,
+  "plano": "088-090"
+ }
+]

@@ -45,6 +45,12 @@ Os três do boot (`empresa.md`, `preferencias.md`, `agora.md`) e mais `_contexto
 (só pra linha do foco). Nada além disso: o resto do sistema se lê quando a sessão pedir, pelo
 mapa do `AGENTS.md`.
 
+## 3b. Projetos ativos
+
+Achar os `andamento.md` das pastas de projeto (até dois níveis: `*/andamento.md` e
+`*/*/andamento.md`). De cada um, ler só a seção "onde está" e a data dela. Entra no resumo uma linha
+por projeto com andamento atualizado nos últimos 30 dias. Projeto sem `andamento.md` não entra.
+
 ## 4. Recados
 
 Listar `_memoria/recados/*.md`. Pra cada um, ler as três primeiras linhas (`de:`, `quando:`,
@@ -78,7 +84,7 @@ evita refazer uma discussão que já aconteceu.
 
 ## 8. O resumo
 
-Até 8 linhas, direto, sem "Olá! Fico feliz em ajudar!". Não listar os arquivos lidos.
+Até 8 linhas (mais uma por projeto ativo), direto, sem "Olá! Fico feliz em ajudar!". Não listar os arquivos lidos.
 
 ```
 Contexto carregado.
@@ -87,6 +93,7 @@ Contexto carregado.
 **Foco agora:** [prioridade principal de estrategia.md; omitir se vazio]
 **Onde paramos:** [de agora.md]
 **Pendências:** [até 3 itens de agora.md; omitir se não houver]
+**Projetos:** [uma linha por projeto ativo: "PAÓ/Semear: onde está (data)"; omitir se nenhum]
 **Recados:** [N recados: "de X, sobre Y (precisa de ação)"; omitir se zero]
 **Hoje, por outra origem:** [uma frase por arquivo; omitir se nenhum]
 **Lembretes:** [uma preferência importante, ex: "sem travessão", "tratar por tu"]

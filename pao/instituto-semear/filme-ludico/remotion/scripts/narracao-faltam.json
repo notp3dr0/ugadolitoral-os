@@ -1,0 +1,24 @@
+{
+ "voz": "Sulafat",
+ "estilo": "",
+ "falas": [
+  {
+   "id": "n6",
+   "texto": "Mentoria: mostra o mapa."
+  },
+  {
+   "id": "n7",
+   "texto": "Rede: ninguém joga sozinho."
+  },
+  {
+   "id": "n8",
+   "texto": "Fase final: diploma na mão."
+  },
+  {
+   "id": "n9",
+   "texto": "Instituto Semear. Ninguém zera essa sozinho."
+  }
+ ],
+ "saida": "public/voz/sulafat",
+ "refazer": false
+}

@@ -1,0 +1,765 @@
+{
+  "s1": {
+    "text": "Você quer guardar uma imagem. Parece fácil: é só deixar a luz bater num sensor.",
+    "seconds": 5.561,
+    "words": [
+      {
+        "text": "Você",
+        "start": 0,
+        "end": 0.227
+      },
+      {
+        "text": "quer",
+        "start": 0.239,
+        "end": 0.451
+      },
+      {
+        "text": "guardar",
+        "start": 0.463,
+        "end": 0.9
+      },
+      {
+        "text": "uma",
+        "start": 0.911,
+        "end": 1.029
+      },
+      {
+        "text": "imagem",
+        "start": 1.041,
+        "end": 1.513
+      },
+      {
+        "text": "Parece",
+        "start": 2.324,
+        "end": 2.736
+      },
+      {
+        "text": "fácil",
+        "start": 2.748,
+        "end": 3.184
+      },
+      {
+        "text": "é",
+        "start": 3.491,
+        "end": 3.562
+      },
+      {
+        "text": "só",
+        "start": 3.574,
+        "end": 3.762
+      },
+      {
+        "text": "deixar",
+        "start": 3.774,
+        "end": 4.128
+      },
+      {
+        "text": "a",
+        "start": 4.14,
+        "end": 4.175
+      },
+      {
+        "text": "luz",
+        "start": 4.187,
+        "end": 4.399
+      },
+      {
+        "text": "bater",
+        "start": 4.411,
+        "end": 4.765
+      },
+      {
+        "text": "num",
+        "start": 4.776,
+        "end": 4.93
+      },
+      {
+        "text": "sensor",
+        "start": 4.942,
+        "end": 5.413
+      }
+    ]
+  },
+  "s2": {
+    "text": "Só que a luz chega de todos os lados. O sensor vê só uma mancha clara.",
+    "seconds": 4.912,
+    "words": [
+      {
+        "text": "Só",
+        "start": 0,
+        "end": 0.219
+      },
+      {
+        "text": "que",
+        "start": 0.231,
+        "end": 0.313
+      },
+      {
+        "text": "a",
+        "start": 0.325,
+        "end": 0.36
+      },
+      {
+        "text": "luz",
+        "start": 0.372,
+        "end": 0.632
+      },
+      {
+        "text": "chega",
+        "start": 0.644,
+        "end": 0.868
+      },
+      {
+        "text": "de",
+        "start": 0.879,
+        "end": 1.021
+      },
+      {
+        "text": "todos",
+        "start": 1.033,
+        "end": 1.351
+      },
+      {
+        "text": "os",
+        "start": 1.363,
+        "end": 1.528
+      },
+      {
+        "text": "lados",
+        "start": 1.54,
+        "end": 2.023
+      },
+      {
+        "text": "O",
+        "start": 2.834,
+        "end": 2.952
+      },
+      {
+        "text": "sensor",
+        "start": 2.964,
+        "end": 3.435
+      },
+      {
+        "text": "vê",
+        "start": 3.447,
+        "end": 3.636
+      },
+      {
+        "text": "só",
+        "start": 3.648,
+        "end": 3.836
+      },
+      {
+        "text": "uma",
+        "start": 3.848,
+        "end": 4.025
+      },
+      {
+        "text": "mancha",
+        "start": 4.037,
+        "end": 4.414
+      },
+      {
+        "text": "clara",
+        "start": 4.426,
+        "end": 4.792
+      }
+    ]
+  },
+  "s3": {
+    "text": "Por isso existe a lente: ela leva cada ponto da cena pra um ponto do sensor.",
+    "seconds": 4.227,
+    "words": [
+      {
+        "text": "Por",
+        "start": 0,
+        "end": 0.107
+      },
+      {
+        "text": "isso",
+        "start": 0.119,
+        "end": 0.355
+      },
+      {
+        "text": "existe",
+        "start": 0.366,
+        "end": 0.732
+      },
+      {
+        "text": "a",
+        "start": 0.744,
+        "end": 0.779
+      },
+      {
+        "text": "lente",
+        "start": 0.791,
+        "end": 1.168
+      },
+      {
+        "text": "ela",
+        "start": 1.357,
+        "end": 1.51
+      },
+      {
+        "text": "leva",
+        "start": 1.522,
+        "end": 1.805
+      },
+      {
+        "text": "cada",
+        "start": 1.817,
+        "end": 2.065
+      },
+      {
+        "text": "ponto",
+        "start": 2.076,
+        "end": 2.418
+      },
+      {
+        "text": "da",
+        "start": 2.43,
+        "end": 2.524
+      },
+      {
+        "text": "cena",
+        "start": 2.536,
+        "end": 2.89
+      },
+      {
+        "text": "pra",
+        "start": 2.902,
+        "end": 3.043
+      },
+      {
+        "text": "um",
+        "start": 3.055,
+        "end": 3.185
+      },
+      {
+        "text": "ponto",
+        "start": 3.197,
+        "end": 3.527
+      },
+      {
+        "text": "do",
+        "start": 3.539,
+        "end": 3.621
+      },
+      {
+        "text": "sensor",
+        "start": 3.633,
+        "end": 4.081
+      }
+    ]
+  },
+  "s4": {
+    "text": "Mas no sol entra luz demais e a foto estoura. Então umas lâminas fecham a passagem: o diafragma.",
+    "seconds": 6.452,
+    "words": [
+      {
+        "text": "Mas",
+        "start": 0,
+        "end": 0.228
+      },
+      {
+        "text": "no",
+        "start": 0.24,
+        "end": 0.334
+      },
+      {
+        "text": "sol",
+        "start": 0.346,
+        "end": 0.653
+      },
+      {
+        "text": "entra",
+        "start": 0.665,
+        "end": 0.853
+      },
+      {
+        "text": "luz",
+        "start": 0.865,
+        "end": 1.113
+      },
+      {
+        "text": "demais",
+        "start": 1.124,
+        "end": 1.514
+      },
+      {
+        "text": "e",
+        "start": 1.525,
+        "end": 1.62
+      },
+      {
+        "text": "a",
+        "start": 1.632,
+        "end": 1.714
+      },
+      {
+        "text": "foto",
+        "start": 1.726,
+        "end": 2.032
+      },
+      {
+        "text": "estoura",
+        "start": 2.044,
+        "end": 2.516
+      },
+      {
+        "text": "Então",
+        "start": 3.327,
+        "end": 3.692
+      },
+      {
+        "text": "umas",
+        "start": 3.704,
+        "end": 3.905
+      },
+      {
+        "text": "lâminas",
+        "start": 3.916,
+        "end": 4.4
+      },
+      {
+        "text": "fecham",
+        "start": 4.412,
+        "end": 4.754
+      },
+      {
+        "text": "a",
+        "start": 4.765,
+        "end": 4.801
+      },
+      {
+        "text": "passagem",
+        "start": 4.813,
+        "end": 5.355
+      },
+      {
+        "text": "o",
+        "start": 5.603,
+        "end": 5.65
+      },
+      {
+        "text": "diafragma",
+        "start": 5.662,
+        "end": 6.369
+      }
+    ]
+  },
+  "s5": {
+    "text": "Só que o sensor registra tudo enquanto está exposto. Se o skatista se mexe, a foto vira borrão.",
+    "seconds": 6.37,
+    "words": [
+      {
+        "text": "Só",
+        "start": 0,
+        "end": 0.257
+      },
+      {
+        "text": "que",
+        "start": 0.268,
+        "end": 0.351
+      },
+      {
+        "text": "o",
+        "start": 0.363,
+        "end": 0.398
+      },
+      {
+        "text": "sensor",
+        "start": 0.41,
+        "end": 0.858
+      },
+      {
+        "text": "registra",
+        "start": 0.87,
+        "end": 1.353
+      },
+      {
+        "text": "tudo",
+        "start": 1.365,
+        "end": 1.624
+      },
+      {
+        "text": "enquanto",
+        "start": 1.636,
+        "end": 1.966
+      },
+      {
+        "text": "está",
+        "start": 1.978,
+        "end": 2.155
+      },
+      {
+        "text": "exposto",
+        "start": 2.167,
+        "end": 2.674
+      },
+      {
+        "text": "Se",
+        "start": 3.485,
+        "end": 3.662
+      },
+      {
+        "text": "o",
+        "start": 3.674,
+        "end": 3.721
+      },
+      {
+        "text": "skatista",
+        "start": 3.733,
+        "end": 4.369
+      },
+      {
+        "text": "se",
+        "start": 4.381,
+        "end": 4.511
+      },
+      {
+        "text": "mexe",
+        "start": 4.523,
+        "end": 4.947
+      },
+      {
+        "text": "a",
+        "start": 5.159,
+        "end": 5.254
+      },
+      {
+        "text": "foto",
+        "start": 5.266,
+        "end": 5.631
+      },
+      {
+        "text": "vira",
+        "start": 5.643,
+        "end": 5.867
+      },
+      {
+        "text": "borrão",
+        "start": 5.879,
+        "end": 6.28
+      }
+    ]
+  },
+  "s6": {
+    "text": "Por isso existe o obturador: ele abre e fecha em uma fração de segundo e congela o movimento.",
+    "seconds": 4.894,
+    "words": [
+      {
+        "text": "Por",
+        "start": 0,
+        "end": 0.112
+      },
+      {
+        "text": "isso",
+        "start": 0.124,
+        "end": 0.383
+      },
+      {
+        "text": "existe",
+        "start": 0.395,
+        "end": 0.761
+      },
+      {
+        "text": "o",
+        "start": 0.772,
+        "end": 0.796
+      },
+      {
+        "text": "obturador",
+        "start": 0.808,
+        "end": 1.386
+      },
+      {
+        "text": "ele",
+        "start": 1.692,
+        "end": 1.846
+      },
+      {
+        "text": "abre",
+        "start": 1.857,
+        "end": 2.117
+      },
+      {
+        "text": "e",
+        "start": 2.129,
+        "end": 2.152
+      },
+      {
+        "text": "fecha",
+        "start": 2.164,
+        "end": 2.494
+      },
+      {
+        "text": "em",
+        "start": 2.506,
+        "end": 2.565
+      },
+      {
+        "text": "uma",
+        "start": 2.577,
+        "end": 2.73
+      },
+      {
+        "text": "fração",
+        "start": 2.742,
+        "end": 3.107
+      },
+      {
+        "text": "de",
+        "start": 3.119,
+        "end": 3.213
+      },
+      {
+        "text": "segundo",
+        "start": 3.225,
+        "end": 3.673
+      },
+      {
+        "text": "e",
+        "start": 3.685,
+        "end": 3.721
+      },
+      {
+        "text": "congela",
+        "start": 3.732,
+        "end": 4.192
+      },
+      {
+        "text": "o",
+        "start": 4.204,
+        "end": 4.216
+      },
+      {
+        "text": "movimento",
+        "start": 4.228,
+        "end": 4.805
+      }
+    ]
+  },
+  "s7": {
+    "text": "Com menos luz e menos tempo, a foto escurece. Então a câmera amplifica o sinal: o ISO. Preço? Ruído.",
+    "seconds": 8.658,
+    "words": [
+      {
+        "text": "Com",
+        "start": 0,
+        "end": 0.124
+      },
+      {
+        "text": "menos",
+        "start": 0.136,
+        "end": 0.478
+      },
+      {
+        "text": "luz",
+        "start": 0.489,
+        "end": 0.666
+      },
+      {
+        "text": "e",
+        "start": 0.678,
+        "end": 0.796
+      },
+      {
+        "text": "menos",
+        "start": 0.808,
+        "end": 1.185
+      },
+      {
+        "text": "tempo",
+        "start": 1.197,
+        "end": 1.586
+      },
+      {
+        "text": "a",
+        "start": 1.751,
+        "end": 1.834
+      },
+      {
+        "text": "foto",
+        "start": 1.846,
+        "end": 2.176
+      },
+      {
+        "text": "escurece",
+        "start": 2.188,
+        "end": 2.789
+      },
+      {
+        "text": "Então",
+        "start": 3.6,
+        "end": 4.013
+      },
+      {
+        "text": "a",
+        "start": 4.024,
+        "end": 4.083
+      },
+      {
+        "text": "câmera",
+        "start": 4.095,
+        "end": 4.461
+      },
+      {
+        "text": "amplifica",
+        "start": 4.472,
+        "end": 4.932
+      },
+      {
+        "text": "o",
+        "start": 4.944,
+        "end": 4.979
+      },
+      {
+        "text": "sinal",
+        "start": 4.991,
+        "end": 5.416
+      },
+      {
+        "text": "o",
+        "start": 5.604,
+        "end": 5.722
+      },
+      {
+        "text": "ISO",
+        "start": 5.734,
+        "end": 6.041
+      },
+      {
+        "text": "Preço",
+        "start": 6.854,
+        "end": 7.255
+      },
+      {
+        "text": "Ruído",
+        "start": 8.069,
+        "end": 8.553
+      }
+    ]
+  },
+  "s8": {
+    "text": "Abertura, obturador e ISO: o triângulo da exposição. Mexeu num, mexe nos outros. Agora você sabe o que acontece quando aperta o botão.",
+    "seconds": 9.503,
+    "words": [
+      {
+        "text": "Abertura",
+        "start": 0,
+        "end": 0.581
+      },
+      {
+        "text": "obturador",
+        "start": 0.817,
+        "end": 1.43
+      },
+      {
+        "text": "e",
+        "start": 1.442,
+        "end": 1.56
+      },
+      {
+        "text": "ISO",
+        "start": 1.572,
+        "end": 1.819
+      },
+      {
+        "text": "o",
+        "start": 2.114,
+        "end": 2.185
+      },
+      {
+        "text": "triângulo",
+        "start": 2.197,
+        "end": 2.692
+      },
+      {
+        "text": "da",
+        "start": 2.704,
+        "end": 2.786
+      },
+      {
+        "text": "exposição",
+        "start": 2.798,
+        "end": 3.411
+      },
+      {
+        "text": "Mexeu",
+        "start": 4.222,
+        "end": 4.659
+      },
+      {
+        "text": "num",
+        "start": 4.67,
+        "end": 4.894
+      },
+      {
+        "text": "mexe",
+        "start": 5.107,
+        "end": 5.401
+      },
+      {
+        "text": "nos",
+        "start": 5.413,
+        "end": 5.496
+      },
+      {
+        "text": "outros",
+        "start": 5.508,
+        "end": 6.003
+      },
+      {
+        "text": "Agora",
+        "start": 6.817,
+        "end": 7.217
+      },
+      {
+        "text": "você",
+        "start": 7.229,
+        "end": 7.465
+      },
+      {
+        "text": "sabe",
+        "start": 7.477,
+        "end": 7.736
+      },
+      {
+        "text": "o",
+        "start": 7.748,
+        "end": 7.784
+      },
+      {
+        "text": "que",
+        "start": 7.795,
+        "end": 7.842
+      },
+      {
+        "text": "acontece",
+        "start": 7.854,
+        "end": 8.432
+      },
+      {
+        "text": "quando",
+        "start": 8.444,
+        "end": 8.597
+      },
+      {
+        "text": "aperta",
+        "start": 8.609,
+        "end": 8.951
+      },
+      {
+        "text": "o",
+        "start": 8.963,
+        "end": 8.986
+      },
+      {
+        "text": "botão",
+        "start": 8.998,
+        "end": 9.434
+      }
+    ]
+  }
+}

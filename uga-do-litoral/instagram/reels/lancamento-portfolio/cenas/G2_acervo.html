@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>G2_acervo</title>
+<style>
+  html, body { margin: 0; width: 540px; height: 960px; overflow: hidden; background: #000; }
+  canvas { position: absolute; inset: 0; width: 540px; height: 960px; display: block; }
+</style></head>
+<body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<script type="module">
+// G2_acervo, rodada 2. Batidas 44 e 45: cópias voam de fora do quadro e pousam na mesa, uma dupla a cada
+// semicolcheia. Da batida 46 ao fim: as cópias deslizam pros seus lugares numa grade limpa (linhas
+// justificadas, sem moldura, respiro fino) e a câmera abre até o acervo inteiro (109 fotos) caber na tela.
+// Desfoque de movimento: cada quadro é a média de SUB subquadros (obturador de 180 graus).
+import * as THREE from '../../../../portfolio/site-lab/vendor/three.module.min.js';
+import { photos } from '../../../../portfolio/site-lab/js/data.js';
+import { SITE, W, H, carregarTempo, semente, clamp, lerp, prog } from './comum.js';
+
+const tempo = await carregarTempo();
+const F0 = tempo.batidas.find(b => b.b === 44).f;
+const L = b => tempo.batidas.find(x => x.b === b).f - F0;
+const SEMIS = tempo.semicolcheias.filter(s => s.b >= 44 && s.b < 46).map(s => s.f - F0); // 0 3 6 10 13 16 20 23
+const B45 = L(45), B46 = L(46), B47 = L(47), B48 = L(48);
+const QUADROS = 57, FIM = 56;
+const SUB = Number(new URLSearchParams(location.search).get('sub') ?? 24), OBTURADOR = .5;
+
+// ---------- a grade: as 109 fotos em linhas justificadas ----------
+const rnd0 = semente(4471);
+const ordem = photos.map((p, i) => i);
+for (let i = ordem.length - 1; i > 0; i--) { const j = Math.floor(rnd0() * (i + 1)); [ordem[i], ordem[j]] = [ordem[j], ordem[i]]; }
+const fotos = ordem.map(i => photos[i]);
+const LINHAS = 12, GW = 2400, GAP = 10;
+const asp = fotos.map(p => p.width / p.height);
+const total = asp.reduce((a, b) => a + b, 0);
+const celulas = [];
+{
+  let acc = 0, ini = 0, y = 0;
+  const linhas = [];
+  for (let i = 0; i < fotos.length; i++) {
+    acc += asp[i];
+    const corte = (linhas.length + 1) * total / LINHAS;
+    if ((acc >= corte - asp[i] / 2 && linhas.length < LINHAS - 1) || i === fotos.length - 1) { linhas.push([ini, i + 1]); ini = i + 1; }
+  }
+  for (const [a, b] of linhas) {
+    const soma = asp.slice(a, b).reduce((s, v) => s + v, 0);
+    const h = (GW - GAP * (b - a - 1)) / soma;
+    let x = -GW / 2;
+    for (let i = a; i < b; i++) { const w = asp[i] * h; celulas[i] = { x: x + w / 2, y: -(y + h / 2), w, h }; x += w + GAP; }
+    y += h + GAP;
+  }
+  const GH = y - GAP;
+  celulas.forEach(c => { c.y += GH / 2; });
+  window.GH = GH;
+}
+const GH = window.GH;
+
+// ---------- quem voa: as 16 células mais perto do centro ----------
+const perto = celulas.map((c, i) => [i, Math.hypot(c.x * 1.7, c.y)]).sort((a, b) => a[1] - b[1]).slice(0, 16).map(a => a[0]);
+const rnd = semente(90210);
+for (let i = perto.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perto[i], perto[j]] = [perto[j], perto[i]]; }
+const voo = new Map(); // índice da foto -> dados do voo
+// o centro do monte fica no centro do quadro
+const mx = perto.reduce((s, i) => s + celulas[i].x, 0) / perto.length, my = perto.reduce((s, i) => s + celulas[i].y, 0) / perto.length;
+perto.forEach((idx, k) => {
+  const pouso = SEMIS[k >> 1];
+  const lado = (k & 1) ? 1 : -1;
+  // entra de fora do quadro: metade pelos lados, metade por cima/baixo, sempre de longe
+  const ang = (k & 1 ? 0 : Math.PI) + (rnd() - .5) * 1.4 + (k % 4 >= 2 ? lado * .9 : 0);
+  const c = celulas[idx];
+  voo.set(idx, {
+    ordem: k, pouso, dur: 11 + Math.floor(rnd() * 4),
+    lx: clamp((c.x - mx) * .62 + (rnd() - .5) * 160, -270, 270), ly: clamp((c.y - my) * .85 + (rnd() - .5) * 180, -580, 560),
+    sx: Math.cos(ang) * 1250, sy: Math.sin(ang) * 1450,
+    z0: 130 + rnd() * 110, rot: (rnd() - .5) * .55, dr: (rnd() - .5) * 3.2,
+    fx: (rnd() - .5) * 1.0, fy: (rnd() - .5) * 1.0, fase: rnd() * 6, desliza: 1 + rnd() * 1.5,
+    zr: 2 + k * .6
+  });
+});
+
+// ---------- render ----------
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: false, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(1); renderer.setSize(W, H, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NoToneMapping;
+const FOV = 30, TAN = Math.tan(THREE.MathUtils.degToRad(FOV / 2));
+const camera = new THREE.PerspectiveCamera(FOV, W / H, 50, 30000);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
+
+const rtSub = new THREE.WebGLRenderTarget(W, H, { type: THREE.HalfFloatType, samples: 8 });
+const rtAcc = new THREE.WebGLRenderTarget(W, H, { type: THREE.HalfFloatType });
+const orto = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1); orto.position.z = .5;
+const quadAdd = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshBasicMaterial({ map: rtSub.texture, blending: THREE.AdditiveBlending, transparent: true, opacity: 1 / SUB, depthTest: false, depthWrite: false }));
+const cenaAdd = new THREE.Scene(); cenaAdd.add(quadAdd);
+const quadOut = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshBasicMaterial({ map: rtAcc.texture, depthTest: false, depthWrite: false }));
+const cenaOut = new THREE.Scene(); cenaOut.add(quadOut);
+
+// a mesa: preta, uma poça de luz baixa
+{
+  const cv = document.createElement('canvas'); cv.width = cv.height = 1024;
+  const c = cv.getContext('2d'), g = c.createRadialGradient(512, 512, 0, 512, 512, 512);
+  g.addColorStop(0, '#141414'); g.addColorStop(.5, '#090909'); g.addColorStop(1, '#000');
+  c.fillStyle = g; c.fillRect(0, 0, 1024, 1024);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;
+  const mesa = new THREE.Mesh(new THREE.PlaneGeometry(5200, 5200), new THREE.MeshBasicMaterial({ map: t }));
+  mesa.position.z = -1; scene.add(mesa);
+}
+const SOMBRA = (() => {
+  const cv = document.createElement('canvas'); cv.width = cv.height = 256;
+  const c = cv.getContext('2d'); c.filter = 'blur(24px)'; c.fillStyle = '#000'; c.fillRect(56, 56, 144, 144);
+  return new THREE.CanvasTexture(cv);
+})();
+
+const loader = new THREE.TextureLoader();
+const aniso = renderer.capabilities.getMaxAnisotropy();
+const texturas = await Promise.all(fotos.map(p => loader.loadAsync(SITE + p.md.replace('./', ''))));
+texturas.forEach(t => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; });
+
+const BORDA = 7;
+const itens = fotos.map((p, i) => {
+  const c = celulas[i];
+  const g = new THREE.Group();
+  const papel = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ color: 0xf6f4ef }));
+  const foto = new THREE.Mesh(new THREE.PlaneGeometry(c.w, c.h), new THREE.MeshBasicMaterial({ map: texturas[i] }));
+  foto.position.z = .2;
+  g.add(papel, foto);
+  const sombra = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: SOMBRA, transparent: true, depthWrite: false }));
+  scene.add(sombra, g);
+  // empilhamento explícito (cópia de papel é plana: quem pousou depois fica por cima, sem cruzar as de baixo)
+  const v = voo.get(i), base = v ? 100 + 3 * v.ordem : 10;
+  for (const [m, o] of [[sombra, 0], [papel, 1], [foto, 2]]) { m.material.transparent = true; m.material.depthTest = false; m.material.depthWrite = false; m.renderOrder = base + o; }
+  return { i, c, g, papel, sombra, v };
+});
+
+// ---------- câmera: uma curva só, contínua ----------
+// fase mesa (0..26): de cima, inclinada, deriva e gira devagar, abrindo um pouco
+// fase grade (26..56): abre em escala logarítmica, acelera e desacelera; o alvo vai pro centro, a inclinação zera
+const V0 = 1750, V26 = 1880;
+const VEND = Math.max(GH, GW * 16 / 9) * 1.035;
+const mesa = t => { const u = t / B46; return { x: lerp(-40, 30, u), y: lerp(90, -40, u), tilt: lerp(.30, .22, u), az: lerp(-.07, .03, u), lv: Math.log(lerp(V0, V26, u)) }; };
+const fimCam = { x: 0, y: 0, tilt: 0, az: 0, lv: Math.log(VEND) };
+function hermite(a, b, va, vb, t) { const t2 = t * t, t3 = t2 * t; return (2 * t3 - 3 * t2 + 1) * a + (t3 - 2 * t2 + t) * va + (-2 * t3 + 3 * t2) * b + (t3 - t2) * vb; }
+function cam(t) {
+  if (t <= B46) return mesa(t);
+  const a = mesa(B46), a1 = mesa(B46 + 1), o = {};
+  for (const k of Object.keys(a)) {
+    // posição/inclinação assentam até 50; a abertura usa a cena inteira
+    const fim = k === 'lv' ? FIM : 50;
+    const D = fim - B46, u = clamp((t - B46) / D);
+    o[k] = hermite(a[k], fimCam[k], (a1[k] - a[k]) * D, 0, u);
+  }
+  return o;
+}
+function poeCamera(t) {
+  const c = cam(t), d = Math.exp(c.lv) / 2 / TAN;
+  const up = new THREE.Vector3(-Math.sin(c.az), Math.cos(c.az), 0);
+  camera.position.set(c.x - up.x * Math.sin(c.tilt) * d, c.y - up.y * Math.sin(c.tilt) * d, Math.cos(c.tilt) * d);
+  camera.up.copy(up); camera.lookAt(c.x, c.y, 0);
+  camera.updateMatrixWorld();
+  return c;
+}
+// quando cada célula entra no campo de visão (pra quem não voa chegar antes de ser vista)
+const vista = t => { const c = cam(t), v = Math.exp(c.lv); return { x: c.x, y: c.y, hh: v / 2, hw: v / 2 * W / H }; };
+itens.forEach(it => {
+  if (it.v) return;
+  const c = it.c;
+  let tv = FIM + 1;
+  for (let t = 0; t <= FIM; t += .25) { const v = vista(t); if (Math.abs(c.x - v.x) - c.w / 2 < v.hw * 1.15 && Math.abs(c.y - v.y) - c.h / 2 < v.hh * 1.15) { tv = t; break; } }
+  it.chega = Math.max(B46 + 8, tv - 1);   // assentada antes de aparecer (as do centro deslizam à vista)
+  it.parte = it.chega - 10;
+  const a = Math.atan2(c.y, c.x * 1.6);
+  it.ox = Math.cos(a) * 1300; it.oy = Math.sin(a) * 1700;
+});
+
+const ease = { outCubic: t => 1 - Math.pow(1 - t, 3), outQuint: t => 1 - Math.pow(1 - t, 5), inOut: t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+  outBack: (t, s = 1.15) => 1 + (s + 1) * Math.pow(t - 1, 3) + s * Math.pow(t - 1, 2) };
+
+// pose de todas as cópias num instante t (contínuo)
+function pose(t) {
+  for (const it of itens) {
+    const c = it.c, v = it.v;
+    let x, y, z, rz = 0, rx = 0, ry = 0, borda = 0, sombra = 0, vis = true;
+    if (v) {
+      const ini = v.pouso - v.dur, fimH = v.pouso + 3 + v.desliza; // toca a mesa no pouso e ainda escorrega um pouco
+      if (t < ini) vis = false;
+      else {
+        const u = clamp((t - ini) / (fimH - ini));
+        const e = ease.outQuint(u);
+        x = v.lx + v.sx * (1 - e); y = v.ly + v.sy * (1 - e);
+        const uz = clamp((t - ini) / (v.pouso - ini));
+        z = v.zr + v.z0 * Math.pow(1 - uz, 2) * (1 - uz * .2);
+        rz = v.rot + v.dr * (1 - ease.outBack(u));
+        const bate = Math.pow(1 - uz, 1.5);
+        rx = v.fx * bate * Math.cos(t * .9 + v.fase); ry = v.fy * bate * Math.sin(t * .8 + v.fase);
+        borda = BORDA; sombra = 1;
+      }
+      // da mesa pra grade: desliza pro lugar, a borda de papel some
+      const ug = ease.inOut(prog(t, B46 - 1 + v.ordem * .35, B46 + 11 + v.ordem * .35));
+      if (vis && ug > 0) {
+        x = lerp(x, c.x, ug); y = lerp(y, c.y, ug); z = lerp(z, 1, ug) + 30 * Math.sin(Math.PI * ug);
+        rz = lerp(rz, 0, ug); rx = lerp(rx, 0, ug); ry = lerp(ry, 0, ug);
+        borda = BORDA * (1 - ug); sombra = 1 - ug;
+      }
+    } else {
+      if (t < it.parte) vis = false;
+      else { const u = ease.outCubic(clamp((t - it.parte) / (it.chega - it.parte))); x = c.x + it.ox * (1 - u); y = c.y + it.oy * (1 - u); z = 1; }
+    }
+    it.g.visible = vis; it.sombra.visible = vis && sombra > 0;
+    if (!vis) continue;
+    it.g.position.set(x, y, z); it.g.rotation.set(rx, ry, rz);
+    it.papel.scale.set(c.w + 2 * borda, c.h + 2 * borda, 1);
+    if (sombra > 0) {
+      const alto = Math.max(0, z - (v ? v.zr : 1));
+      const k = 1.5 + alto * .0016;
+      it.sombra.scale.set((c.w + 2 * BORDA) * k, (c.h + 2 * BORDA) * k, 1);
+      it.sombra.position.set(x + 8 + alto * .22, y - 10 - alto * .28, (v ? v.zr : 1) - .3);
+      it.sombra.rotation.set(0, 0, rz);
+      it.sombra.material.opacity = .72 * (1 - clamp(alto / 700) * .65) * sombra;
+    }
+  }
+}
+
+window.desenhar = n => {
+  renderer.setRenderTarget(rtAcc); renderer.setClearColor(0x000000, 1); renderer.clear();
+  for (let k = 0; k < SUB; k++) {
+    const t = n + OBTURADOR * ((k + .5) / SUB - .5);
+    poeCamera(t); pose(t);
+    renderer.setRenderTarget(rtSub); renderer.clear(); renderer.render(scene, camera);
+    renderer.setRenderTarget(rtAcc); renderer.autoClear = false; renderer.render(cenaAdd, orto); renderer.autoClear = true;
+  }
+  renderer.setRenderTarget(null); renderer.render(cenaOut, orto);
+};
+window.CENA = { id: 'G2_acervo', quadros: QUADROS, formato: 'jpg', marcos: { semicolcheias: SEMIS, B45, B46, B47, B48 },
+  obs: `rodada 2: 16 copias em voo (duas por semicolcheia, pousam nos locais ${SEMIS.join(' ')}), depois grade justificada das 109 fotos (md do site-lab, sem recorte, sem moldura, respiro fino) com a camera abrindo em escala log ate o acervo inteiro no q56. Desfoque de movimento: ${SUB} subquadros por quadro, obturador de 180 graus. Sem lapis.` };
+window.pronto = true;
+</script>
+</body></html>

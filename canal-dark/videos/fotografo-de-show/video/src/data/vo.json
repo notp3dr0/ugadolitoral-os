@@ -1,0 +1,1079 @@
+{
+  "s1": {
+    "text": "Esse fotógrafo trabalha toda semana e nunca recebeu um real. Como isso é possível?",
+    "seconds": 5.857,
+    "words": [
+      {
+        "text": "Esse",
+        "start": 0,
+        "end": 0.211
+      },
+      {
+        "text": "fotógrafo",
+        "start": 0.251,
+        "end": 0.891
+      },
+      {
+        "text": "trabalha",
+        "start": 0.971,
+        "end": 1.451
+      },
+      {
+        "text": "toda",
+        "start": 1.531,
+        "end": 1.771
+      },
+      {
+        "text": "semana",
+        "start": 1.851,
+        "end": 2.331
+      },
+      {
+        "text": "e",
+        "start": 2.491,
+        "end": 2.571
+      },
+      {
+        "text": "nunca",
+        "start": 2.731,
+        "end": 2.971
+      },
+      {
+        "text": "recebeu",
+        "start": 3.051,
+        "end": 3.531
+      },
+      {
+        "text": "um",
+        "start": 3.611,
+        "end": 3.771
+      },
+      {
+        "text": "real.",
+        "start": 3.851,
+        "end": 4.491
+      },
+      {
+        "text": "Como",
+        "start": 4.731,
+        "end": 4.891
+      },
+      {
+        "text": "isso",
+        "start": 4.971,
+        "end": 5.131
+      },
+      {
+        "text": "é",
+        "start": 5.171,
+        "end": 5.211
+      },
+      {
+        "text": "possível?",
+        "start": 5.331,
+        "end": 6.011
+      }
+    ]
+  },
+  "s2": {
+    "text": "Você quer ser fotógrafo. Só que câmera é cara. Então, de manhã, padaria. De noite, telemarketing.",
+    "seconds": 7.475,
+    "words": [
+      {
+        "text": "Você",
+        "start": 0,
+        "end": 0.282
+      },
+      {
+        "text": "quer",
+        "start": 0.362,
+        "end": 0.442
+      },
+      {
+        "text": "ser",
+        "start": 0.522,
+        "end": 0.602
+      },
+      {
+        "text": "fotógrafo.",
+        "start": 0.682,
+        "end": 1.682
+      },
+      {
+        "text": "Só",
+        "start": 1.882,
+        "end": 1.962
+      },
+      {
+        "text": "que",
+        "start": 2.042,
+        "end": 2.202
+      },
+      {
+        "text": "câmera",
+        "start": 2.282,
+        "end": 2.655
+      },
+      {
+        "text": "é",
+        "start": 2.709,
+        "end": 2.762
+      },
+      {
+        "text": "cara.",
+        "start": 2.842,
+        "end": 3.442
+      },
+      {
+        "text": "Então,",
+        "start": 3.642,
+        "end": 4.162
+      },
+      {
+        "text": "de",
+        "start": 4.282,
+        "end": 4.362
+      },
+      {
+        "text": "manhã,",
+        "start": 4.442,
+        "end": 4.882
+      },
+      {
+        "text": "padaria.",
+        "start": 5.002,
+        "end": 5.762
+      },
+      {
+        "text": "De",
+        "start": 5.962,
+        "end": 6.042
+      },
+      {
+        "text": "noite,",
+        "start": 6.122,
+        "end": 6.562
+      },
+      {
+        "text": "telemarketing.",
+        "start": 6.682,
+        "end": 7.642
+      }
+    ]
+  },
+  "s3": {
+    "text": "Cada pão vendido e cada cliente gritando no seu ouvido vira moeda no cofrinho. Até que, em vinte e quatro vezes...",
+    "seconds": 7.526,
+    "words": [
+      {
+        "text": "Cada",
+        "start": 0,
+        "end": 0.216
+      },
+      {
+        "text": "pão",
+        "start": 0.296,
+        "end": 0.456
+      },
+      {
+        "text": "vendido",
+        "start": 0.536,
+        "end": 1.096
+      },
+      {
+        "text": "e",
+        "start": 1.176,
+        "end": 1.256
+      },
+      {
+        "text": "cada",
+        "start": 1.296,
+        "end": 1.496
+      },
+      {
+        "text": "cliente",
+        "start": 1.576,
+        "end": 1.976
+      },
+      {
+        "text": "gritando",
+        "start": 2.016,
+        "end": 2.536
+      },
+      {
+        "text": "no",
+        "start": 2.616,
+        "end": 2.696
+      },
+      {
+        "text": "seu",
+        "start": 2.736,
+        "end": 2.856
+      },
+      {
+        "text": "ouvido",
+        "start": 2.936,
+        "end": 3.336
+      },
+      {
+        "text": "vira",
+        "start": 3.416,
+        "end": 3.576
+      },
+      {
+        "text": "moeda",
+        "start": 3.656,
+        "end": 4.056
+      },
+      {
+        "text": "no",
+        "start": 4.096,
+        "end": 4.136
+      },
+      {
+        "text": "cofrinho.",
+        "start": 4.216,
+        "end": 5.176
+      },
+      {
+        "text": "Até",
+        "start": 5.296,
+        "end": 5.456
+      },
+      {
+        "text": "que,",
+        "start": 5.496,
+        "end": 5.976
+      },
+      {
+        "text": "em",
+        "start": 6.096,
+        "end": 6.216
+      },
+      {
+        "text": "vinte",
+        "start": 6.296,
+        "end": 6.456
+      },
+      {
+        "text": "e",
+        "start": 6.496,
+        "end": 6.536
+      },
+      {
+        "text": "quatro",
+        "start": 6.576,
+        "end": 6.776
+      },
+      {
+        "text": "vezes...",
+        "start": 6.936,
+        "end": 7.736
+      }
+    ]
+  },
+  "s4": {
+    "text": "Ela chega. A sua primeira câmera.",
+    "seconds": 2.656,
+    "words": [
+      {
+        "text": "Ela",
+        "start": 0,
+        "end": 0.196
+      },
+      {
+        "text": "chega.",
+        "start": 0.276,
+        "end": 0.876
+      },
+      {
+        "text": "A",
+        "start": 1.076,
+        "end": 1.156
+      },
+      {
+        "text": "sua",
+        "start": 1.236,
+        "end": 1.396
+      },
+      {
+        "text": "primeira",
+        "start": 1.476,
+        "end": 1.956
+      },
+      {
+        "text": "câmera.",
+        "start": 2.116,
+        "end": 2.836
+      }
+    ]
+  },
+  "s5": {
+    "text": "Mas ninguém te contrata. Então você fotografa o pão da padaria. Ficou lindo. Ninguém paga.",
+    "seconds": 6.476,
+    "words": [
+      {
+        "text": "Mas",
+        "start": 0,
+        "end": 0.179
+      },
+      {
+        "text": "ninguém",
+        "start": 0.299,
+        "end": 0.579
+      },
+      {
+        "text": "te",
+        "start": 0.659,
+        "end": 0.739
+      },
+      {
+        "text": "contrata.",
+        "start": 0.899,
+        "end": 1.699
+      },
+      {
+        "text": "Então",
+        "start": 1.819,
+        "end": 2.019
+      },
+      {
+        "text": "você",
+        "start": 2.099,
+        "end": 2.339
+      },
+      {
+        "text": "fotografa",
+        "start": 2.379,
+        "end": 2.899
+      },
+      {
+        "text": "o",
+        "start": 2.979,
+        "end": 3.059
+      },
+      {
+        "text": "pão",
+        "start": 3.112,
+        "end": 3.219
+      },
+      {
+        "text": "da",
+        "start": 3.259,
+        "end": 3.299
+      },
+      {
+        "text": "padaria.",
+        "start": 3.379,
+        "end": 4.179
+      },
+      {
+        "text": "Ficou",
+        "start": 4.219,
+        "end": 4.579
+      },
+      {
+        "text": "lindo.",
+        "start": 4.659,
+        "end": 5.459
+      },
+      {
+        "text": "Ninguém",
+        "start": 5.499,
+        "end": 5.939
+      },
+      {
+        "text": "paga.",
+        "start": 6.019,
+        "end": 6.659
+      }
+    ]
+  },
+  "s6": {
+    "text": "Aí uma casa de show te chama. Não tem verba, mas é uma vitrine absurda. Isso tem nome: pagamento em experiência.",
+    "seconds": 7.844,
+    "words": [
+      {
+        "text": "Aí",
+        "start": 0,
+        "end": 0.176
+      },
+      {
+        "text": "uma",
+        "start": 0.216,
+        "end": 0.376
+      },
+      {
+        "text": "casa",
+        "start": 0.456,
+        "end": 0.696
+      },
+      {
+        "text": "de",
+        "start": 0.776,
+        "end": 0.856
+      },
+      {
+        "text": "show",
+        "start": 0.976,
+        "end": 1.096
+      },
+      {
+        "text": "te",
+        "start": 1.176,
+        "end": 1.256
+      },
+      {
+        "text": "chama.",
+        "start": 1.336,
+        "end": 1.976
+      },
+      {
+        "text": "Não",
+        "start": 2.056,
+        "end": 2.136
+      },
+      {
+        "text": "tem",
+        "start": 2.216,
+        "end": 2.376
+      },
+      {
+        "text": "verba,",
+        "start": 2.456,
+        "end": 2.936
+      },
+      {
+        "text": "mas",
+        "start": 3.056,
+        "end": 3.176
+      },
+      {
+        "text": "é",
+        "start": 3.216,
+        "end": 3.256
+      },
+      {
+        "text": "uma",
+        "start": 3.336,
+        "end": 3.416
+      },
+      {
+        "text": "vitrine",
+        "start": 3.456,
+        "end": 3.896
+      },
+      {
+        "text": "absurda.",
+        "start": 4.096,
+        "end": 5.096
+      },
+      {
+        "text": "Isso",
+        "start": 5.176,
+        "end": 5.336
+      },
+      {
+        "text": "tem",
+        "start": 5.416,
+        "end": 5.496
+      },
+      {
+        "text": "nome:",
+        "start": 5.656,
+        "end": 6.136
+      },
+      {
+        "text": "pagamento",
+        "start": 6.256,
+        "end": 6.856
+      },
+      {
+        "text": "em",
+        "start": 6.896,
+        "end": 6.936
+      },
+      {
+        "text": "experiência.",
+        "start": 7.016,
+        "end": 7.976
+      }
+    ]
+  },
+  "s7": {
+    "text": "Você faz o melhor trabalho da sua vida. Edita até as quatro da manhã. Eles postam. Sem crédito.",
+    "seconds": 7.233,
+    "words": [
+      {
+        "text": "Você",
+        "start": 0,
+        "end": 0.285
+      },
+      {
+        "text": "faz",
+        "start": 0.325,
+        "end": 0.445
+      },
+      {
+        "text": "o",
+        "start": 0.525,
+        "end": 0.565
+      },
+      {
+        "text": "melhor",
+        "start": 0.605,
+        "end": 1.005
+      },
+      {
+        "text": "trabalho",
+        "start": 1.085,
+        "end": 1.645
+      },
+      {
+        "text": "da",
+        "start": 1.685,
+        "end": 1.725
+      },
+      {
+        "text": "sua",
+        "start": 1.885,
+        "end": 2.045
+      },
+      {
+        "text": "vida.",
+        "start": 2.205,
+        "end": 2.605
+      },
+      {
+        "text": "Edita",
+        "start": 2.925,
+        "end": 3.298
+      },
+      {
+        "text": "até",
+        "start": 3.352,
+        "end": 3.485
+      },
+      {
+        "text": "as",
+        "start": 3.565,
+        "end": 3.645
+      },
+      {
+        "text": "quatro",
+        "start": 3.805,
+        "end": 4.045
+      },
+      {
+        "text": "da",
+        "start": 4.125,
+        "end": 4.205
+      },
+      {
+        "text": "manhã.",
+        "start": 4.285,
+        "end": 4.685
+      },
+      {
+        "text": "Eles",
+        "start": 5.005,
+        "end": 5.325
+      },
+      {
+        "text": "postam.",
+        "start": 5.405,
+        "end": 6.085
+      },
+      {
+        "text": "Sem",
+        "start": 6.285,
+        "end": 6.525
+      },
+      {
+        "text": "crédito.",
+        "start": 6.605,
+        "end": 7.405
+      }
+    ]
+  },
+  "s8": {
+    "text": "Agora vai. Você manda mensagem pra todas as casas da cidade. Visualizado. Visualizado. Visualizado.",
+    "seconds": 7.886,
+    "words": [
+      {
+        "text": "Agora",
+        "start": 0,
+        "end": 0.372
+      },
+      {
+        "text": "vai.",
+        "start": 0.452,
+        "end": 0.932
+      },
+      {
+        "text": "Você",
+        "start": 1.092,
+        "end": 1.332
+      },
+      {
+        "text": "manda",
+        "start": 1.452,
+        "end": 1.572
+      },
+      {
+        "text": "mensagem",
+        "start": 1.812,
+        "end": 2.052
+      },
+      {
+        "text": "pra",
+        "start": 2.132,
+        "end": 2.212
+      },
+      {
+        "text": "todas",
+        "start": 2.372,
+        "end": 2.772
+      },
+      {
+        "text": "as",
+        "start": 2.812,
+        "end": 2.852
+      },
+      {
+        "text": "casas",
+        "start": 2.932,
+        "end": 3.252
+      },
+      {
+        "text": "da",
+        "start": 3.292,
+        "end": 3.332
+      },
+      {
+        "text": "cidade.",
+        "start": 3.412,
+        "end": 4.132
+      },
+      {
+        "text": "Visualizado.",
+        "start": 4.372,
+        "end": 5.412
+      },
+      {
+        "text": "Visualizado.",
+        "start": 5.652,
+        "end": 6.732
+      },
+      {
+        "text": "Visualizado.",
+        "start": 6.932,
+        "end": 8.132
+      }
+    ]
+  },
+  "s9": {
+    "text": "Uma responde: a gente te dá a credencial. Tá te fazendo um favor, viu?",
+    "seconds": 4.724,
+    "words": [
+      {
+        "text": "Uma",
+        "start": 0,
+        "end": 0.205
+      },
+      {
+        "text": "responde:",
+        "start": 0.325,
+        "end": 0.845
+      },
+      {
+        "text": "a",
+        "start": 1.245,
+        "end": 1.325
+      },
+      {
+        "text": "gente",
+        "start": 1.405,
+        "end": 1.645
+      },
+      {
+        "text": "te",
+        "start": 1.725,
+        "end": 1.805
+      },
+      {
+        "text": "dá",
+        "start": 1.885,
+        "end": 2.045
+      },
+      {
+        "text": "a",
+        "start": 2.072,
+        "end": 2.098
+      },
+      {
+        "text": "credencial.",
+        "start": 2.125,
+        "end": 3.005
+      },
+      {
+        "text": "Tá",
+        "start": 3.165,
+        "end": 3.325
+      },
+      {
+        "text": "te",
+        "start": 3.365,
+        "end": 3.405
+      },
+      {
+        "text": "fazendo",
+        "start": 3.445,
+        "end": 3.725
+      },
+      {
+        "text": "um",
+        "start": 3.765,
+        "end": 3.805
+      },
+      {
+        "text": "favor,",
+        "start": 3.885,
+        "end": 4.365
+      },
+      {
+        "text": "viu?",
+        "start": 4.445,
+        "end": 4.925
+      }
+    ]
+  },
+  "s10": {
+    "text": "Só que o mercado não aceita credencial. O ônibus não aceita credencial. E no show, nem água: é só pro camarim.",
+    "seconds": 7.918,
+    "words": [
+      {
+        "text": "Só",
+        "start": 0,
+        "end": 0.231
+      },
+      {
+        "text": "que",
+        "start": 0.311,
+        "end": 0.391
+      },
+      {
+        "text": "o",
+        "start": 0.431,
+        "end": 0.471
+      },
+      {
+        "text": "mercado",
+        "start": 0.631,
+        "end": 1.031
+      },
+      {
+        "text": "não",
+        "start": 1.111,
+        "end": 1.271
+      },
+      {
+        "text": "aceita",
+        "start": 1.391,
+        "end": 1.671
+      },
+      {
+        "text": "credencial.",
+        "start": 1.791,
+        "end": 2.591
+      },
+      {
+        "text": "O",
+        "start": 2.791,
+        "end": 2.871
+      },
+      {
+        "text": "ônibus",
+        "start": 2.951,
+        "end": 3.351
+      },
+      {
+        "text": "não",
+        "start": 3.511,
+        "end": 3.671
+      },
+      {
+        "text": "aceita",
+        "start": 3.831,
+        "end": 4.071
+      },
+      {
+        "text": "credencial.",
+        "start": 4.151,
+        "end": 4.871
+      },
+      {
+        "text": "E",
+        "start": 5.191,
+        "end": 5.271
+      },
+      {
+        "text": "no",
+        "start": 5.351,
+        "end": 5.431
+      },
+      {
+        "text": "show,",
+        "start": 5.511,
+        "end": 5.991
+      },
+      {
+        "text": "nem",
+        "start": 6.071,
+        "end": 6.231
+      },
+      {
+        "text": "água:",
+        "start": 6.311,
+        "end": 6.871
+      },
+      {
+        "text": "é",
+        "start": 6.951,
+        "end": 7.031
+      },
+      {
+        "text": "só",
+        "start": 7.111,
+        "end": 7.191
+      },
+      {
+        "text": "pro",
+        "start": 7.271,
+        "end": 7.351
+      },
+      {
+        "text": "camarim.",
+        "start": 7.431,
+        "end": 8.071
+      }
+    ]
+  },
+  "s11": {
+    "text": "Seis meses depois, seu amigo pergunta se você já tá rico. Você tem seis credenciais, mil curtidas e três reais na conta.",
+    "seconds": 8.336,
+    "words": [
+      {
+        "text": "Seis",
+        "start": 0,
+        "end": 0.233
+      },
+      {
+        "text": "meses",
+        "start": 0.313,
+        "end": 0.553
+      },
+      {
+        "text": "depois,",
+        "start": 0.633,
+        "end": 1.353
+      },
+      {
+        "text": "seu",
+        "start": 1.433,
+        "end": 1.553
+      },
+      {
+        "text": "amigo",
+        "start": 1.593,
+        "end": 1.833
+      },
+      {
+        "text": "pergunta",
+        "start": 1.953,
+        "end": 2.313
+      },
+      {
+        "text": "se",
+        "start": 2.393,
+        "end": 2.473
+      },
+      {
+        "text": "você",
+        "start": 2.513,
+        "end": 2.713
+      },
+      {
+        "text": "já",
+        "start": 2.793,
+        "end": 2.873
+      },
+      {
+        "text": "tá",
+        "start": 2.953,
+        "end": 3.033
+      },
+      {
+        "text": "rico.",
+        "start": 3.113,
+        "end": 3.673
+      },
+      {
+        "text": "Você",
+        "start": 3.913,
+        "end": 4.153
+      },
+      {
+        "text": "tem",
+        "start": 4.233,
+        "end": 4.473
+      },
+      {
+        "text": "seis",
+        "start": 4.553,
+        "end": 4.713
+      },
+      {
+        "text": "credenciais,",
+        "start": 4.793,
+        "end": 5.833
+      },
+      {
+        "text": "mil",
+        "start": 5.913,
+        "end": 5.993
+      },
+      {
+        "text": "curtidas",
+        "start": 6.073,
+        "end": 6.713
+      },
+      {
+        "text": "e",
+        "start": 6.873,
+        "end": 6.993
+      },
+      {
+        "text": "três",
+        "start": 7.113,
+        "end": 7.273
+      },
+      {
+        "text": "reais",
+        "start": 7.353,
+        "end": 7.673
+      },
+      {
+        "text": "na",
+        "start": 7.753,
+        "end": 7.833
+      },
+      {
+        "text": "conta.",
+        "start": 7.913,
+        "end": 8.553
+      }
+    ]
+  },
+  "s12": {
+    "text": "Pronto: agora você entende como funciona a carreira de fotógrafo de show. Visibilidade não paga a parcela da câmera.",
+    "seconds": 7.404,
+    "words": [
+      {
+        "text": "Pronto:",
+        "start": 0,
+        "end": 0.449
+      },
+      {
+        "text": "agora",
+        "start": 0.849,
+        "end": 1.169
+      },
+      {
+        "text": "você",
+        "start": 1.209,
+        "end": 1.409
+      },
+      {
+        "text": "entende",
+        "start": 1.529,
+        "end": 1.889
+      },
+      {
+        "text": "como",
+        "start": 2.009,
+        "end": 2.129
+      },
+      {
+        "text": "funciona",
+        "start": 2.209,
+        "end": 2.609
+      },
+      {
+        "text": "a",
+        "start": 2.649,
+        "end": 2.689
+      },
+      {
+        "text": "carreira",
+        "start": 2.769,
+        "end": 3.089
+      },
+      {
+        "text": "de",
+        "start": 3.129,
+        "end": 3.169
+      },
+      {
+        "text": "fotógrafo",
+        "start": 3.249,
+        "end": 3.729
+      },
+      {
+        "text": "de",
+        "start": 3.809,
+        "end": 3.889
+      },
+      {
+        "text": "show.",
+        "start": 3.969,
+        "end": 4.289
+      },
+      {
+        "text": "Visibilidade",
+        "start": 4.689,
+        "end": 5.489
+      },
+      {
+        "text": "não",
+        "start": 5.649,
+        "end": 5.809
+      },
+      {
+        "text": "paga",
+        "start": 5.969,
+        "end": 6.209
+      },
+      {
+        "text": "a",
+        "start": 6.249,
+        "end": 6.289
+      },
+      {
+        "text": "parcela",
+        "start": 6.489,
+        "end": 6.729
+      },
+      {
+        "text": "da",
+        "start": 6.769,
+        "end": 6.849
+      },
+      {
+        "text": "câmera.",
+        "start": 6.929,
+        "end": 7.569
+      }
+    ]
+  }
+}

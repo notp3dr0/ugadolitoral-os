@@ -1,0 +1,11 @@
+v: 0/600 (0 s)
+v: 60/600 (4 s)
+v: 120/600 (8 s)
+v: 180/600 (13 s)
+v: 240/600 (18 s)
+v: 300/600 (22 s)
+v: 360/600 (27 s)
+v: 420/600 (30 s)
+v: 480/600 (35 s)
+v: 540/600 (39 s)
+ok C:\Users\Pedro\Desktop\Framework\ccos-ratos\pao\instituto-semear\comercial\entregas\video-v-mudo.mp4

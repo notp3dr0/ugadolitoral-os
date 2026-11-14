@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>G1_nome</title>
+<style>
+  html, body { margin: 0; width: 540px; height: 960px; overflow: hidden; background: transparent; }
+  canvas { position: absolute; inset: 0; width: 540px; height: 960px; display: block; }
+</style></head>
+<body>
+<canvas id="tipo" width="1080" height="1920"></canvas>
+<script type="module">
+import { W, H, OFF, RED, MONO, carregarTempo, carregarFontes, linhaGrande, prog, outCubic, outQuart, clamp } from './comum.js';
+
+const tempo = await carregarTempo();
+await carregarFontes();
+const F0 = tempo.batidas.find(b => b.b === 32).f;
+const B33 = tempo.batidas.find(b => b.b === 33).f - F0; // 14: a linha de serviços
+
+const cv = document.getElementById('tipo'), c = cv.getContext('2d');
+// o nome emoldura a foto: PEDRO em cima, AUGUSTO embaixo, o meio livre pro rosto.
+// mesma família, peso e aperto do site (.intro-name), cada palavra comprimida até a largura.
+const CORPO = 330;
+const Y1 = 548, Y2 = 1392, YS = 1466;
+const SERV = ['FOTO', 'VÍDEO', 'DIREÇÃO CRIATIVA'];
+
+function servicos(n) {
+  const t = prog(n, B33, B33 + 6);
+  if (n < B33) return;
+  c.save();
+  const corpo = 44, esp = corpo * .14;
+  c.font = `400 ${corpo}px ${MONO}`; c.letterSpacing = `${esp}px`; c.textBaseline = 'alphabetic';
+  const sep = ' · ';
+  const texto = SERV.join(sep);
+  const w = c.measureText(texto).width - esp;
+  let x = W / 2 - w / 2;
+  const y = YS + (1 - outCubic(t)) * 12;
+  // a linha abre do centro pra fora; os dois pontos vermelhos já estão lá na batida
+  const meia = outQuart(t) * (w / 2 + 20);
+  c.save(); c.beginPath(); c.rect(W / 2 - meia, 0, meia * 2, H); c.clip();
+  SERV.forEach((p, i) => {
+    c.fillStyle = OFF; c.fillText(p, x, y); x += c.measureText(p).width;
+    if (i < SERV.length - 1) {
+      // o ponto do meio vira um quadradinho vermelho de 9 px, centrado na altura das maiúsculas
+      const sw = c.measureText(sep).width;
+      c.fillStyle = RED; c.fillRect(Math.round(x + sw / 2 - esp / 2 - 4.5), Math.round(y - corpo * .315 - 4.5), 9, 9);
+      x += sw;
+    }
+  });
+  c.restore();
+  c.restore();
+}
+
+window.desenhar = n => {
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.clearRect(0, 0, W, H);
+  // pancada: no quadro 0 o nome já está inteiro; assenta de 1,06 pra 1,00 em 6 quadros (saída suave)
+  const k = 1 + .06 * (1 - outCubic(prog(n, 0, 6)));
+  // depois, as duas linhas seguem se aproximando devagar (eco da abertura do site), sem parar
+  const junta = 22 * prog(n, 0, 30) + 6 * outCubic(prog(n, 0, 6));
+  const cx = W / 2, cy = 960;
+  c.translate(cx, cy); c.scale(k, k); c.translate(-cx, -cy);
+  linhaGrande(c, 'PEDRO', W / 2, Y1 + junta, CORPO, W * .925);
+  linhaGrande(c, 'AUGUSTO', W / 2, Y2 - junta, CORPO, W * .925);
+  c.translate(0, -junta);
+  servicos(n);
+};
+window.CENA = { id: 'G1_nome', quadros: 31, formato: 'png', marcos: { B33 } };
+window.pronto = true;
+</script>
+</body></html>

@@ -86,7 +86,10 @@ Uma mensagem só, no formato "arquivo → o que vai entrar" (as linhas de verdad
 >
 > Aplico?
 
-Esperar o sim. Se o usuário quiser mudar algo, ajustar e aplicar.
+**Regra do Pedro (2026-11-04): só pede aprovação quando o plano mexe em decisão, em `_contexto/`
+ou remove pendência.** Se o plano é só diário, `agora.md` (sem pendência saindo) e `andamento.md`,
+pular o "Aplico?": gravar direto e mostrar o que gravou no Passo 6. Plano misto: mostrar tudo, e o
+sim vale pra tudo. Quando perguntar, esperar o sim; se o usuário quiser mudar algo, ajustar e aplicar.
 
 ## Passo 5 · escrever, nesta ordem
 

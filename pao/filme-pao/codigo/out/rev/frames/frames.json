@@ -1,0 +1,12 @@
+{
+  "input": "C:\\Users\\Pedro\\Desktop\\Framework\\ccos-ratos\\pao\\filme-pao\\entregas\\pao-para-quem-ama-o-que-faz-16x9.mp4",
+  "durationS": 113.1,
+  "width": 1920,
+  "height": 1080,
+  "sourceFps": 30,
+  "fps": 2,
+  "count": 226,
+  "start": 0,
+  "outWidth": 240,
+  "note": "frame i (1-based file name) is at t = start + (i-1)/fps seconds of the source"
+}

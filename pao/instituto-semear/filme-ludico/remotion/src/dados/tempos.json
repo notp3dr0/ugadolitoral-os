@@ -1,0 +1,186 @@
+{
+ "n1": {
+  "dur": 3.41,
+  "tempo": 1,
+  "transcrito": [
+   "Passar",
+   "no",
+   "vestibular",
+   "é",
+   "só",
+   "o",
+   "tutorial."
+  ],
+  "palavras": [
+   380,
+   600,
+   800,
+   1600,
+   2040,
+   2160,
+   2500
+  ]
+ },
+ "n2": {
+  "dur": 3,
+  "tempo": 1,
+  "transcrito": [
+   "A",
+   "fase",
+   "difícil",
+   "é",
+   "chegar",
+   "até",
+   "o",
+   "fim."
+  ],
+  "palavras": [
+   380,
+   660,
+   1180,
+   1540,
+   1740,
+   2060,
+   2160,
+   2340
+  ]
+ },
+ "n3": {
+  "dur": 6.2,
+  "tempo": 1,
+  "transcrito": [
+   "Passagem,",
+   "xerox,",
+   "aluguel",
+   "e",
+   "o",
+   "chefão.",
+   "O",
+   "fim",
+   "do",
+   "mês."
+  ],
+  "palavras": [
+   580,
+   1560,
+   2460,
+   3480,
+   3600,
+   3860,
+   4680,
+   5000,
+   5300,
+   5500
+  ]
+ },
+ "n4": {
+  "dur": 3.52,
+  "tempo": 1,
+  "transcrito": [
+   "Por",
+   "isso,",
+   "o",
+   "CMEAR",
+   "libera",
+   "três",
+   "power",
+   "-ups."
+  ],
+  "palavras": [
+   380,
+   680,
+   1100,
+   1200,
+   1780,
+   2340,
+   2600,
+   2900
+  ]
+ },
+ "n5": {
+  "dur": 2.08,
+  "tempo": 1,
+  "transcrito": [
+   "Bolsa,",
+   "segura",
+   "um",
+   "mês."
+  ],
+  "palavras": [
+   580,
+   1080,
+   1400,
+   1620
+  ]
+ },
+ "n6": {
+  "dur": 2.44,
+  "tempo": 1,
+  "transcrito": [
+   "Mentoria.",
+   "Mostre",
+   "o",
+   "mapa."
+  ],
+  "palavras": [
+   460,
+   1480,
+   1740,
+   1900
+  ]
+ },
+ "n7": {
+  "dur": 2.73,
+  "tempo": 1,
+  "transcrito": [
+   "Rede.",
+   "Ninguém",
+   "joga",
+   "sozinho."
+  ],
+  "palavras": [
+   560,
+   1120,
+   1640,
+   1920
+  ]
+ },
+ "n8": {
+  "dur": 3.2,
+  "tempo": 1,
+  "transcrito": [
+   "Fase",
+   "final.",
+   "Diploma",
+   "na",
+   "mão."
+  ],
+  "palavras": [
+   440,
+   1100,
+   1820,
+   2440,
+   2680
+  ]
+ },
+ "n9": {
+  "dur": 4.04,
+  "tempo": 1,
+  "transcrito": [
+   "Instituto",
+   "CMEAR.",
+   "Ninguém",
+   "zera",
+   "essa",
+   "sozinho."
+  ],
+  "palavras": [
+   480,
+   1060,
+   2060,
+   2680,
+   3100,
+   3340
+  ]
+ }
+}

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Semear · comercial 20 s</title>
+<!--
+  Comercial de 20 s do Instituto Semear. Sem motor de vídeo: a página expõe window.seek(t)
+  e o render.cjs fotografa quadro a quadro. Tudo aqui é função pura do tempo t (segundos).
+  Uso: index.html?f=h (1920×1080) ou ?f=v (1080×1920). 120 BPM: batida = 0,5 s.
+  Interface: só capturas reais do isemear.org.br (assets/ui). Logo: vetorizada do post P56-01.
+-->
+<style>
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Light.ttf); font-weight: 300; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Regular.ttf); font-weight: 400; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Medium.ttf); font-weight: 500; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-SemiBold.ttf); font-weight: 600; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Bold.ttf); font-weight: 700; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-ExtraBold.ttf); font-weight: 800; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Black.ttf); font-weight: 900; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-BlackItalic.ttf); font-weight: 900; font-style: italic; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow: hidden; background: #000; }
+  #stage { position: relative; overflow: hidden; background: #EDEDED; font-family: P, sans-serif; }
+  #papel { position: absolute; inset: 0; background: url(assets/marca/papel.png) center/cover; opacity: .55; pointer-events: none; z-index: 50; mix-blend-mode: multiply; }
+  .cena { position: absolute; inset: 0; display: none; overflow: hidden; }
+  .abs { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  .ui { position: absolute; background-repeat: no-repeat; }
+  .palavra { position: absolute; left: 0; width: 100%; text-align: center; font-weight: 900; letter-spacing: -.03em; line-height: .9; white-space: nowrap; }
+  .linha { position: absolute; overflow: hidden; white-space: nowrap; }
+  .linha > span { display: inline-block; }
+  .cursor { position: absolute; left: 0; top: 0; width: 34px; height: 44px; transform-origin: 0 0; z-index: 20; }
+  .anel { position: absolute; border-radius: 50%; border: 4px solid #85933C; transform: translate(-50%, -50%); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="papel"></div>
+</div>
+<script>
+// ---------- formato ----------
+const FMT = new URLSearchParams(location.search).get('f') === 'v' ? 'v' : 'h';
+const W = FMT === 'h' ? 1920 : 1080, H = FMT === 'h' ? 1080 : 1920, V = FMT === 'v';
+const stage = document.getElementById('stage');
+stage.style.width = W + 'px'; stage.style.height = H + 'px';
+
+const COR = { papel: '#EDEDED', marrom: '#975F30', amarelo: '#FFBB00', oliva: '#85933C', oliva2: '#5E682C', azul: '#237B9F', tinta: '#1F1F1F', branco: '#FFFFFF' };
+
+// ---------- tempo ----------
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const E = {
+  lin: x => x,
+  o3: x => 1 - Math.pow(1 - x, 3),
+  o5: x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x),          // expo.out
+  i3: x => x * x * x,
+  io: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
+  back: x => { const c = 1.9, c3 = c + 1; return 1 + c3 * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); },
+};
+// valor que vai de a até b entre t0 e t1
+const tw = (t, t0, t1, a, b, e = E.o5) => t <= t0 ? a : t >= t1 ? b : a + (b - a) * e((t - t0) / (t1 - t0));
+// sequência de chaves [[t, v, easeAteAqui], ...]
+const kf = (t, ks) => { if (t <= ks[0][0]) return ks[0][1];
+  for (let i = 1; i < ks.length; i++) if (t <= ks[i][0]) return tw(t, ks[i - 1][0], ks[i][0], ks[i - 1][1], ks[i][1], ks[i][2] || E.o5);
+  return ks[ks.length - 1][1]; };
+const entre = (t, a, b) => t >= a && t < b;
+
+// ---------- construção ----------
+const el = (tag, cls, pai, css = {}, html) => { const e = document.createElement(tag); if (cls) e.className = cls; Object.assign(e.style, css); if (html != null) e.innerHTML = html; (pai || stage).appendChild(e); return e; };
+const cena = () => el('div', 'cena', stage);
+// recorte de uma captura (imagens em 2×; coordenadas em px CSS do site)
+const IMG = {};  // nome -> [larguraCSS, alturaCSS]
+function ui(pai, nome, sx = 0, sy = 0, sw, sh, x = 0, y = 0) {
+  const [iw, ih] = IMG[nome]; sw = sw ?? iw; sh = sh ?? ih;
+  return el('div', 'ui', pai, { left: x + 'px', top: y + 'px', width: sw + 'px', height: sh + 'px',
+    backgroundImage: `url(assets/ui/${nome}.png)`, backgroundSize: `${iw}px ${ih}px`, backgroundPosition: `${-sx}px ${-sy}px` });
+}
+// "câmera": um mundo em px do site, olhado no ponto (fx, fy) com zoom z, centrado em (cx, cy) da tela
+function camera(pai) { const m = el('div', 'abs', pai); m.set = (z, fx, fy, cx = W / 2, cy = H / 2, rot = 0) => {
+  m.style.transform = `translate(${cx}px, ${cy}px) rotate(${rot}deg) scale(${z}) translate(${-fx}px, ${-fy}px)`; }; return m; }
+// cursor do sistema (seta, mão, texto)
+const SVG_SETA = `<svg viewBox="0 0 34 44" width="34" height="44"><path d="M3 2 L3 34 L11 27 L16.5 40 L22 37.6 L16.6 25 L27 25 Z" fill="#111" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg>`;
+const SVG_MAO = `<svg viewBox="0 0 34 44" width="34" height="44"><path d="M11 21 V6.5 a2.8 2.8 0 0 1 5.6 0 V18 V15 a2.8 2.8 0 0 1 5.6 0 V19 V16.6 a2.7 2.7 0 0 1 5.4 0 V20 a2.6 2.6 0 0 1 5.2 0 V30 c0 6 -4 11 -10.5 11 h-3 c-4 0 -6.3 -2 -8.5 -5 L4.6 27.5 a2.8 2.8 0 0 1 4.4 -3.4 Z" transform="translate(-2,0)" fill="#fff" stroke="#111" stroke-width="2.2" stroke-linejoin="round"/></svg>`;
+const SVG_TEXTO = `<svg viewBox="0 0 34 44" width="34" height="44"><path d="M10 4 h4 c2 0 3 1 3 3 c0-2 1-3 3-3 h4 M17 7 V37 M10 40 h4 c2 0 3 -1 3 -3 c0 2 1 3 3 3 h4" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M10 4 h4 c2 0 3 1 3 3 c0-2 1-3 3-3 h4 M17 7 V37 M10 40 h4 c2 0 3 -1 3 -3 c0 2 1 3 3 3 h4" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+function cursor(pai) { const c = el('div', 'cursor', pai); c.tipo = '';
+  c.set = (x, y, tipo, escala, op = 1) => { if (tipo !== c.tipo) { c.innerHTML = tipo === 'mao' ? SVG_MAO : tipo === 'texto' ? SVG_TEXTO : SVG_SETA; c.tipo = tipo; }
+    const dx = tipo === 'mao' ? -9 : tipo === 'texto' ? -17 : -3, dy = tipo === 'texto' ? -22 : -2;
+    c.style.opacity = op; c.style.transform = `translate(${x}px, ${y}px) scale(${escala}) translate(${dx}px, ${dy}px)`; }; return c; }
+function anel(pai) { const a = el('div', 'anel', pai); a.set = (x, y, t, t0, esc) => { const k = clamp((t - t0) / .35);
+  a.style.display = t >= t0 && k < 1 ? 'block' : 'none'; const r = (14 + 70 * E.o3(k)) * esc;
+  Object.assign(a.style, { left: x + 'px', top: y + 'px', width: r + 'px', height: r + 'px', opacity: 1 - k, borderWidth: 5 * esc + 'px' }); }; return a; }
+// linha de texto cinético: a palavra sobe por dentro de uma máscara
+function linha(pai, txt, css) { const l = el('div', 'linha', pai, css); const s = el('span', '', l, {}, txt);
+  l.set = (t, t0, dir = 1) => { const k = tw(t, t0, t0 + .32, 1, 0); s.style.transform = `translateY(${k * 105 * dir}%)`; l.style.visibility = t >= t0 ? 'visible' : 'hidden'; }; return l; }
+// entrada/saída de cena em chicote (whip): desliza com desfoque
+function chicote(c, t, tin, tout, dirIn = 1) {
+  let x = 0, b = 0;
+  if (tin != null && t < tin + .28) { const k = tw(t, tin, tin + .28, 1, 0); x = k * W * .55 * dirIn; b = k * 24; }
+  if (t > tout - .22) { const k = tw(t, tout - .22, tout, 0, 1, E.i3); x = -k * W * .7; b = k * 30; }
+  c.style.transform = `translateX(${x}px)`; c.style.filter = b > .3 ? `blur(${b}px)` : 'none';
+}
+
+const cenas = [];   // [inicio, fim, el, fn(t)]
+function nova(t0, t1, fn) { const c = cena(); cenas.push([t0, t1, c, fn]); return c; }
+
+async function montar() {
+  // tamanhos das capturas
+  const nomes = ['home-viewport', 'header-menu-aberto', 'header-menu-hover', 'bolsista-aba-0', 'pilares-aba-0', 'pilares-aba-1', 'pilares-aba-2',
+    'parceiros-0', 'parceiros-1', 'parceiros-2', 'parceiros-3', 'impacto-faixa', 'contador-2'];
+  await Promise.all(nomes.map(n => new Promise(r => { const i = new Image(); i.onload = () => { IMG[n] = [i.naturalWidth / 2, i.naturalHeight / 2]; r(); }; i.src = `assets/ui/${n}.png`; })));
+  const logo = await (await fetch('assets/marca/logo-data.json')).json();
+
+  // ================= 1. GANCHO (0–3 s): "Entrar na faculdade não basta." =================
+  {
+    const c = nova(0, 3.0);
+    const fundo = el('div', 'abs', c, { width: W + 'px', height: H + 'px' });
+    const tamanhos = V ? [210, 330, 150, 300, 250] : [330, 400, 250, 330, 300];
+    const P = [
+      { txt: 'ENTRAR', t: 0.0, bg: COR.azul, cor: COR.papel },
+      { txt: 'NA', t: 0.5, bg: COR.amarelo, cor: COR.marrom },
+      { txt: 'FACULDADE', t: 1.0, bg: COR.oliva, cor: COR.papel },
+      { txt: 'NÃO', t: 1.5, bg: COR.marrom, cor: COR.papel },
+      { txt: 'BASTA.', t: 2.0, bg: COR.marrom, cor: COR.amarelo },
+    ].map((p, i) => ({ ...p, el: el('div', 'palavra', c, { fontSize: tamanhos[i] + 'px', color: p.cor }, p.txt) }));
+    const bloco = el('div', 'abs', c, { width: W + 'px', height: H + 'px' });           // cor que varre por cima na troca
+    const iris = el('div', 'abs', c, { borderRadius: '50%', background: COR.papel });  // saída: abre pro papel
+    c.fn = t => {
+      let atual = 0; P.forEach((p, i) => { if (t >= p.t) atual = i; });
+      fundo.style.background = P[atual].bg;
+      // varrida de cor: o bloco da palavra nova entra em 0,12 s, vindo de lados alternados
+      const p = P[atual], k = tw(t, p.t, p.t + .14, 0, 1, E.o3);
+      const prev = P[Math.max(0, atual - 1)];
+      bloco.style.background = prev.bg; bloco.style.display = atual > 0 && k < 1 && prev.bg !== p.bg ? 'block' : 'none';
+      bloco.style.clipPath = atual % 2 ? `inset(0 0 0 ${k * 100}%)` : `inset(0 ${k * 100}% 0 0)`;
+      P.forEach((q, i) => {
+        const vivo = i === atual || (i === 3 && atual === 4);
+        q.el.style.display = vivo ? 'block' : 'none'; if (!vivo) return;
+        const tl = t - q.t;
+        const esc = tw(tl, 0, .24, 1.45, 1) * (1 + .035 * clamp((tl - .24) / 2));
+        const blur = tw(tl, 0, .18, 14, 0);
+        const ls = tw(tl, 0, .3, .25, -.03);
+        let y = H / 2 - tamanhos[i] * .45;
+        if (atual >= 3) y = i === 3 ? H / 2 - tamanhos[3] * (V ? 1.0 : .95) : H / 2 + tamanhos[3] * .02;
+        if (i === 3 && atual === 4) { // "NÃO" cede espaço quando "BASTA." chega
+          const k2 = tw(t, 2.0, 2.2, 0, 1); y -= 0 * k2; }
+        const tremor = tl < .16 ? Math.sin(tl * 120) * 10 * (1 - tl / .16) : 0;
+        q.el.style.top = (y + tremor) + 'px';
+        q.el.style.transform = `scale(${esc}) skewX(${tw(tl, 0, .2, -8, 0)}deg)`;
+        q.el.style.filter = blur > .3 ? `blur(${blur}px)` : 'none';
+        q.el.style.letterSpacing = ls + 'em';
+      });
+      // íris de papel abre no fim (2,6 → 3,0) e entrega pra cena do site
+      const r = tw(t, 2.62, 3.0, 0, Math.hypot(W, H) * .55, E.i3);
+      Object.assign(iris.style, { display: t > 2.62 ? 'block' : 'none', width: 2 * r + 'px', height: 2 * r + 'px', left: W / 2 - r + 'px', top: H / 2 - r + 'px' });
+    };
+  }
+
+  // ================= 2. O SITE SE MONTA (3–6,5 s) =================
+  {
+    const c = nova(3.0, 6.5);
+    const s = V ? .70 : .88;                 // escala do site dentro da janela
+    const bw = 1440 * s, bh = 900 * s, barra = V ? 34 : 42;
+    const jan = el('div', 'abs', c, { width: bw + 'px', height: bh + barra + 'px', background: '#fff', borderRadius: (V ? 14 : 18) + 'px', overflow: 'hidden', border: '2px solid #D6D6D6' });
+    const topo = el('div', 'abs', jan, { width: bw + 'px', height: barra + 'px', background: '#F4F4F4', borderBottom: '1px solid #DDD' });
+    ['#E0E0E0', '#E0E0E0', '#E0E0E0'].forEach((cc, i) => el('div', 'abs', topo, { left: 16 + i * 20 + 'px', top: barra / 2 - 6 + 'px', width: '12px', height: '12px', borderRadius: '50%', background: cc }));
+    const url = el('div', 'abs', topo, { left: bw / 2 - 170 + 'px', top: barra * .18 + 'px', width: '340px', height: barra * .64 + 'px', borderRadius: '99px', background: '#fff', border: '1px solid #DDD',
+      font: `500 ${barra * .36}px P`, color: '#555', textAlign: 'center', lineHeight: barra * .62 + 'px' }, 'isemear.org.br');
+    const site = el('div', 'abs', jan, { top: barra + 'px', width: '1440px', height: '900px', transform: `scale(${s})`, background: '#fff' });
+    // peças reais do viewport da home, recortadas da captura
+    const pecas = [
+      { r: [790, 86, 431, 720], t: 3.50, tipo: 'cresce' },   // coluna verde com a estampa
+      { r: [0, 0, 1440, 86], t: 3.25, tipo: 'desce' },       // header
+      { r: [148, 212, 290, 50], t: 3.75, tipo: 'esq' },      // QUEM SOMOS?
+      { r: [148, 272, 414, 348], t: 4.00, tipo: 'varre' },   // texto
+      { r: [720, 286, 570, 321], t: 4.25, tipo: 'pop' },     // vídeo do manifesto
+      { r: [148, 630, 230, 48], t: 4.50, tipo: 'pop' },      // SAIBA MAIS
+      { r: [0, 806, 1440, 94], t: 4.75, tipo: 'sobe' },      // faixa IMPACTO
+    ].map(p => ({ ...p, el: ui(site, 'home-viewport', p.r[0], p.r[1], p.r[2], p.r[3], p.r[0], p.r[1]) }));
+    // tarja de apresentação
+    const tarja = el('div', 'abs', c, { background: COR.oliva, borderRadius: '6px' });
+    const tl1 = linha(c, 'Instituto Semear', { font: `800 ${V ? 86 : 74}px P`, color: COR.papel, letterSpacing: '-.02em' });
+    const tl2 = linha(c, 'desde 2010, ao lado de quem quer ficar na faculdade', { font: `500 ${V ? 34 : 30}px P`, color: COR.papel });
+    c.fn = t => {
+      chicote(c, t, null, 6.5);
+      // janela entra girando e assenta
+      const k = tw(t, 3.0, 3.45, 0, 1, E.back);
+      const esc = (.55 + .45 * k) * (1 + .05 * clamp((t - 4.9) / 1.6));
+      const jx = W / 2, jy = V ? 760 : H / 2 - 30;
+      jan.style.transform = `translate(${jx}px, ${jy}px) rotate(${tw(t, 3.0, 3.45, -9, 0)}deg) scale(${esc}) translate(${-bw / 2}px, ${-(bh + barra) / 2}px)`;
+      jan.style.opacity = tw(t, 3.0, 3.12, 0, 1, E.lin);
+      pecas.forEach(p => { const q = clamp((t - p.t) / .3), e = E.o5(q), e2 = E.back(q), st = p.el.style;
+        st.visibility = t >= p.t ? 'visible' : 'hidden'; st.transform = ''; st.clipPath = ''; st.transformOrigin = '50% 50%';
+        if (p.tipo === 'desce') st.transform = `translateY(${-(1 - e) * 120}px)`;
+        if (p.tipo === 'sobe') st.transform = `translateY(${(1 - e) * 120}px)`;
+        if (p.tipo === 'esq') st.transform = `translateX(${-(1 - e) * 260}px)`;
+        if (p.tipo === 'cresce') st.clipPath = `inset(${(1 - e) * 100}% 0 0 0)`;
+        if (p.tipo === 'varre') st.clipPath = `inset(0 ${(1 - e) * 100}% 0 0)`;
+        if (p.tipo === 'pop') st.transform = `scale(${.4 + .6 * e2})`;
+      });
+      // tarja
+      const tk = tw(t, 5.0, 5.3, 0, 1);
+      const tx = V ? 60 : 110, ty = V ? 1240 : H - 250, twd = V ? W - 120 : 1020, th = V ? 230 : 170;
+      Object.assign(tarja.style, { left: tx + 'px', top: ty + 'px', width: twd + 'px', height: th + 'px', clipPath: `inset(0 ${(1 - tk) * 100}% 0 0)`, visibility: t >= 5 ? 'visible' : 'hidden' });
+      Object.assign(tl1.style, { left: tx + 40 + 'px', top: ty + (V ? 26 : 18) + 'px' }); tl1.set(t, 5.12);
+      Object.assign(tl2.style, { left: tx + 42 + 'px', top: ty + (V ? 140 : 108) + 'px', width: twd - 70 + 'px', whiteSpace: V ? 'normal' : 'nowrap', lineHeight: 1.25 }); tl2.set(t, 5.3);
+    };
+  }
+
+  // ================= rótulo dos recursos (número + palavras que sobem) =================
+  function rotulo(c, num, nome, palavras, cor) {
+    const g = el('div', 'abs', c);
+    const n = linha(g, `<b style="font-weight:800">${num}</b>&nbsp;&nbsp;${nome}`, { font: `500 ${V ? 40 : 36}px P`, color: COR.tinta, left: 0, top: 0 });
+    const tam = V ? 130 : 132;
+    const ls = palavras.map((p, i) => linha(g, p.txt, { font: `900 ${tam}px P`, color: p.cor || cor, letterSpacing: '-.035em', lineHeight: 1.0, left: 0, top: 70 + i * tam * 1.0 + 'px' }));
+    g.set = (t, x, y, tIn) => { g.style.transform = `translate(${x}px, ${y}px)`; n.set(t, tIn); palavras.forEach((p, i) => ls[i].set(t, p.t)); };
+    g.ls = ls; return g;
+  }
+
+  // ================= 3. RECURSO 1 · BOLSA-AUXÍLIO (6,5–9 s) =================
+  {
+    const c = nova(6.5, 9.0);
+    // parte A: o menu do site (Faça parte → Seja um jovem)
+    const camA = camera(c);
+    const fechado = ui(camA, 'home-viewport', 0, 0, 1440, 320);
+    const aberto = ui(camA, 'header-menu-aberto'), hover = ui(camA, 'header-menu-hover');
+    const curA = cursor(camA), anelA = anel(camA);
+    // parte B: o card Jovem-Semente com a bolsa-auxílio selecionada
+    const camB = camera(c);
+    const card = ui(camB, 'bolsista-aba-0');
+    const marca = el('div', 'abs', camB, { left: '381px', top: '274px', height: '29px', background: 'rgba(255,187,0,.62)', mixBlendMode: 'multiply', borderRadius: '3px' });
+    const curB = cursor(camB);
+    const rot = rotulo(c, '01', 'Bolsa-auxílio', [{ txt: 'BOLSA-', t: 8.0 }, { txt: 'AUXÍLIO', t: 8.18 }], COR.marrom);
+    const FP = [688, 43], SJ = [700, 89];
+    c.fn = t => {
+      chicote(c, t, 6.5, 9.0);
+      const A = t < 7.78;
+      camA.style.display = A ? 'block' : 'none'; camB.style.display = A ? 'none' : 'block';
+      if (A) {
+        const z = (V ? 1.7 : 1.55) * tw(t, 6.5, 7.7, 1, 1.18, E.io);
+        camA.set(z, tw(t, 6.5, 7.6, 760, 690, E.io), tw(t, 6.5, 7.6, 130, 95, E.io));
+        aberto.style.display = entre(t, 7.0, 7.5) ? 'block' : 'none'; hover.style.display = t >= 7.5 ? 'block' : 'none';
+        const x = kf(t, [[6.55, 1060], [7.0, FP[0], E.io], [7.18, FP[0]], [7.5, SJ[0], E.io]]);
+        const y = kf(t, [[6.55, 260], [7.0, FP[1], E.io], [7.18, FP[1]], [7.5, SJ[1], E.io]]);
+        const pres = t >= 7.6 && t < 7.7 ? .85 : 1;
+        curA.set(x, y, t > 6.95 ? 'mao' : 'seta', 1.5 / z * (V ? 1.25 : 1) * pres, tw(t, 6.5, 6.6, 0, 1, E.lin));
+        anelA.set(SJ[0], SJ[1], t, 7.6, 1 / z * 1.6);
+        // mergulho no clique
+        const zz = tw(t, 7.62, 7.78, 1, 2.2, E.i3); if (zz > 1) camA.set(z * zz, SJ[0], SJ[1]);
+        camA.style.filter = t > 7.62 ? `blur(${tw(t, 7.62, 7.78, 0, 16, E.i3)}px)` : 'none';
+      } else {
+        const z = V ? 1.08 : 1.1, cx = V ? W / 2 : 1290, cy = V ? 1130 : 560;
+        const zin = tw(t, 7.78, 8.05, 1.5, 1) * tw(t, 8.1, 9.0, 1, 1.07, E.io);
+        camB.set(z * zin, 457, 270, cx, cy);
+        camB.style.filter = t < 7.95 ? `blur(${tw(t, 7.78, 7.95, 14, 0)}px)` : 'none';
+        // seleção do texto real "bolsa-auxílio" (arrasta da esquerda pra direita)
+        const sel = tw(t, 8.15, 8.55, 0, 121, E.io);
+        marca.style.width = sel + 'px'; marca.style.display = t > 8.15 ? 'block' : 'none';
+        curB.set(tw(t, 7.9, 8.15, 560, 383, E.o3) + sel, kf(t, [[7.9, 420], [8.15, 289, E.o3]]), 'texto', 1.4 / z * (V ? 1.25 : 1), tw(t, 7.85, 7.95, 0, 1, E.lin));
+      }
+      rot.style.display = A ? 'none' : 'block';
+      rot.set(t, V ? 70 : 110, V ? 380 : 330, 7.85);
+    };
+  }
+
+  // ================= 4. RECURSO 2 · TRÊS PILARES (9–11,5 s) =================
+  {
+    const c = nova(9.0, 11.5);
+    const cam = camera(c);
+    const abas = [0, 1, 2].map(i => ui(cam, 'pilares-aba-' + i));
+    const cur = cursor(cam), an1 = anel(cam), an2 = anel(cam);
+    const g = el('div', 'abs', c);
+    const n = linha(g, '<b style="font-weight:800">02</b>&nbsp;&nbsp;Trilha de carreira, em três pilares', { font: `500 ${V ? 40 : 36}px P`, color: COR.tinta });
+    const tam = V ? 118 : 150;
+    const pal = ['ALICERCE', 'PROPÓSITO', 'PROFISSIONAL'].map((p, i) => linha(g, p, { font: `900 ${tam}px P`, color: [COR.marrom, '#F5A623', COR.oliva][i], letterSpacing: '-.035em', top: '62px', lineHeight: 1 }));
+    const T1 = [562, 34], T2 = [945, 34];
+    c.fn = t => {
+      chicote(c, t, 9.0, 11.5);
+      const z = (V ? .9 : 1.12) * tw(t, 9.0, 11.5, 1, 1.06, E.lin);
+      const fx = V ? 572 : kf(t, [[9.0, 572], [9.6, 600, E.io], [10.1, 680, E.io]]);
+      cam.set(z * tw(t, 9.0, 9.3, 1.3, 1), fx, 250, W / 2, V ? 1100 : 640);
+      const qual = t >= 10.0 ? 2 : t >= 9.5 ? 1 : 0;
+      abas.forEach((a, i) => { a.style.display = i === qual ? 'block' : 'none';
+        const tc = [9.0, 9.5, 10.0][i]; a.style.transform = i === qual ? `scale(${tw(t, tc, tc + .2, .985, 1)})` : ''; a.style.transformOrigin = '50% 40%'; });
+      const x = kf(t, [[9.0, 760], [9.42, T1[0], E.io], [9.55, T1[0]], [9.92, T2[0], E.io]]);
+      const y = kf(t, [[9.0, 420], [9.42, T1[1], E.io], [9.55, T1[1]], [9.92, T2[1], E.io], [10.4, T2[1]], [10.9, 300, E.io]]);
+      const pres = (entre(t, 9.5, 9.58) || entre(t, 10.0, 10.08)) ? .85 : 1;
+      cur.set(x, y, 'mao', 1.5 / z * (V ? 1.25 : 1) * pres, tw(t, 9.05, 9.15, 0, 1, E.lin));
+      an1.set(T1[0], T1[1], t, 9.5, 1.6 / z); an2.set(T2[0], T2[1], t, 10.0, 1.6 / z);
+      g.style.transform = `translate(${V ? 70 : 110}px, ${V ? 420 : 90}px)`;
+      n.set(t, 9.1);
+      pal.forEach((p, i) => { const t0 = [9.15, 9.5, 10.0][i], t1 = [9.5, 10.0, 99][i];
+        p.style.display = entre(t, t0, t1) ? 'block' : 'none'; p.set(t, t0); });
+    };
+  }
+
+  // ================= 5. RECURSO 3 · REDE (11,5–14 s) =================
+  {
+    const c = nova(11.5, 14.0);
+    const cam = camera(c);
+    const [iw, ih] = IMG['parceiros-0'];
+    const base = ui(cam, 'parceiros-0', 0, 24, iw, ih - 24);
+    // por dentro das setas, as logos andam (empurrão) entre as posições reais do carrossel
+    const jan = el('div', 'abs', cam, { left: '62px', top: '0px', width: iw - 124 + 'px', height: ih - 24 + 'px', overflow: 'hidden', background: '#fff' });
+    const tiras = [0, 1, 2, 3].map(i => ui(jan, 'parceiros-' + i, 62, 24, iw - 124, ih - 24, 0, 0));
+    const cur = cursor(cam), ans = [0, 1, 2].map(() => anel(cam));
+    const NX = [1038, 106], CL = [12.0, 12.5, 13.0];
+    const rot = rotulo(c, '03', 'Rede de contatos', [{ txt: 'REDE', t: 12.0, cor: COR.azul }, { txt: 'DE', t: 12.5, cor: COR.azul }, { txt: 'CONTATOS', t: 13.0, cor: COR.azul }], COR.azul);
+    c.fn = t => {
+      chicote(c, t, 11.5, 14.0);
+      const z = (V ? .96 : 1.3) * tw(t, 11.5, 14, 1, 1.05, E.lin);
+      cam.set(z * tw(t, 11.5, 11.8, 1.25, 1), iw / 2, ih / 2, V ? W / 2 : W / 2 + 120, V ? 1150 : 680);
+      let pos = 0; CL.forEach(tc => { if (t >= tc) pos++; });
+      tiras.forEach((s, i) => {
+        let x = 9999;
+        if (i === pos) x = pos > 0 ? tw(t, CL[pos - 1], CL[pos - 1] + .32, iw - 124, 0) : 0;
+        else if (i === pos - 1) x = tw(t, CL[pos - 1], CL[pos - 1] + .32, 0, -(iw - 124));
+        s.style.transform = `translateX(${x}px)`; s.style.display = x === 9999 ? 'none' : 'block';
+      });
+      const pres = CL.some(tc => entre(t, tc, tc + .08)) ? .85 : 1;
+      cur.set(kf(t, [[11.5, 560], [11.92, NX[0], E.io], [13.2, NX[0]], [13.7, 800, E.io]]), kf(t, [[11.5, 330], [11.92, NX[1], E.io], [13.2, NX[1]], [13.7, 240, E.io]]),
+        'mao', 1.5 / z * (V ? 1.25 : 1) * pres, tw(t, 11.55, 11.65, 0, 1, E.lin));
+      ans.forEach((a, i) => a.set(NX[0], NX[1], t, CL[i], 1.6 / z));
+      rot.set(t, V ? 70 : 110, V ? 420 : 110, 11.6);
+      if (!V) rot.ls.forEach((l, i) => { l.style.left = [0, 410, 610][i] + 'px'; l.style.top = '62px'; });  // em linha no 16:9
+    };
+  }
+
+  // ================= 6. O NÚMERO (14–17 s): 1% de taxa de evasão =================
+  {
+    const c = nova(14.0, 17.0);
+    const branco = el('div', 'abs', c, { width: W + 'px', height: H + 'px', background: '#fff' });
+    const [fw, fh] = IMG['impacto-faixa'];
+    const faixa = ui(c, 'impacto-faixa'); faixa.style.transformOrigin = '0 0';
+    const cardW = IMG['contador-2'][0];
+    const card = ui(c, 'contador-2'); card.style.transformOrigin = '50% 50%';
+    const cheio = el('div', 'abs', c, { width: W + 'px', height: H + 'px', background: '#9C6232' });  // marrom da faixa Impacto do site
+    const um = el('div', 'palavra', c, { fontSize: (V ? 560 : 520) + 'px', color: COR.papel, letterSpacing: '-.05em' }, '1%');
+    const l1 = linha(c, 'de taxa de evasão', { font: `800 ${V ? 92 : 96}px P`, color: COR.amarelo, letterSpacing: '-.02em', width: W + 'px', textAlign: 'center' });
+    const l2 = linha(c, 'entre os jovens do Semear', { font: `500 ${V ? 44 : 44}px P`, color: COR.papel, width: W + 'px', textAlign: 'center' });
+    const fonte = linha(c, 'número publicado em isemear.org.br', { font: `400 ${V ? 28 : 26}px P`, color: 'rgba(237,237,237,.75)', width: W + 'px', textAlign: 'center' });
+    c.fn = t => {
+      chicote(c, t, 14.0, 17.0);
+      const sf = W / fw;
+      faixa.style.transform = `translateY(${tw(t, 14.0, 14.3, -fh * sf, 0)}px) scale(${sf})`;
+      const ce = V ? 2.2 : 1.9;
+      const ck = tw(t, 14.25, 14.55, 0, 1, E.back);
+      card.style.left = W / 2 - cardW / 2 + 'px'; card.style.top = (V ? H / 2 - 40 : H / 2 + 40) - IMG['contador-2'][1] / 2 + 'px';
+      card.style.transform = `scale(${ce * (.3 + .7 * ck) * tw(t, 14.55, 15.0, 1, 1.12, E.i3)})`; card.style.opacity = tw(t, 14.25, 14.35, 0, 1, E.lin);
+      // 15,0: o marrom toma a tela e o número bate
+      const cv = tw(t, 14.82, 15.0, 0, 1, E.i3);
+      cheio.style.clipPath = `circle(${cv * 120}% at 50% ${V ? 50 : 62}%)`;
+      cheio.style.display = t > 14.82 ? 'block' : 'none';
+      const tl = t - 15.0, vivo = t >= 15.0;
+      um.style.display = vivo ? 'block' : 'none';
+      um.style.top = (V ? H / 2 - 520 : 90) + 'px';
+      um.style.transform = `scale(${tw(tl, 0, .26, 1.9, 1) * (1 + .03 * clamp(tl / 2))})`;
+      um.style.filter = tl < .2 ? `blur(${tw(tl, 0, .2, 18, 0)}px)` : 'none';
+      const tremor = tl > 0 && tl < .25 ? Math.sin(tl * 110) * 16 * (1 - tl / .25) : 0;
+      um.style.left = tremor + 'px';
+      Object.assign(l1.style, { top: (V ? H / 2 + 120 : 660) + 'px' }); l1.set(t, 15.5);
+      Object.assign(l2.style, { top: (V ? H / 2 + 250 : 790) + 'px' }); l2.set(t, 15.75);
+      Object.assign(fonte.style, { top: (V ? H - 220 : H - 80) + 'px' }); fonte.set(t, 16.0);
+    };
+  }
+
+  // ================= 7. ASSINATURA (17–20 s) =================
+  {
+    const c = nova(17.0, 20.01);
+    const nums = d => d.match(/-?\d+(\.\d+)?/g).map(Number);
+    const bb = d => { const n = nums(d); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; for (let i = 0; i + 1 < n.length; i += 2) { x0 = Math.min(x0, n[i]); x1 = Math.max(x1, n[i]); y0 = Math.min(y0, n[i + 1]); y1 = Math.max(y1, n[i + 1]); } return { x0, y0, x1, y1, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 }; };
+    const MB = logo.maosBox, P = logo.pessoas;
+    const BASE = MB.y1, LARG = MB.x1 - MB.x0;
+    const TOPO = Math.min(...P.map(p => bb(p.body + ' ' + p.head).y0)), ALT = BASE - TOPO;
+    // layout aprovado no filme "Um gesto" (assinatura), subido pra caber a chamada
+    const A = V ? { simbX0: 540 - 193, simbW: 386, simbBase: 820, inst: { x: 540, y: 920, size: 62, len: 590, anchor: 'middle' }, sem: { x: 540, y: 1100, size: 190, len: 840, anchor: 'middle' }, cta: 1290, url: 1420 }
+                : { simbX0: 337, simbW: 222, simbBase: 600, inst: { x: 756, y: 392, size: 74, len: 703, anchor: 'start' }, sem: { x: 631, y: 555, size: 216, len: 954, anchor: 'start' }, cta: 760, url: 880 };
+    const k = A.simbW / LARG;
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('width', W); svg.setAttribute('height', H); svg.style.position = 'absolute'; c.appendChild(svg);
+    const g = document.createElementNS(NS, 'g'); g.setAttribute('transform', `translate(${A.simbX0} ${A.simbBase}) scale(${k}) translate(${-MB.x0} ${-BASE})`); svg.appendChild(g);
+    const path = (d, fill, pai) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('fill', fill); pai.appendChild(p); return p; };
+    const maosG = document.createElementNS(NS, 'g'); g.appendChild(maosG); path(logo.maos, COR.marrom, maosG);
+    maosG.style.transformOrigin = `${MB.cx}px ${BASE}px`; maosG.style.transformBox = 'view-box';
+    // pessoas acendem de baixo pra cima, uma a cada 1/32 de compasso
+    const ordem = P.map((p, i) => [p.cy, i]).sort((a, b) => b[0] - a[0]).map(v => v[1]);
+    const pes = P.map((p, i) => { const pg = document.createElementNS(NS, 'g'); g.appendChild(pg); path(p.body, COR.oliva, pg); path(p.head, COR.amarelo, pg);
+      const b = bb(p.body + ' ' + p.head); pg.style.transformBox = 'view-box'; pg.style.transformOrigin = `${b.cx}px ${b.cy}px`; return pg; });
+    const txt = (s, a, w) => { const e = document.createElementNS(NS, 'text'); e.textContent = s; e.setAttribute('x', a.x); e.setAttribute('y', a.y); e.setAttribute('font-family', 'P');
+      e.setAttribute('font-weight', w); e.setAttribute('font-size', a.size); e.setAttribute('fill', COR.marrom); e.setAttribute('text-anchor', a.anchor); e.setAttribute('textLength', a.len);
+      e.setAttribute('lengthAdjust', a === A.sem ? 'spacingAndGlyphs' : 'spacing'); svg.appendChild(e); return e; };
+    const inst = txt('INSTITUTO', A.inst, 300), sem = txt('semear', A.sem, 700);
+    const cta = linha(c, 'Vem gerar a mudança conosco.', { font: `800 ${V ? 56 : 72}px P`, color: COR.tinta, letterSpacing: '-.02em', width: W + 'px', textAlign: 'center' });
+    const pill = el('div', 'abs', c, { background: COR.oliva, color: COR.papel, font: `700 ${V ? 40 : 36}px P`, borderRadius: '99px', padding: V ? '16px 46px' : '14px 42px', whiteSpace: 'nowrap' }, 'isemear.org.br');
+    c.fn = t => {
+      chicote(c, t, 17.0, 99);
+      maosG.style.transform = `scaleY(${tw(t, 17.0, 17.45, 0, 1, E.back)})`;
+      ordem.forEach((i, n) => { const t0 = 17.3 + n * .042; const e = tw(t, t0, t0 + .3, 0, 1, E.back);
+        pes[i].style.transform = `scale(${e})`; pes[i].style.opacity = t >= t0 ? 1 : 0; });
+      const ki = tw(t, 18.0, 18.35, 0, 1), ks = tw(t, 18.12, 18.47, 0, 1);
+      inst.setAttribute('opacity', ki); inst.style.transform = `translateY(${(1 - ki) * 30}px)`;
+      sem.setAttribute('opacity', ks); sem.style.transform = `translateY(${(1 - ks) * 50}px)`;
+      cta.style.top = A.cta + 'px'; cta.set(t, 18.5);
+      const pk = tw(t, 19.0, 19.3, 0, 1, E.back);
+      const pw = pill.offsetWidth, ph = pill.offsetHeight;
+      pill.style.transform = `translate(${W / 2 - pw / 2}px, ${A.url}px) scale(${pk})`; pill.style.transformOrigin = '50% 50%';
+      // respiro final: tudo parado depois de 19,4
+      const mv = tw(t, 17.85, 18.2, 1, 0, E.io), s0 = V ? 1.25 : 2.1;
+      const sx = A.simbX0 + A.simbW / 2, sy = A.simbBase - ALT * k / 2;
+      svg.style.transformOrigin = `${sx}px ${sy}px`;
+      svg.style.transform = `translate(${mv * (W / 2 - sx)}px, ${mv * (H / 2 - sy)}px) scale(${1 + mv * (s0 - 1)})`;
+    };
+  }
+}
+
+window.seek = t => {
+  for (const [a, b, c] of cenas) { const vivo = t >= a && t < b; c.style.display = vivo ? 'block' : 'none'; if (vivo) c.fn(t); }
+};
+window.pronto = (async () => { await montar(); await document.fonts.ready; await Promise.all([...document.fonts].map(f => f.load())); window.seek(0); return true; })();
+</script>
+</body>
+</html>

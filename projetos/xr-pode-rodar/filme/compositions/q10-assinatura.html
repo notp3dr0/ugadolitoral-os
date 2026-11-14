@@ -1,0 +1,49 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #q10-chao { position: absolute; inset: 0; background: #d5ebf7; }
+    .q10-diag { position: absolute; width: 900px; height: 190px; background: #ed1c24; }
+    #q10-diag-a { left: 1350px; top: -15px; }
+    #q10-diag-b { left: -280px; top: 880px; }
+    #q10-logo { position: absolute; left: 610px; top: 312px; width: 700px; height: 159.5px; display: block; }
+    #q10-assina { position: absolute; left: 0; top: 500px; width: 1920px; text-align: center; font-family: "Space Grotesk";
+      font-weight: 500; font-size: 54px; letter-spacing: -0.01em; color: #16181b; }
+    #q10-cta { position: absolute; left: 630px; top: 626px; width: 660px; height: 104px; display: flex; align-items: center; justify-content: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 44px; white-space: nowrap; }
+    #q10-url { position: absolute; left: 0; top: 762px; width: 1920px; text-align: center; font-family: "Space Grotesk";
+      font-weight: 500; font-size: 40px; color: #16181b; }
+  </style>
+  <div id="root" data-composition-id="q10" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"assinatura","type":"string","label":"Assinatura","default":"Do arquivo à tela"},{"id":"convite","type":"string","label":"Convite","default":"Fale com a XR Brasil"},{"id":"site","type":"string","label":"Endereço","default":"xrglobalbrasil.com"}]'>
+    <div id="q10-cena" class="clip" data-start="0" data-duration="4" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q10-chao"></div>
+      <div class="q10-diag" id="q10-diag-a" data-layout-ignore></div>
+      <div class="q10-diag" id="q10-diag-b" data-layout-ignore></div>
+      <!-- A06: logo oficial do site brasileiro (xrglobalbrasil.com, cabeçalho "Xtreme-Reach.png") -->
+      <img id="q10-logo" src="assets/marca/xr-extreme-reach.png" alt="XR Extreme Reach" />
+      <div id="q10-assina" data-var-text="assinatura">Do arquivo à tela</div>
+      <div id="q10-cta" data-var-text="convite">Fale com a XR Brasil</div>
+      <div id="q10-url" data-var-text="site">xrglobalbrasil.com</div>
+    </div>
+  </div>
+  <script>
+    // Q10 · A assinatura · f1230-1349 (41,00-45,00 s)
+    // As diagonais fecham o quadro, a marca oficial aparece em 12 f e a cartela
+    // fica parada até o último frame (f1349).
+    const tl = gsap.timeline({ paused: true });
+    const ang = -29.36;
+    tl.fromTo("#q10-chao", { backgroundColor: "#d5ebf7" }, { backgroundColor: "#ffffff", duration: 0.4, ease: "power2.inOut" }, 0);
+    // cada diagonal entra do seu canto, na direção perpendicular a ela
+    tl.fromTo("#q10-diag-a", { rotation: ang, x: 260, y: -460 }, { rotation: ang, x: 0, y: 0, duration: 0.6, ease: "expo.out" }, 0.05);
+    tl.fromTo("#q10-diag-b", { rotation: ang, x: -260, y: 460 }, { rotation: ang, x: 0, y: 0, duration: 0.6, ease: "expo.out" }, 0.05);
+    // marca oficial em 12 f
+    tl.fromTo("#q10-logo", { clipPath: "inset(0% 100% 0% 0%)", filter: "blur(6px)" },
+      { clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 12 / 30, ease: "expo.out" }, 0.5);
+    tl.fromTo("#q10-assina", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.45);
+    tl.fromTo("#q10-cta", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 1.8);
+    tl.fromTo("#q10-url", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 1.95);
+    window.__timelines["q10"] = tl;
+  </script>
+</template>

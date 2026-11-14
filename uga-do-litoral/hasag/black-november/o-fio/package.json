@@ -1,0 +1,15 @@
+{
+  "name": "hasag-o-fio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HASAG Black November, O FIO: comercial em Canvas 2D e áudio sintetizado, só JavaScript",
+  "scripts": {
+    "trilha": "node audio/gerar-trilha.mjs",
+    "render": "node render/render.mjs",
+    "tudo": "node audio/gerar-trilha.mjs && node render/render.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.65.0"
+  }
+}

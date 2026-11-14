@@ -1,0 +1,132 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+
+    #q07-chao { position: absolute; inset: 0; background: #d5ebf7; }
+    /* o que sobra da Q06 */
+    #q07-sai .titulo { position: absolute; left: 230px; top: 140px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #16181b; white-space: nowrap; }
+    #q07-sai .moldura { position: absolute; left: 412px; top: 270px; width: 1096px; height: 680px; background: #16181b; border-radius: 20px; }
+    #q07-sai .cc { position: absolute; left: 432px; top: 786px; width: 1056px; display: flex; justify-content: center; z-index: 9; }
+    #q07-sai .cc span { background: #16181b; color: #ffffff; font-family: "Space Grotesk"; font-weight: 700; font-size: 36px; padding: 10px 26px; }
+    #q07-sai .versao { position: absolute; left: 1076px; top: 898px; height: 80px; padding: 0 34px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 34px; white-space: nowrap; z-index: 9; }
+
+    #q07-titulo { position: absolute; left: 230px; top: 150px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #16181b; white-space: nowrap; }
+    .q07-rota { position: absolute; left: 230px; width: 1110px; height: 5px; background: #12384f; transform-origin: 0 50%; }
+    .q07-rota::after { content: ""; position: absolute; right: -14px; top: -10px; width: 0; height: 0;
+      border-top: 12.5px solid transparent; border-bottom: 12.5px solid transparent; border-left: 22px solid #12384f; }
+    #q07-r1 { top: 417.5px; } #q07-r2 { top: 607.5px; } #q07-r3 { top: 797.5px; }
+    .q07-destino { position: absolute; left: 1380px; width: 340px; height: 84px; padding-left: 30px; display: flex; align-items: center;
+      background: #d5ebf7; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 38px; white-space: nowrap; }
+    #q07-d1 { top: 378px; } #q07-d2 { top: 568px; } #q07-d3 { top: 758px; }
+    .q07-miniatura { position: absolute; background: #16181b; border-radius: 4px; }
+    .q07-miniatura .tela { position: absolute; left: 6px; top: 6px; overflow: hidden; background: #ed1c24; }
+    #q07-m1 { left: 250px; top: 351px; width: 236px; height: 138px; transform-origin: 118px 69px; z-index: 5; }
+    #q07-m1 .tela { width: 224px; height: 126px; }
+    #q07-m2 { left: 250px; top: 532px; width: 236px; height: 156px; transform-origin: 118px 69px; z-index: 4; }
+    #q07-m2 .tela { width: 224px; height: 126px; }
+    #q07-m2 .barra { position: absolute; left: 30px; top: 142px; width: 196px; height: 3px; background: #ffffff; }
+    #q07-m2 .play { position: absolute; left: 10px; top: 137px; width: 0; height: 0;
+      border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid #ffffff; }
+    #q07-m3 { left: 312px; top: 730px; width: 84px; height: 140px; transform-origin: 42px 70px; z-index: 3; }
+    #q07-m3 .tela { width: 72px; height: 128px; }
+  </style>
+  <div id="root" data-composition-id="q07" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"titulo","type":"string","label":"Título","default":"Distribuição"},{"id":"d1","type":"string","label":"Destino 1","default":"TV"},{"id":"d2","type":"string","label":"Destino 2","default":"Streaming"},{"id":"d3","type":"string","label":"Destino 3","default":"Mídia exterior"}]'>
+    <div id="q07-cena" class="clip" data-start="0" data-duration="4" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q07-chao"></div>
+      <div id="q07-sai">
+        <div class="titulo">Acessibilidade</div>
+        <div class="moldura"></div>
+      </div>
+      <h1 id="q07-titulo" data-var-text="titulo">Distribuição</h1>
+      <div class="q07-rota" id="q07-r1"></div>
+      <div class="q07-rota" id="q07-r2"></div>
+      <div class="q07-rota" id="q07-r3"></div>
+      <div class="q07-destino" id="q07-d1" data-var-text="d1">TV</div>
+      <div class="q07-destino" id="q07-d2" data-var-text="d2">Streaming</div>
+      <div class="q07-destino" id="q07-d3" data-var-text="d3">Mídia exterior</div>
+
+      <div class="q07-miniatura" id="q07-m3">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+      </div>
+      <div class="q07-miniatura" id="q07-m2">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="play"></div><div class="barra"></div>
+      </div>
+      <div class="q07-miniatura" id="q07-m1">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+      </div>
+
+      <div id="q07-sai-topo" style="position:absolute;inset:0;z-index:10;">
+        <div class="cc" style="position:absolute;left:432px;top:786px;width:1056px;display:flex;justify-content:center;">
+          <span style="background:#16181b;color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:36px;padding:10px 26px;">[Som de corrente]</span>
+        </div>
+        <div class="versao" style="position:absolute;left:1076px;top:898px;height:80px;padding:0 34px;display:flex;align-items:center;background:#ffcb05;color:#16181b;font-family:'Space Grotesk';font-weight:700;font-size:34px;white-space:nowrap;">Versão TV · Closed caption</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Q07 · Cada versão segue sua rota · f840-959 (28,00-32,00 s)
+    // Começa no quadro final da Q06: a tela do player encolhe até a miniatura de TV,
+    // as outras duas saem de trás dela, e os três recortes disparam com 4 f de intervalo.
+    const tl = gsap.timeline({ paused: true });
+    const encaixa = (sel, w, h) => {
+      const s = h / 1080;
+      const x = 1920 * s <= w + 0.5 ? 0 : w / 2 - 1192 * s;
+      gsap.set(sel + " .peca", { scale: s, x: x, y: 0 });
+    };
+    encaixa("#q07-m1", 224, 126);
+    encaixa("#q07-m2", 224, 126);
+    encaixa("#q07-m3", 72, 128);
+
+    tl.fromTo(["#q07-sai", "#q07-sai-topo"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, 0);
+    tl.fromTo("#q07-chao", { backgroundColor: "#d5ebf7" }, { backgroundColor: "#f3f2eb", duration: 0.4, ease: "power2.inOut" }, 0.1);
+    // a tela do player (1056 px) encolhe até a miniatura de TV (224 px)
+    tl.fromTo("#q07-m1", { x: 592, y: 167, scale: 1056 / 224 }, { x: 0, y: 0, scale: 1, duration: 0.6, ease: "power3.inOut" }, 0.05);
+    tl.fromTo("#q07-titulo", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 0.45);
+    tl.fromTo(".q07-rota", { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.07, ease: "expo.out" }, 0.45);
+    tl.fromTo(".q07-destino", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.07, ease: "expo.out" }, 0.6);
+    // streaming e vertical saem de trás da miniatura de TV, cada um pra sua rota
+    tl.fromTo("#q07-m2", { y: -181, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "expo.out" }, 0.62);
+    tl.fromTo("#q07-m3", { x: 14, y: -380, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.4, ease: "expo.out" }, 0.62 + 4 / 30);
+
+    // disparo dos três recortes, 4 f de intervalo
+    const t0 = 1.15, viagem = 0.75;
+    tl.to("#q07-m1", { x: 834, duration: viagem, ease: "power2.inOut" }, t0);
+    tl.to("#q07-m2", { x: 834, duration: viagem, ease: "power2.inOut" }, t0 + 4 / 30);
+    tl.to("#q07-m3", { x: 924, duration: viagem, ease: "power2.inOut" }, t0 + 8 / 30);
+    // o amarelo acompanha a chegada
+    const chega = [t0 + viagem, t0 + 4 / 30 + viagem, t0 + 8 / 30 + viagem];
+    tl.to("#q07-d1", { backgroundColor: "#ffcb05", duration: 0.08, ease: "none" }, chega[0]);
+    tl.to("#q07-d1", { backgroundColor: "#d5ebf7", duration: 0.2, ease: "power2.inOut" }, chega[1]);
+    tl.to("#q07-d2", { backgroundColor: "#ffcb05", duration: 0.08, ease: "none" }, chega[1]);
+    tl.to("#q07-d2", { backgroundColor: "#d5ebf7", duration: 0.2, ease: "power2.inOut" }, chega[2]);
+    tl.to("#q07-d3", { backgroundColor: "#ffcb05", duration: 0.08, ease: "none" }, chega[2]);
+    tl.to("#q07-d3", { backgroundColor: "#d5ebf7", duration: 0.3, ease: "power2.inOut" }, 3.3);
+    window.__timelines["q07"] = tl;
+  </script>
+</template>

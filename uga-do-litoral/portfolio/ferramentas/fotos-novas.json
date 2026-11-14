@@ -1,0 +1,79 @@
+{
+  "_": "Fotos novas vindas do Drive (2026-11-12). artista: como aparece no site; galeria: a ala (nova ou existente).",
+  "lotes": [
+    {
+      "artista": "Desiiik",
+      "galeria": "desiiik",
+      "pasta": "DESSIIK",
+      "fotos": [
+        { "id": "11934wVHJ2GmdxTnL6F6R2C7qm9zy90dE", "nome": "IMG_3849" },
+        { "id": "1Nw6mDBXdaSdPzgQA-K3GzlsrI2-a_1Kf", "nome": "IMG_3761" },
+        { "id": "1_TLu3jDg54P0eveANttKcSM6aGYMoNLo", "nome": "IMG_3707" },
+        { "id": "1AJchatOj6PaUESq_nhpRouCTJPEYpTBX", "nome": "IMG_3864" },
+        { "id": "1_dwnVso6DKzB2E61K4vpxc3A3mohOOVj", "nome": "IMG_3281" },
+        { "id": "17mw_H4Z_X9KeZxc45VNxsYyqArOHgUKA", "nome": "IMG_6200" },
+        { "id": "1BXEIMu1U8ituQ09OBxaALOrTwJzmX4GK", "nome": "IMG_6178" }
+      ]
+    },
+    {
+      "artista": "KayG",
+      "galeria": "kayg",
+      "pasta": "KAYG",
+      "fotos": [
+        { "id": "17mjBcEw3AuifJeUb3aB188MzwQ8AsH3q", "nome": "IMG_2179" },
+        { "id": "17CfIBQf0X0Ok7B43Kvo4V76eXj3YQF4J", "nome": "IMG_2068" },
+        { "id": "1CNf4joTLhWXJcP4j0D1eKbEoW-OFNPBm", "nome": "IMG_2074" },
+        { "id": "1_SiSd4UVqrfnzbjsEi8wwOIpXVdbB6D7", "nome": "IMG_2088" },
+        { "id": "1NrOUZXdrUcK9RNW7q43Su84GTITZvfRN", "nome": "IMG_2242" },
+        { "id": "1X-3thH7PMxC46xPmlU0OsvPrdq9JR9Fr", "nome": "IMG_2378" },
+        { "id": "1rgxhSMzrIRJjcJvOYylNNJpCnVKc0hbn", "nome": "IMG_2407" }
+      ]
+    },
+    {
+      "artista": "Yunk Vino",
+      "galeria": "yunk-vino",
+      "pasta": "YUNK VINO",
+      "fotos": [
+        { "id": "1bfEMbJLTakduNQregEfJzfN2evlTFSky", "nome": "IMG_5439" },
+        { "id": "1warUdFjXneiWrbVE11A1V_anu4T59LqM", "nome": "IMG_5924" },
+        { "id": "1cSCU8R_b1IJ-AcEaZRUgXs5GXDkCfdb4", "nome": "IMG_6371" },
+        { "id": "13Fi49eqSdebPxoI_-rs84qc387m18bAr", "nome": "IMG_6289" },
+        { "id": "1IINF4iWqWbUwL0b_3hjzschB_G3gCa60", "nome": "IMG_6335" },
+        { "id": "1xWoqwU2c1BXwvZ5ICV3PtP5-qJ103gTE", "nome": "IMG_6152" }
+      ]
+    },
+    {
+      "artista": "LAI$",
+      "galeria": "lais",
+      "pasta": "LAI$",
+      "fotos": [
+        { "id": "1er--83g5oRXdxxdNnuzxrBAndcvRibWG", "nome": "IMG_0909" },
+        { "id": "1en5euLNxVcD5Kj5qynFInRrK3P-gXgUk", "nome": "IMG_1097" },
+        { "id": "1b9PclwMJtSuPMZ2JrkUqHZXUiqpemDS6", "nome": "IMG_0913" },
+        { "id": "109gA3clOCFbVYI_G8fIMi_HCl7G0f7SH", "nome": "IMG_0968" },
+        { "id": "18kJlJhXmXaZ_8JIyatTa9kvAzk9b3xmL", "nome": "IMG_1040" },
+        { "id": "19dZAGiKHfSpUG7tehWEi7KO6AkjPQbZr", "nome": "IMG_0964" }
+      ]
+    },
+    {
+      "artista": "Fab Godamn",
+      "galeria": "fab-godamn",
+      "pasta": "FAB GODAMN",
+      "fotos": [
+        { "id": "1gvXD8qdayuCl-K5G2xBDuqXUBznFTKG5", "nome": "IMG_1795" },
+        { "id": "1zYn1GZ2Ibpqq1HV3-M5jwbHwBdWpZP8l", "nome": "IMG_1797a" },
+        { "id": "1uNBGPh0V_yvuB6PrkQ69ZEo-EGxizYeN", "nome": "IMG_1797b" }
+      ]
+    }
+  ],
+  "fora": {
+    "_": "o que o Pedro pediu pra não entrar",
+    "DESSIIK": ["IMG_3344", "IMG_6189"],
+    "KAYG": ["IMG_2104"],
+    "YUNK VINO": ["IMG_5601", "IMG_6167", "IMG_6103", "IMG_5440", "IMG_6189 (a mesma da DESSIIK, que ele já tirou)"],
+    "LAI$": ["IMG_0983", "IMG_1062"],
+    "FAB GODAMN": ["IMG_1799", "IMG_1811"],
+    "outros": ["1022 (1).mp4 e a subpasta VIDEOS da KAYG: vídeo, não entra como foto"]
+  },
+  "video_ryu": { "id": "1Xc66ZB3IpbqlKFeXvSgYZiNBVsqZ5ckF", "nome": "A001_04222212_C031.mov", "nota": "é vídeo .mov, não foto; decidir com o Pedro" }
+}

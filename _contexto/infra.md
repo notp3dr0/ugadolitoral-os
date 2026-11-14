@@ -7,11 +7,11 @@
 
 | o quê | onde mora (serviço) | endereço | quem acessa e como | observações |
 |---|---|---|---|---|
-| Portfólio Uga do Litoral | Vercel (o código também mora lá, sem repo no GitHub) | ugadolitoral.vercel.app | Pedro, via conector Vercel | domínio próprio: não sei |
+| Portfólio Uga do Litoral | Vercel, projeto `ugadolitoral` (time imagensludique-6008), código no GitHub `notp3dr0/ugadolitoral-site` (privado) | ugadolitoral.vercel.app | Pedro; agente via `git push` + conector Vercel (deploy pedido por gitSource; push sozinho não dispara) | desde 2026-11-12; branch `main` = produção, `rodada-N` = prévia; sem domínio próprio |
 | Instagram | Instagram | instagram.com/uga_do_litoral | Pedro | 758 seguidores (lido em 2026-10-31) |
 | Site da PAÓ | não sei | não sei | Pedro | hospedagem e domínio não confirmados |
-| Código dos projetos | GitHub | github.com/notp3dr0 | Pedro, via `gh` | 7 repos; o do portfólio não está aqui |
+| Código dos projetos | GitHub | github.com/notp3dr0 | Pedro, via `gh` | o do portfólio é `ugadolitoral-site` (desde 2026-11-12) |
 | Arquivos e assets | Google Drive | pasta MEUS TRABALHOS: drive.google.com/drive/folders/1QxelPTtE14jq9QfkHGMpkWRxhDkOFVQ5 (subpastas FOTOS e VIDEOS) | Pedro | fotos de apoio ao design das propostas e dos stories |
-| Este sistema (RatosOS) | GitHub (privado) | github.com/notp3dr0/ugadolitoral-os | Pedro, via `gh` | no ar desde 2026-10-31 |
+| Este sistema (Nautilus) | GitHub (privado) | github.com/notp3dr0/ugadolitoral-os | Pedro, via `gh` | no ar desde 2026-10-31 |
 | Conhecimento | Obsidian (dois computadores) | local | Pedro | |
 | Email do Uga | Gmail | | Pedro | |

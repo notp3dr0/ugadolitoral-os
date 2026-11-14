@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PAÓ · um balão</title>
+<style>
+  @font-face { font-family: "Nunito"; src: url("fontes/Nunito.ttf"); font-weight: 200 1000; }
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  canvas { display: block; }
+  #esquenta { font-family: Nunito; font-weight: 800; position: absolute; opacity: 0; }
+</style>
+</head>
+<body>
+<span id="esquenta">PAÓ ÁÉÍÓÚ ãç</span>
+<canvas id="c"></canvas>
+<script>
+  // Cada formato é composto de verdade (layout por formato), não recortado.
+  const q = new URLSearchParams(location.search);
+  window.VERT = q.get("fmt") === "v";
+</script>
+<script src="lib/motion.js"></script>
+<script src="lib/pao.js"></script>
+<script src="lib/kit.js"></script>
+<script src="cenas.js"></script>
+<script src="roteiro.js"></script>
+<script src="timeline.js"></script>
+<script>
+  const cv = document.getElementById("c");
+  cv.width = VERT ? 1080 : 1920;
+  cv.height = VERT ? 1920 : 1080;
+  K.palco(cv.width, cv.height);
+  const ctx = cv.getContext("2d");
+  const L = { W: cv.width, H: cv.height, v: VERT };
+  window.seek = function (t) {
+    const { plano, lt } = TL.achar(t);
+    ctx.save();
+    ctx.clearRect(0, 0, L.W, L.H);
+    plano.desenha(ctx, lt, plano.dur, L, t);
+    ctx.restore();
+    return true;
+  };
+  window.DURACAO = TL.total;
+  window.CUES = TL.cues();
+  document.fonts.load('800 40px Nunito').then(() => { window.PRONTO = true; seek(Number(q.get("t") || 0)); });
+</script>
+</body>
+</html>

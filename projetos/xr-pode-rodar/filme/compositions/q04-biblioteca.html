@@ -1,0 +1,133 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+
+    #q04-chao { position: absolute; inset: 0; background: #f3f2eb; }
+    .q04-diag { position: absolute; left: -340px; top: 440px; width: 2600px; height: 200px; background: #a9d6ef; transform-origin: 50% 50%; }
+    #q04-titulo { position: absolute; left: 230px; top: 128px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #16181b; white-space: nowrap; }
+    #q04-titulo span { display: inline-block; }
+
+    .card { position: absolute; background: #ffffff; box-shadow: 0 0 0 3px #16181b; }
+    .card .tela { position: absolute; left: 10px; top: 10px; overflow: hidden; background: #ed1c24; }
+    .card .rotulo { position: absolute; left: 22px; bottom: 0; height: 60px; display: flex; align-items: center;
+      font-family: "Space Grotesk"; font-weight: 700; font-size: 30px; color: #16181b; white-space: nowrap; }
+    #q04-tv { left: 209px; top: 292.5px; width: 620px; height: 407.5px; transform-origin: 310px 178.75px; z-index: 3; }
+    #q04-tv .tela { width: 600px; height: 337.5px; }
+    #q04-st { left: 865px; top: 337.5px; width: 540px; height: 362.5px; transform-origin: 270px 156.25px; z-index: 2; }
+    #q04-st .tela { width: 520px; height: 292.5px; }
+    #q04-pn { left: 1441px; top: 186px; width: 270px; height: 514px; transform-origin: 135px 232px; z-index: 1; }
+    #q04-pn .tela { width: 250px; height: 444px; }
+    #q04-pn .rotulo { left: 16px; font-size: 28px; }
+    #q04-ligacao { position: absolute; left: 238px; top: 712px; width: 4px; height: 52px; background: #16181b; z-index: 4; }
+    #q04-pedido { position: absolute; left: 209px; top: 764px; height: 84px; padding: 0 34px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 36px; z-index: 4; }
+    #q04-destinos { position: absolute; left: 905px; top: 806px; height: 76px; padding: 0 30px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 32px; z-index: 5; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="q04" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"titulo","type":"string","label":"Título","default":"Biblioteca de anúncios"},{"id":"campanha","type":"string","label":"Campanha","default":"Campanha bicicleta"},{"id":"destinos","type":"string","label":"Destinos","default":"TV · Streaming · Painel digital"}]'>
+    <div id="q04-cena" class="clip" data-start="0" data-duration="8" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q04-chao"></div>
+      <div id="q04-x" data-layout-ignore>
+        <div class="q04-diag" id="q04-diag-a"></div>
+        <div class="q04-diag" id="q04-diag-b"></div>
+      </div>
+      <h1 id="q04-titulo"><span>Biblioteca</span> <span>de</span> <span>anúncios</span></h1>
+
+      <div class="card" id="q04-pn">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo">Painel digital</div>
+      </div>
+      <div class="card" id="q04-st">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo">15 s · Streaming</div>
+      </div>
+      <div class="card" id="q04-tv">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo" id="q04-rot-tv">30 s · TV</div>
+        <div class="rotulo" id="q04-rot-camp" data-var-text="campanha">Campanha bicicleta</div>
+        <div class="rotulo" id="q04-rot-tv2">TV · 30 s</div>
+      </div>
+
+      <div id="q04-ligacao"></div>
+      <div id="q04-pedido">TV · Closed caption solicitado</div>
+      <div id="q04-destinos" data-var-text="destinos">TV · Streaming · Painel digital</div>
+    </div>
+  </div>
+  <script>
+    // Q04 · As versões ficam juntas · f330-569 (11,00-19,00 s)
+    // Começa no quadro final da Q03. As diagonais do X entram por trás em 18 f,
+    // os três recortes se empilham e, no fim, o corte de TV desliza à frente
+    // até a posição da checagem técnica (Q05).
+    const tl = gsap.timeline({ paused: true });
+    const encaixa = (card, w, h) => {
+      const s = h / 1080;
+      const x = 1920 * s <= w + 0.5 ? 0 : w / 2 - 1192 * s;
+      gsap.set(card + " .peca", { scale: s, x: x, y: 0 });
+    };
+    encaixa("#q04-tv", 600, 337.5);
+    encaixa("#q04-st", 520, 292.5);
+    encaixa("#q04-pn", 250, 444);
+    const ang = 29.36; // diagonal do quadro 16:9
+
+    // estado herdado da Q03
+    gsap.set("#q04-tv", { scale: 1.04, boxShadow: "0 0 0 3px #16181b, 14px 14px 0 #16181b" });
+    gsap.set(["#q04-st", "#q04-pn"], { opacity: 0.55 });
+    gsap.set(["#q04-rot-camp", "#q04-rot-tv2"], { opacity: 0 });
+
+    // o pedido de legenda sai, o chão vira azul-claro
+    tl.fromTo(["#q04-pedido", "#q04-ligacao"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 0.1);
+    tl.fromTo("#q04-chao", { backgroundColor: "#f3f2eb" }, { backgroundColor: "#d5ebf7", duration: 0.4, ease: "power2.inOut" }, 0.15);
+    // as diagonais do X entram por trás da peça (18 f)
+    tl.fromTo("#q04-diag-a", { rotation: ang, xPercent: -110 }, { rotation: ang, xPercent: 0, duration: 18 / 30, ease: "expo.out" }, 0.2);
+    tl.fromTo("#q04-diag-b", { rotation: -ang, xPercent: 110 }, { rotation: -ang, xPercent: 0, duration: 18 / 30, ease: "expo.out" }, 0.2);
+
+    // os três recortes se empilham na biblioteca
+    tl.to(["#q04-st", "#q04-pn"], { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.3);
+    tl.to("#q04-tv", { x: 211, y: 127.5, scale: 1, boxShadow: "0 0 0 3px #16181b, 0px 0px 0 #16181b", duration: 0.7, ease: "expo.out" }, 0.4);
+    tl.to("#q04-st", { x: -105, y: 2.5, duration: 0.7, ease: "expo.out" }, 0.4 + 3 / 30);
+    tl.to("#q04-pn", { x: -161, y: 54, duration: 0.7, ease: "expo.out" }, 0.4 + 6 / 30);
+    tl.to(["#q04-st .rotulo", "#q04-pn .rotulo"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 0.45);
+    // a equipe passa pelas versões: cada ficha de trás sobe e volta, como quem folheia
+    [["#q04-pn", 3.1], ["#q04-st", 3.75], ["#q04-tv", 4.4]].forEach(([f, t]) => {
+      tl.to(f, { y: "-=22", duration: 0.25, ease: "power3.out" }, t);
+      tl.to(f, { y: "+=22", duration: 0.35, ease: "power2.inOut" }, t + 0.3);
+    });
+    tl.fromTo("#q04-titulo span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.067, ease: "power2.out" }, 0.75);
+    // a ficha da frente vira a campanha, com os destinos
+    tl.to("#q04-rot-tv", { opacity: 0, filter: "blur(6px)", duration: 0.15, ease: "power2.in" }, 1.25);
+    tl.fromTo("#q04-rot-camp", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power2.out" }, 1.35);
+    tl.fromTo("#q04-destinos", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 1.5);
+
+    // o corte de TV desliza à frente para a checagem (posição da Q05: 220, 330)
+    tl.to(["#q04-titulo", "#q04-destinos"], { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 6.75);
+    tl.to(["#q04-st", "#q04-pn"], { opacity: 0, x: "+=120", filter: "blur(10px)", duration: 0.35, ease: "power3.in" }, 6.75);
+    tl.to("#q04-x", { opacity: 0, duration: 0.3, ease: "power2.in" }, 6.85);
+    tl.to("#q04-tv", { x: 11, y: 37.5, duration: 0.6, ease: "power3.inOut" }, 6.8);
+    tl.to("#q04-rot-camp", { opacity: 0, duration: 0.12, ease: "power2.in" }, 6.95);
+    tl.fromTo("#q04-rot-tv2", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, 7.07);
+    window.__timelines["q04"] = tl;
+  </script>
+</template>

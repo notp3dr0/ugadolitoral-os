@@ -1,0 +1,5 @@
+quadros/
+node_modules/
+__pycache__/
+*.tmp
+audio/musica.wav

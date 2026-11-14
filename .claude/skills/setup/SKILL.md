@@ -1,7 +1,7 @@
 ---
 name: setup
 description: >
-  Configura o RatosOS pro seu negócio: entrevista curta (quem você é, o que faz, o que usa,
+  Configura o Nautilus pro seu negócio: entrevista curta (quem você é, o que faz, o que usa,
   onde suas coisas moram na internet, como a sua marca é), preenche a memória do sistema,
   cria as pastas de trabalho, prepara este computador e termina com a página bem-vindo.html,
   o resumo do que ele aprendeu.
@@ -154,7 +154,7 @@ atende clientes) · `solopreneur` (negócio próprio, audiência/produto; inclui
 O `AGENTS.md` do kit é a constituição (boot, mapa, tabela, contrato). **Não reescrever o arquivo.**
 Ler o trecho do perfil em `sistema/templates/perfis/agents-md-<perfil>.md` e preencher:
 
-- o título (`# [Nome do negócio] · RatosOS`) e a frase de instalação (apagar "Se você acabou de
+- o título (`# [Nome do negócio] · Nautilus`) e a frase de instalação (apagar "Se você acabou de
   instalar: rode /setup...");
 - **seção 1, "O que é este sistema":** o bloco do perfil, com os colchetes preenchidos pelo que
   ele contou (4 a 8 linhas). Sem lista de ferramentas nem tom de voz: têm casa própria;

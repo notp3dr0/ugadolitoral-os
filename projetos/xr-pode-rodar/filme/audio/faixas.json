@@ -1,0 +1,45 @@
+{
+  "_leia": "Fonte única do áudio do filme. Tempos em segundos do filme (f/30). mediaStart = ponto de entrada no arquivo. Rode: node audio/montar-audio.mjs (reescreve o bloco AUDIO do index.html e exporta os stems em audio/stems/).",
+  "duracao": 45,
+  "faixas": {
+    "voz": { "track": 10, "cues": [
+      { "id": "voz-q02", "src": "assets/locucao/L02.wav", "start": 2.35, "volume": 1, "nota": "O filme ficou pronto." },
+      { "id": "voz-q03a", "src": "assets/locucao/L03a.wav", "start": 4.3, "volume": 1, "nota": "Tem o corte de quinze pro streaming?" },
+      { "id": "voz-q03b", "src": "assets/locucao/L03b.wav", "start": 6.95, "volume": 1, "nota": "E qual é o arquivo que vai pra TV com legenda?" },
+      { "id": "voz-q04", "src": "assets/locucao/L04.wav", "start": 11.3, "volume": 1, "nota": "Com a XR Brasil, a equipe encontra as versões..." },
+      { "id": "voz-q05", "src": "assets/locucao/L05.wav", "start": 19.0, "volume": 1, "nota": "A XR confere se o formato e o áudio atendem ao veículo." },
+      { "id": "voz-q06", "src": "assets/locucao/L06.wav", "start": 23.3, "volume": 1, "nota": "Quando a campanha pede, a XR também prepara o closed caption." },
+      { "id": "voz-q07", "src": "assets/locucao/L07.wav", "start": 28.45, "volume": 1, "nota": "Cada versão segue pro destino certo." },
+      { "id": "voz-q09", "src": "assets/locucao/L09.wav", "start": 37.35, "volume": 1, "nota": "E você acompanha o status de cada entrega." },
+      { "id": "voz-q10", "src": "assets/locucao/L10.wav", "start": 41.0, "volume": 1, "nota": "XR Extreme Reach Brasil. Do arquivo à tela." }
+    ]},
+    "trilha": { "track": [11, 12], "cues": [
+      { "id": "trilha-abertura", "src": "assets/trilha/batida-110bpm.mp3", "start": 0, "duration": 1.4, "mediaStart": 12.505, "volume": 0.5, "fadeOut": 0.01, "nota": "corta seco no congelamento do f042 (1,40 s)" },
+      { "id": "trilha-cama", "src": "assets/trilha/cama-ambiente.mp3", "start": 4.0, "duration": 30.1, "mediaStart": 4.0, "volume": 0.16, "fadeIn": 1.2, "fadeOut": 1.0, "nota": "cama sem bateria no miolo; some antes do contato" },
+      { "id": "trilha-volta", "src": "assets/trilha/batida-110bpm.mp3", "start": 34.2, "duration": 4.427, "mediaStart": 18.509, "volume": 1, "fadeOut": 0.02,
+        "automation": [{ "t": 0, "v": 0.55 }, { "t": 3.0, "v": 0.55 }, { "t": 3.15, "v": 0.3 }], "nota": "o drop da música cai no contato do f1026" },
+      { "id": "trilha-final", "src": "assets/trilha/batida-110bpm.mp3", "start": 38.597, "duration": 6.403, "mediaStart": 51.269, "volume": 0.3, "fadeIn": 0.02, "nota": "emenda no compasso com o final da música: a última nota cai na assinatura" }
+    ]},
+    "efeitos": { "track": [13, 14, 15], "cues": [
+      { "id": "sfx-roda-livre", "src": "assets/sfx/roda-livre.mp3", "start": 0, "duration": 1.4, "mediaStart": 0, "volume": 0.45, "fadeOut": 0.01, "nota": "Q01 corrente; corta no f042" },
+      { "id": "sfx-corrente", "src": "assets/sfx/corrente-giro.mp3", "start": 0, "duration": 1.4, "mediaStart": 0.6, "volume": 0.6, "fadeOut": 0.01, "nota": "Q01 giro curto; corta no f042" },
+      { "id": "sfx-clique", "src": "assets/sfx/clique-seco.mp3", "start": 2.37, "volume": 0.9, "nota": "Q02 revelação do player" },
+      { "id": "sfx-toque-1", "src": "assets/sfx/toque-leve.mp3", "start": 4.36, "volume": 0.6, "nota": "Q03 recorte TV" },
+      { "id": "sfx-toque-2", "src": "assets/sfx/toque-leve.mp3", "start": 4.46, "volume": 0.5, "nota": "Q03 recorte streaming" },
+      { "id": "sfx-toque-3", "src": "assets/sfx/toque-leve.mp3", "start": 4.56, "volume": 0.45, "nota": "Q03 recorte painel" },
+      { "id": "sfx-encaixe-a", "src": "assets/sfx/clique-seco.mp3", "start": 11.8, "volume": 0.7, "nota": "Q04 encaixe na biblioteca" },
+      { "id": "sfx-encaixe-b", "src": "assets/sfx/pulso-seco.mp3", "start": 11.8, "volume": 0.1 },
+      { "id": "sfx-pulso-1", "src": "assets/sfx/pulso-seco.mp3", "start": 20.72, "volume": 0.16, "nota": "Q05 formato conferido" },
+      { "id": "sfx-pulso-2", "src": "assets/sfx/pulso-seco.mp3", "start": 21.38, "volume": 0.16, "nota": "Q05 áudio conferido" },
+      { "id": "sfx-corrente-cc", "src": "assets/sfx/corrente-giro.mp3", "start": 24.0, "duration": 1.4, "mediaStart": 0.6, "volume": 0.22, "fadeIn": 0.1, "fadeOut": 0.01, "nota": "Q06 corrente baixa junto da legenda descritiva" },
+      { "id": "sfx-raspado-1", "src": "assets/sfx/raspado.mp3", "start": 29.16, "duration": 0.35, "mediaStart": 0.12, "volume": 0.3, "fadeOut": 0.1, "nota": "Q07 recorte de 30 s" },
+      { "id": "sfx-raspado-2", "src": "assets/sfx/raspado.mp3", "start": 29.3, "duration": 0.35, "mediaStart": 0.5, "volume": 0.27, "fadeOut": 0.1, "nota": "Q07 recorte de 15 s" },
+      { "id": "sfx-raspado-3", "src": "assets/sfx/raspado.mp3", "start": 29.43, "duration": 0.35, "mediaStart": 0.9, "volume": 0.25, "fadeOut": 0.1, "nota": "Q07 vertical" },
+      { "id": "sfx-respingo", "src": "assets/sfx/respingo.mp3", "start": 33.691, "duration": 1.6, "volume": 1, "fadeOut": 0.3, "nota": "Q08 respingo: o pico cai no f1026" },
+      { "id": "sfx-impacto", "src": "assets/sfx/impacto-pneu.mp3", "start": 34.074, "volume": 0.9, "nota": "Q08 contato do pneu no f1026" },
+      { "id": "sfx-entrega-1", "src": "assets/sfx/toque-leve.mp3", "start": 38.26, "volume": 0.5, "nota": "Q09 TV entregue" },
+      { "id": "sfx-entrega-2", "src": "assets/sfx/toque-leve.mp3", "start": 38.66, "volume": 0.45, "nota": "Q09 streaming entregue" },
+      { "id": "sfx-entrega-3", "src": "assets/sfx/toque-leve.mp3", "start": 39.06, "volume": 0.45, "nota": "Q09 mídia exterior entregue" }
+    ]}
+  }
+}

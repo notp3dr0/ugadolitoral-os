@@ -1,0 +1,11 @@
+h: 0/600 (0 s)
+h: 60/600 (4 s)
+h: 120/600 (8 s)
+h: 180/600 (15 s)
+h: 240/600 (21 s)
+h: 300/600 (26 s)
+h: 360/600 (32 s)
+h: 420/600 (36 s)
+h: 480/600 (40 s)
+h: 540/600 (44 s)
+ok C:\Users\Pedro\Desktop\Framework\ccos-ratos\pao\instituto-semear\comercial\entregas\video-h-mudo.mp4

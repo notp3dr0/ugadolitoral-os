@@ -1,0 +1,28 @@
+{
+  "name": "filme-pao",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "@remotion/media": "^4.0.539",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "piloto": "remotion render Piloto169 out/piloto-16x9.mp4 && remotion render Piloto916 out/piloto-9x16.mp4",
+    "lint": "tsc"
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}

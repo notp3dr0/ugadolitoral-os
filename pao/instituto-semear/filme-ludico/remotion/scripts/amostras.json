@@ -1,0 +1,5 @@
+{ "saida": "public/voz/amostras", "estilo": "Leia em português do Brasil, com energia e sorrindo, no ritmo de um criador de conteúdo de TikTok, sem ironia. Diga apenas a frase:",
+  "falas": [
+    { "id": "gancho-Puck", "voz": "Puck", "texto": "Passar no vestibular... é só o tutorial." },
+    { "id": "gancho-Fenrir", "voz": "Fenrir", "texto": "Passar no vestibular... é só o tutorial." },
+    { "id": "gancho-Sadachbia", "voz": "Sadachbia", "texto": "Passar no vestibular... é só o tutorial." } ] }

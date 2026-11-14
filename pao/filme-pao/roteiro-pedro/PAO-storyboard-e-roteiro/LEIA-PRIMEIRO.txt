@@ -1,0 +1,8 @@
+PAÓ — storyboard e roteiro
+
+1. Abra index.html para navegar pelos 90 quadros e ler o roteiro por blocos.
+2. ROTEIRO-DE-EXECUCAO.md contém a direção completa.
+3. quadros contém 90 PNGs em resolução nativa de geração.
+4. referencias contém a identidade principal e a prancha aprovada.
+5. Os PNGs são reconstruções por IA; não são quadros de uma animação final. Texto e continuidade seguem o roteiro.
+6. Os números 001–090 definem a ordem, não os timestamps da imagem original.

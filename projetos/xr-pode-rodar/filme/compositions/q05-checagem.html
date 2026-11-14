@@ -1,0 +1,94 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+
+    #q05-chao { position: absolute; inset: 0; background: #d5ebf7; }
+    #q05-titulo { position: absolute; left: 230px; top: 150px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #ffffff; white-space: nowrap; }
+    .card { position: absolute; background: #ffffff; box-shadow: 0 0 0 3px #16181b; }
+    .card .tela { position: absolute; left: 10px; top: 10px; overflow: hidden; background: #ed1c24; }
+    .card .rotulo { position: absolute; left: 22px; bottom: 0; height: 60px; display: flex; align-items: center;
+      font-family: "Space Grotesk"; font-weight: 700; font-size: 30px; color: #16181b; white-space: nowrap; }
+    #q05-tv { left: 220px; top: 330px; width: 620px; height: 407.5px; transform-origin: 310px 178.75px; }
+    #q05-tv .tela { width: 600px; height: 337.5px; }
+
+    #q05-ficha { position: absolute; left: 880px; top: 330px; width: 820px; height: 407.5px; background: #d5ebf7; }
+    .q05-linha { position: absolute; left: 48px; display: flex; align-items: center; gap: 22px; height: 70px;
+      font-family: "Space Grotesk"; font-weight: 700; font-size: 46px; color: #16181b; white-space: nowrap; }
+    .q05-linha svg { width: 46px; height: 46px; flex: none; }
+    .q05-linha path { fill: none; stroke: #16181b; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    #q05-l1 { top: 52px; }
+    #q05-l2 { top: 190px; }
+    #q05-divisor { position: absolute; left: 48px; top: 155px; width: 724px; height: 3px; background: #8fb4c9; }
+    #q05-regua { position: absolute; left: 116px; top: 316px; width: 560px; height: 16px; background: #a9bcc9; }
+    #q05-faixa-ok { position: absolute; left: 240px; top: 0; width: 80px; height: 16px; background: #0088cb; }
+    #q05-agulha { position: absolute; left: -3px; top: -18px; width: 6px; height: 52px; background: #16181b; }
+    #q05-valor { display: inline-block; }
+  </style>
+  <div id="root" data-composition-id="q05" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"titulo","type":"string","label":"Título","default":"Checagem técnica"},{"id":"formato","type":"string","label":"Formato","default":"Formato HD"},{"id":"audio","type":"string","label":"Áudio medido","default":"-23,5 LUFS"}]'>
+    <div id="q05-cena" class="clip" data-start="0" data-duration="4" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q05-chao"></div>
+      <h1 id="q05-titulo" data-var-text="titulo">Checagem técnica</h1>
+      <div class="card" id="q05-tv">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo">TV · 30 s</div>
+      </div>
+      <div id="q05-ficha">
+        <div class="q05-linha" id="q05-l1">
+          <svg viewBox="0 0 46 46"><path id="q05-check1" d="M6 24 L18 36 L40 10" /></svg>
+          <span data-var-text="formato">Formato HD</span>
+        </div>
+        <div id="q05-divisor"></div>
+        <div class="q05-linha" id="q05-l2">
+          <svg viewBox="0 0 46 46"><path id="q05-check2" d="M6 24 L18 36 L40 10" /></svg>
+          <span>Áudio ·</span><span id="q05-valor" data-var-text="audio">-23,5 LUFS</span>
+        </div>
+        <!-- régua de -30 a -16 LUFS (40 px por LU); faixa do exemplo de -24 a -22 -->
+        <div id="q05-regua">
+          <div id="q05-faixa-ok"></div>
+          <div id="q05-agulha"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Q05 · A checagem técnica · f570-689 (19,00-23,00 s)
+    // Começa no quadro final da Q04 (ficha de TV em 220, 330 sobre azul-claro).
+    const tl = gsap.timeline({ paused: true });
+    gsap.set("#q05-tv .peca", { scale: 337.5 / 1080, x: 0, y: 0 });
+    const L = 52; // comprimento do traço do check
+
+    tl.fromTo("#q05-chao", { backgroundColor: "#d5ebf7" }, { backgroundColor: "#12384f", duration: 0.4, ease: "power2.inOut" }, 0);
+    tl.fromTo("#q05-titulo", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 0.3);
+    // a ficha de TV abre em 12 f, saindo da borda do recorte
+    tl.fromTo("#q05-ficha", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 0.45);
+    tl.fromTo(["#q05-l1 span", "#q05-l2 span:not(#q05-valor)", "#q05-divisor", "#q05-regua"], { opacity: 0 },
+      { opacity: 1, duration: 0.2, stagger: 0.05, ease: "power2.out" }, 0.6);
+    gsap.set(["#q05-check1", "#q05-check2"], { strokeDasharray: L, strokeDashoffset: L });
+    gsap.set("#q05-valor", { opacity: 0 });
+    // formato conferido
+    tl.to("#q05-check1", { strokeDashoffset: 0, duration: 0.25, ease: "power2.out" }, 1.76); // "formato" 20,76 s
+    // a régua revela o valor medido dentro da faixa do exemplo (-23,5 LUFS = 260 px)
+    tl.fromTo("#q05-agulha", { x: 0 }, { x: 260, duration: 0.6, ease: "power3.out" }, 1.95);
+    tl.fromTo("#q05-valor", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power2.out", immediateRender: false }, 2.45);
+    // áudio conferido
+    tl.to("#q05-check2", { strokeDashoffset: 0, duration: 0.25, ease: "power2.out" }, 2.42); // "áudio" 21,40 s
+    window.__timelines["q05"] = tl;
+  </script>
+</template>

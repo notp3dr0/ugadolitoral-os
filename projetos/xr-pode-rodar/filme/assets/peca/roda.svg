@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-400 -400 800 800" width="800" height="800">
+  <!-- A01 roda: um vetor so pro filme inteiro. Rotacao 0 = pose congelada do f042. -->
+  <circle r="363" fill="none" stroke="#16181B" stroke-width="66"/>
+  <circle r="309" fill="none" stroke="#FFCB05" stroke-width="42"/>
+  <circle r="289" fill="none" stroke="#16181B" stroke-width="4"/>
+  <g stroke="#16181B" stroke-width="13" stroke-linecap="round"><line x1="49.5" y1="16.1" x2="277.7" y2="90.2"/><line x1="10.8" y1="50.9" x2="60.7" y2="285.6"/><line x1="-38.6" y1="34.8" x2="-217.0" y2="195.4"/><line x1="-49.5" y1="-16.1" x2="-277.7" y2="-90.2"/><line x1="-10.8" y1="-50.9" x2="-60.7" y2="-285.6"/><line x1="38.6" y1="-34.8" x2="217.0" y2="-195.4"/></g>
+  <circle r="56" fill="#16181B"/>
+  <circle r="20" fill="#FFFFFF"/>
+  <!-- marcador claro no aro: confere a pose -->
+  <rect x="-15" y="-15" width="30" height="30" fill="#F3F2EB" transform="translate(208.2 297.4) rotate(100)"/>
+</svg>

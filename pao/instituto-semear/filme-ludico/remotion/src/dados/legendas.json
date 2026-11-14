@@ -1,0 +1,295 @@
+{
+ "n1": [
+  {
+   "texto": "Passar",
+   "ini": 280,
+   "fim": 520
+  },
+  {
+   "texto": "no",
+   "ini": 520,
+   "fim": 680
+  },
+  {
+   "texto": "vestibular",
+   "ini": 680,
+   "fim": 1460
+  },
+  {
+   "texto": "é",
+   "ini": 1460,
+   "fim": 1780
+  },
+  {
+   "texto": "só",
+   "ini": 1780,
+   "fim": 1880
+  },
+  {
+   "texto": "o",
+   "ini": 1880,
+   "fim": 2080
+  },
+  {
+   "texto": "tutorial.",
+   "ini": 2080,
+   "fim": 2440
+  }
+ ],
+ "n2": [
+  {
+   "texto": "A",
+   "ini": 140,
+   "fim": 500
+  },
+  {
+   "texto": "fase",
+   "ini": 500,
+   "fim": 880
+  },
+  {
+   "texto": "difícil",
+   "ini": 880,
+   "fim": 1300
+  },
+  {
+   "texto": "é",
+   "ini": 1300,
+   "fim": 1540
+  },
+  {
+   "texto": "chegar",
+   "ini": 1540,
+   "fim": 1840
+  },
+  {
+   "texto": "até",
+   "ini": 1840,
+   "fim": 1960
+  },
+  {
+   "texto": "o",
+   "ini": 1960,
+   "fim": 2120
+  },
+  {
+   "texto": "fim.",
+   "ini": 2120,
+   "fim": 2280
+  }
+ ],
+ "n3": [
+  {
+   "texto": "Passagem,",
+   "ini": 300,
+   "fim": 1000
+  },
+  {
+   "texto": "xerox,",
+   "ini": 1120,
+   "fim": 1640
+  },
+  {
+   "texto": "aluguel",
+   "ini": 1760,
+   "fim": 2340
+  },
+  {
+   "texto": "e",
+   "ini": 2340,
+   "fim": 2500
+  },
+  {
+   "texto": "o",
+   "ini": 2500,
+   "fim": 2780
+  },
+  {
+   "texto": "chefon.",
+   "ini": 2780,
+   "fim": 3240
+  },
+  {
+   "texto": "O",
+   "ini": 3360,
+   "fim": 3680
+  },
+  {
+   "texto": "fim",
+   "ini": 3680,
+   "fim": 3880
+  },
+  {
+   "texto": "do",
+   "ini": 3880,
+   "fim": 4080
+  },
+  {
+   "texto": "mês.",
+   "ini": 4080,
+   "fim": 4400
+  }
+ ],
+ "n4": [
+  {
+   "texto": "Por",
+   "ini": 180,
+   "fim": 480
+  },
+  {
+   "texto": "isso,",
+   "ini": 480,
+   "fim": 700
+  },
+  {
+   "texto": "o",
+   "ini": 740,
+   "fim": 840
+  },
+  {
+   "texto": "CMEAR",
+   "ini": 840,
+   "fim": 1320
+  },
+  {
+   "texto": "libera",
+   "ini": 1320,
+   "fim": 1900
+  },
+  {
+   "texto": "três",
+   "ini": 1900,
+   "fim": 2200
+  },
+  {
+   "texto": "power",
+   "ini": 2200,
+   "fim": 2440
+  },
+  {
+   "texto": "-ups.",
+   "ini": 2440,
+   "fim": 2700
+  }
+ ],
+ "n5": [
+  {
+   "texto": "Bolsa",
+   "ini": 380,
+   "fim": 1180
+  },
+  {
+   "texto": "seguro",
+   "ini": 1180,
+   "fim": 1600
+  },
+  {
+   "texto": "mês!",
+   "ini": 1600,
+   "fim": 2000
+  }
+ ],
+ "n6": [
+  {
+   "texto": "Mentoria",
+   "ini": 260,
+   "fim": 1000
+  },
+  {
+   "texto": "mostra",
+   "ini": 1000,
+   "fim": 1260
+  },
+  {
+   "texto": "o",
+   "ini": 1260,
+   "fim": 1480
+  },
+  {
+   "texto": "mapa.",
+   "ini": 1480,
+   "fim": 1720
+  }
+ ],
+ "n7": [
+  {
+   "texto": "Rede",
+   "ini": 460,
+   "fim": 920
+  },
+  {
+   "texto": "Ninguém",
+   "ini": 920,
+   "fim": 1500
+  },
+  {
+   "texto": "Joga",
+   "ini": 1500,
+   "fim": 1800
+  },
+  {
+   "texto": "Sazinho.",
+   "ini": 1800,
+   "fim": 2240
+  }
+ ],
+ "n8": [
+  {
+   "texto": "fase",
+   "ini": 360,
+   "fim": 800
+  },
+  {
+   "texto": "final,",
+   "ini": 800,
+   "fim": 1100
+  },
+  {
+   "texto": "diploma",
+   "ini": 1540,
+   "fim": 1760
+  },
+  {
+   "texto": "na",
+   "ini": 1760,
+   "fim": 2020
+  },
+  {
+   "texto": "mão.",
+   "ini": 2020,
+   "fim": 2160
+  }
+ ],
+ "n9": [
+  {
+   "texto": "Instituto",
+   "ini": 300,
+   "fim": 800
+  },
+  {
+   "texto": "CMEA.",
+   "ini": 800,
+   "fim": 1420
+  },
+  {
+   "texto": "Ninguém",
+   "ini": 1660,
+   "fim": 2220
+  },
+  {
+   "texto": "zera",
+   "ini": 2220,
+   "fim": 2580
+  },
+  {
+   "texto": "essa",
+   "ini": 2580,
+   "fim": 2780
+  },
+  {
+   "texto": "sozinho.",
+   "ini": 2780,
+   "fim": 3183
+  }
+ ]
+}

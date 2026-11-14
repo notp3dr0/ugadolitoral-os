@@ -1,0 +1,50 @@
+[
+  {
+    "id": "w0",
+    "text": "Tem",
+    "start": 0.16,
+    "end": 0.32
+  },
+  {
+    "id": "w1",
+    "text": "o",
+    "start": 0.32,
+    "end": 0.4
+  },
+  {
+    "id": "w2",
+    "text": "corte",
+    "start": 0.48,
+    "end": 0.88
+  },
+  {
+    "id": "w3",
+    "text": "de",
+    "start": 0.88,
+    "end": 1.04
+  },
+  {
+    "id": "w4",
+    "text": "15",
+    "start": 1.04,
+    "end": 1.52
+  },
+  {
+    "id": "w5",
+    "text": "para",
+    "start": 1.52,
+    "end": 1.68
+  },
+  {
+    "id": "w6",
+    "text": "o",
+    "start": 1.68,
+    "end": 1.76
+  },
+  {
+    "id": "w7",
+    "text": "streaming?",
+    "start": 1.76,
+    "end": 2.48
+  }
+]

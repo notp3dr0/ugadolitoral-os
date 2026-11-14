@@ -1,0 +1,50 @@
+[
+  {
+    "id": "w0",
+    "text": "E",
+    "start": 0,
+    "end": 0.08
+  },
+  {
+    "id": "w1",
+    "text": "você",
+    "start": 0.32,
+    "end": 0.56
+  },
+  {
+    "id": "w2",
+    "text": "acompanha",
+    "start": 0.56,
+    "end": 1.2
+  },
+  {
+    "id": "w3",
+    "text": "o",
+    "start": 1.2,
+    "end": 1.36
+  },
+  {
+    "id": "w4",
+    "text": "status",
+    "start": 1.36,
+    "end": 1.84
+  },
+  {
+    "id": "w5",
+    "text": "de",
+    "start": 1.84,
+    "end": 2
+  },
+  {
+    "id": "w6",
+    "text": "cada",
+    "start": 2,
+    "end": 2.32
+  },
+  {
+    "id": "w7",
+    "text": "entrega.",
+    "start": 2.32,
+    "end": 2.96
+  }
+]

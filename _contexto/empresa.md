@@ -12,6 +12,7 @@
 ## Contexto adicional
 
 - **Frentes deste sistema:** Uga do Litoral (Instagram e portfólio), PAÓ (agência audiovisual, cliente Instituto Semear), Let's Tribunal (app interativo de decisões com agentes).
+- **Canal Dark (2026-11-04):** conteúdo sem rosto em duas frentes, o educativo 3D problema → solução e a série narrativa 2D Revelação (`canal-dark/series/revelacao/`).
 - **Fora deste sistema:** Ludique (infantil) e Sunika (sneakers) são trabalho de empresa familiar, com Data Warehouse/BI, SEO/GEO e campanhas. Vão ter um sistema próprio, separado. Não misturar decisões, marcas nem chaves.
 - **Equipamentos conhecidos:** Canon R10 e Sony ZV-E10 (confirmar se continuam os principais).
 - **Máquinas:** dois computadores Windows. Casa = `nautilus`; trabalho = ainda sem nome.

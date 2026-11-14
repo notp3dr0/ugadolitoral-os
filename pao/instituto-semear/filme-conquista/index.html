@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Instituto Semear · A próxima conquista · 30 s</title>
+<style>
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Light.ttf); font-weight: 300; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Regular.ttf); font-weight: 400; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-SemiBold.ttf); font-weight: 600; }
+  @font-face { font-family: P; src: url(assets/fonts/Poppins-Bold.ttf); font-weight: 700; }
+  html, body { margin: 0; background: #f1e9da; overflow: hidden; } canvas { display: block; }
+</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas>
+<script type="module">
+// ?estilo=cel (frame a frame) | flat (Flat Vector) | morph (Shape Morph)
+const estilo = new URLSearchParams(location.search).get('estilo') || 'cel';
+const mod = await import(estilo === 'cel' ? './js/cenas.js' : `./js/${estilo}.js`);
+const ctx = document.getElementById('c').getContext('2d');
+for (const w of [300, 400, 600, 700]) await document.fonts.load(`${w} 40px P`, 'INSTITUTO semear A próxima conquista começa com você. 0123456789');
+await mod.init(estilo);
+window.seek = (t) => mod.render(ctx, t);
+mod.render(ctx, 0);
+window.pronto = true;
+</script></body></html>

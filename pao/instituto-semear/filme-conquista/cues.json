@@ -1,0 +1,86 @@
+{
+ "fps": 24,
+ "duracao": 30.0,
+ "comentario": "Folha única de imagem e som. Tempos em segundos, em quadros exatos de 24 fps. A imagem lê estes momentos em js/cenas.js; o som lê aqui (audio.py).",
+ "vozes": [
+  {
+   "arquivo": "pesquisadora-1",
+   "quem": "pesquisadora",
+   "t": 0.6,
+   "texto": "Eu sou filha de doméstica e fiz uma vacina que salva milhões de vidas.",
+   "status": "exemplo do roteiro, voz-guia"
+  },
+  {
+   "arquivo": "advogado-1",
+   "quem": "advogado",
+   "t": 5.05,
+   "texto": "Meus pais queriam que eu não estudasse e trabalhasse na roça. Hoje eu sou advogado, e ajudo eles todos os dias.",
+   "status": "exemplo do roteiro, voz-guia"
+  },
+  {
+   "arquivo": "bolsista-1",
+   "quem": "bolsista",
+   "t": 11.4,
+   "texto": "Eu enfrentava horas de ônibus. Hoje ajudo pessoas com transporte.",
+   "status": "exemplo do roteiro, voz-guia"
+  },
+  {
+   "arquivo": "advogado-2",
+   "quem": "advogado",
+   "t": 16.2,
+   "texto": "O Semear deu o empurrãozinho que eu precisava.",
+   "status": "exemplo do roteiro, voz-guia"
+  },
+  {
+   "arquivo": "pesquisadora-2",
+   "quem": "pesquisadora",
+   "t": 18.8,
+   "texto": "Eu sabia que tinha potencial. Faltava oportunidade.",
+   "status": "exemplo do roteiro, voz-guia"
+  },
+  {
+   "arquivo": "bolsista-2",
+   "quem": "bolsista",
+   "t": 22.25,
+   "texto": "O Semear me ajudou a não abrir mão do meu sonho.",
+   "status": "exemplo do roteiro, voz-guia",
+   "texto_tts": "O Se-me-ar me ajudou a não abrir mão do meu sonho.",
+   "nota": "grafia separada pra voz dizer \"Semear\" (a versão normal saía \"Semir\"), 2026-11-04"
+  },
+  {
+   "arquivo": "locucao",
+   "quem": "locucao",
+   "t": 25.35,
+   "texto": "A próxima conquista começa com você.",
+   "status": "locução"
+  }
+ ],
+ "roteiro": "conferencia/Instituto Semear — Roteiro 30 segundos e storyboard — Paó.pdf (2026-11-04)",
+ "vidro": 0.5,
+ "jaleco": 1.0,
+ "arco": 3.9,
+ "corte_advogado": 4.95,
+ "corte_maos": 7.6,
+ "folha_gira": 7.8,
+ "pais_firmam": 8.7,
+ "aponta": 9.0,
+ "linha_sai": 9.7,
+ "smear": 10.75,
+ "corte_mapa": 11.3,
+ "dedo_comeca": 11.6,
+ "destino": 13.0,
+ "corte_sentada": 13.4,
+ "tres": 15.85,
+ "retrato_advogado": 16.15,
+ "retrato_pesquisadora": 18.75,
+ "retrato_bolsista": 22.2,
+ "encontro": 25.2,
+ "linhas_descem": 25.4,
+ "maos_sobem": 25.9,
+ "paineis_abrem": 26.6,
+ "pessoinhas_voam": 27.0,
+ "copa": 27.35,
+ "ultima_pessoinha": 28.0,
+ "assinatura": 28.3,
+ "tela_preta": 29.5
+}

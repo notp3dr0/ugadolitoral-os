@@ -1,0 +1,123 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+
+    #q03-chao { position: absolute; inset: 0; background: #d5ebf7; }
+    /* o player do fim da Q02, que sai no primeiro terço de segundo */
+    .q03-faixa-vermelha { position: absolute; left: 0; top: 936px; width: 1920px; height: 30px; background: #ed1c24; }
+    .q03-moldura { position: absolute; left: 345px; top: 130px; width: 1230px; height: 775px; background: #16181b; border-radius: 22px; }
+    .q03-play { position: absolute; left: 384px; top: 846px; width: 0; height: 0;
+      border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 24px solid #ffffff; }
+    .q03-trilho { position: absolute; left: 432px; top: 859px; width: 1110px; height: 5px; background: #ffffff; }
+    .q03-selo { position: absolute; left: 1062px; top: 846px; height: 86px; padding: 0 38px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 38px; }
+
+    .card { position: absolute; background: #ffffff; box-shadow: 0 0 0 3px #16181b; }
+    .card .tela { position: absolute; left: 10px; top: 10px; overflow: hidden; background: #ed1c24; }
+    .card .rotulo { position: absolute; left: 22px; bottom: 0; height: 60px; display: flex; align-items: center;
+      font-family: "Space Grotesk"; font-weight: 700; font-size: 30px; color: #16181b; white-space: nowrap; }
+    #q03-tv { left: 209px; top: 292.5px; width: 620px; height: 407.5px; transform-origin: 310px 178.75px; z-index: 3; }
+    #q03-tv .tela { width: 600px; height: 337.5px; }
+    #q03-st { left: 865px; top: 337.5px; width: 540px; height: 362.5px; transform-origin: 270px 156.25px; z-index: 2; }
+    #q03-st .tela { width: 520px; height: 292.5px; }
+    #q03-pn { left: 1441px; top: 186px; width: 270px; height: 514px; transform-origin: 135px 232px; z-index: 1; }
+    #q03-pn .tela { width: 250px; height: 444px; }
+    #q03-pn .rotulo { left: 16px; font-size: 28px; }
+    #q03-sublinha { position: absolute; left: 887px; top: 690px; width: 232px; height: 7px; background: #ffcb05; transform-origin: 0 50%; z-index: 4; }
+    #q03-ligacao { position: absolute; left: 238px; top: 712px; width: 4px; height: 52px; background: #16181b; transform-origin: 50% 0; z-index: 4; }
+    #q03-pedido { position: absolute; left: 209px; top: 764px; height: 84px; padding: 0 34px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 36px; z-index: 4; }
+  </style>
+  <div id="root" data-composition-id="q03" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"rotuloTv","type":"string","label":"Recorte TV","default":"30 s · TV"},{"id":"rotuloSt","type":"string","label":"Recorte streaming","default":"15 s · Streaming"},{"id":"rotuloPn","type":"string","label":"Recorte painel","default":"Painel digital"},{"id":"pedido","type":"string","label":"Pedido da TV","default":"TV · Closed caption solicitado"}]'>
+    <div id="q03-cena" class="clip" data-start="0" data-duration="7" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q03-chao"></div>
+      <div id="q03-player">
+        <div class="q03-faixa-vermelha"></div>
+        <div class="q03-moldura"></div>
+        <div class="q03-play"></div>
+        <div class="q03-trilho"></div>
+      </div>
+
+      <div class="card" id="q03-pn">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo" data-var-text="rotuloPn">Painel digital</div>
+      </div>
+      <div class="card" id="q03-st">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo" data-var-text="rotuloSt">15 s · Streaming</div>
+      </div>
+      <div class="card" id="q03-tv">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo" data-var-text="rotuloTv">30 s · TV</div>
+      </div>
+
+      <div class="q03-selo" id="q03-selo">Exportação concluída</div>
+      <div id="q03-sublinha"></div>
+      <div id="q03-ligacao"></div>
+      <div id="q03-pedido" data-var-text="pedido">TV · Closed caption solicitado</div>
+    </div>
+  </div>
+  <script>
+    // Q03 · Três destinos, três versões · f120-329 (4,00-11,00 s)
+    // Começa no quadro final da Q02: as três fichas nascem empilhadas sobre a tela do player
+    // e se abrem com 3 f de intervalo. A pose da roda é a do f042 em todas.
+    const tl = gsap.timeline({ paused: true });
+    const encaixa = (card, w, h) => {
+      const s = h / 1080;
+      const x = 1920 * s <= w + 0.5 ? 0 : w / 2 - 1192 * s; // vertical: centra na roda
+      gsap.set(card + " .peca", { scale: s, x: x, y: 0 });
+    };
+    encaixa("#q03-tv", 600, 337.5);
+    encaixa("#q03-st", 520, 292.5);
+    encaixa("#q03-pn", 250, 444);
+
+    // o chão vira creme e o player sai
+    tl.fromTo("#q03-chao", { backgroundColor: "#d5ebf7" }, { backgroundColor: "#f3f2eb", duration: 0.4, ease: "power2.inOut" }, 0.05);
+    tl.fromTo("#q03-player", { opacity: 1 }, { opacity: 0, duration: 0.22, ease: "power2.in" }, 0.05);
+    tl.fromTo("#q03-selo", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in" }, 0);
+
+    // no frame 0 só a imagem aparece, igual à tela do player; a ficha branca nasce enquanto se abre
+    gsap.set(["#q03-tv", "#q03-st", "#q03-pn"], { backgroundColor: "rgba(255,255,255,0)", boxShadow: "0 0 0 3px rgba(22,24,27,0)" });
+    gsap.set(".card .rotulo", { opacity: 0 });
+    tl.to(["#q03-tv", "#q03-st", "#q03-pn"], { backgroundColor: "rgba(255,255,255,1)", boxShadow: "0 0 0 3px rgba(22,24,27,1)", duration: 0.3, stagger: 0.1, ease: "power2.out" }, 0.2);
+    tl.to(".card .rotulo", { opacity: 1, duration: 0.2, stagger: 0.1, ease: "power2.out" }, 0.45);
+    // as três fichas se abrem (entradas a cada 3 f)
+    tl.fromTo("#q03-tv", { x: 441.2, y: 13.55, scale: 1.984 }, { x: 0, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 0.15);
+    tl.fromTo("#q03-st", { x: -174.8, y: -8.95, scale: 2.289 }, { x: 0, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 0.15 + 3 / 30);
+    tl.fromTo("#q03-pn", { x: -615.8, y: 66.8, scale: 1.508 }, { x: 0, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 0.15 + 6 / 30);
+
+    // "…quinze pro streaming?" (L03a entra em 4,30 s; "streaming" em 6,06 s)
+    tl.fromTo("#q03-sublinha", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "expo.out" }, 2.02);
+    tl.to("#q03-sublinha", { scaleX: 0, transformOrigin: "100% 50%", duration: 0.18, ease: "power2.in" }, 4.55);
+    // "…vai pra TV com legenda?": a ficha de TV vem à frente
+    tl.fromTo("#q03-tv", { scale: 1, boxShadow: "0 0 0 3px rgba(22,24,27,1), 0px 0px 0 rgba(22,24,27,1)" },
+      { scale: 1.04, boxShadow: "0 0 0 3px rgba(22,24,27,1), 14px 14px 0 rgba(22,24,27,1)", duration: 0.45, ease: "expo.out", immediateRender: false }, 4.72);
+    tl.fromTo(["#q03-st", "#q03-pn"], { opacity: 1 }, { opacity: 0.55, duration: 0.4, ease: "power2.inOut" }, 4.72);
+    // "…com legenda?" (8,79 s "TV", 9,35 s "legenda")
+    tl.fromTo("#q03-ligacao", { scaleY: 0 }, { scaleY: 1, duration: 0.2, ease: "power2.out" }, 5.12);
+    tl.fromTo("#q03-pedido", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 5.24);
+    window.__timelines["q03"] = tl;
+  </script>
+</template>

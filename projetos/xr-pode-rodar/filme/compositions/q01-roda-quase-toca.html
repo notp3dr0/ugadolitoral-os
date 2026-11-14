@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #ed1c24; }
+    /* A peça (a mesma em todas as cenas) */
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+  </style>
+  <div id="root" data-composition-id="q01" data-width="1920" data-height="1080">
+    <div id="q01-cena" class="clip" data-start="0" data-duration="1.4" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div class="peca" id="q01-peca">
+        <img class="p-fundo" src="assets/peca/fundo.svg" alt="" />
+        <img class="p-faixas" src="assets/peca/faixas.svg" alt="" />
+        <img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+        <div class="p-grupo">
+          <img class="p-garfo" src="assets/peca/garfo.svg" alt="" />
+          <div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Q01 · A roda quase toca · f000-041 (0,00-1,40 s)
+    // A roda gira no horário a 360°/s e desce. O tween termina em 1,40 s = f042:
+    // rotação 0 e y 0 são a pose congelada (pneu 16 px acima do asfalto).
+    const tl = gsap.timeline({ paused: true });
+    const c = "#q01-cena ";
+    tl.fromTo(c + ".p-roda", { rotation: -504 }, { rotation: 0, duration: 1.4, ease: "none" }, 0);
+    tl.fromTo(c + ".p-grupo", { y: -240 }, { y: 0, duration: 1.4, ease: "power2.in" }, 0);
+    // o chão corre pra esquerda na velocidade do pneu (2.488 px/s)
+    tl.fromTo(c + ".p-faixas", { x: 3483 }, { x: 0, duration: 1.4, ease: "none" }, 0);
+    tl.fromTo(c + ".p-riscos", { x: 260, opacity: 0 }, { x: 0, opacity: 1, duration: 1.4, ease: "power2.out" }, 0);
+    window.__timelines["q01"] = tl;
+  </script>
+</template>

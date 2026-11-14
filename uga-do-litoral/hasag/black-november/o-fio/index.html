@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HASAG · O FIO</title>
+<style>
+  @font-face { font-family: 'Jost'; src: url('fontes/Jost-latin.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: block; }
+  @font-face { font-family: 'Jost'; src: url('fontes/Jost-Italic-latin.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: block; }
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; background: #0c0b0b; color: #f2f1ed; font-family: 'Jost', system-ui, sans-serif; }
+  body { display: flex; flex-direction: column; align-items: center; }
+  #palco { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px 14px 6px; }
+  canvas { height: 100%; max-width: 100%; aspect-ratio: 9 / 16; background: #000; display: block; cursor: pointer; }
+  body.render #palco { padding: 0; }
+  body.render #barra { display: none; }
+  #barra { width: min(100%, 760px); padding: 8px 16px 16px; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+  button { font: inherit; font-weight: 600; letter-spacing: .08em; color: #0c0b0b; background: #f2f1ed; border: 0; padding: 9px 16px; cursor: pointer; min-width: 92px; }
+  button:hover { background: #fff; }
+  input[type=range] { width: 100%; accent-color: #AF0C05; }
+  #info { font-variant-numeric: tabular-nums; font-size: 14px; opacity: .8; white-space: nowrap; text-align: right; min-width: 190px; }
+  #info b { color: #fff; font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="palco"><canvas id="tela" width="1080" height="1920"></canvas></div>
+<div id="barra">
+  <button id="tocar">TOCAR</button>
+  <input id="scrub" type="range" min="0" max="1079" value="0" step="1" aria-label="quadro">
+  <div id="info"></div>
+</div>
+<audio id="trilha" src="audio/trilha.wav" preload="auto"></audio>
+
+<script src="src/00-base.js"></script>
+<script src="src/01-simbolo-paths.js"></script>
+<script src="src/01-simbolo.js"></script>
+<script src="src/02-pecas.js"></script>
+<script src="src/03-personagem.js"></script>
+<script src="src/04-cenario.js"></script>
+<script src="src/plano-01.js"></script>
+<script src="src/plano-02.js"></script>
+<script src="src/plano-03.js"></script>
+<script src="src/plano-04-06.js"></script>
+<script src="src/plano-07.js"></script>
+<script src="src/plano-08.js"></script>
+<script src="src/plano-09.js"></script>
+<script src="src/plano-10.js"></script>
+<script src="src/plano-11.js"></script>
+<script src="src/filme.js"></script>
+<script src="src/zz-testes.js"></script>
+<script>
+(async function () {
+  const O = window.OFIO;
+  const tela = document.getElementById('tela');
+  const ctx = tela.getContext('2d');
+  const q = new URLSearchParams(location.search);
+  if (q.has('render')) document.body.classList.add('render');
+  await O.pronto();
+  window.OFIO_CTX = ctx;
+
+  const botao = document.getElementById('tocar');
+  const scrub = document.getElementById('scrub');
+  const info = document.getElementById('info');
+  const audio = document.getElementById('trilha');
+  let quadro = parseInt(q.get('f') || '0', 10) || 0;
+  let tocando = false;
+  let t0 = 0; // relógio de reserva, se o áudio não existir
+  let temAudio = true;
+  audio.addEventListener('error', () => { temAudio = false; });
+
+  const nomePlano = (f) => { let p = O.PLANOS[0]; for (const x of O.PLANOS) if (f >= x.ini) p = x; return p; };
+  const mostrar = (f) => {
+    quadro = Math.max(0, Math.min(O.TOTAL - 1, f | 0));
+    try { O.renderFrame(ctx, quadro); } catch (e) { console.warn(e); }
+    scrub.value = quadro;
+    const p = nomePlano(quadro);
+    const s = quadro / O.FPS;
+    info.innerHTML = `<b>${String(quadro).padStart(4, '0')}</b> · ${s.toFixed(2).padStart(5, '0')} s · P${p.n} ${p.nome}`;
+  };
+  const parar = () => { tocando = false; botao.textContent = 'TOCAR'; audio.pause(); };
+  const tocar = async () => {
+    if (quadro >= O.TOTAL - 1) quadro = 0;
+    tocando = true;
+    botao.textContent = 'PAUSAR';
+    t0 = performance.now() - (quadro / O.FPS) * 1000;
+    if (temAudio) { try { audio.currentTime = quadro / O.FPS; await audio.play(); } catch (e) { temAudio = false; } }
+    requestAnimationFrame(laco);
+  };
+  const laco = () => {
+    if (!tocando) return;
+    // o relógio é o do áudio: imagem e som não se separam
+    const t = temAudio && !audio.paused ? audio.currentTime : (performance.now() - t0) / 1000;
+    const f = Math.floor(t * O.FPS);
+    if (f >= O.TOTAL - 1) { mostrar(O.TOTAL - 1); parar(); return; }
+    if (f !== quadro) mostrar(f);
+    requestAnimationFrame(laco);
+  };
+  botao.addEventListener('click', () => (tocando ? parar() : tocar()));
+  tela.addEventListener('click', () => (tocando ? parar() : tocar()));
+  scrub.addEventListener('input', () => { parar(); mostrar(parseInt(scrub.value, 10)); });
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') { e.preventDefault(); tocando ? parar() : tocar(); }
+    if (e.code === 'ArrowRight') { parar(); mostrar(quadro + (e.shiftKey ? 30 : 1)); }
+    if (e.code === 'ArrowLeft') { parar(); mostrar(quadro - (e.shiftKey ? 30 : 1)); }
+  });
+  mostrar(quadro);
+  window.OFIO_PRONTO = true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #d5ebf7; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+
+    #q02-cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+    .q02-faixa-vermelha { position: absolute; left: -600px; top: 936px; width: 3120px; height: 30px; background: #ed1c24; }
+    .q02-moldura { position: absolute; left: 345px; top: 130px; width: 1230px; height: 775px; background: #16181b; border-radius: 22px; }
+    .q02-tela { position: absolute; left: 365px; top: 150px; width: 1190.4px; height: 669.6px; overflow: hidden; }
+    .q02-play { position: absolute; left: 384px; top: 846px; width: 0; height: 0;
+      border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 24px solid #ffffff; }
+    .q02-trilho { position: absolute; left: 432px; top: 859px; width: 1110px; height: 5px; background: #4a4f57; }
+    #q02-progresso { position: absolute; left: 432px; top: 859px; width: 1110px; height: 5px; background: #ffffff; transform-origin: 0 50%; }
+    #q02-selo { position: absolute; left: 1062px; top: 846px; height: 86px; padding: 0 38px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 38px; letter-spacing: -0.01em; }
+  </style>
+  <div id="root" data-composition-id="q02" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"selo","type":"string","label":"Selo","default":"Exportação concluída"}]'>
+    <div id="q02-cena" class="clip" data-start="0" data-duration="2.6" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q02-cam">
+        <div class="q02-faixa-vermelha"></div>
+        <div class="q02-moldura"></div>
+        <div class="q02-tela">
+          <div class="peca" id="q02-peca">
+            <img class="p-fundo" src="assets/peca/fundo.svg" alt="" />
+            <img class="p-faixas" src="assets/peca/faixas.svg" alt="" />
+            <img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+            <div class="p-grupo">
+              <img class="p-garfo" src="assets/peca/garfo.svg" alt="" />
+              <div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="q02-play"></div>
+        <div class="q02-trilho"></div>
+        <div id="q02-progresso"></div>
+      </div>
+      <div id="q02-selo" data-var-text="selo">Exportação concluída</div>
+    </div>
+  </div>
+  <script>
+    // Q02 · O filme ficou pronto · f042-119 (1,40-4,00 s)
+    // Segura a pose do f042 por 8 f, recua em 18 f (ease-in-out) e revela o player.
+    const tl = gsap.timeline({ paused: true });
+    gsap.set("#q02-peca", { scale: 0.62 });
+    const S = 1 / 0.62; // no início a tela do player enche o quadro: é o mesmo quadro do f042
+    tl.fromTo("#q02-cam", { scale: S, x: -365 * S, y: -150 * S },
+      { scale: 1, x: 0, y: 0, duration: 18 / 30, ease: "power2.inOut" }, 8 / 30);
+    // barra de progresso cheia: a exportação terminou
+    tl.fromTo("#q02-progresso", { scaleX: 0.86 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.62);
+    // clique seco + selo amarelo
+    tl.fromTo("#q02-selo", { clipPath: "inset(0% 100% 0% 0%)" },
+      { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 0.95);
+    window.__timelines["q02"] = tl;
+  </script>
+</template>

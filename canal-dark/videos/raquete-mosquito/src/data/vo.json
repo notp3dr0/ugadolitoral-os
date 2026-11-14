@@ -1,0 +1,1188 @@
+{
+  "s1": {
+    "text": "Três da manhã. Zumbido no ouvido do João Gabriel. Ele quer matar esse mosquito. Parece fácil: um tapa.",
+    "seconds": 7.526,
+    "words": [
+      {
+        "text": "Três",
+        "start": 0,
+        "end": 0.234
+      },
+      {
+        "text": "da",
+        "start": 0.244,
+        "end": 0.329
+      },
+      {
+        "text": "manhã",
+        "start": 0.34,
+        "end": 0.657
+      },
+      {
+        "text": "Zumbido",
+        "start": 1.381,
+        "end": 1.868
+      },
+      {
+        "text": "no",
+        "start": 1.879,
+        "end": 1.942
+      },
+      {
+        "text": "ouvido",
+        "start": 1.953,
+        "end": 2.302
+      },
+      {
+        "text": "do",
+        "start": 2.313,
+        "end": 2.398
+      },
+      {
+        "text": "João",
+        "start": 2.408,
+        "end": 2.694
+      },
+      {
+        "text": "Gabriel",
+        "start": 2.705,
+        "end": 3.182
+      },
+      {
+        "text": "Ele",
+        "start": 3.913,
+        "end": 4.061
+      },
+      {
+        "text": "quer",
+        "start": 4.071,
+        "end": 4.241
+      },
+      {
+        "text": "matar",
+        "start": 4.252,
+        "end": 4.622
+      },
+      {
+        "text": "esse",
+        "start": 4.633,
+        "end": 4.802
+      },
+      {
+        "text": "mosquito",
+        "start": 4.813,
+        "end": 5.279
+      },
+      {
+        "text": "Parece",
+        "start": 6.01,
+        "end": 6.381
+      },
+      {
+        "text": "fácil",
+        "start": 6.391,
+        "end": 6.805
+      },
+      {
+        "text": "um",
+        "start": 6.974,
+        "end": 7.101
+      },
+      {
+        "text": "tapa",
+        "start": 7.112,
+        "end": 7.43
+      }
+    ]
+  },
+  "s2": {
+    "text": "Plaft. Na própria cara. O mosquito desviou: a mão empurra o ar, e o ar leva o bicho.",
+    "seconds": 6.017,
+    "words": [
+      {
+        "text": "Plaft",
+        "start": 0,
+        "end": 0.327
+      },
+      {
+        "text": "Na",
+        "start": 1.05,
+        "end": 1.22
+      },
+      {
+        "text": "própria",
+        "start": 1.23,
+        "end": 1.569
+      },
+      {
+        "text": "cara",
+        "start": 1.58,
+        "end": 1.887
+      },
+      {
+        "text": "O",
+        "start": 2.618,
+        "end": 2.692
+      },
+      {
+        "text": "mosquito",
+        "start": 2.703,
+        "end": 3.126
+      },
+      {
+        "text": "desviou",
+        "start": 3.137,
+        "end": 3.603
+      },
+      {
+        "text": "a",
+        "start": 3.857,
+        "end": 3.931
+      },
+      {
+        "text": "mão",
+        "start": 3.942,
+        "end": 4.122
+      },
+      {
+        "text": "empurra",
+        "start": 4.133,
+        "end": 4.493
+      },
+      {
+        "text": "o",
+        "start": 4.503,
+        "end": 4.599
+      },
+      {
+        "text": "ar",
+        "start": 4.609,
+        "end": 4.768
+      },
+      {
+        "text": "e",
+        "start": 5.001,
+        "end": 5.065
+      },
+      {
+        "text": "o",
+        "start": 5.075,
+        "end": 5.139
+      },
+      {
+        "text": "ar",
+        "start": 5.15,
+        "end": 5.287
+      },
+      {
+        "text": "leva",
+        "start": 5.298,
+        "end": 5.552
+      },
+      {
+        "text": "o",
+        "start": 5.563,
+        "end": 5.584
+      },
+      {
+        "text": "bicho",
+        "start": 5.595,
+        "end": 5.923
+      }
+    ]
+  },
+  "s3": {
+    "text": "Então o João precisa de algo que deixa o ar passar: uma rede. O vento atravessa, o mosquito fica.",
+    "seconds": 5.896,
+    "words": [
+      {
+        "text": "Então",
+        "start": 0,
+        "end": 0.386
+      },
+      {
+        "text": "o",
+        "start": 0.397,
+        "end": 0.439
+      },
+      {
+        "text": "João",
+        "start": 0.45,
+        "end": 0.683
+      },
+      {
+        "text": "precisa",
+        "start": 0.693,
+        "end": 1.053
+      },
+      {
+        "text": "de",
+        "start": 1.064,
+        "end": 1.159
+      },
+      {
+        "text": "algo",
+        "start": 1.17,
+        "end": 1.424
+      },
+      {
+        "text": "que",
+        "start": 1.435,
+        "end": 1.52
+      },
+      {
+        "text": "deixa",
+        "start": 1.53,
+        "end": 1.774
+      },
+      {
+        "text": "o",
+        "start": 1.784,
+        "end": 1.837
+      },
+      {
+        "text": "ar",
+        "start": 1.848,
+        "end": 1.954
+      },
+      {
+        "text": "passar",
+        "start": 1.965,
+        "end": 2.356
+      },
+      {
+        "text": "uma",
+        "start": 2.642,
+        "end": 2.833
+      },
+      {
+        "text": "rede",
+        "start": 2.844,
+        "end": 3.161
+      },
+      {
+        "text": "O",
+        "start": 3.885,
+        "end": 3.98
+      },
+      {
+        "text": "vento",
+        "start": 3.991,
+        "end": 4.266
+      },
+      {
+        "text": "atravessa",
+        "start": 4.277,
+        "end": 4.806
+      },
+      {
+        "text": "o",
+        "start": 4.987,
+        "end": 5.018
+      },
+      {
+        "text": "mosquito",
+        "start": 5.029,
+        "end": 5.474
+      },
+      {
+        "text": "fica",
+        "start": 5.484,
+        "end": 5.792
+      }
+    ]
+  },
+  "s4": {
+    "text": "Só que o mosquito não pesa nada. Quica na rede e volta pro ouvido do João, ofendido. Bater não basta: precisa de choque.",
+    "seconds": 7.881,
+    "words": [
+      {
+        "text": "Só",
+        "start": 0,
+        "end": 0.2
+      },
+      {
+        "text": "que",
+        "start": 0.211,
+        "end": 0.285
+      },
+      {
+        "text": "o",
+        "start": 0.296,
+        "end": 0.317
+      },
+      {
+        "text": "mosquito",
+        "start": 0.327,
+        "end": 0.762
+      },
+      {
+        "text": "não",
+        "start": 0.772,
+        "end": 0.931
+      },
+      {
+        "text": "pesa",
+        "start": 0.942,
+        "end": 1.207
+      },
+      {
+        "text": "nada",
+        "start": 1.217,
+        "end": 1.535
+      },
+      {
+        "text": "Quica",
+        "start": 2.258,
+        "end": 2.597
+      },
+      {
+        "text": "na",
+        "start": 2.608,
+        "end": 2.703
+      },
+      {
+        "text": "rede",
+        "start": 2.714,
+        "end": 2.989
+      },
+      {
+        "text": "e",
+        "start": 3.0,
+        "end": 3.021
+      },
+      {
+        "text": "volta",
+        "start": 3.032,
+        "end": 3.371
+      },
+      {
+        "text": "pro",
+        "start": 3.381,
+        "end": 3.498
+      },
+      {
+        "text": "ouvido",
+        "start": 3.508,
+        "end": 3.815
+      },
+      {
+        "text": "do",
+        "start": 3.826,
+        "end": 3.921
+      },
+      {
+        "text": "João",
+        "start": 3.932,
+        "end": 4.229
+      },
+      {
+        "text": "ofendido",
+        "start": 4.472,
+        "end": 5.055
+      },
+      {
+        "text": "Bater",
+        "start": 5.786,
+        "end": 6.188
+      },
+      {
+        "text": "não",
+        "start": 6.199,
+        "end": 6.337
+      },
+      {
+        "text": "basta",
+        "start": 6.347,
+        "end": 6.729
+      },
+      {
+        "text": "precisa",
+        "start": 6.919,
+        "end": 7.29
+      },
+      {
+        "text": "de",
+        "start": 7.301,
+        "end": 7.375
+      },
+      {
+        "text": "choque",
+        "start": 7.385,
+        "end": 7.798
+      }
+    ]
+  },
+  "s5": {
+    "text": "No cabo moram duas pilhas. Três volts. Isso não assusta nem formiga. A tensão precisa subir. Muito.",
+    "seconds": 8.357,
+    "words": [
+      {
+        "text": "No",
+        "start": 0,
+        "end": 0.13
+      },
+      {
+        "text": "cabo",
+        "start": 0.14,
+        "end": 0.416
+      },
+      {
+        "text": "moram",
+        "start": 0.426,
+        "end": 0.702
+      },
+      {
+        "text": "duas",
+        "start": 0.713,
+        "end": 1.041
+      },
+      {
+        "text": "pilhas",
+        "start": 1.051,
+        "end": 1.496
+      },
+      {
+        "text": "Três",
+        "start": 2.22,
+        "end": 2.527
+      },
+      {
+        "text": "volts",
+        "start": 2.538,
+        "end": 2.982
+      },
+      {
+        "text": "Isso",
+        "start": 3.713,
+        "end": 3.957
+      },
+      {
+        "text": "não",
+        "start": 3.968,
+        "end": 4.095
+      },
+      {
+        "text": "assusta",
+        "start": 4.105,
+        "end": 4.497
+      },
+      {
+        "text": "nem",
+        "start": 4.508,
+        "end": 4.656
+      },
+      {
+        "text": "formiga",
+        "start": 4.667,
+        "end": 5.143
+      },
+      {
+        "text": "A",
+        "start": 5.874,
+        "end": 5.97
+      },
+      {
+        "text": "tensão",
+        "start": 5.98,
+        "end": 6.383
+      },
+      {
+        "text": "precisa",
+        "start": 6.393,
+        "end": 6.754
+      },
+      {
+        "text": "subir",
+        "start": 6.764,
+        "end": 7.093
+      },
+      {
+        "text": "Muito",
+        "start": 7.823,
+        "end": 8.258
+      }
+    ]
+  },
+  "s6": {
+    "text": "Mas transformador não funciona com a corrente contínua da pilha. Então um oscilador liga e desliga ela milhares de vezes por segundo.",
+    "seconds": 6.971,
+    "words": [
+      {
+        "text": "Mas",
+        "start": 0,
+        "end": 0.19
+      },
+      {
+        "text": "transformador",
+        "start": 0.201,
+        "end": 0.879
+      },
+      {
+        "text": "não",
+        "start": 0.89,
+        "end": 1.038
+      },
+      {
+        "text": "funciona",
+        "start": 1.048,
+        "end": 1.557
+      },
+      {
+        "text": "com",
+        "start": 1.568,
+        "end": 1.695
+      },
+      {
+        "text": "a",
+        "start": 1.705,
+        "end": 1.737
+      },
+      {
+        "text": "corrente",
+        "start": 1.748,
+        "end": 2.129
+      },
+      {
+        "text": "contínua",
+        "start": 2.14,
+        "end": 2.606
+      },
+      {
+        "text": "da",
+        "start": 2.616,
+        "end": 2.712
+      },
+      {
+        "text": "pilha",
+        "start": 2.722,
+        "end": 3.008
+      },
+      {
+        "text": "Então",
+        "start": 3.732,
+        "end": 4.102
+      },
+      {
+        "text": "um",
+        "start": 4.113,
+        "end": 4.166
+      },
+      {
+        "text": "oscilador",
+        "start": 4.176,
+        "end": 4.685
+      },
+      {
+        "text": "liga",
+        "start": 4.695,
+        "end": 4.929
+      },
+      {
+        "text": "e",
+        "start": 4.939,
+        "end": 4.971
+      },
+      {
+        "text": "desliga",
+        "start": 4.982,
+        "end": 5.331
+      },
+      {
+        "text": "ela",
+        "start": 5.342,
+        "end": 5.448
+      },
+      {
+        "text": "milhares",
+        "start": 5.458,
+        "end": 5.84
+      },
+      {
+        "text": "de",
+        "start": 5.85,
+        "end": 5.935
+      },
+      {
+        "text": "vezes",
+        "start": 5.945,
+        "end": 6.285
+      },
+      {
+        "text": "por",
+        "start": 6.295,
+        "end": 6.433
+      },
+      {
+        "text": "segundo",
+        "start": 6.443,
+        "end": 6.878
+      }
+    ]
+  },
+  "s7": {
+    "text": "Agora o transformador eleva a tensão, e diodos com capacitores empilham mais ainda. Um capacitor guarda a carga. Luzinha acesa: armada.",
+    "seconds": 8.498,
+    "words": [
+      {
+        "text": "Agora",
+        "start": 0,
+        "end": 0.311
+      },
+      {
+        "text": "o",
+        "start": 0.322,
+        "end": 0.353
+      },
+      {
+        "text": "transformador",
+        "start": 0.364,
+        "end": 0.957
+      },
+      {
+        "text": "eleva",
+        "start": 0.968,
+        "end": 1.233
+      },
+      {
+        "text": "a",
+        "start": 1.243,
+        "end": 1.275
+      },
+      {
+        "text": "tensão",
+        "start": 1.286,
+        "end": 1.699
+      },
+      {
+        "text": "e",
+        "start": 1.953,
+        "end": 2.016
+      },
+      {
+        "text": "diodos",
+        "start": 2.027,
+        "end": 2.43
+      },
+      {
+        "text": "com",
+        "start": 2.44,
+        "end": 2.557
+      },
+      {
+        "text": "capacitores",
+        "start": 2.567,
+        "end": 3.118
+      },
+      {
+        "text": "empilham",
+        "start": 3.129,
+        "end": 3.542
+      },
+      {
+        "text": "mais",
+        "start": 3.552,
+        "end": 3.711
+      },
+      {
+        "text": "ainda",
+        "start": 3.722,
+        "end": 4.103
+      },
+      {
+        "text": "Um",
+        "start": 4.827,
+        "end": 4.954
+      },
+      {
+        "text": "capacitor",
+        "start": 4.964,
+        "end": 5.494
+      },
+      {
+        "text": "guarda",
+        "start": 5.505,
+        "end": 5.822
+      },
+      {
+        "text": "a",
+        "start": 5.833,
+        "end": 5.875
+      },
+      {
+        "text": "carga",
+        "start": 5.886,
+        "end": 6.257
+      },
+      {
+        "text": "Luzinha",
+        "start": 6.988,
+        "end": 7.422
+      },
+      {
+        "text": "acesa",
+        "start": 7.433,
+        "end": 7.835
+      },
+      {
+        "text": "armada",
+        "start": 7.973,
+        "end": 8.397
+      }
+    ]
+  },
+  "s8": {
+    "text": "Mas eletricidade precisa de caminho. Por isso são três redes: as de fora num polo, a do meio no outro. O ar entre elas isola.",
+    "seconds": 7.958,
+    "words": [
+      {
+        "text": "Mas",
+        "start": 0,
+        "end": 0.112
+      },
+      {
+        "text": "eletricidade",
+        "start": 0.123,
+        "end": 0.843
+      },
+      {
+        "text": "precisa",
+        "start": 0.854,
+        "end": 1.225
+      },
+      {
+        "text": "de",
+        "start": 1.235,
+        "end": 1.309
+      },
+      {
+        "text": "caminho",
+        "start": 1.32,
+        "end": 1.701
+      },
+      {
+        "text": "Por",
+        "start": 2.425,
+        "end": 2.583
+      },
+      {
+        "text": "isso",
+        "start": 2.594,
+        "end": 2.838
+      },
+      {
+        "text": "são",
+        "start": 2.848,
+        "end": 3.05
+      },
+      {
+        "text": "três",
+        "start": 3.06,
+        "end": 3.272
+      },
+      {
+        "text": "redes",
+        "start": 3.283,
+        "end": 3.653
+      },
+      {
+        "text": "as",
+        "start": 3.929,
+        "end": 4.024
+      },
+      {
+        "text": "de",
+        "start": 4.035,
+        "end": 4.119
+      },
+      {
+        "text": "fora",
+        "start": 4.13,
+        "end": 4.374
+      },
+      {
+        "text": "num",
+        "start": 4.384,
+        "end": 4.533
+      },
+      {
+        "text": "polo",
+        "start": 4.543,
+        "end": 4.84
+      },
+      {
+        "text": "a",
+        "start": 5.009,
+        "end": 5.094
+      },
+      {
+        "text": "do",
+        "start": 5.105,
+        "end": 5.211
+      },
+      {
+        "text": "meio",
+        "start": 5.221,
+        "end": 5.454
+      },
+      {
+        "text": "no",
+        "start": 5.465,
+        "end": 5.56
+      },
+      {
+        "text": "outro",
+        "start": 5.571,
+        "end": 5.867
+      },
+      {
+        "text": "O",
+        "start": 6.598,
+        "end": 6.715
+      },
+      {
+        "text": "ar",
+        "start": 6.725,
+        "end": 6.905
+      },
+      {
+        "text": "entre",
+        "start": 6.916,
+        "end": 7.17
+      },
+      {
+        "text": "elas",
+        "start": 7.181,
+        "end": 7.382
+      },
+      {
+        "text": "isola",
+        "start": 7.393,
+        "end": 7.859
+      }
+    ]
+  },
+  "s9": {
+    "text": "Aí o mosquito entra no meio, encosta nas duas e vira o fio que faltava. O capacitor descarrega nele. Estalo. Churrasquinho.",
+    "seconds": 8.659,
+    "words": [
+      {
+        "text": "Aí",
+        "start": 0,
+        "end": 0.202
+      },
+      {
+        "text": "o",
+        "start": 0.212,
+        "end": 0.244
+      },
+      {
+        "text": "mosquito",
+        "start": 0.255,
+        "end": 0.699
+      },
+      {
+        "text": "entra",
+        "start": 0.71,
+        "end": 0.89
+      },
+      {
+        "text": "no",
+        "start": 0.901,
+        "end": 0.975
+      },
+      {
+        "text": "meio",
+        "start": 0.986,
+        "end": 1.229
+      },
+      {
+        "text": "encosta",
+        "start": 1.494,
+        "end": 1.971
+      },
+      {
+        "text": "nas",
+        "start": 1.981,
+        "end": 2.13
+      },
+      {
+        "text": "duas",
+        "start": 2.14,
+        "end": 2.384
+      },
+      {
+        "text": "e",
+        "start": 2.394,
+        "end": 2.5
+      },
+      {
+        "text": "vira",
+        "start": 2.511,
+        "end": 2.691
+      },
+      {
+        "text": "o",
+        "start": 2.702,
+        "end": 2.723
+      },
+      {
+        "text": "fio",
+        "start": 2.733,
+        "end": 2.956
+      },
+      {
+        "text": "que",
+        "start": 2.966,
+        "end": 3.062
+      },
+      {
+        "text": "faltava",
+        "start": 3.072,
+        "end": 3.549
+      },
+      {
+        "text": "O",
+        "start": 4.272,
+        "end": 4.357
+      },
+      {
+        "text": "capacitor",
+        "start": 4.368,
+        "end": 4.961
+      },
+      {
+        "text": "descarrega",
+        "start": 4.972,
+        "end": 5.522
+      },
+      {
+        "text": "nele",
+        "start": 5.533,
+        "end": 5.84
+      },
+      {
+        "text": "Estalo",
+        "start": 6.571,
+        "end": 7.08
+      },
+      {
+        "text": "Churrasquinho",
+        "start": 7.81,
+        "end": 8.573
+      }
+    ]
+  },
+  "s10": {
+    "text": "E se for o dedo do João? A carga guardada é pequena, então o choque é curtinho. Mas dói. Não teste.",
+    "seconds": 7.443,
+    "words": [
+      {
+        "text": "E",
+        "start": 0,
+        "end": 0.051
+      },
+      {
+        "text": "se",
+        "start": 0.061,
+        "end": 0.199
+      },
+      {
+        "text": "for",
+        "start": 0.21,
+        "end": 0.432
+      },
+      {
+        "text": "o",
+        "start": 0.443,
+        "end": 0.496
+      },
+      {
+        "text": "dedo",
+        "start": 0.506,
+        "end": 0.76
+      },
+      {
+        "text": "do",
+        "start": 0.771,
+        "end": 0.845
+      },
+      {
+        "text": "João",
+        "start": 0.856,
+        "end": 1.216
+      },
+      {
+        "text": "A",
+        "start": 1.939,
+        "end": 2.045
+      },
+      {
+        "text": "carga",
+        "start": 2.056,
+        "end": 2.342
+      },
+      {
+        "text": "guardada",
+        "start": 2.352,
+        "end": 2.766
+      },
+      {
+        "text": "é",
+        "start": 2.776,
+        "end": 2.797
+      },
+      {
+        "text": "pequena",
+        "start": 2.808,
+        "end": 3.232
+      },
+      {
+        "text": "então",
+        "start": 3.422,
+        "end": 3.708
+      },
+      {
+        "text": "o",
+        "start": 3.719,
+        "end": 3.751
+      },
+      {
+        "text": "choque",
+        "start": 3.761,
+        "end": 4.09
+      },
+      {
+        "text": "é",
+        "start": 4.1,
+        "end": 4.143
+      },
+      {
+        "text": "curtinho",
+        "start": 4.153,
+        "end": 4.609
+      },
+      {
+        "text": "Mas",
+        "start": 5.34,
+        "end": 5.594
+      },
+      {
+        "text": "dói",
+        "start": 5.605,
+        "end": 5.912
+      },
+      {
+        "text": "Não",
+        "start": 6.643,
+        "end": 6.907
+      },
+      {
+        "text": "teste",
+        "start": 6.918,
+        "end": 7.363
+      }
+    ]
+  },
+  "s11": {
+    "text": "Pronto: agora você entende como a raquete elétrica funciona. O João dorme. E o mosquito não conta pra ninguém.",
+    "seconds": 6.857,
+    "words": [
+      {
+        "text": "Pronto",
+        "start": 0,
+        "end": 0.291
+      },
+      {
+        "text": "agora",
+        "start": 0.535,
+        "end": 0.853
+      },
+      {
+        "text": "você",
+        "start": 0.863,
+        "end": 1.065
+      },
+      {
+        "text": "entende",
+        "start": 1.075,
+        "end": 1.457
+      },
+      {
+        "text": "como",
+        "start": 1.467,
+        "end": 1.637
+      },
+      {
+        "text": "a",
+        "start": 1.647,
+        "end": 1.668
+      },
+      {
+        "text": "raquete",
+        "start": 1.679,
+        "end": 2.007
+      },
+      {
+        "text": "elétrica",
+        "start": 2.018,
+        "end": 2.452
+      },
+      {
+        "text": "funciona",
+        "start": 2.463,
+        "end": 2.971
+      },
+      {
+        "text": "O",
+        "start": 3.695,
+        "end": 3.79
+      },
+      {
+        "text": "João",
+        "start": 3.801,
+        "end": 4.065
+      },
+      {
+        "text": "dorme",
+        "start": 4.076,
+        "end": 4.468
+      },
+      {
+        "text": "E",
+        "start": 5.199,
+        "end": 5.305
+      },
+      {
+        "text": "o",
+        "start": 5.315,
+        "end": 5.337
+      },
+      {
+        "text": "mosquito",
+        "start": 5.347,
+        "end": 5.813
+      },
+      {
+        "text": "não",
+        "start": 5.824,
+        "end": 5.972
+      },
+      {
+        "text": "conta",
+        "start": 5.983,
+        "end": 6.279
+      },
+      {
+        "text": "pra",
+        "start": 6.29,
+        "end": 6.385
+      },
+      {
+        "text": "ninguém",
+        "start": 6.396,
+        "end": 6.777
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "_leia": "Trechos dos filmes do site (assets/film-N-preview-1080.mp4) por cima do C7. Janelas escolhidas por pontuacao de luz + movimento sem corte dentro do trecho, e conferidas no olho. Horizontais em corte 9:16 com centro cx. 24 -> 30 qps: quadro mais proximo.",
+  "FILME:1": { "filme": 1, "titulo": "Tevito", "inicio_s": 3.4167, "quadros": 13, "cx": 0.5,
+    "motivo": "Tevito no meio do publico com o facho de luz atravessando a fumaca; muito movimento de corpo" },
+  "FILME:2": { "filme": 6, "titulo": "KayG", "inicio_s": 1.46, "quadros": 13, "cx": 0.5,
+    "motivo": "KayG no palco, vertical nativo, contraluz azul e o publico embaixo" },
+  "FILME:3": { "filme": 0, "titulo": "Ryu & KayG", "inicio_s": 4.1667, "quadros": 6, "cx": 0.5,
+    "motivo": "o trecho mais claro do filme: bracos pro alto no meio da roda" },
+  "FILME:4": { "filme": 7, "titulo": "Desiiik", "inicio_s": 4.3667, "quadros": 7, "cx": 0.5,
+    "motivo": "Desiiik contra o estouro de luz do palco com o publico em vermelho; e o mais claro de todos, prepara a porta" }
+}

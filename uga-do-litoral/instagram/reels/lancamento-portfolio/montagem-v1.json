@@ -1,0 +1,45 @@
+{
+  "_leia": "Linha do tempo de saida. f0 inclusivo, f1 exclusivo, quadros a 30 qps (ver tempo.json). 'local0' e o quadro local da fonte que cai em f0. Fontes com 'continua': true correm por baixo: local = quadro de saida - origem.",
+  "base": [
+    { "f0": 0,   "f1": 221, "fonte": "A1_planta",     "local0": 0, "modo": "laboratorio", "obs": "linha vermelha no preto; a linha pulsa em cada batida (0 a 15); quadros 0 a 6 pretos" },
+    { "f0": 221, "f1": 436, "fonte": "B1_travessia",  "local0": 0, "modo": "revelar", "obs": "comeca 100% linha vermelha; revela por degraus: uma vez por batida de 16 a 19, por oitava de 20 a 23, por semicolcheia de 24 a 27; de 28 a 30 tudo revelado e com flash curto a cada semicolcheia; respiro [425, 436): escurece ate preto, fica so a pos-imagem" },
+    { "f0": 262, "f1": 275, "fonte": "B2_credencial", "local0": 0,  "modo": "cor", "obs": "insercao de uma batida (19)" },
+    { "f0": 315, "f1": 329, "fonte": "B2_credencial", "local0": 14, "modo": "cor", "obs": "insercao de uma batida (23), continua o balanco" },
+    { "f0": 369, "f1": 383, "fonte": "B3_vulto",      "local0": 0,  "modo": "flash", "obs": "insercao de uma batida (27)" },
+
+    { "f0": 436, "f1": 463, "fonte": "FOTO:heroi",    "modo": "flash_forte", "sobre": "G1_nome", "obs": "o drop. Foto heroi em tela cheia + nome por cima" },
+    { "f0": 463, "f1": 477, "fonte": "C2a", "local0": 0, "modo": "flash" },
+    { "f0": 477, "f1": 490, "fonte": "C2b", "local0": 0, "modo": "flash" },
+    { "f0": 490, "f1": 504, "fonte": "C2c", "local0": 0, "modo": "flash" },
+    { "f0": 504, "f1": 517, "fonte": "C2d", "local0": 0, "modo": "flash" },
+    { "f0": 517, "f1": 544, "fonte": "C2e_mergulho", "local0": 0, "modo": "flash", "obs": "termina com a copia cobrindo o quadro; o corte seguinte e a mesma foto, do arquivo, no mesmo enquadramento" },
+    { "f0": 544, "f1": 557, "fonte": "FOTO:p1", "modo": "flash", "obs": "p1 = a foto do C2e (ver quadros/C2e_mergulho/pronto.json)" },
+    { "f0": 557, "f1": 571, "fonte": "FOTO:p2", "modo": "flash" },
+    { "f0": 571, "f1": 584, "fonte": "FOTO:p3", "modo": "flash" },
+    { "f0": 584, "f1": 598, "fonte": "FOTO:p4", "modo": "flash" },
+    { "f0": 598, "f1": 651, "fonte": "G2_acervo", "local0": 0, "modo": "cor" },
+
+    { "f0": 651, "f1": 678, "fonte": "C5a_seguranca", "local0": 0, "modo": "flash" },
+    { "f0": 678, "f1": 705, "fonte": "C5b_projecao",  "local0": 0, "modo": "flash" },
+    { "f0": 705, "f1": 718, "fonte": "C5c_camarim",   "local0": 0, "modo": "flash" },
+    { "f0": 718, "f1": 732, "fonte": "C5d_artista",   "local0": 0, "modo": "flash" },
+    { "f0": 732, "f1": 759, "fonte": "C5e_setlist",   "local0": 0, "modo": "flash" },
+
+    { "f0": 759, "f1": 866, "fonte": "C7_porta", "continua": true, "origem": 759, "modo": "flash", "obs": "corre por baixo; respiro [855, 866): atravessa a porta, escurece, pos-imagem" },
+    { "f0": 759, "f1": 772, "fonte": "FILME:1", "modo": "flash", "obs": "por cima do C7" },
+    { "f0": 786, "f1": 799, "fonte": "FILME:2", "modo": "flash" },
+    { "f0": 813, "f1": 819, "fonte": "FILME:3", "modo": "flash" },
+    { "f0": 826, "f1": 833, "fonte": "FILME:4", "modo": "flash" },
+
+    { "f0": 866, "f1": 960, "fonte": "G3_agenda", "local0": 0, "modo": "flash_forte", "obs": "a virada. O som corta no quadro 920; o cartao segura ate 959" }
+  ],
+  "raio_x": {
+    "_leia": "nos planos C5, em cada contratempo (oitava entre as batidas) aparecem 2 quadros do passe fio em vermelho por cima da imagem: a estrutura piscando por baixo",
+    "quadros": [658, 671, 685, 698, 712, 725, 739, 752]
+  },
+  "flash": {
+    "_leia": "todo corte da secao C acende um flash. Forte nas cabecas de compasso (batidas 32, 36, 40, 44, 48, 52, 56, 60, 64), medio nas outras. Com passe prof: ganho cai com a distancia. Sem prof (fotos, filmes, graficos): ganho uniforme e mais curto. Nunca quadro branco chapado.",
+    "fortes_b": [32, 36, 40, 44, 48, 52, 56, 60, 64]
+  },
+  "som": { "fonte": "audio/musica.wav", "inicio_s": 0.0, "corte_f": 920, "cauda": "eco/reverb curto morrendo ate o quadro 959", "pico_max_dbtp": -1.0 }
+}

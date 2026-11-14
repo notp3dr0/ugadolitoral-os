@@ -1,6 +1,6 @@
 <!-- Teto deste arquivo: 180 linhas. Ele carrega em toda conversa, então cada linha aqui é paga sempre.
      O que cresce vai pras pastas (o mapa da seção 3 diz qual). A /faxina avisa quando estourar. -->
-# Uga do Litoral · RatosOS
+# Uga do Litoral · Nautilus
 
 Neste arquivo, "você" é o dono do sistema; as instruções são pro agente.
 
@@ -152,7 +152,9 @@ Este sistema está no GitHub: depois do `/atualizar`, oferecer o `/syncar` na me
 - `.ratosos` · a versão do kit (uma linha). Não apague: é como a atualização sabe de onde você parte
 <!-- pastas de trabalho abaixo, criadas pelo /setup conforme o negócio -->
 - `uga-do-litoral/` · a marca autoral: `instagram/` (carrosséis, legendas, calendário) e `portfolio/` (o site interativo)
+  - `uga-do-litoral/hasag/` · cliente: HASAG (acessórios handmade, trap); comercial animado de Black November em `black-november/`
 - `pao/` · a agência audiovisual; `instituto-semear/` é o primeiro cliente
 - `projetos/` · projetos internos, uma pasta por projeto (Let's Tribunal e outros; o `/novo-projeto` cria)
   - `projetos/estudio-motion/` · o kit de 20 repositórios de motion (repos fora do git; índice no README)
+- `canal-dark/` · canal dark (sem rosto): educativos 3D problema → solução (um vídeo por pasta em `videos/`) e séries 2D de peças (`series/`, motor em `templates/remotion-2d-pecas/`)
 - `referencias/` · prints e inspirações (Luan, Figo, Awwwards)

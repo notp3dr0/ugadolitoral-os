@@ -1,0 +1,31 @@
+{
+  "name": "revelacao",
+  "version": "1.0.0",
+  "description": "Template Remotion para série animada 2D de bonecos de peças (vertical 1080x1920)",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": { "node": "^20.19.0 || ^22.13.0 || >=24" },
+  "dependencies": {
+    "@remotion/bundler": "4.0.539",
+    "@remotion/cli": "4.0.539",
+    "@remotion/google-fonts": "4.0.539",
+    "@remotion/media": "4.0.539",
+    "@remotion/renderer": "4.0.539",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "lint": "tsc --noEmit",
+    "sfx": "python scripts/sfx.py",
+    "stills": "node scripts/stills.mjs"
+  },
+  "allowScripts": { "esbuild": false }
+}

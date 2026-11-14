@@ -1,0 +1,19 @@
+CONFERENCIA DE SINCRONIA (gerada pelo montar.py)
+
+cortes: 23; fora de quadro de batida: 2
+   corte 819 (FILME:3 -> C7_porta) cai em b60.48 (na grade de oitava/semicolcheia)
+   corte 833 (FILME:4 -> C7_porta) cai em b61.53 (na grade de oitava/semicolcheia)
+flashes: 35; com pico de luz exatamente no quadro da grade (tolerancia 0): 34
+   flash 399 estrobo B1_travessia: grade=True pico_no_quadro=True luz_cai_depois=False
+pulsos da linha (batidas 0 a 15): pico de ganho no quadro da batida em 16/16
+   luminancia medida cai depois do quadro da batida em 15/16 (onde nao cai e a camera/desenho trazendo linha nova)
+degraus de revelacao: 29 (quadros 221, 235, 248, 262, 275, 282, 289, 295, 302, 309, 315, 322, 329, 332, 336, 339, 342, 346, 349, 352, 356, 359, 363, 366, 369, 373, 376, 379, 383)
+
+MP4: showreel-v2.mp4  h264 High 1080x1920 yuv420p 30/1 qps, 960 quadros, cor bt709/bt709/bt709 tv
+     audio aac 332043 b/s 44100 Hz, inicio 0.000000 s, duracao 32.000000 s; video inicio 0.000000 s, duracao 32.000000 s; arquivo 32.000 s
+     deslocamento do audio do MP4 contra a trilha, medido em volta do drop: 0 amostras (0.00 ms)
+     duracao do audio decodificado: 32.0000 s
+     ataque mais proximo da batida 32 no som: 14.551 s = quadro 436.53 (grade: 14.546 s, quadro 436)
+
+planos em cartao cinza nesta montagem: nenhum
+tempo de montagem: 344 s

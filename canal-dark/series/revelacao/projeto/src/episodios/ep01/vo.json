@@ -1,0 +1,828 @@
+{
+  "f01": {
+    "text": "Imagina que você herda um estúdio de fotografia.",
+    "seconds": 2.537,
+    "words": [
+      {
+        "text": "Imagina",
+        "start": 0.06,
+        "end": 0.401
+      },
+      {
+        "text": "que",
+        "start": 0.421,
+        "end": 0.481
+      },
+      {
+        "text": "você",
+        "start": 0.501,
+        "end": 0.682
+      },
+      {
+        "text": "herda",
+        "start": 0.702,
+        "end": 0.963
+      },
+      {
+        "text": "um",
+        "start": 1.003,
+        "end": 1.043
+      },
+      {
+        "text": "estúdio",
+        "start": 1.103,
+        "end": 1.504
+      },
+      {
+        "text": "de",
+        "start": 1.524,
+        "end": 1.604
+      },
+      {
+        "text": "fotografia.",
+        "start": 1.665,
+        "end": 2.487
+      }
+    ]
+  },
+  "f02": {
+    "text": "No fim de um cais. Fechado há onze anos.",
+    "seconds": 2.748,
+    "words": [
+      {
+        "text": "No",
+        "start": 0.06,
+        "end": 0.121
+      },
+      {
+        "text": "fim",
+        "start": 0.182,
+        "end": 0.303
+      },
+      {
+        "text": "de",
+        "start": 0.323,
+        "end": 0.383
+      },
+      {
+        "text": "um",
+        "start": 0.424,
+        "end": 0.484
+      },
+      {
+        "text": "cais.",
+        "start": 0.545,
+        "end": 0.949
+      },
+      {
+        "text": "Fechado",
+        "start": 1.615,
+        "end": 1.958
+      },
+      {
+        "text": "há",
+        "start": 1.978,
+        "end": 2.018
+      },
+      {
+        "text": "onze",
+        "start": 2.048,
+        "end": 2.291
+      },
+      {
+        "text": "anos.",
+        "start": 2.321,
+        "end": 2.765
+      }
+    ]
+  },
+  "f03": {
+    "text": "Você veio digitalizar o arquivo. Dois dias de trabalho.",
+    "seconds": 3.763,
+    "words": [
+      {
+        "text": "Você",
+        "start": 0.06,
+        "end": 0.261
+      },
+      {
+        "text": "veio",
+        "start": 0.301,
+        "end": 0.442
+      },
+      {
+        "text": "digitalizar",
+        "start": 0.502,
+        "end": 1.085
+      },
+      {
+        "text": "o",
+        "start": 1.126,
+        "end": 1.166
+      },
+      {
+        "text": "arquivo.",
+        "start": 1.206,
+        "end": 1.669
+      },
+      {
+        "text": "Dois",
+        "start": 2.715,
+        "end": 2.896
+      },
+      {
+        "text": "dias",
+        "start": 2.916,
+        "end": 3.057
+      },
+      {
+        "text": "de",
+        "start": 3.077,
+        "end": 3.157
+      },
+      {
+        "text": "trabalho.",
+        "start": 3.198,
+        "end": 3.781
+      }
+    ]
+  },
+  "f04": {
+    "text": "Só que o relógio da parede está parado. Em três e dezessete.",
+    "seconds": 3.712,
+    "words": [
+      {
+        "text": "Só",
+        "start": 0.06,
+        "end": 0.161
+      },
+      {
+        "text": "que",
+        "start": 0.201,
+        "end": 0.302
+      },
+      {
+        "text": "o",
+        "start": 0.343,
+        "end": 0.363
+      },
+      {
+        "text": "relógio",
+        "start": 0.403,
+        "end": 0.686
+      },
+      {
+        "text": "da",
+        "start": 0.727,
+        "end": 0.787
+      },
+      {
+        "text": "parede",
+        "start": 0.848,
+        "end": 1.131
+      },
+      {
+        "text": "está",
+        "start": 1.171,
+        "end": 1.313
+      },
+      {
+        "text": "parado.",
+        "start": 1.353,
+        "end": 1.677
+      },
+      {
+        "text": "Em",
+        "start": 2.708,
+        "end": 2.789
+      },
+      {
+        "text": "três",
+        "start": 2.819,
+        "end": 3.03
+      },
+      {
+        "text": "e",
+        "start": 3.03,
+        "end": 3.083
+      },
+      {
+        "text": "dezessete.",
+        "start": 3.083,
+        "end": 3.612
+      }
+    ]
+  },
+  "f05": {
+    "text": "Em cima do balcão, uma câmera. Dentro dela, um rolo de trinta e seis poses.",
+    "seconds": 5.083,
+    "words": [
+      {
+        "text": "Em",
+        "start": 0.06,
+        "end": 0.12
+      },
+      {
+        "text": "cima",
+        "start": 0.201,
+        "end": 0.362
+      },
+      {
+        "text": "do",
+        "start": 0.382,
+        "end": 0.463
+      },
+      {
+        "text": "balcão,",
+        "start": 0.503,
+        "end": 0.986
+      },
+      {
+        "text": "uma",
+        "start": 1.087,
+        "end": 1.228
+      },
+      {
+        "text": "câmera.",
+        "start": 1.328,
+        "end": 1.651
+      },
+      {
+        "text": "Dentro",
+        "start": 2.677,
+        "end": 2.899
+      },
+      {
+        "text": "dela,",
+        "start": 2.939,
+        "end": 3.14
+      },
+      {
+        "text": "um",
+        "start": 3.342,
+        "end": 3.402
+      },
+      {
+        "text": "rolo",
+        "start": 3.442,
+        "end": 3.583
+      },
+      {
+        "text": "de",
+        "start": 3.624,
+        "end": 3.684
+      },
+      {
+        "text": "trinta",
+        "start": 3.714,
+        "end": 3.91
+      },
+      {
+        "text": "e",
+        "start": 3.91,
+        "end": 3.943
+      },
+      {
+        "text": "seis",
+        "start": 3.943,
+        "end": 4.074
+      },
+      {
+        "text": "poses.",
+        "start": 3.825,
+        "end": 3.946
+      }
+    ]
+  },
+  "f06": {
+    "text": "No laboratório só vale a luz vermelha. A branca queima o papel.",
+    "seconds": 4.045,
+    "words": [
+      {
+        "text": "No",
+        "start": 0.06,
+        "end": 0.14
+      },
+      {
+        "text": "laboratório",
+        "start": 0.18,
+        "end": 0.601
+      },
+      {
+        "text": "só",
+        "start": 0.641,
+        "end": 0.701
+      },
+      {
+        "text": "vale",
+        "start": 0.762,
+        "end": 0.882
+      },
+      {
+        "text": "a",
+        "start": 0.922,
+        "end": 0.942
+      },
+      {
+        "text": "luz",
+        "start": 0.962,
+        "end": 1.103
+      },
+      {
+        "text": "vermelha.",
+        "start": 1.143,
+        "end": 1.584
+      },
+      {
+        "text": "A",
+        "start": 2.346,
+        "end": 2.386
+      },
+      {
+        "text": "branca",
+        "start": 2.466,
+        "end": 2.767
+      },
+      {
+        "text": "queima",
+        "start": 3.208,
+        "end": 3.429
+      },
+      {
+        "text": "o",
+        "start": 3.469,
+        "end": 3.509
+      },
+      {
+        "text": "papel.",
+        "start": 3.529,
+        "end": 4.091
+      }
+    ]
+  },
+  "f07": {
+    "text": "Você revela a primeira.",
+    "seconds": 1.238,
+    "words": [
+      {
+        "text": "Você",
+        "start": 0.06,
+        "end": 0.243
+      },
+      {
+        "text": "revela",
+        "start": 0.283,
+        "end": 0.608
+      },
+      {
+        "text": "a",
+        "start": 0.628,
+        "end": 0.649
+      },
+      {
+        "text": "primeira.",
+        "start": 0.689,
+        "end": 1.156
+      }
+    ]
+  },
+  "f08": {
+    "text": "A imagem vai aparecendo.",
+    "seconds": 1.425,
+    "words": [
+      {
+        "text": "A",
+        "start": 0.06,
+        "end": 0.101
+      },
+      {
+        "text": "imagem",
+        "start": 0.141,
+        "end": 0.465
+      },
+      {
+        "text": "vai",
+        "start": 0.526,
+        "end": 0.607
+      },
+      {
+        "text": "aparecendo.",
+        "start": 0.647,
+        "end": 1.538
+      }
+    ]
+  },
+  "f09": {
+    "text": "É esta sala. Vista de dentro.",
+    "seconds": 1.702,
+    "words": [
+      {
+        "text": "É",
+        "start": 0.06,
+        "end": 0.08
+      },
+      {
+        "text": "esta",
+        "start": 0.1,
+        "end": 0.363
+      },
+      {
+        "text": "sala.",
+        "start": 0.444,
+        "end": 0.686
+      },
+      {
+        "text": "Vista",
+        "start": 0.828,
+        "end": 1.09
+      },
+      {
+        "text": "de",
+        "start": 1.131,
+        "end": 1.212
+      },
+      {
+        "text": "dentro.",
+        "start": 1.252,
+        "end": 1.737
+      }
+    ]
+  },
+  "f10": {
+    "text": "No canto, a hora. Três e dezessete.",
+    "seconds": 2.467,
+    "words": [
+      {
+        "text": "No",
+        "start": 0.06,
+        "end": 0.161
+      },
+      {
+        "text": "canto,",
+        "start": 0.261,
+        "end": 0.602
+      },
+      {
+        "text": "a",
+        "start": 0.662,
+        "end": 0.702
+      },
+      {
+        "text": "hora.",
+        "start": 0.763,
+        "end": 0.943
+      },
+      {
+        "text": "Três",
+        "start": 0.973,
+        "end": 1.345
+      },
+      {
+        "text": "e",
+        "start": 1.345,
+        "end": 1.438
+      },
+      {
+        "text": "dezessete.",
+        "start": 1.438,
+        "end": 2.367
+      }
+    ]
+  },
+  "f11": {
+    "text": "Agora são três e dez.",
+    "seconds": 1.441,
+    "words": [
+      {
+        "text": "Agora",
+        "start": 0.06,
+        "end": 0.306
+      },
+      {
+        "text": "são",
+        "start": 0.367,
+        "end": 0.47
+      },
+      {
+        "text": "três",
+        "start": 0.5,
+        "end": 0.874
+      },
+      {
+        "text": "e",
+        "start": 0.874,
+        "end": 0.967
+      },
+      {
+        "text": "dez.",
+        "start": 0.967,
+        "end": 1.341
+      }
+    ]
+  },
+  "f12": {
+    "text": "A foto foi tirada daquele canto. Ali não tem ninguém.",
+    "seconds": 3.744,
+    "words": [
+      {
+        "text": "A",
+        "start": 0.06,
+        "end": 0.08
+      },
+      {
+        "text": "foto",
+        "start": 0.161,
+        "end": 0.342
+      },
+      {
+        "text": "foi",
+        "start": 0.382,
+        "end": 0.482
+      },
+      {
+        "text": "tirada",
+        "start": 0.543,
+        "end": 0.824
+      },
+      {
+        "text": "daquele",
+        "start": 0.864,
+        "end": 1.126
+      },
+      {
+        "text": "canto.",
+        "start": 1.206,
+        "end": 1.568
+      },
+      {
+        "text": "Ali",
+        "start": 2.594,
+        "end": 2.735
+      },
+      {
+        "text": "não",
+        "start": 2.755,
+        "end": 2.835
+      },
+      {
+        "text": "tem",
+        "start": 2.855,
+        "end": 2.936
+      },
+      {
+        "text": "ninguém.",
+        "start": 2.956,
+        "end": 3.378
+      }
+    ]
+  },
+  "f13": {
+    "text": "Na bandeja, uma segunda imagem que você não revelou. É você. De costas.",
+    "seconds": 4.554,
+    "words": [
+      {
+        "text": "Na",
+        "start": 0.06,
+        "end": 0.141
+      },
+      {
+        "text": "bandeja,",
+        "start": 0.181,
+        "end": 0.625
+      },
+      {
+        "text": "uma",
+        "start": 0.867,
+        "end": 1.049
+      },
+      {
+        "text": "segunda",
+        "start": 1.15,
+        "end": 1.472
+      },
+      {
+        "text": "imagem",
+        "start": 1.513,
+        "end": 1.775
+      },
+      {
+        "text": "que",
+        "start": 1.795,
+        "end": 1.856
+      },
+      {
+        "text": "você",
+        "start": 1.876,
+        "end": 1.997
+      },
+      {
+        "text": "não",
+        "start": 2.017,
+        "end": 2.098
+      },
+      {
+        "text": "revelou.",
+        "start": 2.138,
+        "end": 2.441
+      },
+      {
+        "text": "É",
+        "start": 2.763,
+        "end": 2.824
+      },
+      {
+        "text": "você.",
+        "start": 2.864,
+        "end": 3.248
+      },
+      {
+        "text": "De",
+        "start": 3.812,
+        "end": 3.893
+      },
+      {
+        "text": "costas.",
+        "start": 3.974,
+        "end": 4.579
+      }
+    ]
+  },
+  "f14": {
+    "text": "A luz branca está ao lado da porta. Ele sabe disso.",
+    "seconds": 2.87,
+    "words": [
+      {
+        "text": "A",
+        "start": 0.06,
+        "end": 0.101
+      },
+      {
+        "text": "luz",
+        "start": 0.141,
+        "end": 0.323
+      },
+      {
+        "text": "branca",
+        "start": 0.404,
+        "end": 0.626
+      },
+      {
+        "text": "está",
+        "start": 0.646,
+        "end": 0.768
+      },
+      {
+        "text": "ao",
+        "start": 0.808,
+        "end": 0.848
+      },
+      {
+        "text": "lado",
+        "start": 0.869,
+        "end": 1.01
+      },
+      {
+        "text": "da",
+        "start": 1.05,
+        "end": 1.111
+      },
+      {
+        "text": "porta.",
+        "start": 1.192,
+        "end": 1.515
+      },
+      {
+        "text": "Ele",
+        "start": 2.081,
+        "end": 2.222
+      },
+      {
+        "text": "sabe",
+        "start": 2.283,
+        "end": 2.485
+      },
+      {
+        "text": "disso.",
+        "start": 2.525,
+        "end": 2.889
+      }
+    ]
+  },
+  "f15": {
+    "text": "Você decide. Um: revela a pose dois agora. Dois: espera o amanhecer.",
+    "seconds": 5.068,
+    "words": [
+      {
+        "text": "Você",
+        "start": 0.06,
+        "end": 0.261
+      },
+      {
+        "text": "decide.",
+        "start": 0.301,
+        "end": 0.743
+      },
+      {
+        "text": "Um:",
+        "start": 0.773,
+        "end": 1.758
+      },
+      {
+        "text": "revela",
+        "start": 1.788,
+        "end": 2.089
+      },
+      {
+        "text": "a",
+        "start": 2.13,
+        "end": 2.15
+      },
+      {
+        "text": "pose",
+        "start": 2.21,
+        "end": 2.431
+      },
+      {
+        "text": "dois",
+        "start": 2.461,
+        "end": 2.682
+      },
+      {
+        "text": "agora.",
+        "start": 2.712,
+        "end": 3.034
+      },
+      {
+        "text": "Dois:",
+        "start": 3.064,
+        "end": 3.949
+      },
+      {
+        "text": "espera",
+        "start": 3.979,
+        "end": 4.28
+      },
+      {
+        "text": "o",
+        "start": 4.3,
+        "end": 4.32
+      },
+      {
+        "text": "amanhecer.",
+        "start": 4.36,
+        "end": 5.104
+      }
+    ]
+  },
+  "f16": {
+    "text": "E você achou o que mudou na foto? Comenta.",
+    "seconds": 2.148,
+    "words": [
+      {
+        "text": "E",
+        "start": 0.06,
+        "end": 0.1
+      },
+      {
+        "text": "você",
+        "start": 0.12,
+        "end": 0.281
+      },
+      {
+        "text": "achou",
+        "start": 0.341,
+        "end": 0.542
+      },
+      {
+        "text": "o",
+        "start": 0.562,
+        "end": 0.582
+      },
+      {
+        "text": "que",
+        "start": 0.622,
+        "end": 0.722
+      },
+      {
+        "text": "mudou",
+        "start": 0.762,
+        "end": 0.943
+      },
+      {
+        "text": "na",
+        "start": 0.963,
+        "end": 1.023
+      },
+      {
+        "text": "foto?",
+        "start": 1.104,
+        "end": 1.445
+      },
+      {
+        "text": "Comenta.",
+        "start": 1.585,
+        "end": 2.107
+      }
+    ]
+  }
+}

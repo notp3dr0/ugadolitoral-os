@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PAÓ · para quem ama o que faz</title>
+<style>
+  @font-face { font-family: "Nunito"; src: url("fontes/Nunito.ttf"); font-weight: 200 1000; }
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  canvas { display: block; }
+  #esquenta { font-family: Nunito; font-weight: 800; position: absolute; opacity: 0; }
+</style>
+</head>
+<body>
+<span id="esquenta">PAÓ ÁÉÍÓÚ ãç</span>
+<canvas id="c"></canvas>
+<script src="lib/motion.js"></script>
+<script src="lib/pao.js"></script>
+<script src="lib/kit.js"></script>
+<script src="cenas/cenas-a.js"></script>
+<script src="cenas/cenas-b.js"></script>
+<script src="cenas/cenas-c.js"></script>
+<script src="roteiro.js"></script>
+<script src="timeline.js"></script>
+<script>
+  // Palco fixo 1920x1080. No vertical (?fmt=v) o palco é recortado com foco por plano.
+  const q = new URLSearchParams(location.search);
+  const VERT = q.get("fmt") === "v";
+  const cv = document.getElementById("c");
+  cv.width = VERT ? 1080 : 1920;
+  cv.height = VERT ? 1920 : 1080;
+  const ctx = cv.getContext("2d");
+  const palco = document.createElement("canvas");
+  palco.width = 1920; palco.height = 1080;
+  const pctx = palco.getContext("2d");
+
+  window.seek = function (t) {
+    const { plano, lt } = TL.achar(t);
+    pctx.save();
+    pctx.clearRect(0, 0, 1920, 1080);
+    plano.desenha(pctx, lt, plano.dur, t);
+    pctx.restore();
+    if (!VERT) { ctx.drawImage(palco, 0, 0); }
+    else {
+      const fx = (typeof plano.foco === "function" ? plano.foco(lt) : plano.foco ?? 0.5) * 1920;
+      if (plano.vert === "ajusta") {
+        // plano largo (texto/interface): quadro inteiro na largura, sobre fundo desfocado do próprio plano
+        ctx.save();
+        ctx.filter = "blur(40px) brightness(0.8)";
+        const bw = 1920 * (1920 / 1080);
+        ctx.drawImage(palco, 540 - bw / 2, -20, bw, 1960);
+        ctx.restore();
+        const k = plano.escalaV ?? 1.12;
+        const w = 1080 * k, h = w * 1080 / 1920;
+        ctx.drawImage(palco, 540 - w / 2, 960 - h / 2, w, h);
+      } else {
+        const zoom = plano.zoomV ?? 1;
+        const cw = 607.5 / zoom, ch = 1080 / zoom;
+        const x0 = Math.min(1920 - cw, Math.max(0, fx - cw / 2));
+        const y0 = (1080 - ch) / 2;
+        ctx.drawImage(palco, x0, y0, cw, ch, 0, 0, 1080, 1920);
+      }
+    }
+    return true;
+  };
+  window.DURACAO = TL.total;
+  window.CUES = TL.cues();
+  document.fonts.load('800 40px Nunito').then(() => { window.PRONTO = true; seek(Number(q.get("t") || 0)); });
+</script>
+</body>
+</html>

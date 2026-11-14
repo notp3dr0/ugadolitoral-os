@@ -1,0 +1,8 @@
+node_modules/
+out/
+public/fotos/
+public/img/
+public/depth/
+public/acervo/
+public/audio*/
+*.mp4

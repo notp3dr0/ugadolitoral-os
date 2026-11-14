@@ -1,0 +1,266 @@
+[
+ {
+  "t": 0,
+  "nome": "amb-noite",
+  "vol": 0.7,
+  "plano": "01 adesivo"
+ },
+ {
+  "t": 1.8,
+  "nome": "teclas",
+  "vol": 0.5,
+  "plano": "01 adesivo"
+ },
+ {
+  "t": 4.2,
+  "nome": "teclas",
+  "vol": 0.5,
+  "plano": "02 criando"
+ },
+ {
+  "t": 6.6,
+  "nome": "pao-oh",
+  "vol": 0.9,
+  "plano": "02 criando"
+ },
+ {
+  "t": 6.6,
+  "nome": "ideia",
+  "vol": 0.4,
+  "plano": "02 criando"
+ },
+ {
+  "t": 6.9,
+  "nome": "teclas-rapido",
+  "vol": 0.5,
+  "plano": "02 criando"
+ },
+ {
+  "t": 9,
+  "nome": "ui-abre",
+  "vol": 0.4,
+  "plano": "03 postar"
+ },
+ {
+  "t": 10.58,
+  "nome": "postar",
+  "vol": 1,
+  "plano": "03 postar"
+ },
+ {
+  "t": 12.6,
+  "nome": "amb-sala",
+  "vol": 0.6,
+  "plano": "04 sala apagada"
+ },
+ {
+  "t": 14,
+  "nome": "espiar",
+  "vol": 0.5,
+  "plano": "04 sala apagada"
+ },
+ {
+  "t": 15.8,
+  "nome": "pao-hnn",
+  "vol": 0.8,
+  "plano": "04 sala apagada"
+ },
+ {
+  "t": 15.8,
+  "nome": "asas",
+  "vol": 0.4,
+  "plano": "04 sala apagada"
+ },
+ {
+  "t": 17.4,
+  "nome": "amb-noite",
+  "vol": 0.6,
+  "plano": "05 tentativa 1"
+ },
+ {
+  "t": 17.4,
+  "nome": "teclas",
+  "vol": 0.5,
+  "plano": "05 tentativa 1"
+ },
+ {
+  "t": 19.8,
+  "nome": "clique-macio",
+  "vol": 0.6,
+  "plano": "05 tentativa 1"
+ },
+ {
+  "t": 20.7,
+  "nome": "ui-card",
+  "vol": 0.5,
+  "plano": "05 tentativa 1"
+ },
+ {
+  "t": 22.2,
+  "nome": "teclas-rapido",
+  "vol": 0.5,
+  "plano": "06 tentativa 2"
+ },
+ {
+  "t": 23.7,
+  "nome": "clique-macio",
+  "vol": 0.6,
+  "plano": "06 tentativa 2"
+ },
+ {
+  "t": 24.6,
+  "nome": "ui-card",
+  "vol": 0.4,
+  "plano": "06 tentativa 2"
+ },
+ {
+  "t": 24.9,
+  "nome": "pao-suspiro",
+  "vol": 0.7,
+  "plano": "06 tentativa 2"
+ },
+ {
+  "t": 26.4,
+  "nome": "clique-macio",
+  "vol": 0.5,
+  "plano": "07 tentativa 3"
+ },
+ {
+  "t": 27.4,
+  "nome": "ui-card",
+  "vol": 0.3,
+  "plano": "07 tentativa 3"
+ },
+ {
+  "t": 28.8,
+  "nome": "amb-sala",
+  "vol": 0.4,
+  "plano": "08 balão cinza"
+ },
+ {
+  "t": 30.6,
+  "nome": "amb-noite",
+  "vol": 0.5,
+  "plano": "09 cansaço"
+ },
+ {
+  "t": 31,
+  "nome": "pao-suspiro",
+  "vol": 0.6,
+  "plano": "09 cansaço"
+ },
+ {
+  "t": 32.8,
+  "nome": "oculos",
+  "vol": 0.7,
+  "plano": "09 cansaço"
+ },
+ {
+  "t": 33.85,
+  "nome": "oculos-mesa",
+  "vol": 0.8,
+  "plano": "09 cansaço"
+ },
+ {
+  "t": 34.4,
+  "nome": "pao-choro",
+  "vol": 0.35,
+  "plano": "09 cansaço"
+ },
+ {
+  "t": 34.8,
+  "nome": "afunda",
+  "vol": 0.4,
+  "plano": "09 cansaço"
+ },
+ {
+  "t": 43.05,
+  "nome": "vira-cel",
+  "vol": 0.8,
+  "plano": "10 por gostar"
+ },
+ {
+  "t": 44,
+  "nome": "teclas",
+  "vol": 0.4,
+  "plano": "10 por gostar"
+ },
+ {
+  "t": 44.4,
+  "nome": "pao-riso",
+  "vol": 0.45,
+  "plano": "10 por gostar"
+ },
+ {
+  "t": 46.2,
+  "nome": "comentario-acende",
+  "vol": 0.9,
+  "plano": "11 adesivo acende"
+ },
+ {
+  "t": 48.2,
+  "nome": "vibra",
+  "vol": 0.8,
+  "plano": "12 celular vibra"
+ },
+ {
+  "t": 48.75,
+  "nome": "vibra",
+  "vol": 0.8,
+  "plano": "12 celular vibra"
+ },
+ {
+  "t": 49.25,
+  "nome": "vibra",
+  "vol": 0.8,
+  "plano": "12 celular vibra"
+ },
+ {
+  "t": 50.1,
+  "nome": "acende",
+  "vol": 1,
+  "plano": "13 sala acende"
+ },
+ {
+  "t": 50.7,
+  "nome": "rede-acende",
+  "vol": 0.9,
+  "plano": "13 sala acende"
+ },
+ {
+  "t": 53.7,
+  "nome": "pao-surpresa",
+  "vol": 0.8,
+  "plano": "14 percebe"
+ },
+ {
+  "t": 55,
+  "nome": "vira-cel",
+  "vol": 0.7,
+  "plano": "14 percebe"
+ },
+ {
+  "t": 56,
+  "nome": "notif",
+  "vol": 0.6,
+  "plano": "15 comentário"
+ },
+ {
+  "t": 56.7,
+  "nome": "likes",
+  "vol": 0.6,
+  "plano": "15 comentário"
+ },
+ {
+  "t": 58.8,
+  "nome": "pao-riso",
+  "vol": 0.6,
+  "plano": "16 alívio"
+ },
+ {
+  "t": 71.3,
+  "nome": "assinatura",
+  "vol": 1,
+  "plano": "19 assinatura"
+ }
+]

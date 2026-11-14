@@ -1,0 +1,16 @@
+quadro 0/2250  0s
+quadro 150/2250  17s
+quadro 300/2250  32s
+quadro 450/2250  46s
+quadro 600/2250  61s
+quadro 750/2250  73s
+quadro 900/2250  84s
+quadro 1050/2250  96s
+quadro 1200/2250  107s
+quadro 1350/2250  120s
+quadro 1500/2250  136s
+quadro 1650/2250  151s
+quadro 1800/2250  166s
+quadro 1950/2250  183s
+quadro 2100/2250  198s
+ok: out/v.mp4 2250 quadros, 75.00s de filme

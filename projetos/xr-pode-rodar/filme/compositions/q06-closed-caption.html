@@ -1,0 +1,131 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+
+    #q06-chao { position: absolute; inset: 0; background: #12384f; }
+    #q06-titulo { position: absolute; left: 230px; top: 140px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #16181b; white-space: nowrap; }
+    /* o que sobra da Q05 */
+    #q06-sai { position: absolute; inset: 0; }
+    #q06-sai .titulo { position: absolute; left: 230px; top: 150px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #ffffff; white-space: nowrap; }
+    #q06-sai .ficha { position: absolute; left: 880px; top: 330px; width: 820px; height: 407.5px; background: #d5ebf7; }
+    #q06-sai .linha { position: absolute; left: 52px; height: 70px; display: flex; align-items: center;
+      font-family: "Space Grotesk"; font-weight: 700; font-size: 46px; color: #16181b; white-space: nowrap; }
+
+    .card { position: absolute; background: #ffffff; box-shadow: 0 0 0 3px #16181b; }
+    .card .tela { position: absolute; left: 10px; top: 10px; overflow: hidden; background: #ed1c24; }
+    .card .rotulo { position: absolute; left: 22px; bottom: 0; height: 60px; display: flex; align-items: center;
+      font-family: "Space Grotesk"; font-weight: 700; font-size: 30px; color: #16181b; white-space: nowrap; }
+    #q06-tv { left: 220px; top: 330px; width: 620px; height: 407.5px; transform-origin: 310px 178.75px; z-index: 5; }
+    #q06-tv .tela { width: 600px; height: 337.5px; }
+
+    #q06-player { position: absolute; inset: 0; }
+    .q06-moldura { position: absolute; left: 412px; top: 270px; width: 1096px; height: 680px; background: #16181b; border-radius: 20px; }
+    .q06-tela { position: absolute; left: 432px; top: 290px; width: 1056px; height: 594px; overflow: hidden; }
+    .q06-play { position: absolute; left: 434px; top: 899px; width: 0; height: 0;
+      border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 21px solid #ffffff; }
+    .q06-trilho { position: absolute; left: 478px; top: 910px; width: 1010px; height: 5px; background: #4a4f57; }
+    #q06-progresso { position: absolute; left: 478px; top: 910px; width: 1010px; height: 5px; background: #ffffff; transform-origin: 0 50%; }
+    #q06-cabeca { position: absolute; left: 470px; top: 904px; width: 17px; height: 17px; border-radius: 50%; background: #ffffff; }
+    #q06-cc { position: absolute; left: 432px; top: 786px; width: 1056px; display: flex; justify-content: center; z-index: 6; }
+    #q06-cc span { background: #16181b; color: #ffffff; font-family: "Space Grotesk"; font-weight: 700; font-size: 36px; padding: 10px 26px; }
+    #q06-versao { position: absolute; left: 1076px; top: 898px; height: 80px; padding: 0 34px; display: flex; align-items: center;
+      background: #ffcb05; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 34px; white-space: nowrap; z-index: 7; }
+  </style>
+  <div id="root" data-composition-id="q06" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"titulo","type":"string","label":"Título","default":"Acessibilidade"},{"id":"legenda","type":"string","label":"Legenda descritiva","default":"[Som de corrente]"},{"id":"versao","type":"string","label":"Versão","default":"Versão TV · Closed caption"}]'>
+    <div id="q06-cena" class="clip" data-start="0" data-duration="5" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q06-chao"></div>
+      <div id="q06-sai">
+        <div class="titulo">Checagem técnica</div>
+        <div class="ficha">
+          <div class="linha" style="top:52px">✓&nbsp; Formato HD</div>
+          <div style="position:absolute;left:48px;top:155px;width:724px;height:3px;background:#8fb4c9"></div>
+          <div class="linha" style="top:190px">✓&nbsp; Áudio · -23,5 LUFS</div>
+          <div style="position:absolute;left:116px;top:316px;width:560px;height:16px;background:#a9bcc9">
+            <div style="position:absolute;left:240px;top:0;width:80px;height:16px;background:#0088cb"></div>
+            <div style="position:absolute;left:257px;top:-18px;width:6px;height:52px;background:#16181b"></div>
+          </div>
+        </div>
+      </div>
+      <h1 id="q06-titulo" data-var-text="titulo">Acessibilidade</h1>
+
+      <div id="q06-player">
+        <div class="q06-moldura"></div>
+        <div class="q06-tela"><div class="peca" id="q06-peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="q06-play"></div>
+        <div class="q06-trilho"></div>
+        <div id="q06-progresso"></div>
+        <div id="q06-cabeca"></div>
+      </div>
+
+      <div class="card" id="q06-tv">
+        <div class="tela"><div class="peca">
+          <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+          <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+        </div></div>
+        <div class="rotulo" id="q06-rotulo">TV · 30 s</div>
+      </div>
+
+      <div id="q06-cc"><span data-var-text="legenda">[Som de corrente]</span></div>
+      <div id="q06-versao" data-var-text="versao">Versão TV · Closed caption</div>
+    </div>
+  </div>
+  <script>
+    // Q06 · A versão com closed caption · f690-839 (23,00-28,00 s)
+    // A ficha de TV da Q05 cresce até a tela do player de revisão; o trecho da
+    // abertura repassa com a legenda descritiva e termina na pose do f042.
+    const tl = gsap.timeline({ paused: true });
+    gsap.set("#q06-tv .peca", { scale: 337.5 / 1080, x: 0, y: 0 });
+    gsap.set("#q06-peca", { scale: 0.55, x: 0, y: 0 });
+    const p = "#q06-peca ";
+
+    tl.fromTo("#q06-sai", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in" }, 0);
+    tl.fromTo("#q06-chao", { backgroundColor: "#12384f" }, { backgroundColor: "#d5ebf7", duration: 0.4, ease: "power2.inOut" }, 0.1);
+    // a ficha vira o mundo: cresce até a tela do player (1056 x 594)
+    tl.fromTo("#q06-tv", { x: 0, y: 0, scale: 1, backgroundColor: "rgba(255,255,255,1)", boxShadow: "0 0 0 3px rgba(22,24,27,1)" },
+      { x: 430, y: 78.25, scale: 1.76, backgroundColor: "rgba(255,255,255,0)", boxShadow: "0 0 0 3px rgba(22,24,27,0)", duration: 0.65, ease: "power3.inOut" }, 0.12);
+    tl.fromTo("#q06-rotulo", { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "power2.in" }, 0.12);
+    tl.fromTo("#q06-player", { opacity: 0, scale: 0.94, transformOrigin: "960px 587px" },
+      { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 0.45);
+    tl.set("#q06-tv", { opacity: 0 }, 0.78);
+    tl.fromTo("#q06-titulo", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 0.6);
+
+    // trecho de revisão: volta pro começo do filme e repassa a abertura
+    gsap.set("#q06-progresso", { scaleX: 1 });
+    gsap.set("#q06-cabeca", { x: 1010 });
+    // (set + to: antes de 1,0 s fica a pose congelada, mesmo quando o preview volta)
+    tl.set("#q06-progresso", { scaleX: 0 }, 1.0);
+    tl.set("#q06-cabeca", { x: 0 }, 1.0);
+    tl.set(p + ".p-roda", { rotation: -504 }, 1.0);
+    tl.set(p + ".p-grupo", { y: -240 }, 1.0);
+    tl.set(p + ".p-faixas", { x: 3483 }, 1.0);
+    tl.set(p + ".p-riscos", { x: 260, opacity: 0 }, 1.0);
+    tl.to(p + ".p-roda", { rotation: 0, duration: 1.4, ease: "none" }, 1.0);
+    tl.to(p + ".p-grupo", { y: 0, duration: 1.4, ease: "power2.in" }, 1.0);
+    tl.to(p + ".p-faixas", { x: 0, duration: 1.4, ease: "none" }, 1.0);
+    tl.to(p + ".p-riscos", { x: 0, opacity: 1, duration: 1.4, ease: "power2.out" }, 1.0);
+    tl.to("#q06-progresso", { scaleX: 1.4 / 30, duration: 1.4, ease: "none" }, 1.0);
+    tl.to("#q06-cabeca", { x: 1010 * 1.4 / 30, duration: 1.4, ease: "none" }, 1.0);
+    // a faixa de CC entra em 12 f e segura a leitura até o fim
+    tl.fromTo("#q06-cc", { clipPath: "inset(0% 50% 0% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 1.15);
+    tl.fromTo("#q06-versao", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 12 / 30, ease: "expo.out" }, 3.4); // "o closed caption" 26,58 s
+    window.__timelines["q06"] = tl;
+  </script>
+</template>

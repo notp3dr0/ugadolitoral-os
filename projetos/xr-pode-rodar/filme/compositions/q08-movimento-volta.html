@@ -1,0 +1,200 @@
+<template>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/SpaceGrotesk.ttf"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .peca { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; }
+    .peca img { position: absolute; display: block; max-width: none; }
+    .peca .p-fundo { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-faixas { left: -4920px; top: 981px; width: 14000px; height: 20px; }
+    .peca .p-riscos { left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-grupo { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .peca .p-garfo { left: 692px; top: -648px; width: 600px; height: 1150px; }
+    .peca .p-pos { position: absolute; left: 792px; top: 52px; width: 800px; height: 800px; }
+    .peca .p-squash { position: absolute; left: 0; top: 0; width: 800px; height: 800px; transform-origin: 50% 99.5%; }
+    .peca .p-roda { left: 0; top: 0; width: 800px; height: 800px; }
+    .peca .p-agua { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+
+    #q08-chao { position: absolute; inset: 0; background: #f3f2eb; }
+    /* o que sobra da Q07 */
+    #q08-sai .titulo { position: absolute; left: 230px; top: 150px; font-family: "Space Grotesk"; font-weight: 700; font-size: 84px;
+      letter-spacing: -0.02em; color: #16181b; white-space: nowrap; }
+    #q08-sai .rota { position: absolute; left: 230px; width: 1110px; height: 5px; background: #12384f; }
+    #q08-sai .rota::after { content: ""; position: absolute; right: -14px; top: -10px; width: 0; height: 0;
+      border-top: 12.5px solid transparent; border-bottom: 12.5px solid transparent; border-left: 22px solid #12384f; }
+    #q08-sai .destino { position: absolute; left: 1380px; width: 340px; height: 84px; padding-left: 30px; display: flex; align-items: center;
+      background: #d5ebf7; color: #16181b; font-family: "Space Grotesk"; font-weight: 700; font-size: 38px; white-space: nowrap; }
+
+    #q08-palco { position: absolute; inset: 0; transform-origin: 960px 600px; }
+    .q08-tela { position: absolute; background: #16181b; border-radius: 14px; transform-origin: 10px 10px; }
+    .q08-tela .img { position: absolute; left: 10px; top: 10px; overflow: hidden; background: #ed1c24; }
+    #q08-tv { left: 205px; top: 381.25px; width: 640px; height: 368.75px; }
+    #q08-tv .img { width: 620px; height: 348.75px; }
+    #q08-st { left: 885px; top: 437.5px; width: 540px; height: 352.5px; }
+    #q08-st .img { width: 520px; height: 292.5px; }
+    #q08-st .play { position: absolute; left: 14px; top: 314px; width: 0; height: 0;
+      border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 16px solid #ffffff; }
+    #q08-st .barra { position: absolute; left: 44px; top: 322px; width: 476px; height: 4px; background: #4a4f57; }
+    #q08-st .barra i { position: absolute; left: 0; top: 0; width: 476px; height: 4px; background: #ffffff; transform-origin: 0 50%; }
+    #q08-pn { left: 1465px; top: 321px; width: 250px; height: 429px; border-radius: 10px; }
+    #q08-pn .img { width: 230px; height: 409px; }
+    #q08-pn .poste { position: absolute; left: 115px; top: 429px; width: 20px; height: 50px; background: #12384f; }
+    #q08-pn .base { position: absolute; left: 70px; top: 479px; width: 110px; height: 12px; background: #12384f; }
+    .q08-nome { position: absolute; top: 836px; font-family: "Space Grotesk"; font-weight: 700; font-size: 34px; color: #16181b; white-space: nowrap; }
+    #q08-n1 { left: 205px; } #q08-n2 { left: 885px; } #q08-n3 { left: 1465px; }
+    .q08-risco { position: absolute; width: 150px; height: 8px; background: #12384f; border-radius: 4px; }
+    #q08-k1 { left: 330px; top: 268px; } #q08-k2 { left: 560px; top: 300px; width: 90px; } #q08-k3 { left: 1130px; top: 330px; }
+  </style>
+  <div id="root" data-composition-id="q08" data-width="1920" data-height="1080"
+    data-composition-variables='[{"id":"n1","type":"string","label":"Tela 1","default":"TV"},{"id":"n2","type":"string","label":"Tela 2","default":"Streaming"},{"id":"n3","type":"string","label":"Tela 3","default":"Mídia exterior"}]'>
+    <div id="q08-cena" class="clip" data-start="0" data-duration="5" data-track-index="0"
+      style="position:absolute;inset:0;" data-layout-allow-overflow>
+      <div id="q08-chao"></div>
+      <div id="q08-sai">
+        <div class="titulo">Distribuição</div>
+        <div class="rota" style="top:417.5px"></div><div class="rota" style="top:607.5px"></div><div class="rota" style="top:797.5px"></div>
+        <div class="destino" style="top:378px">TV</div><div class="destino" style="top:568px">Streaming</div><div class="destino" style="top:758px">Mídia exterior</div>
+      </div>
+      <div id="q08-palco">
+        <div class="q08-risco" id="q08-k1"></div><div class="q08-risco" id="q08-k2"></div><div class="q08-risco" id="q08-k3"></div>
+
+        <div class="q08-tela" id="q08-tv">
+          <div class="img"><div class="peca">
+            <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+            <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+            <svg class="p-agua" viewBox="0 0 1920 1080" width="1920" height="1080">
+              <ellipse class="a-poca" cx="1192" cy="868" rx="320" ry="14" fill="#7cc3ea" />
+              <polygon class="a-leque a-leque-e" points="1170,866 1080,760 1040,790 990,700 950,780 900,745 880,820 820,830 1100,868" fill="#bfe3f5" />
+              <polygon class="a-leque a-leque-d" points="1214,866 1304,760 1344,790 1394,700 1434,780 1484,745 1504,820 1564,830 1284,868" fill="#bfe3f5" />
+              <polygon class="a-leque a-leque-e2" points="1176,866 1110,800 1080,820 1040,770 1010,830 1120,868" fill="#ffffff" />
+              <polygon class="a-leque a-leque-d2" points="1208,866 1274,800 1304,820 1344,770 1374,830 1264,868" fill="#ffffff" />
+              <circle class="a-gota a-g0" cx="1162" cy="858" r="22" fill="#ffffff" /><circle class="a-gota a-g1" cx="1162" cy="858" r="18" fill="#bfe3f5" />
+              <circle class="a-gota a-g2" cx="1162" cy="858" r="26" fill="#bfe3f5" /><circle class="a-gota a-g3" cx="1162" cy="858" r="16" fill="#ffffff" />
+              <circle class="a-gota a-g4" cx="1162" cy="858" r="14" fill="#bfe3f5" /><circle class="a-gota a-g5" cx="1162" cy="858" r="12" fill="#bfe3f5" />
+              <circle class="a-gota a-g6" cx="1222" cy="858" r="22" fill="#ffffff" /><circle class="a-gota a-g7" cx="1222" cy="858" r="18" fill="#bfe3f5" />
+              <circle class="a-gota a-g8" cx="1222" cy="858" r="26" fill="#bfe3f5" /><circle class="a-gota a-g9" cx="1222" cy="858" r="16" fill="#ffffff" />
+              <circle class="a-gota a-g10" cx="1222" cy="858" r="14" fill="#bfe3f5" /><circle class="a-gota a-g11" cx="1222" cy="858" r="12" fill="#bfe3f5" />
+            </svg>
+          </div></div>
+        </div>
+
+        <div class="q08-tela" id="q08-st">
+          <div class="img"><div class="peca">
+            <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+            <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+            <svg class="p-agua" viewBox="0 0 1920 1080" width="1920" height="1080">
+              <ellipse class="a-poca" cx="1192" cy="868" rx="320" ry="14" fill="#7cc3ea" />
+              <polygon class="a-leque a-leque-e" points="1170,866 1080,760 1040,790 990,700 950,780 900,745 880,820 820,830 1100,868" fill="#bfe3f5" />
+              <polygon class="a-leque a-leque-d" points="1214,866 1304,760 1344,790 1394,700 1434,780 1484,745 1504,820 1564,830 1284,868" fill="#bfe3f5" />
+              <polygon class="a-leque a-leque-e2" points="1176,866 1110,800 1080,820 1040,770 1010,830 1120,868" fill="#ffffff" />
+              <polygon class="a-leque a-leque-d2" points="1208,866 1274,800 1304,820 1344,770 1374,830 1264,868" fill="#ffffff" />
+              <circle class="a-gota a-g0" cx="1162" cy="858" r="22" fill="#ffffff" /><circle class="a-gota a-g1" cx="1162" cy="858" r="18" fill="#bfe3f5" />
+              <circle class="a-gota a-g2" cx="1162" cy="858" r="26" fill="#bfe3f5" /><circle class="a-gota a-g3" cx="1162" cy="858" r="16" fill="#ffffff" />
+              <circle class="a-gota a-g4" cx="1162" cy="858" r="14" fill="#bfe3f5" /><circle class="a-gota a-g5" cx="1162" cy="858" r="12" fill="#bfe3f5" />
+              <circle class="a-gota a-g6" cx="1222" cy="858" r="22" fill="#ffffff" /><circle class="a-gota a-g7" cx="1222" cy="858" r="18" fill="#bfe3f5" />
+              <circle class="a-gota a-g8" cx="1222" cy="858" r="26" fill="#bfe3f5" /><circle class="a-gota a-g9" cx="1222" cy="858" r="16" fill="#ffffff" />
+              <circle class="a-gota a-g10" cx="1222" cy="858" r="14" fill="#bfe3f5" /><circle class="a-gota a-g11" cx="1222" cy="858" r="12" fill="#bfe3f5" />
+            </svg>
+          </div></div>
+          <div class="play"></div><div class="barra"><i></i></div>
+        </div>
+
+        <div class="q08-tela" id="q08-pn">
+          <div class="img"><div class="peca">
+            <img class="p-fundo" src="assets/peca/fundo.svg" alt="" /><img class="p-faixas" src="assets/peca/faixas.svg" alt="" /><img class="p-riscos" src="assets/peca/riscos.svg" alt="" />
+            <div class="p-grupo"><img class="p-garfo" src="assets/peca/garfo.svg" alt="" /><div class="p-pos"><div class="p-squash"><img class="p-roda" src="assets/peca/roda.svg" alt="" /></div></div></div>
+            <svg class="p-agua" viewBox="0 0 1920 1080" width="1920" height="1080">
+              <ellipse class="a-poca" cx="1192" cy="868" rx="320" ry="14" fill="#7cc3ea" />
+              <polygon class="a-leque a-leque-e" points="1170,866 1080,760 1040,790 990,700 950,780 900,745 880,820 820,830 1100,868" fill="#bfe3f5" />
+              <polygon class="a-leque a-leque-d" points="1214,866 1304,760 1344,790 1394,700 1434,780 1484,745 1504,820 1564,830 1284,868" fill="#bfe3f5" />
+              <polygon class="a-leque a-leque-e2" points="1176,866 1110,800 1080,820 1040,770 1010,830 1120,868" fill="#ffffff" />
+              <polygon class="a-leque a-leque-d2" points="1208,866 1274,800 1304,820 1344,770 1374,830 1264,868" fill="#ffffff" />
+              <circle class="a-gota a-g0" cx="1162" cy="858" r="22" fill="#ffffff" /><circle class="a-gota a-g1" cx="1162" cy="858" r="18" fill="#bfe3f5" />
+              <circle class="a-gota a-g2" cx="1162" cy="858" r="26" fill="#bfe3f5" /><circle class="a-gota a-g3" cx="1162" cy="858" r="16" fill="#ffffff" />
+              <circle class="a-gota a-g4" cx="1162" cy="858" r="14" fill="#bfe3f5" /><circle class="a-gota a-g5" cx="1162" cy="858" r="12" fill="#bfe3f5" />
+              <circle class="a-gota a-g6" cx="1222" cy="858" r="22" fill="#ffffff" /><circle class="a-gota a-g7" cx="1222" cy="858" r="18" fill="#bfe3f5" />
+              <circle class="a-gota a-g8" cx="1222" cy="858" r="26" fill="#bfe3f5" /><circle class="a-gota a-g9" cx="1222" cy="858" r="16" fill="#ffffff" />
+              <circle class="a-gota a-g10" cx="1222" cy="858" r="14" fill="#bfe3f5" /><circle class="a-gota a-g11" cx="1222" cy="858" r="12" fill="#bfe3f5" />
+            </svg>
+          </div></div>
+          <div class="poste"></div><div class="base"></div>
+        </div>
+
+        <div class="q08-nome" id="q08-n1" data-var-text="n1">TV</div>
+        <div class="q08-nome" id="q08-n2" data-var-text="n2">Streaming</div>
+        <div class="q08-nome" id="q08-n3" data-var-text="n3">Mídia exterior</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Q08 · O movimento volta · f960-1109 (32,00-37,00 s)
+    // As miniaturas da Q07 abrem em TV, player e painel digital. A roda segue congelada
+    // na pose do f042 até o f1020 (2,0 s locais), retoma dali e toca o chão no f1026
+    // (2,2 s) nas três telas ao mesmo tempo: pneu achatado 5% por 3 f, respingo em leque.
+    const tl = gsap.timeline({ paused: true });
+    const c = "#q08-cena ";
+    const encaixa = (sel, w, h) => {
+      const s = h / 1080;
+      const x = 1920 * s <= w + 0.5 ? 0 : w / 2 - 1192 * s;
+      gsap.set(sel + " .peca", { scale: s, x: x, y: 0 });
+    };
+    encaixa("#q08-tv", 620, 348.75);
+    encaixa("#q08-st", 520, 292.5);
+    encaixa("#q08-pn", 230, 409);
+
+    const RETOMA = 2.0;   // f1020
+    const CONTATO = 2.2;  // f1026
+    const FIM = 5.0;
+    const agua = c + ".a-poca, " + c + ".a-leque, " + c + ".a-gota";
+
+    tl.fromTo("#q08-sai", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, 0);
+    tl.fromTo("#q08-chao", { backgroundColor: "#f3f2eb" }, { backgroundColor: "#d5ebf7", duration: 0.4, ease: "power2.inOut" }, 0.1);
+    // as molduras abrem a partir das miniaturas da Q07 (4 f de intervalo, como o disparo)
+    tl.fromTo("#q08-tv", { x: 875, y: -34.25, scale: 224 / 620 }, { x: 0, y: 0, scale: 1, duration: 0.75, ease: "power3.inOut" }, 0.1);
+    tl.fromTo("#q08-st", { x: 195, y: 90.5, scale: 224 / 520 }, { x: 0, y: 0, scale: 1, duration: 0.75, ease: "power3.inOut" }, 0.1 + 4 / 30);
+    tl.fromTo("#q08-pn", { x: -233, y: 405, scale: 72 / 230 }, { x: 0, y: 0, scale: 1, duration: 0.75, ease: "power3.inOut" }, 0.1 + 8 / 30);
+    tl.fromTo(["#q08-pn .poste", "#q08-pn .base"], { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.45);
+    tl.fromTo(".q08-nome", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.067, ease: "power2.out" }, 0.95);
+    gsap.set(agua, { opacity: 0 });
+    gsap.set(".q08-risco", { opacity: 0, rotation: -16, x: 160 });
+    gsap.set("#q08-st .barra i", { scaleX: 0.02 });
+
+    // f1020: a roda retoma da pose congelada a 360°/s e desce os 16 px restantes em 6 f
+    tl.to(c + ".p-roda", { rotation: 360 * (FIM - RETOMA), duration: FIM - RETOMA, ease: "none" }, RETOMA);
+    tl.to(c + ".p-grupo", { y: 16, duration: CONTATO - RETOMA, ease: "power2.in" }, RETOMA);
+    // f1026: contato. Pneu achatado 5% por 3 f, corte seco nos dois lados.
+    tl.set(c + ".p-squash", { scaleY: 0.95, scaleX: 1.025 }, CONTATO);
+    tl.set(c + ".p-squash", { scaleY: 1, scaleX: 1 }, CONTATO + 3 / 30);
+    tl.set("#q08-palco", { scale: 1.02 }, CONTATO);
+    tl.to("#q08-palco", { scale: 1, duration: 0.35, ease: "expo.out" }, CONTATO);
+    // o mundo volta a correr na velocidade do pneu
+    tl.to(c + ".p-faixas", { x: -2488 * (FIM - CONTATO), duration: FIM - CONTATO, ease: "none" }, CONTATO);
+    tl.set(c + ".p-riscos", { x: 220 }, CONTATO);
+    tl.to(c + ".p-riscos", { x: -140, duration: 0.35, ease: "none", repeat: 7 }, CONTATO);
+    tl.to("#q08-st .barra i", { scaleX: 1, duration: FIM - CONTATO, ease: "none" }, CONTATO);
+    tl.set(".q08-risco", { opacity: 1 }, CONTATO);
+    tl.to(".q08-risco", { x: -60, duration: FIM - CONTATO, ease: "none" }, CONTATO);
+
+    // respingo em leque, o mesmo nas três telas
+    tl.set(agua, { opacity: 1 }, CONTATO);
+    tl.set(c + ".a-poca", { scaleX: 0.3, svgOrigin: "1192 868" }, CONTATO);
+    tl.to(c + ".a-poca", { scaleX: 1, duration: 0.5, ease: "expo.out" }, CONTATO);
+    tl.to(c + ".a-poca", { opacity: 0, duration: 0.6, ease: "power2.in" }, CONTATO + 1.0);
+    tl.set(c + ".a-leque-e, " + c + ".a-leque-e2", { scale: 0, svgOrigin: "1180 866" }, CONTATO);
+    tl.set(c + ".a-leque-d, " + c + ".a-leque-d2", { scale: 0, svgOrigin: "1204 866" }, CONTATO);
+    tl.to(c + ".a-leque", { scale: 1, duration: 0.28, ease: "expo.out" }, CONTATO);
+    tl.to(c + ".a-leque", { scaleY: 0, opacity: 0, duration: 0.3, ease: "power2.in" }, CONTATO + 0.3);
+    const gotas = [[-1, 150, 170], [-1, 250, 250], [-1, 340, 200], [-1, 430, 130], [-1, 520, 90], [-1, 210, 320],
+                   [1, 160, 180], [1, 260, 260], [1, 350, 210], [1, 440, 140], [1, 530, 95], [1, 220, 330]];
+    gotas.forEach(([s, dx, h], i) => {
+      const g = c + ".a-g" + i, voo = 0.55 + (i % 4) * 0.06;
+      tl.to(g, { x: s * dx, duration: voo, ease: "power1.out" }, CONTATO);
+      tl.to(g, { y: -h, duration: voo * 0.45, ease: "power2.out" }, CONTATO);
+      tl.to(g, { y: 30, duration: voo * 0.55, ease: "power2.in" }, CONTATO + voo * 0.45);
+      tl.to(g, { scale: 0.2, opacity: 0, transformOrigin: "50% 50%", duration: 0.15, ease: "power2.in" }, CONTATO + voo - 0.1);
+    });
+
+    // saída: o palco desce e some; a Q09 abre no azul-claro limpo
+    tl.to("#q08-palco", { y: 40, opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 4.75);
+    window.__timelines["q08"] = tl;
+  </script>
+</template>

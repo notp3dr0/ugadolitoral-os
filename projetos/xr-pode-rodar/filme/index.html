@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Pode rodar? · XR Extreme Reach Brasil (animatic)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f3f2eb;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Pode rodar? · 45 s · 1920x1080 · 30 fps · 1.350 frames
+      Uma composição por quadro do storyboard. Frame -> segundo: f/30.
+      Q01 f000-041 | Q02 f042-119 | Q03 f120-329 | Q04 f330-569 | Q05 f570-689
+      Q06 f690-839 | Q07 f840-959 | Q08 f960-1109 | Q09 f1110-1229 | Q10 f1230-1349
+      Faixas de áudio (grupos): voz = lane 10, trilha = lanes 11-12, efeitos = lanes 13-15. Fonte: audio/faixas.json.
+    -->
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="45"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="q01" data-composition-id="q01" data-composition-src="compositions/q01-roda-quase-toca.html"
+        data-start="0" data-duration="1.4" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q02" data-composition-id="q02" data-composition-src="compositions/q02-filme-pronto.html"
+        data-start="1.4" data-duration="2.6" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q03" data-composition-id="q03" data-composition-src="compositions/q03-tres-destinos.html"
+        data-start="4" data-duration="7" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q04" data-composition-id="q04" data-composition-src="compositions/q04-biblioteca.html"
+        data-start="11" data-duration="8" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q05" data-composition-id="q05" data-composition-src="compositions/q05-checagem.html"
+        data-start="19" data-duration="4" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q06" data-composition-id="q06" data-composition-src="compositions/q06-closed-caption.html"
+        data-start="23" data-duration="5" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q07" data-composition-id="q07" data-composition-src="compositions/q07-distribuicao.html"
+        data-start="28" data-duration="4" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q08" data-composition-id="q08" data-composition-src="compositions/q08-movimento-volta.html"
+        data-start="32" data-duration="5" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q09" data-composition-id="q09" data-composition-src="compositions/q09-entrega.html"
+        data-start="37" data-duration="4" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+      <div id="q10" data-composition-id="q10" data-composition-src="compositions/q10-assinatura.html"
+        data-start="41" data-duration="4" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080"></div>
+
+      <!-- AUDIO -->
+      <hf-audio-group id="voz"></hf-audio-group>
+      <audio id="voz-q02" class="clip" src="assets/locucao/L02.wav" data-start="2.35" data-duration="1.69" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- O filme ficou pronto. -->
+      <audio id="voz-q03a" class="clip" src="assets/locucao/L03a.wav" data-start="4.3" data-duration="2.64" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- Tem o corte de quinze pro streaming? -->
+      <audio id="voz-q03b" class="clip" src="assets/locucao/L03b.wav" data-start="6.95" data-duration="3.17" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- E qual é o arquivo que vai pra TV com legenda? -->
+      <audio id="voz-q04" class="clip" src="assets/locucao/L04.wav" data-start="11.3" data-duration="6.32" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- Com a XR Brasil, a equipe encontra as versões... -->
+      <audio id="voz-q05" class="clip" src="assets/locucao/L05.wav" data-start="19" data-duration="4" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- A XR confere se o formato e o áudio atendem ao veículo. -->
+      <audio id="voz-q06" class="clip" src="assets/locucao/L06.wav" data-start="23.3" data-duration="4.43" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- Quando a campanha pede, a XR também prepara o closed caption. -->
+      <audio id="voz-q07" class="clip" src="assets/locucao/L07.wav" data-start="28.45" data-duration="2.68" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- Cada versão segue pro destino certo. -->
+      <audio id="voz-q09" class="clip" src="assets/locucao/L09.wav" data-start="37.35" data-duration="3.04" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- E você acompanha o status de cada entrega. -->
+      <audio id="voz-q10" class="clip" src="assets/locucao/L10.wav" data-start="41" data-duration="3.52" data-volume="1" data-track-index="10" data-audio-group="voz"></audio> <!-- XR Extreme Reach Brasil. Do arquivo à tela. -->
+      <hf-audio-group id="trilha"></hf-audio-group>
+      <audio id="trilha-abertura" class="clip" src="assets/trilha/batida-110bpm.mp3" data-start="0" data-duration="1.4" data-media-start="12.505" data-volume="0.5" data-fade-out="0.01" data-track-index="11" data-audio-group="trilha"></audio> <!-- corta seco no congelamento do f042 (1,40 s) -->
+      <audio id="trilha-cama" class="clip" src="assets/trilha/cama-ambiente.mp3" data-start="4" data-duration="30.1" data-media-start="4" data-volume="0.16" data-fade-in="1.2" data-fade-out="1" data-track-index="11" data-audio-group="trilha"></audio> <!-- cama sem bateria no miolo; some antes do contato -->
+      <audio id="trilha-volta" class="clip" src="assets/trilha/batida-110bpm.mp3" data-start="34.2" data-duration="4.427" data-media-start="18.509" data-volume="1" data-fade-out="0.02" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.55},{&quot;t&quot;:3,&quot;v&quot;:0.55},{&quot;t&quot;:3.15,&quot;v&quot;:0.3}]}]}" data-track-index="11" data-audio-group="trilha"></audio> <!-- o drop da música cai no contato do f1026 -->
+      <audio id="trilha-final" class="clip" src="assets/trilha/batida-110bpm.mp3" data-start="38.597" data-duration="6.403" data-media-start="51.269" data-volume="0.3" data-fade-in="0.02" data-track-index="12" data-audio-group="trilha"></audio> <!-- emenda no compasso com o final da música: a última nota cai na assinatura -->
+      <hf-audio-group id="efeitos"></hf-audio-group>
+      <audio id="sfx-roda-livre" class="clip" src="assets/sfx/roda-livre.mp3" data-start="0" data-duration="1.4" data-volume="0.45" data-fade-out="0.01" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q01 corrente; corta no f042 -->
+      <audio id="sfx-corrente" class="clip" src="assets/sfx/corrente-giro.mp3" data-start="0" data-duration="1.4" data-media-start="0.6" data-volume="0.6" data-fade-out="0.01" data-track-index="14" data-audio-group="efeitos"></audio> <!-- Q01 giro curto; corta no f042 -->
+      <audio id="sfx-clique" class="clip" src="assets/sfx/clique-seco.mp3" data-start="2.37" data-duration="0.09" data-volume="0.9" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q02 revelação do player -->
+      <audio id="sfx-toque-1" class="clip" src="assets/sfx/toque-leve.mp3" data-start="4.36" data-duration="0.366" data-volume="0.6" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q03 recorte TV -->
+      <audio id="sfx-toque-2" class="clip" src="assets/sfx/toque-leve.mp3" data-start="4.46" data-duration="0.366" data-volume="0.5" data-track-index="14" data-audio-group="efeitos"></audio> <!-- Q03 recorte streaming -->
+      <audio id="sfx-toque-3" class="clip" src="assets/sfx/toque-leve.mp3" data-start="4.56" data-duration="0.366" data-volume="0.45" data-track-index="15" data-audio-group="efeitos"></audio> <!-- Q03 recorte painel -->
+      <audio id="sfx-encaixe-a" class="clip" src="assets/sfx/clique-seco.mp3" data-start="11.8" data-duration="0.09" data-volume="0.7" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q04 encaixe na biblioteca -->
+      <audio id="sfx-encaixe-b" class="clip" src="assets/sfx/pulso-seco.mp3" data-start="11.8" data-duration="0.4" data-volume="0.1" data-track-index="14" data-audio-group="efeitos"></audio>
+      <audio id="sfx-pulso-1" class="clip" src="assets/sfx/pulso-seco.mp3" data-start="20.72" data-duration="0.4" data-volume="0.16" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q05 formato conferido -->
+      <audio id="sfx-pulso-2" class="clip" src="assets/sfx/pulso-seco.mp3" data-start="21.38" data-duration="0.4" data-volume="0.16" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q05 áudio conferido -->
+      <audio id="sfx-corrente-cc" class="clip" src="assets/sfx/corrente-giro.mp3" data-start="24" data-duration="1.4" data-media-start="0.6" data-volume="0.22" data-fade-in="0.1" data-fade-out="0.01" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q06 corrente baixa junto da legenda descritiva -->
+      <audio id="sfx-raspado-1" class="clip" src="assets/sfx/raspado.mp3" data-start="29.16" data-duration="0.35" data-media-start="0.12" data-volume="0.3" data-fade-out="0.1" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q07 recorte de 30 s -->
+      <audio id="sfx-raspado-2" class="clip" src="assets/sfx/raspado.mp3" data-start="29.3" data-duration="0.35" data-media-start="0.5" data-volume="0.27" data-fade-out="0.1" data-track-index="14" data-audio-group="efeitos"></audio> <!-- Q07 recorte de 15 s -->
+      <audio id="sfx-raspado-3" class="clip" src="assets/sfx/raspado.mp3" data-start="29.43" data-duration="0.35" data-media-start="0.9" data-volume="0.25" data-fade-out="0.1" data-track-index="15" data-audio-group="efeitos"></audio> <!-- Q07 vertical -->
+      <audio id="sfx-respingo" class="clip" src="assets/sfx/respingo.mp3" data-start="33.691" data-duration="1.6" data-volume="1" data-fade-out="0.3" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q08 respingo: o pico cai no f1026 -->
+      <audio id="sfx-impacto" class="clip" src="assets/sfx/impacto-pneu.mp3" data-start="34.074" data-duration="1.5" data-volume="0.9" data-track-index="14" data-audio-group="efeitos"></audio> <!-- Q08 contato do pneu no f1026 -->
+      <audio id="sfx-entrega-1" class="clip" src="assets/sfx/toque-leve.mp3" data-start="38.26" data-duration="0.366" data-volume="0.5" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q09 TV entregue -->
+      <audio id="sfx-entrega-2" class="clip" src="assets/sfx/toque-leve.mp3" data-start="38.66" data-duration="0.366" data-volume="0.45" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q09 streaming entregue -->
+      <audio id="sfx-entrega-3" class="clip" src="assets/sfx/toque-leve.mp3" data-start="39.06" data-duration="0.366" data-volume="0.45" data-track-index="13" data-audio-group="efeitos"></audio> <!-- Q09 mídia exterior entregue -->
+      <!-- /AUDIO -->
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

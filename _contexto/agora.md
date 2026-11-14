@@ -6,16 +6,14 @@
 > Pendência que sai desta lista sai com motivo (feito, virou projeto, mandaram soltar), nunca em silêncio.
 
 ## Onde paramos
-Filme institucional "Um gesto" do Instituto Semear entregue e aprovado (2026-11-02): 16:9 e 9:16 em `pao/instituto-semear/filme-institucional/entregas/`. Projeto editável em `filme-institucional/hyperframes/`. Detalhes em `pao/instituto-semear/andamento.md`.
+Portfólio: rodadas 8, 9 e 10 no ar em ugadolitoral.vercel.app (2026-11-14): bastidor com folha de contato e link direto, INFO pra quem contrata, botão AGENDA ABERTA, intro mais curta e vista FILMES. Detalhe em `uga-do-litoral/portfolio/andamento.md`.
+Canal Dark: série 2D **Revelação** aprovada em texto (2026-11-04): bíblia v1 e roteiro do EP01 em `canal-dark/series/revelacao/`. Motor em `canal-dark/templates/remotion-2d-pecas/`. Próximo: arte, voz e animação do EP01. Filme do Semear segue entregue e aprovado (2026-11-02).
 
 ## Pendências
-- Decidir quais skills do Codex trazer pra cá (aprender-ratos, carrossel-ratos, publicar-social-ratos, instagram-reference e outras). Ler os arquivos reais antes (2026-10-31).
+- Decidir quais skills do Codex trazer pra cá (carrossel-ratos, publicar-social-ratos, triagem-youtube-ratos, instagram-reference e outras). A `aprender-ratos` já veio (2026-11-04). Ler os arquivos reais antes (2026-10-31).
 - Criar um segundo sistema só pra Ludique e Sunika (BI, SEO/GEO, campanhas, Black Friday 27/11/2026) (2026-10-31).
 - Definir paleta, fontes e logo do Uga do Litoral; ainda em branco no guia de marca (2026-10-31).
 - Exportar os dados do Instagram (JSON) pra eu estudar tom e posts (2026-10-31).
-- GitHub ligado via `gh` (conta notp3dr0). O código do portfólio mora na Vercel, não no GitHub (2026-10-31).
-- Vercel: nesta sessão as ferramentas dela não carregaram (pediu autenticação). Reautorizar o conector nas configurações do claude.ai antes de mexer no portfólio (2026-10-31).
-- Vercel ligada: dá para ler e alterar o código do portfólio (ugadolitoral.vercel.app). Trabalho do portfólio vai em `uga-do-litoral/portfolio/` (2026-10-31).
 - n8n: adiado por decisão sua. Atenção: seu claude.ai já tem um conector n8n conectado (ugadolitoral.app.n8n.cloud), então ele pode aparecer aqui (2026-10-31).
 - Nomear o computador do trabalho (sugestão: `trabalho`) quando instalar lá (2026-10-31).
 - mapear: carrosséis da PAÓ e do Instituto Semear (modelo `carrossel` do kit ou `carrossel-ratos`) (2026-10-31).
@@ -27,5 +25,13 @@ Filme institucional "Um gesto" do Instituto Semear entregue e aprovado (2026-11-
 - Trocar as 3 chaves do Gemini, que apareceram na conversa (aistudio.google.com/apikey) (2026-11-02).
 - Instalar a skill `/ogilvy-copy` (vem da Ratos, ratosdeia.com.br/skills) (2026-11-02).
 
+- Portfólio: contexto de cada foto (show, tour, cidade, ano) pra entrar na galeria; só você tem essa informação (2026-11-14).
+- Portfólio: domínio próprio (.com.br, ~R$ 40/ano) no lugar de ugadolitoral.vercel.app (2026-11-14).
+- Portfólio: a rádio do bastidor toca mashups com música de terceiros, em público; trocar por faixa liberada ou pedir autorização (2026-11-14).
+- Portfólio: tirar "Abrir no Google Drive" do player de filme (2026-11-14).
+- Liberar espaço no Gmail imagens.ludique@gmail.com: sem ele não chega código de verificação da Vercel (2026-11-14).
+
+- Revelação EP01: cenários, boneco "Você", voz e render. Conferir se o VoiceStudio abre (em 2026-11-03 não abriu) (2026-11-04).
+
 ## Quente agora
-Frentes ativas: filme institucional do Semear (entregue, em ajuste fino), Let's Tribunal, Radar de Conteúdo IA do Instituto Semear, portfólio interativo do Uga e site da PAÓ. Sem prazos firmes definidos.
+Frentes ativas: série Revelação do Canal Dark (EP01 em produção), filme institucional do Semear (entregue, em ajuste fino), Let's Tribunal, Radar de Conteúdo IA do Instituto Semear, portfólio interativo do Uga e site da PAÓ. Sem prazos firmes definidos.

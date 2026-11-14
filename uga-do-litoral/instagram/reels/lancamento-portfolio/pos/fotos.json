@@ -1,0 +1,49 @@
+{
+  "_leia": "Fotos em tela cheia da secao C. Escolhidas olhando as imagens (folhas de contato de todas as -lg.webp) e, a heroi, compondo o G1_nome por cima. cx, cy = centro do corte cover 9:16 (fracao da foto). Movimento: avanco lento a velocidade constante (0,0045 de escala por quadro) e deriva pra esquerda, igual em todas, pra o corte levar o movimento de uma foto pra outra. p1 vem do quadros/C2e_mergulho/pronto.json; se nao vier, usa o reserva. Evitei repetir fotos que ja estao na folha do G2_acervo. Rodada 2: o nome saiu (heroi nao e mais usado); p4 trocada porque a LAI$ (lais-04) virou a copia C2g.",
+  "velocidade_zoom_q": 0.0045,
+  "deriva_x_q": -0.0012,
+  "heroi": {
+    "arquivo": "kayg-02-lg.webp",
+    "artista": "KayG",
+    "cx": 0.5,
+    "cy": 0.5,
+    "flash_faixa_escura": [
+      1110,
+      1500
+    ],
+    "motivo": "KayG atravessando o palco num unico facho, fundo preto: o corpo cai inteiro no meio livre (y 560 a 1150), o alto e o pe do quadro sao escuros e o nome off-white le limpo, sem luz vermelha pra brigar com os quadradinhos dos servicos. O flash do drop e atenuado na faixa de AUGUSTO e dos servicos"
+  },
+  "p1_reserva": {
+    "arquivo": "photo-04-lg.webp",
+    "artista": "PHL",
+    "cx": 0.5,
+    "cy": 0.5,
+    "motivo": "reserva caso o C2e nao diga a foto: silhueta laranja e vermelha com o dedo pro alto"
+  },
+  "p2": {
+    "arquivo": "matue-sanca-04-lg.webp",
+    "artista": "Matuê",
+    "cx": 0.5,
+    "cy": 0.5,
+    "motivo": "contraluz dourado e ciano, braço erguido: o gesto de abertura de show; rosto inteiro no corte"
+  },
+  "p3": {
+    "arquivo": "desiiik-05-lg.webp",
+    "artista": "Desiiik",
+    "cx": 0.5,
+    "cy": 0.5,
+    "motivo": "Desiiik de braço erguido entre feixes vermelho e azul: diagonal forte, paleta oposta ao dourado da anterior"
+  },
+  "p4": {
+    "arquivo": "photo-36-lg.webp",
+    "artista": "Vulgo FK",
+    "cx": 0.5,
+    "cy": 0.5,
+    "motivo": "Vulgo FK ao microfone sob roxo saturado: artista que nao aparece nas copias nem nas outras fotos, rosto inteiro no corte, e o roxo nao repete nenhuma cor da sequencia (laranja, dourado/ciano, vermelho/azul)"
+  },
+  "p4_v1": {
+    "arquivo": "lais-04-lg.webp",
+    "artista": "LAI$",
+    "motivo": "p4 da v1; saiu porque virou a copia C2g"
+  }
+}

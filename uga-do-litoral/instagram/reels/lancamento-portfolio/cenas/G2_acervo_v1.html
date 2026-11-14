@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>G2_acervo</title>
+<style>
+  html, body { margin: 0; width: 540px; height: 960px; overflow: hidden; background: #000; }
+  canvas { position: absolute; inset: 0; width: 540px; height: 960px; display: block; }
+</style></head>
+<body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<canvas id="lapis" width="1080" height="1920"></canvas>
+<script type="module">
+import * as THREE from '../../../../portfolio/site-lab/vendor/three.module.min.js';
+import { photos } from '../../../../portfolio/site-lab/js/data.js';
+import { SITE, W, H, OFF, carregarTempo, semente, lapis, prog, clamp, lerp, outCubic, inOutCubic, inOutSine, outQuart } from './comum.js';
+
+const tempo = await carregarTempo();
+const F0 = tempo.batidas.find(b => b.b === 44).f;
+const L = b => tempo.batidas.find(x => x.b === b).f - F0;
+const SEMIS = tempo.semicolcheias.filter(s => s.b >= 44 && s.b < 46).map(s => s.f - F0); // 0 3 6 10 13 16 20 23
+const B46 = L(46), B47 = L(47), B48 = L(48);
+const QUADROS = 57;
+
+// ---------- as fotos: 42, uma de cada artista antes de repetir, em ordem fixa ----------
+const POR_TIRA = 6, TIRAS = 7, N = POR_TIRA * TIRAS;
+const grupos = new Map();
+for (const p of photos) { const k = p.artist || 'sem-nome-' + p.i; if (!grupos.has(k)) grupos.set(k, []); grupos.get(k).push(p); }
+const filas = [...grupos.values()];
+const escolhidas = [];
+for (let volta = 0; escolhidas.length < N; volta++) for (const f of filas) if (f[volta] && escolhidas.length < N) escolhidas.push(f[volta]);
+// embaralha com semente pra misturar cor e preto e branco na mesa
+const rnd0 = semente(4471);
+for (let i = escolhidas.length - 1; i > 0; i--) { const j = Math.floor(rnd0() * (i + 1)); [escolhidas[i], escolhidas[j]] = [escolhidas[j], escolhidas[i]]; }
+const MARCADA = Number(new URLSearchParams(location.search).get('marcada') ?? 27); // a que o lápis circula
+
+// ---------- render ----------
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(1); renderer.setSize(W, H, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NoToneMapping;
+renderer.setClearColor(0x000000, 1);
+const scene = new THREE.Scene();
+const FOV = 30, TAN = Math.tan(THREE.MathUtils.degToRad(FOV / 2));
+const camera = new THREE.PerspectiveCamera(FOV, W / H, 40, 9000);
+
+// a mesa: preta, com uma poça de luz larga e baixa no meio
+function texMesa() {
+  const cv = document.createElement('canvas'); cv.width = cv.height = 1024;
+  const c = cv.getContext('2d');
+  const g = c.createRadialGradient(512, 512, 0, 512, 512, 512);
+  g.addColorStop(0, '#161616'); g.addColorStop(.45, '#0b0b0b'); g.addColorStop(1, '#000');
+  c.fillStyle = g; c.fillRect(0, 0, 1024, 1024);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const mesa = new THREE.Mesh(new THREE.PlaneGeometry(4200, 4200), new THREE.MeshBasicMaterial({ map: texMesa() }));
+scene.add(mesa);
+
+// sombra: retângulo de borda macia
+function texSombra() {
+  const cv = document.createElement('canvas'); cv.width = cv.height = 256;
+  const c = cv.getContext('2d');
+  c.filter = 'blur(22px)'; c.fillStyle = '#000'; c.fillRect(48, 48, 160, 160);
+  const t = new THREE.CanvasTexture(cv); return t;
+}
+const SOMBRA = texSombra();
+
+// tira de filme: preta, perfuração off-white (como a folha do bastidor)
+const CEL_W = 150, CEL_H = 200, GAP = 14, REB = 30, TIRA_H = CEL_H + 2 * REB, TIRA_GAP = 14, TIRA_W = 1060;
+function texTira() {
+  const s = 2, cv = document.createElement('canvas'); cv.width = TIRA_W * s; cv.height = TIRA_H * s;
+  const c = cv.getContext('2d'); c.scale(s, s);
+  c.fillStyle = '#030303'; c.fillRect(0, 0, TIRA_W, TIRA_H);
+  c.fillStyle = 'rgba(242,240,235,.85)';
+  for (let x = 10; x < TIRA_W - 16; x += 30) for (const y of [9, TIRA_H - 21]) { c.beginPath(); c.roundRect(x, y, 15, 12, 2.5); c.fill(); }
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+const TEX_TIRA = texTira();
+const sheetY = k => (TIRAS / 2 - .5 - k) * (TIRA_H + TIRA_GAP);
+const cellX = j => (j - (POR_TIRA - 1) / 2) * (CEL_W + GAP);
+const tiras = [];
+for (let k = 0; k < TIRAS; k++) {
+  // a tira cresce da esquerda: geometria ancorada na borda esquerda
+  const geo = new THREE.PlaneGeometry(TIRA_W, TIRA_H); geo.translate(TIRA_W / 2, 0, 0);
+  const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: TEX_TIRA }));
+  m.position.set(-TIRA_W / 2, sheetY(k), .6);
+  scene.add(m); tiras.push(m);
+}
+
+// ---------- as cópias ----------
+const loader = new THREE.TextureLoader();
+const texturas = await Promise.all(escolhidas.map(p => loader.loadAsync(SITE + p.small.replace('./', ''))));
+texturas.forEach(t => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); });
+
+const BATCH = [3, 4, 5, 5, 6, 6, 6, 7];
+const rnd = semente(90210);
+const PW = 180, BORDA = 7;
+const copias = escolhidas.map((p, i) => {
+  let b = 0, acc = 0; while (acc + BATCH[b] <= i) acc += BATCH[b++];
+  const impacto = SEMIS[b];
+  const asp = p.height / p.width;
+  const ph = PW * asp;
+  // na folha: inteira dentro da célula, sem recortar
+  const fit = Math.min(CEL_W / PW, CEL_H / ph);
+  const k = Math.floor(i / POR_TIRA), j = i % POR_TIRA;
+  const grupo = new THREE.Group();
+  const papel = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ color: 0xf6f4ef }));
+  const foto = new THREE.Mesh(new THREE.PlaneGeometry(PW, ph), new THREE.MeshBasicMaterial({ map: texturas[i] }));
+  foto.position.z = .15;
+  grupo.add(papel, foto);
+  const sombra = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: SOMBRA, transparent: true, depthWrite: false }));
+  scene.add(sombra, grupo);
+  // onde cai: em volta do alvo da câmera naquele instante, espalhado em elipse
+  const ang = rnd() * Math.PI * 2, rr = Math.sqrt(rnd());
+  return {
+    i, impacto, ph, fit, k, j, grupo, papel, sombra,
+    lx: Math.cos(ang) * rr * 250, ly: Math.sin(ang) * rr * 430,
+    rot: (rnd() - .5) * .8,
+    dur: 5 + Math.floor(rnd() * 3),
+    z0: 480 + rnd() * 380,
+    dx: (rnd() - .5) * 320, dy: (rnd() - .5) * 260 - 120,
+    r0: (rnd() - .5) * 2.2, tx: (rnd() - .5) * 1.1, ty: (rnd() - .5) * 1.1,
+    desliza: [(rnd() - .5) * 26, (rnd() - .5) * 26], rdesl: (rnd() - .5) * .12,
+    zr: 1 + i * .32
+  };
+});
+
+// ---------- câmera ----------
+// fase 1 (mesa): de cima, inclinada, andando em diagonal e girando devagar
+const DIST_MESA = 500 / TAN;                 // enxerga ~1000 de altura no alvo
+const DIST_FOLHA = 1000 / TAN;               // enxerga ~2000: a folha inteira de frente
+function camMesa(n) {
+  const t = n / B46;
+  return { x: lerp(-70, 50, t), y: lerp(170, -110, t), tilt: lerp(.36, .27, t), az: lerp(-.16, .05, t), d: lerp(DIST_MESA, DIST_MESA * 1.06, t) };
+}
+const marcada = () => copias[MARCADA];
+function camFolha(n) {
+  // fase 3: de frente, aproximando devagar da marcada
+  const t = (n - B47) / (QUADROS - B47);
+  const m = marcada(), alvo = [cellX(m.j), sheetY(m.k)];
+  return { x: alvo[0] * .28 * t, y: alvo[1] * .28 * t, tilt: 0, az: 0, d: DIST_FOLHA * (1 - .1 * t) };
+}
+function hermite(a, b, va, vb, t) {
+  const t2 = t * t, t3 = t2 * t;
+  return (2 * t3 - 3 * t2 + 1) * a + (t3 - 2 * t2 + t) * va + (-2 * t3 + 3 * t2) * b + (t3 - t2) * vb;
+}
+function cam(n) {
+  if (n <= B46) return camMesa(n);
+  if (n >= B47) return camFolha(n);
+  // fase 2: costura com a velocidade de quem vem e de quem vai
+  const a = camMesa(B46), a1 = camMesa(B46 + 1), b = camFolha(B47), b1 = camFolha(B47 + 1);
+  const D = B47 - B46, t = (n - B46) / D, o = {};
+  for (const k of Object.keys(a)) o[k] = hermite(a[k], b[k], (a1[k] - a[k]) * D, (b1[k] - b[k]) * D, t);
+  return o;
+}
+function poeCamera(n) {
+  const c = cam(n);
+  const up = new THREE.Vector3(-Math.sin(c.az), Math.cos(c.az), 0);
+  const tras = up.clone().multiplyScalar(-Math.sin(c.tilt) * c.d);
+  camera.position.set(c.x + tras.x, c.y + tras.y, Math.cos(c.tilt) * c.d);
+  camera.up.copy(up);
+  camera.lookAt(c.x, c.y, 0);
+  camera.updateMatrixWorld();
+  return c;
+}
+
+// ---------- cada quadro ----------
+const lap = document.getElementById('lapis').getContext('2d');
+// o círculo de lápis, fixo na folha (unidades do mundo), uma volta e meia torta
+const CIRC = (() => {
+  const r = semente(77), pts = [];
+  const voltas = 1.42, passos = 220;
+  const a0 = 2.2, rx = CEL_W / 2 + 34, ry = CEL_H / 2 + 30;
+  const f1 = r() * 6, f2 = r() * 6;
+  for (let s = 0; s <= passos; s++) {
+    const u = s / passos, a = a0 + u * voltas * Math.PI * 2;
+    const cresce = 1 + .07 * u + .035 * Math.sin(a * 2 + f1) + .02 * Math.sin(a * 5 + f2);
+    const dx = 6 * u, dy = -9 * u;
+    const x = Math.cos(a) * rx * cresce + dx, y = Math.sin(a) * ry * cresce + dy;
+    const g = .06; // inclinação da mão
+    pts.push([x * Math.cos(g) - y * Math.sin(g), x * Math.sin(g) + y * Math.cos(g)]);
+  }
+  return pts;
+})();
+
+window.desenhar = n => {
+  const cc = poeCamera(n);
+  // alvo da câmera no instante do impacto define a região onde a cópia cai
+  for (const c of copias) {
+    const alvo = camMesa(c.impacto);
+    const rx = alvo.x + c.lx, ry = alvo.y + c.ly;
+    let x, y, z, rz, rx3 = 0, ry3 = 0, esc = 1, borda = BORDA, sombraA = 0, visivel = true;
+    const ini = c.impacto - c.dur;
+    if (n < ini) visivel = false;
+    else if (n < c.impacto) {
+      // queda: horizontal reta, vertical acelerando, o giro e a inclinação morrendo
+      const t = (n - ini) / c.dur;
+      x = rx + c.dx * (1 - t); y = ry + c.dy * (1 - t);
+      z = c.zr + c.z0 * (1 - t * t);
+      const e = outCubic(t);
+      rz = c.rot + c.r0 * (1 - e); rx3 = c.tx * (1 - t); ry3 = c.ty * (1 - t);
+    } else {
+      // no chão: quique curto, desliza um pouco e para
+      const d = n - c.impacto;
+      const quique = d < 3 ? 15 * Math.sin(Math.PI * d / 3) : d < 5 ? 4 * Math.sin(Math.PI * (d - 3) / 2) : 0;
+      const pa = 1 - Math.exp(-d / 1.6);
+      x = rx + c.desliza[0] * pa; y = ry + c.desliza[1] * pa; z = c.zr + quique;
+      rz = c.rot + c.rdesl * pa;
+    }
+    // folha de contato: cada uma desliza pro seu quadro, em onda pela ordem
+    const atraso = (c.i / (N - 1)) * 4.5;
+    const tf = inOutCubic(prog(n, B46 + atraso, B46 + atraso + 9.5));
+    if (visivel && tf > 0) {
+      const fx = cellX(c.j), fy = sheetY(c.k);
+      x = lerp(x, fx, tf); y = lerp(y, fy, tf);
+      z = lerp(z, 1.2, tf) + 70 * Math.sin(Math.PI * tf);
+      rz = lerp(rz, 0, tf); rx3 = lerp(rx3, 0, tf); ry3 = lerp(ry3, 0, tf);
+      esc = lerp(1, c.fit, tf); borda = lerp(BORDA, 0, tf);
+    }
+    c.grupo.visible = c.sombra.visible = visivel;
+    if (!visivel) continue;
+    c.grupo.position.set(x, y, z);
+    c.grupo.rotation.set(rx3, ry3, rz);
+    c.grupo.scale.set(esc, esc, 1);
+    c.papel.scale.set(PW + 2 * borda / esc, c.ph + 2 * borda / esc, 1);
+    // sombra: perto e firme no chão, larga e fraca no alto; some quando a folha se forma
+    const alto = Math.max(0, z - c.zr);
+    const sw = (PW + 2 * BORDA) * esc * (1.55 + alto * .0012), sh = (c.ph + 2 * BORDA) * esc * (1.55 + alto * .0012) + 0;
+    c.sombra.scale.set(sw, sh * (1 + 0 * alto), 1);
+    c.sombra.position.set(x + 9 + alto * .16, y - 12 - alto * .2, c.zr - .16);
+    c.sombra.rotation.set(0, 0, rz);
+    c.sombra.material.opacity = .78 * (1 - clamp(alto / 900) * .7) * (1 - tf);
+  }
+  // as tiras puxadas da esquerda enquanto as cópias chegam
+  tiras.forEach((t, k) => {
+    const e = inOutCubic(prog(n, B46 + 1 + k * .9, B46 + 9 + k * .9));
+    t.visible = e > 0; t.scale.x = Math.max(e, 1e-3);
+  });
+  renderer.render(scene, camera);
+
+  // lápis vermelho (batida 47): projetado da folha pra tela a cada quadro
+  lap.clearRect(0, 0, W, H);
+  if (n >= B47) {
+    const m = marcada(), c0 = [cellX(m.j), sheetY(m.k)];
+    const v = new THREE.Vector3();
+    const pts = CIRC.map(([x, y]) => { v.set(c0[0] + x, c0[1] + y, 2).project(camera); return [(v.x + 1) / 2 * W, (1 - v.y) / 2 * H]; });
+    const escala = Math.hypot(pts[1][0] - pts[0][0], pts[1][1] - pts[0][1]) / Math.hypot(CIRC[1][0] - CIRC[0][0], CIRC[1][1] - CIRC[0][1]);
+    const p = .18 + .82 * outCubic(prog(n, B47, B47 + 10));
+    lapis(lap, pts, p, 9 * escala, 3);
+  }
+};
+window.CENA = { id: 'G2_acervo', quadros: QUADROS, formato: 'jpg', marcos: { semicolcheias: SEMIS, B46, B47, B48 },
+  obs: 'fotos (small do site-lab), na ordem da folha: ' + escolhidas.map(p => p.small.replace('./assets/', '')).join(' ') + ' · marcada: ' + escolhidas[MARCADA].small.replace('./assets/', '') };
+window.pronto = true;
+</script>
+</body></html>

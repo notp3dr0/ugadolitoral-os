@@ -1,0 +1,7 @@
+{
+  "name": "portfolio-ferramentas",
+  "private": true,
+  "type": "module",
+  "description": "Medir e comparar o site do portfolio (original x lab). Nao faz parte do site.",
+  "dependencies": { "playwright-core": "1.56.1" }
+}

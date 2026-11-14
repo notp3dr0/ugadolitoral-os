@@ -1,6 +1,6 @@
-# Ratos OS 🐀
+# Nautilus 🐀
 
-O sistema operacional do seu negócio, feito pelo [Ratos de IA](https://ratosdeia.com.br) pra alunos do curso **Ratos OS** (o Claude Code OS).
+O Nautilus é o sistema operacional do seu negócio, montado sobre o kit Ratos OS, feito pelo [Ratos de IA](https://ratosdeia.com.br) pra alunos do curso **Ratos OS** (o Claude Code OS).
 
 ---
 

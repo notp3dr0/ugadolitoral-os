@@ -1,0 +1,12 @@
+{
+  "input": "C:\\Users\\Pedro\\Desktop\\Framework\\ccos-ratos\\pao\\filme-pao\\entregas\\v2\\pao-um-balao-9x16-reels.mp4",
+  "durationS": 75,
+  "width": 1080,
+  "height": 1920,
+  "sourceFps": 30,
+  "fps": 1,
+  "count": 75,
+  "start": 0,
+  "outWidth": 150,
+  "note": "frame i (1-based file name) is at t = start + (i-1)/fps seconds of the source"
+}

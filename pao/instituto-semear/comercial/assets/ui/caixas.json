@@ -1,0 +1,254 @@
+{
+ "header": {
+  "x": 0,
+  "y": 0,
+  "width": 1440,
+  "height": 86
+ },
+ "fp": {
+  "x": 633.046875,
+  "y": 20,
+  "width": 109.96875,
+  "height": 46
+ },
+ "sejaJovem": {
+  "x": 633.046875,
+  "y": 66,
+  "width": 171.15625,
+  "height": 46
+ },
+ "quemsomos-col": {
+  "x": 140,
+  "y": 209.109375,
+  "width": 590,
+  "height": 474.390625
+ },
+ "video-card": {
+  "x": 720,
+  "y": 286,
+  "width": 570,
+  "height": 320.625
+ },
+ "impacto-faixa": {
+  "x": 0,
+  "y": 806.625,
+  "width": 1440,
+  "height": 140
+ },
+ "contador-0": {
+  "x": 140,
+  "y": 616.625,
+  "width": 305,
+  "height": 321
+ },
+ "contador-1": {
+  "x": 425,
+  "y": 616.625,
+  "width": 305,
+  "height": 321
+ },
+ "contador-2": {
+  "x": 710,
+  "y": 616.625,
+  "width": 305,
+  "height": 321
+ },
+ "contador-3": {
+  "x": 995,
+  "y": 616.625,
+  "width": 305,
+  "height": 321
+ },
+ "impacto-linha": {
+  "x": 0,
+  "y": 546.625,
+  "width": 1440,
+  "height": 461
+ },
+ "depoimentos": {
+  "x": 0,
+  "y": 21.625,
+  "width": 1440,
+  "height": 856
+ },
+ "parceiros-0": {
+  "x": 193.5,
+  "y": 229.625,
+  "width": 1089,
+  "height": 259.796875
+ },
+ "parceirosNext": {
+  "x": 1212.5,
+  "y": 339.515625,
+  "width": 40,
+  "height": 40
+ },
+ "parceiros-1": {
+  "x": 193.5,
+  "y": 229.625,
+  "width": 1089,
+  "height": 259.796875
+ },
+ "parceiros-2": {
+  "x": 193.5,
+  "y": 229.625,
+  "width": 1089,
+  "height": 259.796875
+ },
+ "parceiros-3": {
+  "x": 193.5,
+  "y": 229.625,
+  "width": 1089,
+  "height": 259.796875
+ },
+ "cta-site": {
+  "x": 0,
+  "y": 282.84375,
+  "width": 1440,
+  "height": 334
+ },
+ "bolsista-aba-0": {
+  "x": 263,
+  "y": 180.359375,
+  "width": 914,
+  "height": 539.28125
+ },
+ "bolsista-aba-0-tab0": {
+  "x": 275,
+  "y": 192.359375,
+  "width": 324.484375,
+  "height": 43.5
+ },
+ "bolsista-aba-0-tab1": {
+  "x": 577.484375,
+  "y": 192.359375,
+  "width": 277.296875,
+  "height": 43.5
+ },
+ "bolsista-aba-0-tab2": {
+  "x": 832.78125,
+  "y": 192.359375,
+  "width": 354.21875,
+  "height": 43.5
+ },
+ "bolsista-aba-1": {
+  "x": 263,
+  "y": 200.25,
+  "width": 914,
+  "height": 499.5
+ },
+ "bolsista-aba-1-tab0": {
+  "x": 275,
+  "y": 212.25,
+  "width": 324.484375,
+  "height": 43.5
+ },
+ "bolsista-aba-1-tab1": {
+  "x": 577.484375,
+  "y": 212.25,
+  "width": 277.296875,
+  "height": 43.5
+ },
+ "bolsista-aba-1-tab2": {
+  "x": 832.78125,
+  "y": 212.25,
+  "width": 354.21875,
+  "height": 43.5
+ },
+ "bolsista-aba-2": {
+  "x": 263,
+  "y": 200.25,
+  "width": 914,
+  "height": 499.5
+ },
+ "bolsista-aba-2-tab0": {
+  "x": 275,
+  "y": 212.25,
+  "width": 324.484375,
+  "height": 43.5
+ },
+ "bolsista-aba-2-tab1": {
+  "x": 577.484375,
+  "y": 212.25,
+  "width": 277.296875,
+  "height": 43.5
+ },
+ "bolsista-aba-2-tab2": {
+  "x": 832.78125,
+  "y": 212.25,
+  "width": 354.21875,
+  "height": 43.5
+ },
+ "pilares-aba-0": {
+  "x": 148,
+  "y": 200,
+  "width": 1144,
+  "height": 499.5
+ },
+ "pilares-aba-0-tab0": {
+  "x": 160,
+  "y": 212,
+  "width": 375.921875,
+  "height": 43.5
+ },
+ "pilares-aba-0-tab1": {
+  "x": 513.921875,
+  "y": 212,
+  "width": 393.078125,
+  "height": 43.5
+ },
+ "pilares-aba-0-tab2": {
+  "x": 885,
+  "y": 212,
+  "width": 417,
+  "height": 43.5
+ },
+ "pilares-aba-1": {
+  "x": 148,
+  "y": 200,
+  "width": 1144,
+  "height": 499.5
+ },
+ "pilares-aba-1-tab0": {
+  "x": 160,
+  "y": 212,
+  "width": 375.921875,
+  "height": 43.5
+ },
+ "pilares-aba-1-tab1": {
+  "x": 513.921875,
+  "y": 212,
+  "width": 393.078125,
+  "height": 43.5
+ },
+ "pilares-aba-1-tab2": {
+  "x": 885,
+  "y": 212,
+  "width": 417,
+  "height": 43.5
+ },
+ "pilares-aba-2": {
+  "x": 148,
+  "y": 200,
+  "width": 1144,
+  "height": 499.5
+ },
+ "pilares-aba-2-tab0": {
+  "x": 160,
+  "y": 212,
+  "width": 375.921875,
+  "height": 43.5
+ },
+ "pilares-aba-2-tab1": {
+  "x": 513.921875,
+  "y": 212,
+  "width": 393.078125,
+  "height": 43.5
+ },
+ "pilares-aba-2-tab2": {
+  "x": 885,
+  "y": 212,
+  "width": 417,
+  "height": 43.5
+ }
+}

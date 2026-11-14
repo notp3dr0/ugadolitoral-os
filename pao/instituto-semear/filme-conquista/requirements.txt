@@ -1,0 +1,6 @@
+elevenlabs
+python-dotenv
+numpy
+scipy
+soundfile
+segno

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "w0",
+    "text": "O",
+    "start": 0,
+    "end": 0.24
+  },
+  {
+    "id": "w1",
+    "text": "filme",
+    "start": 0.24,
+    "end": 0.64
+  },
+  {
+    "id": "w2",
+    "text": "ficou",
+    "start": 0.64,
+    "end": 1.12
+  },
+  {
+    "id": "w3",
+    "text": "pronto.",
+    "start": 1.12,
+    "end": 1.68
+  }
+]

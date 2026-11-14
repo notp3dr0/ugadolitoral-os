@@ -1,0 +1,44 @@
+{
+ "voz": "Sulafat",
+ "estilo": "",
+ "falas": [
+  {
+   "id": "n1",
+   "texto": "Passar no vestibular... é só o tutorial."
+  },
+  {
+   "id": "n2",
+   "texto": "A fase difícil é chegar até o fim."
+  },
+  {
+   "id": "n3",
+   "texto": "Passagem, xerox, aluguel... e o chefão: o fim do mês."
+  },
+  {
+   "id": "n4",
+   "texto": "Por isso o Semear libera três power-ups."
+  },
+  {
+   "id": "n5",
+   "texto": "Bolsa: segura o mês."
+  },
+  {
+   "id": "n6",
+   "texto": "Mentoria: mostra o mapa."
+  },
+  {
+   "id": "n7",
+   "texto": "Rede: ninguém joga sozinho."
+  },
+  {
+   "id": "n8",
+   "texto": "Fase final: diploma na mão."
+  },
+  {
+   "id": "n9",
+   "texto": "Instituto Semear. Ninguém zera essa sozinho."
+  }
+ ],
+ "saida": "public/voz/sulafat-lite",
+ "refazer": false
+}
