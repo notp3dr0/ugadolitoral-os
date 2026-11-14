@@ -38,6 +38,7 @@ site e não pode sair: `../contexto.md`.
 | 8 | `rodada-8-folha.md` | conserto da mira e da volta do fim, travadas e memória, link direto, chamado no foco, folha de contato, giroscópio | feita e **publicada em 2026-11-13** |
 | 9 | (sem arquivo: análise do contratante, ver `../andamento.md`) | INFO pra quem contrata, AGENDA ABERTA, WhatsApp com mensagem pronta | **publicada em 2026-11-14** |
 | 10 | (sem arquivo, ver `../andamento.md`) | intro mais curta, letra mínima 11 px, vista FILMES | **publicada em 2026-11-14** |
+| 11 | (sem arquivo, ver `../andamento.md`) | intro toca sozinha (sem rolagem), INFO se revela embaralhando | **publicada em 2026-11-14** |
 
 A ordem importa: a 3 usa os módulos da 2, e a 4 reaproveita o player de filme e os dados da 2 e o
 "tom" de cada foto da 3.

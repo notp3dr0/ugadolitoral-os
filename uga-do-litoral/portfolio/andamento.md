@@ -157,3 +157,10 @@ Ordem sugerida das rodadas (o agente pode propor outra, mas mostra antes):
 - **Rodada 10 (3700e55):** intro mais curta (primeira foto a 1,8 tela no celular, era 2,7); nenhuma letra abaixo de 11 px (10,5 em 360 px); vista FILMES ao lado de COLAGEM/GRADE com os 8 filmes, inclusive o que o sorteio deixa fora da colagem. Teste: `ferramentas/rodada10.mjs`.
 - Publicadas juntas em produção (deploy `dpl_8XgeX75PNbRLhBxotksW5zA88YDc`). Push em `main` não dispara a Vercel sozinho: o deploy é pedido pelo conector da Vercel (gitSource, ref main, target production).
 - **Em aberto:** contexto por foto (show, tour, cidade, ano) depende do Pedro; domínio próprio; rádio do bastidor com música de terceiros; "Abrir no Google Drive" no player.
+
+## 2026-11-14 · rodada 11 (publicada em 2026-11-14, deploy dpl_3k9rhBGJmi8ivvPtL4KhNvZdEbW7)
+
+- Intro toca sozinha (~2,4 s depois da cortina), sem rolagem; qualquer gesto pula; só na 1ª visita da sessão; chegando por link com # vai direto. Intro ocupa 84svh (78 no celular): acervo a ~1 tela.
+- No quadro final, PEDRO e AUGUSTO não encavalam mais no celular (o movimento das linhas segue o tamanho da letra).
+- INFO se revela: títulos, rótulos e serviços embaralham e resolvem (`js/embaralha.js`, `js/info-revela.js`); texto longo sobe com fade. Menos movimento: nada anima.
+- Commit 10793b9, prévia na branch `rodada-11`. Teste: `ferramentas/rodada11.mjs` (rodada10 perdeu o passo da intro por rolagem).

@@ -27,12 +27,7 @@ for (const [rotulo, opts] of [
     const telas = await page.evaluate(() => (document.querySelector('#portfolio .media').getBoundingClientRect().top + scrollY) / innerHeight);
     exigir(telas <= 2, `${telas.toFixed(2)} telas`); return `${telas.toFixed(2)} telas`;
   });
-  await passo('a intro ainda anima (o texto das funcoes aparece rolando)', async () => {
-    const antes = await page.evaluate(() => getComputedStyle(document.querySelector('.intro-roles-visual')).opacity);
-    await page.mouse.wheel(0, 400); await page.evaluate(() => scrollBy(0, innerHeight * .4)); await page.waitForTimeout(500);
-    const depois = await page.evaluate(() => getComputedStyle(document.querySelector('.intro-roles-visual')).opacity);
-    exigir(+depois > +antes, `opacidade ${antes} -> ${depois}`);
-  });
+  // (a intro por rolagem saiu na rodada 11: o teste dela mora em rodada11.mjs)
   const letrasPequenas = () => page.evaluate(() => {
     const achadas = new Set();
     for (const el of document.querySelectorAll('body *')) {

@@ -6,7 +6,7 @@
 > Pendência que sai desta lista sai com motivo (feito, virou projeto, mandaram soltar), nunca em silêncio.
 
 ## Onde paramos
-Portfólio: rodadas 8, 9 e 10 no ar em ugadolitoral.vercel.app (2026-11-14): bastidor com folha de contato e link direto, INFO pra quem contrata, botão AGENDA ABERTA, intro mais curta e vista FILMES. Detalhe em `uga-do-litoral/portfolio/andamento.md`.
+Portfólio: rodadas 8 a 11 no ar em ugadolitoral.vercel.app (2026-11-14): bastidor com folha de contato e link direto, INFO pra quem contrata (e que se revela embaralhando), botão AGENDA ABERTA, intro que toca sozinha e vista FILMES. Detalhe em `uga-do-litoral/portfolio/andamento.md`.
 Canal Dark: série 2D **Revelação** aprovada em texto (2026-11-04): bíblia v1 e roteiro do EP01 em `canal-dark/series/revelacao/`. Motor em `canal-dark/templates/remotion-2d-pecas/`. Próximo: arte, voz e animação do EP01. Filme do Semear segue entregue e aprovado (2026-11-02).
 
 ## Pendências
