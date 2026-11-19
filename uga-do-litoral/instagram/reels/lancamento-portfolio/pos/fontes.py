@@ -145,6 +145,56 @@ def foto(arquivo, t, cx=0.5, cy=0.5, z0=1.0, z1=1.07, dx=0.0, dy=0.0):
     return Quadro(img)
 
 
+# ---------------- fotos lado a lado (formato horizontal) ----------------
+@lru_cache(maxsize=8)
+def _foto_altura(arquivo, altura):
+    p = Path(arquivo)
+    if not p.is_absolute():
+        p = ASSETS / arquivo
+    im = np.asarray(Image.open(p).convert("RGB"))
+    s = altura / im.shape[0]
+    r = cv2.resize(im, (round(im.shape[1] * s), altura), interpolation=cv2.INTER_AREA if s < 1 else cv2.INTER_CUBIC)
+    return dec(r)
+
+
+def foto_fila(fila, i, k, n):
+    """Horizontal: as fotos (verticais) em fila, inteiras, sem corte. A da vez no centro, acesa; as vizinhas
+    escurecem com a distancia. Na batida a fila desliza uma posicao (6 quadros, saida suave) e segue andando
+    devagar. A primeira (p1) chega do mergulho: comeca cobrindo a altura do quadro e abre ate o tamanho da fila."""
+    HC = round(H * .80)
+    GAP = round(W * .02)
+    BH = round(HC * 1.08)
+    bases = [_foto_altura(a, BH) for a in fila]
+    larg = [b.shape[1] * HC / BH for b in bases]
+    xs = [0.0]
+    for j in range(1, len(fila)):
+        xs.append(xs[-1] + larg[j - 1] / 2 + GAP + larg[j] / 2)
+    ease = lambda u: 1 - (1 - min(1.0, max(0.0, u))) ** 3
+    c = xs[i]
+    if i > 1 and k < 6:
+        c = xs[i - 1] + (xs[i] - xs[i - 1]) * ease(k / 6)
+    c += (k / max(1, n)) * W * .012              # deriva continua: o movimento atravessa os cortes
+    esc = 1 + .03 * (k / max(1, n))
+    if i == 1:                                    # p1 sai do mergulho (foto na altura inteira) e abre pra fila
+        esc *= (H / HC) + (1 - H / HC) * ease(k / 8)
+    out = np.zeros((H, W, 3), np.float32)
+    um = np.ones(bases[0].shape[:2], np.float32)
+    for j, b in enumerate(bases):
+        X = W / 2 + (xs[j] - c) * esc
+        meia = larg[j] * esc / 2
+        if X + meia < -2 or X - meia > W + 2:
+            continue
+        a = HC * esc / BH
+        M = np.array([[a, 0, X - a * b.shape[1] / 2], [0, a, H / 2 - a * BH / 2]], np.float32)
+        img = cv2.warpAffine(b, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)
+        m = cv2.warpAffine(um if um.shape == b.shape[:2] else np.ones(b.shape[:2], np.float32), M, (W, H),
+                           flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)[..., None]
+        d = min(1.0, abs(xs[j] - c) / (HC * .8))
+        ganho = 1 - .8 * d
+        out = out * (1 - m) + img * ganho * m
+    return Quadro(out)
+
+
 # ---------------- filmes ----------------
 FILMES = json.loads((POS / "filmes.json").read_text(encoding="utf-8")) if (POS / "filmes.json").exists() else {}
 
@@ -174,6 +224,14 @@ def _filme_quadros(n_filme, inicio_s, n_saida, cx=0.5):
     for i in idx:
         fr = cv2.cvtColor(guard.get(i, ult), cv2.COLOR_BGR2RGB)
         h, w = fr.shape[:2]
+        if W > H and w < h:  # saida horizontal, filme vertical: inteiro, no centro, sobre preto (sem esticar nem cortar)
+            esc = H / h
+            r = cv2.resize(fr, (round(w * esc), H), interpolation=cv2.INTER_AREA if esc < 1 else cv2.INTER_LINEAR)
+            tela = np.zeros((H, W, 3), np.uint8)
+            x0 = (W - r.shape[1]) // 2
+            tela[:, x0:x0 + r.shape[1]] = r
+            out.append(tela)
+            continue
         if w / h > W / H:  # horizontal: corte central 9:16
             cw = round(h * W / H)
             x0 = int(np.clip(round(cx * w - cw / 2), 0, w - cw))

@@ -164,3 +164,83 @@ Ordem sugerida das rodadas (o agente pode propor outra, mas mostra antes):
 - No quadro final, PEDRO e AUGUSTO não encavalam mais no celular (o movimento das linhas segue o tamanho da letra).
 - INFO se revela: títulos, rótulos e serviços embaralham e resolvem (`js/embaralha.js`, `js/info-revela.js`); texto longo sobe com fade. Menos movimento: nada anima.
 - Commit 10793b9, prévia na branch `rodada-11`. Teste: `ferramentas/rodada11.mjs` (rodada10 perdeu o passo da intro por rolagem).
+
+## 2026-11-17 · rodada 12 (câmera) feita; 13 e 14 planejadas
+
+- Causa do "só gira 180": no celular o olhar voltava sozinho pro eixo 1,8 s depois de parar, e a ajuda puxava pra foto mais perto mesmo de lado; no desktop, passar o cursor por um botão do HUD na borda ou por uma foto perto (trava da mira) parava o giro.
+- Conserto em `bastidor/controls.js` e `main.js`; setas ←/→ giram. Teste `ferramentas/rodada12.mjs` (5 de 9 passos falhavam antes). Commit 48eeb3d, prévia na branch `rodada-12`.
+- Planos: `plano/rodada-13-luz.md` (bake do Blender num lance, atrás de `?luz=blender`) e `plano/rodada-14-gente.md` (pessoas 3D; falta o Pedro escolher o estilo).
+
+## 2026-11-17 · rodada 12 no ar; rodadas 13 e 14 em prévia
+
+- Rodada 12 (câmera) publicada com o OK do Pedro ("deu super certo"): push `lab:main` + deploy de produção dpl_DEeKFZLbxeSGe6q1XGHwiEdg8Xm6.
+- Rodada 13 (luz): bake no corredor inteiro, na própria casca do site (desvio do plano, ver `plano/rodada-13-luz.md`). Scripts `bake_site.py` e `bake_site_pos.py` na pasta `blender/` do showreel; mapas em `site-lab/bastidor/luz/` (120 KB). `?luz=blender`, ganho 4.
+- Rodada 14 (gente): o Pedro escolheu manequim estilizado. Montado em código (`bastidor/manequim.js`), uma malha com esqueleto por pessoa. `?gente=manequim`. Detalhes em `plano/rodada-14-gente.md`.
+- Testes: rodada12, rodada8, bastidor e encontros passam; encontros com `EXTRA="&gente=manequim&luz=blender"` passam (pior caso 86 chamadas de desenho, teto 96). Prints em `ferramentas/saida/luz/` e `saida/gente/`.
+- Commit d023236, prévia na branch `rodada-13`. Falta o OK do Pedro pra virar padrão (tirar as chaves) e publicar.
+
+## 2026-11-18 · rodada 15 (prévia rodada-15)
+O Pedro disse que só a luz tinha mudado e que o manequim era genérico. Pesquisa aprofundada (`reports/Bastidor fiel ao vídeo.md`) e depois: concreto de fôrma e piso polido assados do material do filme, papel e fita das cópias com a luz pintada, sombra, reflexo falso no piso (`?luz=blender`); elenco com base CC0 da Quaternius vestida por script, SEGURANÇA amarelo nas costas, poses por IK, animação parado/andando (`?gente=elenco`). Testes todos OK, pior caso 88 chamadas. Ver `plano/rodada-15-fiel.md`. Esperando o OK do Pedro pra virar padrão e ir pro ar.
+
+## 2026-11-18 · rodada 16 (prévia rodada-16)
+O Pedro achou que o cenário não progrediu e mandou esquecer a mudança de cenário: fica o corredor de antes, muda só a gente. O elenco virou o padrão (`?gente=recorte` volta pras silhuetas); a luz e a matéria do Blender (rodadas 13 e 15) ficam desligadas no código, só com `?luz=blender`, e não vão pro ar. Testes OK no padrão (artista e orçamento falharam numa bateria longa por tempo e passaram 2x rodando sozinhos, pior caso 86).
+
+## 2026-11-18 · rodada 17 (prévia rodada-17)
+O Pedro quis de volta o cenário do Blender (rodada 15) sem o reflexo do chão ("absurdamente feio") e sem as luzes dos refletores batendo no chão, e personagens que não pareçam manequim. Feito: cenário do filme é o padrão (`?luz=hoje` volta pro antigo); reflexo removido do código; o piso usa o mapa de luz reduzido a ~2 m por ponto (sem poças, mantém o escuro de cada trecho); parede e papel calibrados contra o render (parede 25 x 24, piso 19-25 x 21). Elenco: cabeça modelada de volta (sai a oval), pele em tons diferentes, cabelo e barba da Quaternius (CC0), olhos escuros sem traço; boné e capuz corrigidos. Testes todos OK (pior caso 84). Falta o OK do Pedro.
+- 2026-11-18 (cont.): o Pedro viu silhuetas chapadas na prévia: na internet de verdade o elenco (~1,2 MB) chegava depois do primeiro encontro e o recorte ficava. Agora o recorte vira o personagem 3D no mesmo grupo quando o elenco chega (`ferramentas/elenco-lento.mjs` simula 8 s de atraso: recorte → 3d, sem erro).
+- 2026-11-18 (cont.): cabeça do elenco girava (osso sem trilha na animação acumulava o olhar): agora desfaz o olhar antes da animação (`ferramentas/cabeca.mjs`). Folha de contato retirada (botões e fim; `sheet.js` guardado sem uso; teste 8.7 virou "sem folha"). Tirado o "VOCÊ CHEGOU NO PALCO" da tela final. Luz refeita sem as telas (a sombra de tela vertical/horizontal ficava pintada na parede quando o sorteio trocava o filme). RYU regravado na horizontal 1802x1012 (o original do Drive é gravado deitado com giro de 90 graus; a conversão antiga espremeu): prévia, pôster e HLS, e data.js/index.html corrigidos.
+
+## 2026-11-18 · rodada 18 (prévia rodada-18)
+Home: estudo do site do Cello (mesma estrutura e entrada parecida; pesa mais que o nosso, mas rola lisa). Entrada nova (credencial padrão, visor, nome antigo por chave), monitor do bastidor fixo com o corredor do Blender, colagem com 42 vagas + convite pro acervo, rolagem leve (vigia próprio no lugar de IntersectionObserver, fluido pausa na rolagem, revelação sem filtro, sem :has, content-visibility). Ver `plano/rodada-18-home.md`. Falta o Pedro escolher a entrada e dar o OK.
+
+## 2026-11-18 · rodada 19 (prévia rodada-19)
+O Pedro achou péssima a entrada da credencial ("Acesso liberado"): voltou a entrada das letras (o visor fica escondido em `?entrada=visor`). Gostou do monitor do bastidor (fica). O fim do acervo, que eram duas folhas de porta (ENTRADA DE ARTISTAS / BASTIDOR, pareciam dois cards pro mesmo lugar), virou uma janela só: o corredor do Blender tocando, BASTIDOR e ENTRAR; o monitor do canto sai quando ela está na tela. Saíram as contagens "109 fotografias · 8 filmes". No bastidor: os botões de entrar aparecem na hora (o "PASSANDO O SOM" esperava as primeiras fotos); o crachá ficou maior e com cordão de cetim em V, mosquetão e capa de PVC renderizados no Blender (`portfolio/objetos/credencial.py`); a pulseira virou um render só dela, sem mão (`objetos/pulseira.py`). Tentei um braço realista, o Pedro não quis ("não é pra fazer algo realista"): descartado. Bug achado e corrigido: content-visibility no celular fazia a colagem pular e o vigia perder posição (agora só no computador; vigia remede quando a página muda de altura). Testes todos OK.
+
+## 2026-11-18 · rodada 20 (prévia rodada-20)
+Pedro: o cordão era um PNG duro; pediu física de colar como no site de referência (wendyenyi.vercel.app, da rodada 6). Estudei o código dela (three.js 0.170, corda que só puxa + meio da fita atrasado + cartão como segundo pêndulo) e fiz a nossa: duas fitas em V em SVG com a estampa correndo na curva, metal (presilha, giratório, mosquetão) render do Blender (`objetos/credencial.py` → `prendedor.webp`), arrastar leva o crachá, levantar afrouxa a fita. Cartão de volta ao original (sem capa de PVC, furo de volta), só ACESSO BACKSTAGE (saiu nome e funções), tamanho maior mantido. WALLPAPER ↓ no acervo (galeria) e no bastidor (legenda da foto): corte na proporção da tela, maior resolução da foto, assinatura discreta, compartilhar no celular / baixar no computador (`js/wallpaper.js`). Tirado o 2026 da entrada. A entrada das letras só existe na home (ACERVO/FILMES/INFO só cabeçalho); título da INFO virou título normal, sem embaralhar. Ideias minhas: mira de câmera no hover da colagem (`js/mira.js`), a porta do bastidor abre com a rolagem (CSS scroll-driven), e `?letras=foto` (a foto aparece dentro de PEDRO AUGUSTO no fim da entrada; só por link). Testes OK (falhas pontuais de tempo passaram ao repetir).
+- 2026-11-18 (cont.): rodada 20 no ar com o OK do Pedro (commit 592a6d5, deploy de produção dpl_3iPjVEWYqznR3GXpi2VedMWcTdQx). Vão juntas as rodadas 15 a 19 (cenário do filme, elenco, home nova).
+
+## 2026-11-18 · rodada 21 (no ar)
+O Pedro aceitou todas as ideias da rodada 20 (menos o domínio, por enquanto) e pediu mais, com referência gringa (`referencias/pesquisas/pesquisa-portfolio-interativo-funcionalidades-2026-11-18.md`). Feito:
+- a foto dentro de PEDRO AUGUSTO virou o padrão (`?letras=branco` volta pro branco);
+- na INFO, os nomes de JÁ REGISTREI abrem a galeria do artista (`js/info-artistas.js`, 22 nomes);
+- OUVIR O SHOW na barra do acervo: batida de trap feita na hora pelo navegador, abafada como atrás da parede, que abre perto da janela do bastidor; clique de obturador ao abrir foto; desligado por padrão (`js/som-show.js`);
+- fotômetro: segurar no vazio entre as fotos mede a luz, soltar estoura o flash e rearruma a colagem (`js/fotometro.js`);
+- o monitor do bastidor troca pra CAM da ala do artista em foco (`js/monitor.js`);
+- 404 é o monitor mostrando um corredor que não existe (`404.html`);
+- FOTOGRAFAR no bastidor: o corredor desenhado de novo em 1080 x 1920, com visor, ala, data e hora, ACESSO BACKSTAGE e o endereço; compartilhar no celular, baixar no computador (`bastidor/foto.js`; a entrega ficou em `js/wallpaper.js` → `entregar`). No celular o botão fica embaixo do ACERVO e o GIRO embaixo do SETLIST, pra não bater no crachá.
+- Teste novo `ferramentas/rodada21.mjs` (computador e celular, tudo certo); prints em `ferramentas/saida/r21/`.
+- No ar com o OK que o Pedro já tinha dado ("se quiser, pode até subir"): commit 52bd36d, push `lab:main`, deploy de produção dpl_7aJLpXgbNEWcf5z6jMaNTVvgb6gU. Conferido no ar (computador e celular, sem erro); endereço que não existe cai na 404 nova com código 404.
+
+## 2026-11-18 · rodada 22 (NA ESTRADA e medição)
+O Pedro pediu os dois pendentes (diário de turnê e Analytics) e liberou usar o Google dele (plano Ultra).
+- NA ESTRADA na INFO (`js/estrada.js`): datas como costas de camiseta de turnê, PRÓXIMAS (cidade em vermelho, "VOU ESTAR LÁ") e JÁ PASSOU; a data decide sozinha em que grupo o show fica. Nome de artista com galeria abre a galeria. Só entra show confirmado, cada linha com a fonte:
+  - 29/11/2026 · São Paulo · Dia do Trap · Vale do Anhangabaú (o Pedro falou, 18/11);
+  - 04/12/2026 · São Caetano do Sul · TRAP in Sanca × Veigh · Espaço Liv (trapinsanca.com.br/agenda + Pedro);
+  - 13–14/11/2026 · São Caetano do Sul · TRAP in Sanca Festival · Espaço Liv · TETO, RYU THE RUNNER, ALEE, DESIIIK, PHL (e-mails de credenciamento + site do evento);
+  - 16/10/2026 · São Caetano do Sul · TRAP in Sanca × Matuê (site do evento + pasta MATUE TRAP IN SANCA no Drive).
+- As fotos do acervo não têm data (o EXIF sai na exportação), então o resto ficou numa planilha no Drive do Pedro pra ele preencher: "Uga · Na Estrada (diário de shows do site)" (https://docs.google.com/spreadsheets/d/1RKSqAhRYIHGFiWeH7jNWzOFP3ceFgQojb_iMBbTnKZU). Quando ele preencher, as linhas viram entradas em `SHOWS`.
+- Medição: `js/marcar.js` carrega o Vercel Web Analytics (sem cookie) e marca entrar no bastidor, FOTOGRAFAR, wallpaper, OUVIR O SHOW, fotômetro, nome de artista, WhatsApp, e-mail, Instagram e ida pro bastidor. Está com `LIGADO = false`: o Analytics não está ativo no projeto e a CLI da Vercel aqui está deslogada; o Pedro liga no painel (Projeto → Analytics → Enable), aí troca pra `true` e publica. Visitas por página funcionam em qualquer plano; os eventos (FOTOGRAFAR etc.) só aparecem no plano Pro.
+- Teste `ferramentas/rodada22.mjs` (com o relógio em 18/11 e em 10/12: depois do último show tudo vai pra JÁ PASSOU).
+- Medição ligada: o Pedro ativou o Analytics no painel; `LIGADO = true` (commit eb007f1), deploy dpl_EovNeYi32PaNPqfnaYPVtJ7WFqpZ; o script da Vercel carrega no ar (200), sem erro.
+- No ar: commit f8cba1d, push `lab:main` (e prévia `rodada-22`), deploy de produção dpl_63MJhqzHeYRdjVM5TSJxnokyvKBu. Conferido no ar: os 4 shows aparecem, sem erro, computador e celular.
+
+## 2026-11-18 · rodada 23 (INFO com foto; prévia rodada-23)
+- OUVIR O SHOW saiu da home a pedido do Pedro (direto pro ar, commit ac5339f, deploy dpl_5RVvzsMEt6rc5SJsDjjfsMCF4xpq). `js/som-show.js` guardado sem uso.
+- O Pedro achou a INFO "muito texto jogado". Diagnóstico: nenhuma foto numa página de fotógrafo, metade da tela vazia no computador, tudo com o mesmo peso, os 22 artistas num parágrafo corrido, fim sem chamado.
+- Nova sequência, pensada pra quem vai contratar: abertura (frase grande + maço de cópias do acervo que se folheia sozinho e abre a galeria) → 01 JÁ REGISTREI como line-up de cartaz (nomes grandes, um a cada três vazado, foto do artista acompanha o mouse no computador) → 02 NA ESTRADA → 03 O QUE DÁ PRA CONTRATAR com uma foto por serviço (palco, bastidor, retrato, filme, tratamento, por dentro da estrutura) → 04 DE ONDE EU VENHO em linha do tempo (as mesmas frases da bio, em quatro paradas) → fecho ME CHAMA sobre a foto do TZ diante do público, com WhatsApp, e-mail e Instagram.
+- Texto novo só nos títulos e no fecho ("Tem show, turnê ou lançamento vindo aí?" / "ME CHAMA."). Fotos sem mexer na cor; só escuro por cima onde tem texto.
+- Arquivos: `index.html` (seção #info), `js/info-visual.js` (novo), `js/info-artistas.js`, `js/estrada.js`, `js/info-revela.js`, `style.css` (bloco rodada 23). Teste `ferramentas/rodada23.mjs`; prints em `ferramentas/saida/r23/` e `saida/info/` (antes e depois).
+
+
+## 2026-11-18 · rodada 24 (INFO vira SOBRE, ajustes do Pedro; prévia rodada-24)
+O Pedro gostou de grande parte da rodada 23 e pediu pra tirar o que tem cara de site feito por IA:
+- Topo sem "PEDRO AUGUSTO" e sem "FOTOGRAFIA · VÍDEO · EDIÇÃO · SÃO PAULO"; fica só a frase (agora o título da página): "Fotografo e filmo rap e trap: o show, a turnê, o ensaio e o que acontece atrás do palco." Depois, AGENDA ABERTA · ME CHAMA um pouco maior (14 px no computador, 13 no celular) e os três links.
+- Sem rótulo numerado vermelho em lugar nenhum (01 · JÁ REGISTREI, 02 · NA ESTRADA, 03…, 04…). O line-up de cartaz fica sem título; o diário de shows começa direto no PRÓXIMAS (o Pedro gosta dele); JÁ PASSOU continua embaixo.
+- Saíram as tours pequenas (O Melhor Dia · FKTOUR · Odisseya Tour · Adulto Ideal Tour) e os números 01–06 nas fotos dos serviços.
+- Títulos como frase em branco, na letra da abertura: "O que dá pra contratar?" e "Sobre mim".
+- A linha do tempo voltou a ser a bio em texto corrido (os três parágrafos de antes), com "Sobre mim" do lado no computador.
+- No cabeçalho, INFO virou SOBRE (endereço `#sobre`); link antigo com `#info` continua abrindo e o endereço vira `#sobre`.
+- Teste novo `ferramentas/rodada24.mjs` (computador e celular, tudo certo); `rodada11` e `rodada23` ajustados. Prints em `ferramentas/saida/r24/`.
+- O Pedro aprovou ("achei perfeito, sim") e pediu uma foto dele embaixo do "Sobre mim", ao lado do texto. Foto que ele mandou na conversa, exportada sem mexer na cor (`site-lab/assets/pedro-sobre-lg.webp`, 1508 × 851, 239 KB, só baixa quando o SOBRE abre); o recorte 4:5 centrado nele é só no CSS. No computador: título em cima à esquerda, foto embaixo dele, texto ao lado da foto; no celular: título, foto, texto.
+- No ar: commit b3eb17d, push `lab:main` (e prévia `rodada-24`), deploy de produção dpl_3zbsi7zRpsSEAJzVjDATSBE2UZ58.

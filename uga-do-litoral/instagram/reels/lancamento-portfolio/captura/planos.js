@@ -141,7 +141,8 @@ export function criarPlanos(c) {
     A1_planta: (() => {
       const b = plan.bounds, cx = (b.minX + b.maxX) / 2, cz = (b.minZ + b.maxZ) / 2;
       const T_TOPO = 114 / FPS;
-      const topo = t => ({ x: cx, y: 36 - 4 * (t / T_TOPO), z: cz, yaw: -90 * DEG - 6 * DEG * (1 - t / T_TOPO), pitch: -90 * DEG, roll: 0 });
+      const GIRO = window.__capFmt === 'h' ? 0 : -90 * DEG; // deitado, a planta gira pra ocupar o quadro largo
+      const topo = t => ({ x: cx, y: 36 - 4 * (t / T_TOPO), z: cz, yaw: GIRO - 6 * DEG * (1 - t / T_TOPO), pitch: -90 * DEG, roll: 0 });
       const fim = travessiaSem(TA), h = 1 / 240;
       const fimV = (k) => (travessiaSem(TA + h)[k] - travessiaSem(TA - h)[k]) / (2 * h);
       const K1 = { x: 10.5, y: 12.5, z: 2.2 }, K2 = { x: .55, y: 4.6, z: 2.7 };

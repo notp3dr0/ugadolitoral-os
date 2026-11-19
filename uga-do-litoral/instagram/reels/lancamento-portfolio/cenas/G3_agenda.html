@@ -10,69 +10,72 @@
 <canvas id="fluido" width="1080" height="1920"></canvas>
 <canvas id="tipo" width="1080" height="1920"></canvas>
 <script type="module">
-import { W, H, OFF, carregarTempo, carregarFontes, linhaGrande, linhaMono, lapis, curva, prog, outCubic, outQuart, outExpo, inOutSine, lerp, clamp } from './comum.js';
+// v3: só AGENDA ABERTA (o Pedro tirou o site, o @, o UGA DO LITORAL e o risco de lápis, 2026-11-16).
+// As batidas 65, 66 e 67, que traziam o texto, viram três respiros de luz vermelha atrás do título.
+import { FMT, W, H, carregarTempo, carregarFontes, prog, inOutSine } from './comum.js';
 import { criarFluido } from './fluido.js';
 
 const tempo = await carregarTempo();
 await carregarFontes();
 const F0 = tempo.batidas.find(b => b.b === 64).f;
-const L = b => tempo.batidas.find(x => x.b === b).f - F0;     // quadro local da batida
+const L = b => tempo.batidas.find(x => x.b === b).f - F0;
 const B65 = L(65), B66 = L(66), B67 = L(67), CORTE = tempo.corte_musica_f - F0;
-const AQUECE = 150; // passos de fluido antes do quadro 0: o fundo já entra vivo
+const AQUECE = 150;
 
-const fluido = criarFluido(document.getElementById('fluido'), { intensity: .62, autoSpeed: .34, ganho: .78, fase: 11.0 });
+for (const id of ['fluido', 'tipo']) { const el = document.getElementById(id); el.width = W; el.height = H; }
+const fluido = criarFluido(document.getElementById('fluido'), { intensity: .62, autoSpeed: .34, ganho: .78, fase: 11.0, cssW: W / 2, cssH: H / 2 });
 const cv = document.getElementById('tipo'), c = cv.getContext('2d');
 
-// composição (px do quadro de 1080 × 1920); margens seguras: texto entre 250 e 1500
-const CORPO = 352, ENTRE = Math.round(CORPO * .83);
-const Y1 = 800, Y2 = Y1 + ENTRE;           // linhas de base de AGENDA e ABERTA
-const YURL = 1272, YARR = 1366, YTOPO = 318;
-const MONO_CORPO = 58;                     // Inconsolata: maiúscula ~0,63 em = ~36 px
+// composição: AGENDA ABERTA pequeno (pouco maior que uma legenda), numa linha, no centro (pedido do Pedro, 2026-11-16)
+const V = FMT === 'v';
+const CORPO = V ? 66 : 58, ESPACO = .14;   // Arimo 700, aberto
+const CY = H / 2;
+const TEXTO = 'AGENDA ABERTA';
+// o embaralhado do site (site-lab/js/embaralha.js): símbolos que se resolvem da esquerda pra direita
+const SIMBOLOS = '%#&+/*=';
+function letras(n) {
+  // entrada: resolve em 16 quadros; nas batidas 65, 66 e 67 a metade final volta a embaralhar por 5 quadros
+  const fases = [[0, 16, 0], [B65, 5, .55], [B66, 5, .45], [B67, 6, .3]];
+  let r = 1;
+  for (const [f, d, desde] of fases) if (n >= f && n < f + d) r = desde + (1 - desde) * (n - f) / d;
+  const passo = Math.round(r * 42), resolvidas = Math.floor(r * TEXTO.length);
+  return [...TEXTO].map((l, i) => (i < resolvidas || l === ' ' || r >= 1) ? l : SIMBOLOS[(i * 3 + passo) % SIMBOLOS.length]);
+}
+c.font = `700 ${CORPO}px 'Arimo', Arial, sans-serif`;
+const larg = [...TEXTO].map(l => c.measureText(l).width + ESPACO * CORPO);
+const TOTAL = larg.reduce((x, y) => x + y, 0) - ESPACO * CORPO;
+const X = []; { let x = W / 2 - TOTAL / 2; larg.forEach(w => { X.push(x + (w - ESPACO * CORPO) / 2); x += w; }); }
 
-// o sublinhado de lápis (fixo no cartão): uma passada firme que sobe de leve e volta num gancho curto
-const SUB = curva([[92, Y2 + 74], [300, Y2 + 70], [560, Y2 + 64], [820, Y2 + 56], [990, Y2 + 48], [1004, Y2 + 54], [930, Y2 + 70], [840, Y2 + 82]], 30);
-
-function revelar(ctx, n, a, desenho) {
-  // entra numa batida: máscara corre da esquerda pra direita e o texto sobe 16 px até assentar
-  const t = prog(n, a, a + 7);
-  if (t <= 0) return;
-  const e = outQuart(t);
-  ctx.save();
-  ctx.beginPath(); ctx.rect(0, 0, 90 + e * 990, H); ctx.clip();
-  ctx.translate(0, (1 - outCubic(t)) * 16);
-  desenho();
-  ctx.restore();
+// respiro: a luz sobe na batida e cai em ~9 quadros; cada um um pouco maior
+function respiro(n) {
+  let a = 0;
+  [[B65, .26], [B66, .32], [B67, .40]].forEach(([b, pico]) => {
+    if (n < b) return;
+    a = Math.max(a, pico * Math.exp(-2.4 * (n - b) / 9) * (1 - Math.exp(-14 * (n - b + .35))));
+  });
+  if (n >= CORTE) a = Math.max(a, .08 * Math.exp(-(n - CORTE) / 30));
+  return a;
 }
 
 window.desenhar = n => {
   fluido.irPara(AQUECE + n);
   c.setTransform(1, 0, 0, 1, 0, 0);
   c.clearRect(0, 0, W, H);
-  // assentamento (irmão do G1): 1,06 → 1,00 em 6 quadros; depois a câmera segue entrando, quase parada
-  const assenta = 1 + .06 * (1 - outCubic(prog(n, 0, 6)));
-  const deriva = 1 + .022 * inOutSine(prog(n, 0, 100)) ;
-  const k = assenta * deriva;
-  const cx = W / 2, cy = 930;
-  c.translate(cx, cy); c.scale(k, k); c.translate(-cx, -cy - 8 * inOutSine(prog(n, 0, 100)));
-
-  linhaGrande(c, 'AGENDA', W / 2, Y1, CORPO, W * .925);
-  linhaGrande(c, 'ABERTA', W / 2, Y2, CORPO, W * .925);
-
-  revelar(c, n, B65, () => linhaMono(c, 'ugadolitoral.vercel.app', W / 2, YURL, MONO_CORPO, 1.5, OFF));
-  revelar(c, n, B66, () => linhaMono(c, '@uga_do_litoral', W / 2, YARR, MONO_CORPO, 1.5, OFF));
-
-  if (n >= B67) {
-    // o lápis cai na batida: já entra com um terço do traço e termina em 6 quadros
-    const p = .34 + .66 * outCubic(prog(n, B67, B67 + 6));
-    lapis(c, SUB, p, 15, 7);
-    // UGA DO LITORAL pequeno no topo, na mesma pancada
-    const t = outCubic(prog(n, B67, B67 + 5));
-    c.save(); c.globalAlpha = .55 + .45 * t;
-    linhaMono(c, 'UGA DO LITORAL', W / 2, YTOPO + (1 - t) * -10, 34, 34 * .32, OFF);
-    c.restore();
+  const a = respiro(n);
+  if (a > .002) {
+    const r = Math.max(W, H) * .5;
+    const g = c.createRadialGradient(W / 2, CY, 0, W / 2, CY, r);
+    g.addColorStop(0, `rgba(205,8,4,${a})`); g.addColorStop(.45, `rgba(150,0,0,${a * .45})`); g.addColorStop(1, 'rgba(90,0,0,0)');
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
   }
+  // a câmera entra devagar até o fim
+  const k = 1 + .05 * inOutSine(prog(n, 0, 97));
+  c.translate(W / 2, CY); c.scale(k, k); c.translate(-W / 2, -CY);
+  c.font = `700 ${CORPO}px 'Arimo', Arial, sans-serif`;
+  c.fillStyle = '#f2f0eb'; c.textAlign = 'center'; c.textBaseline = 'middle';
+  letras(n).forEach((l, i) => c.fillText(l, X[i], CY));
 };
-window.CENA = { id: 'G3_agenda', quadros: 98, formato: 'jpg', marcos: { B65, B66, B67, CORTE } };
+window.CENA = { id: 'G3_agenda', quadros: 98, formato: 'jpg', marcos: { B65, B66, B67, CORTE }, obs: 'v3: só AGENDA ABERTA, pequeno e embaralhando como no site; respiros de luz vermelha nas batidas 65 a 67' };
 window.pronto = true;
 </script>
 </body></html>

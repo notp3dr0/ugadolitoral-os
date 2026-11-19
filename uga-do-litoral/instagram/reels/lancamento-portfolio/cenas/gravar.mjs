@@ -16,14 +16,16 @@ const { servir } = await import(pathToFileURL(path.join(FERR, 'servidor.mjs')).h
 
 const id = process.argv[2];
 if (!id || !fs.existsSync(path.join(AQUI, `${id}.html`))) { console.log('uso: node cenas/gravar.mjs <G1_nome|G2_acervo|G3_agenda> [q,q,q | --teste]'); process.exit(1); }
-const arg = process.argv[3] || '';
+const H_ = process.argv.includes('--h'); // formato horizontal: 1920 x 1080, saída em quadros/<ID>_h/
+const argv = process.argv.filter(a => a !== '--h');
+const arg = argv[3] || '';
 const teste = arg === '--teste';
 const lista = arg && !teste ? arg.split(',').map(Number) : null;
 
 const srv = await servir(RAIZ);
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist', '--force-color-profile=srgb'] });
-const ctx = await browser.newContext({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
-const url = `${srv.url}/${path.relative(RAIZ, AQUI).split(path.sep).join('/')}/${id}.html`;
+const ctx = await browser.newContext({ viewport: H_ ? { width: 960, height: 540 } : { width: 540, height: 960 }, deviceScaleFactor: 2 });
+const url = `${srv.url}/${path.relative(RAIZ, AQUI).split(path.sep).join('/')}/${id}.html${H_ ? '?fmt=h' : ''}`;
 
 async function abrir() {
   const page = await ctx.newPage();
@@ -52,7 +54,8 @@ async function quadro(page, n, tipo) {
 const page = await abrir();
 const cena = await page.evaluate(() => window.CENA);
 const ext = cena.formato === 'png' ? 'png' : 'jpg';
-const pasta = path.join(PROJ, 'quadros', id, 'cor');
+const ID_SAIDA = id + (H_ ? '_h' : '');
+const pasta = path.join(PROJ, 'quadros', ID_SAIDA, 'cor');
 
 if (teste) {
   const alvo = Math.floor(cena.quadros * .6);
@@ -72,8 +75,8 @@ if (teste) {
   }
   console.log(`\n${ns.length} quadros em ${((Date.now() - t0) / 1000).toFixed(1)} s -> ${pasta}`);
   if (!lista) {
-    fs.writeFileSync(path.join(PROJ, 'quadros', id, 'pronto.json'), JSON.stringify({
-      quadros: cena.quadros, passes: ['cor'], formato: `${ext}, 1080x1920${ext === 'png' ? ', com transparencia' : ', opaco'}`,
+    fs.writeFileSync(path.join(PROJ, 'quadros', ID_SAIDA, 'pronto.json'), JSON.stringify({
+      quadros: cena.quadros, passes: ['cor'], formato: `${ext}, ${H_ ? '1920x1080' : '1080x1920'}${ext === 'png' ? ', com transparencia' : ', opaco'}`,
       marcos_locais: cena.marcos, obs: cena.obs || ''
     }, null, 1));
   }

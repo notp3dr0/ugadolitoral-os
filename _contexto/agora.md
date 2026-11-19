@@ -6,7 +6,7 @@
 > Pendência que sai desta lista sai com motivo (feito, virou projeto, mandaram soltar), nunca em silêncio.
 
 ## Onde paramos
-Portfólio: rodadas 8 a 11 no ar em ugadolitoral.vercel.app (2026-11-14): bastidor com folha de contato e link direto, INFO pra quem contrata (e que se revela embaralhando), botão AGENDA ABERTA, intro que toca sozinha e vista FILMES. Detalhe em `uga-do-litoral/portfolio/andamento.md`.
+Portfólio: rodadas 12 a 24 no ar em ugadolitoral.vercel.app (2026-11-18): bastidor com cenário do filme, elenco e FOTOGRAFAR; home com monitor do bastidor e crachá com cordão; página SOBRE (ex-INFO) pra quem contrata, com NA ESTRADA e sua foto; medição da Vercel ligada. Detalhe em `uga-do-litoral/portfolio/andamento.md`.
 Canal Dark: série 2D **Revelação** aprovada em texto (2026-11-04): bíblia v1 e roteiro do EP01 em `canal-dark/series/revelacao/`. Motor em `canal-dark/templates/remotion-2d-pecas/`. Próximo: arte, voz e animação do EP01. Filme do Semear segue entregue e aprovado (2026-11-02).
 
 ## Pendências
@@ -29,6 +29,7 @@ Canal Dark: série 2D **Revelação** aprovada em texto (2026-11-04): bíblia v1
 - Portfólio: domínio próprio (.com.br, ~R$ 40/ano) no lugar de ugadolitoral.vercel.app (2026-11-14).
 - Portfólio: a rádio do bastidor toca mashups com música de terceiros, em público; trocar por faixa liberada ou pedir autorização (2026-11-14).
 - Portfólio: tirar "Abrir no Google Drive" do player de filme (2026-11-14).
+- Portfólio: preencher a planilha "Uga · Na Estrada" no Drive (https://docs.google.com/spreadsheets/d/1RKSqAhRYIHGFiWeH7jNWzOFP3ceFgQojb_iMBbTnKZU) e confirmar se trabalhou no TRAP in Sanca Festival 13–14/11 (deduzido dos e-mails de credencial); aí os shows entram no site (2026-11-18).
 - Liberar espaço no Gmail imagens.ludique@gmail.com: sem ele não chega código de verificação da Vercel (2026-11-14).
 
 - Revelação EP01: cenários, boneco "Você", voz e render. Conferir se o VoiceStudio abre (em 2026-11-03 não abriu) (2026-11-04).

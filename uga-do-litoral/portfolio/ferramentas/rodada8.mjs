@@ -172,62 +172,20 @@ if (quer('chamado')) {
   await page.context().close();
 }
 
-// ---------- 8.7 folha de contato ----------
+// ---------- 8.7 folha de contato: saiu do site em 2026-11-18 (pedido do Pedro); o fim sem o aviso de cima ----------
 if (quer('folha')) {
-  console.log('\n== folha de contato (8.7)');
-  const { page, erros } = await entrar('semente=3&encontros=nenhum', { viewport: { width: 1440, height: 900 }, acceptDownloads: true });
-  await passo('sem foto vista: o botao da barra nao aparece', async () => exigir(!(await page.isVisible('.barra-folha')), 'FOLHA na barra antes de ver foto'));
-  await passo('tres fotos vistas: FOLHA · 3 na barra', async () => {
-    for (const [n, ms] of [[2, 400], [7, 1200], [11, 400]]) {
-      await page.evaluate(n => { const w = window.__bastidor.world; w.focus.enter(w.prints.items[n], .01); }, n); await page.waitForTimeout(ms);
-    }
-    await page.keyboard.press('Escape'); await page.waitForTimeout(1000);
-    const txt = await page.textContent('.barra-folha'); exigir(txt === 'FOLHA · 3', `barra diz "${txt}"`); return txt;
+  console.log('\n== sem folha de contato (8.7, retirada)');
+  const { page, erros } = await entrar('semente=3&encontros=nenhum', { viewport: { width: 1440, height: 900 } });
+  await passo('vendo fotos, nenhum botao de folha aparece', async () => {
+    for (const n of [2, 7]) { await page.evaluate(n => { const w = window.__bastidor.world; w.focus.enter(w.prints.items[n], .01); }, n); await page.waitForTimeout(500); }
+    await page.keyboard.press('Escape'); await page.waitForTimeout(600);
+    exigir(!(await page.$('.barra-folha')), 'FOLHA na barra');
   });
-  await passo('abrir: canvas 1080x1920, foto no primeiro quadro, circulo vermelho, imagem > 60 KB', async () => {
-    await page.click('.barra-folha'); await page.waitForSelector('.folha:not([hidden]) canvas', { timeout: 8000 });
-    const r = await page.evaluate(async () => {
-      const cv = document.querySelector('.folha canvas'), c = cv.getContext('2d');
-      const px = (x, y) => [...c.getImageData(x, y, 1, 1).data];
-      // centro do primeiro quadro: x 40 + (250-216)/2 + 108, y da primeira tira + 28 + 108
-      const gap = (1790 - 250 - 5 * 300) / 6, y1 = 250 + gap + 28 + 108;
-      const centro = px(40 + 17 + 108, Math.round(y1));
-      // procura vermelho do lapis na area das tiras
-      const area = c.getImageData(0, 250, 1080, 1540).data; let vermelho = 0;
-      for (let k = 0; k < area.length; k += 4) if (area[k] > 200 && area[k + 1] < 60 && area[k + 2] < 60) vermelho++;
-      const blob = await new Promise(res => cv.toBlob(res, 'image/jpeg', .92));
-      return { w: cv.width, h: cv.height, centro, vermelho, kb: Math.round(blob.size / 1024) };
-    });
-    exigir(r.w === 1080 && r.h === 1920, `canvas ${r.w}x${r.h}`);
-    exigir(r.centro.slice(0, 3).some(v => v > 30), `primeiro quadro preto: ${r.centro}`);
-    exigir(r.vermelho > 200, `so ${r.vermelho} pixels vermelhos na area das tiras`);
-    exigir(r.kb > 60, `imagem com ${r.kb} KB`); return `${r.kb} KB, ${r.vermelho} px de lapis`;
-  });
-  await passo('SALVAR IMAGEM baixa um jpg', async () => {
-    const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 6000 }), page.click('.folha-salvar')]);
-    exigir(/\.jpg$/.test(dl.suggestedFilename()), dl.suggestedFilename()); return dl.suggestedFilename();
-  });
-  await passo('Esc fecha e os controles voltam', async () => {
-    await page.screenshot({ path: 'saida/r8-folha-tela.png' });
-    await page.evaluate(async () => { const cv = document.querySelector('.folha canvas'); window.__folhaPng = cv.toDataURL('image/jpeg', .9); });
-    await page.keyboard.press('Escape'); await page.waitForTimeout(300);
-    exigir(!(await page.isVisible('.folha')), 'folha continuou aberta');
-    exigir(await page.evaluate(() => window.__bastidor.world.controls.state.enabled), 'controles nao voltaram');
-  });
-  await passo('recarregar a pagina mantem a folha', async () => {
-    const img = await page.evaluate(() => window.__folhaPng);
-    require_fs.writeFileSync('saida/r8-folha.jpg', Buffer.from(img.split(',')[1], 'base64'));
-    await page.reload(); await page.waitForSelector('.entrar-mudo', { state: 'visible', timeout: 20000 }); await page.click('.entrar-mudo');
-    await page.waitForFunction(() => window.__bastidor.world.controls.state.enabled, null, { timeout: 8000 });
-    const txt = await page.textContent('.barra-folha'); exigir(txt === 'FOLHA · 3', `depois de recarregar: "${txt}"`);
-  });
-  await passo('no fim: SUA FOLHA DE CONTATO', async () => {
+  await passo('no fim: AGENDA ABERTA, sem "VOCE CHEGOU NO PALCO" e sem folha', async () => {
     await page.evaluate(() => { const w = window.__bastidor.world; w.controls.state.s = w.plan.rail.total - 3; });
     await page.keyboard.down('w'); await page.waitForSelector('.fim:not([hidden])', { timeout: 12000 }); await page.keyboard.up('w');
-    exigir(await page.isVisible('.fim-folha'), 'botao da folha nao apareceu no fim');
-    exigir(!(await page.isVisible('.fim-frase-folha')), 'frase de "nenhuma" apareceu com 3 fotos');
-    await page.click('.fim-folha'); await page.waitForSelector('.folha:not([hidden]) canvas', { timeout: 8000 });
-    await page.keyboard.press('Escape');
+    const txt = await page.textContent('.fim');
+    exigir(txt.includes('AGENDA') && !txt.includes('CHEGOU') && !(await page.$('.fim-folha')), txt.slice(0, 80));
   });
   await passo('nenhum erro no console', async () => exigir(!erros.length, erros[0]));
   await page.context().close();

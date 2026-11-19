@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>G3_agenda</title>
+<style>
+  html, body { margin: 0; width: 540px; height: 960px; overflow: hidden; }
+  /* o fundo do site: preto com o calor vermelho embaixo à esquerda (style.css, .liquid-background) */
+  body { background: radial-gradient(ellipse at 20% 70%, #270000 0, transparent 65%), #000; }
+  canvas { position: absolute; inset: 0; width: 540px; height: 960px; display: block; }
+</style></head>
+<body>
+<canvas id="fluido" width="1080" height="1920"></canvas>
+<canvas id="tipo" width="1080" height="1920"></canvas>
+<script type="module">
+import { W, H, OFF, carregarTempo, carregarFontes, linhaGrande, linhaMono, lapis, curva, prog, outCubic, outQuart, outExpo, inOutSine, lerp, clamp } from './comum.js';
+import { criarFluido } from './fluido.js';
+
+const tempo = await carregarTempo();
+await carregarFontes();
+const F0 = tempo.batidas.find(b => b.b === 64).f;
+const L = b => tempo.batidas.find(x => x.b === b).f - F0;     // quadro local da batida
+const B65 = L(65), B66 = L(66), B67 = L(67), CORTE = tempo.corte_musica_f - F0;
+const AQUECE = 150; // passos de fluido antes do quadro 0: o fundo já entra vivo
+
+const fluido = criarFluido(document.getElementById('fluido'), { intensity: .62, autoSpeed: .34, ganho: .78, fase: 11.0 });
+const cv = document.getElementById('tipo'), c = cv.getContext('2d');
+
+// composição (px do quadro de 1080 × 1920); margens seguras: texto entre 250 e 1500
+const CORPO = 352, ENTRE = Math.round(CORPO * .83);
+const Y1 = 800, Y2 = Y1 + ENTRE;           // linhas de base de AGENDA e ABERTA
+const YURL = 1272, YARR = 1366, YTOPO = 318;
+const MONO_CORPO = 58;                     // Inconsolata: maiúscula ~0,63 em = ~36 px
+
+// o sublinhado de lápis (fixo no cartão): uma passada firme que sobe de leve e volta num gancho curto
+const SUB = curva([[92, Y2 + 74], [300, Y2 + 70], [560, Y2 + 64], [820, Y2 + 56], [990, Y2 + 48], [1004, Y2 + 54], [930, Y2 + 70], [840, Y2 + 82]], 30);
+
+function revelar(ctx, n, a, desenho) {
+  // entra numa batida: máscara corre da esquerda pra direita e o texto sobe 16 px até assentar
+  const t = prog(n, a, a + 7);
+  if (t <= 0) return;
+  const e = outQuart(t);
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, 90 + e * 990, H); ctx.clip();
+  ctx.translate(0, (1 - outCubic(t)) * 16);
+  desenho();
+  ctx.restore();
+}
+
+window.desenhar = n => {
+  fluido.irPara(AQUECE + n);
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.clearRect(0, 0, W, H);
+  // assentamento (irmão do G1): 1,06 → 1,00 em 6 quadros; depois a câmera segue entrando, quase parada
+  const assenta = 1 + .06 * (1 - outCubic(prog(n, 0, 6)));
+  const deriva = 1 + .022 * inOutSine(prog(n, 0, 100)) ;
+  const k = assenta * deriva;
+  const cx = W / 2, cy = 930;
+  c.translate(cx, cy); c.scale(k, k); c.translate(-cx, -cy - 8 * inOutSine(prog(n, 0, 100)));
+
+  linhaGrande(c, 'AGENDA', W / 2, Y1, CORPO, W * .925);
+  linhaGrande(c, 'ABERTA', W / 2, Y2, CORPO, W * .925);
+
+  revelar(c, n, B65, () => linhaMono(c, 'ugadolitoral.vercel.app', W / 2, YURL, MONO_CORPO, 1.5, OFF));
+  revelar(c, n, B66, () => linhaMono(c, '@uga_do_litoral', W / 2, YARR, MONO_CORPO, 1.5, OFF));
+
+  if (n >= B67) {
+    // o lápis cai na batida: já entra com um terço do traço e termina em 6 quadros
+    const p = .34 + .66 * outCubic(prog(n, B67, B67 + 6));
+    lapis(c, SUB, p, 15, 7);
+    // UGA DO LITORAL pequeno no topo, na mesma pancada
+    const t = outCubic(prog(n, B67, B67 + 5));
+    c.save(); c.globalAlpha = .55 + .45 * t;
+    linhaMono(c, 'UGA DO LITORAL', W / 2, YTOPO + (1 - t) * -10, 34, 34 * .32, OFF);
+    c.restore();
+  }
+};
+window.CENA = { id: 'G3_agenda', quadros: 98, formato: 'jpg', marcos: { B65, B66, B67, CORTE } };
+window.pronto = true;
+</script>
+</body></html>

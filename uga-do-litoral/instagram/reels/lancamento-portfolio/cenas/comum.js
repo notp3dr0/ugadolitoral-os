@@ -2,7 +2,13 @@
 // O site é só lido: fontes e fotos vêm de portfolio/site-lab pelo mesmo servidor.
 
 export const SITE = '../../../../portfolio/site-lab/';
-export const W = 1080, H = 1920;
+// formato: ?fmt=h grava 1920 × 1080 (horizontal); sem nada, 1080 × 1920 (vertical, o original)
+export const FMT = new URLSearchParams(location.search).get('fmt') === 'h' ? 'h' : 'v';
+export const W = FMT === 'h' ? 1920 : 1080, H = FMT === 'h' ? 1080 : 1920;
+// a página e os canvas no tamanho do formato (px CSS = metade, gravado a 2x)
+{ const st = document.createElement('style');
+  st.textContent = `html,body{width:${W / 2}px!important;height:${H / 2}px!important}canvas{width:${W / 2}px!important;height:${H / 2}px!important}`;
+  document.head.append(st); }
 export const OFF = '#f2f0eb', CINZA = '#a5a5a5', RED = '#fa1717';
 export const BOLD = "'Arimo', Arial, sans-serif";
 export const MONO = "'Inconsolata', monospace";

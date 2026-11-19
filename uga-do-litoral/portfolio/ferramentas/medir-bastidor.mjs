@@ -13,7 +13,7 @@ async function roda(nome, ctxOpts, freio) {
   const cdp = await ctx.newCDPSession(p); if (freio) await cdp.send('Emulation.setCPUThrottlingRate', { rate: freio });
   const pedidos = []; p.on('response', r => { pedidos.push(Number(r.headers()['content-length'] || 0)); });
   const t0 = Date.now();
-  await p.goto(s.url + '/bastidor.html?semente=3&encontros=agua,seguranca,eletricista');
+  await p.goto(s.url + '/bastidor.html?semente=3&encontros=agua,seguranca,eletricista' + (process.env.EXTRA || ''));
   await p.waitForSelector('.entrar-mudo', { state: 'visible', timeout: 30000 });
   const ateBotao = Date.now() - t0, pesoBotao = pedidos.reduce((a, n) => a + n, 0);
   await p.click('.entrar-mudo');

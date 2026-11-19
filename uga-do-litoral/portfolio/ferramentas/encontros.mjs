@@ -23,7 +23,7 @@ async function abrir(id, extra = '', viewport = { width: 1440, height: 900 }) {
   page.on('pageerror', e => erros.push(String(e)));
   page.on('console', m => { if (m.type() === 'error') erros.push(m.text()); });
   await page.exposeFunction('__fala', t => falas.push(t));
-  await page.goto(`${srv.url}/bastidor.html?encontros=${id}&semente=5${extra}`);
+  await page.goto(`${srv.url}/bastidor.html?encontros=${id}&semente=5${extra}${process.env.EXTRA || ""}`);
   await page.waitForSelector('.entrar-mudo', { state: 'visible', timeout: 15000 });
   await page.click('.entrar-mudo');
   await page.waitForFunction(() => window.__bastidor.world.controls.state.enabled, null, { timeout: 5000 });
@@ -105,13 +105,13 @@ if (quer('seguranca')) {
     await u.page.waitForTimeout(600); await u.andar(1500);
     exigir((await u.s()) > gatilho + 1, 'nao liberou');
   });
-  await passo('mostrar a pulseira: o braco sobe com a pulseira no pulso', async () => {
+  await passo('mostrar a pulseira: a pulseira sobe do pe da tela', async () => {
     const v = await abrir('seguranca', '&x=3');
     const { gatilho } = await v.est(); await v.irPara(gatilho - 1); await v.andar(1200);
     await v.esperarFala('Você é o quê do evento?');
     await v.page.click('.fala-opcoes button >> nth=2');
     await v.page.waitForSelector('.braco', { state: 'visible', timeout: 6000 });
-    exigir(await v.page.isVisible('.braco .pulseira'), 'a pulseira nao esta no braco');
+    exigir(await v.page.isVisible('.braco img[src*="pulseira"]'), 'a pulseira nao apareceu'); // rodada 19: sem braço, so a pulseira (render)
     await v.page.waitForTimeout(500);
     await v.page.screenshot({ path: 'saida/r7-braco.png' });
     await v.esperarFala('É a de hoje mesmo?', 12000);

@@ -39,6 +39,19 @@ site e não pode sair: `../contexto.md`.
 | 9 | (sem arquivo: análise do contratante, ver `../andamento.md`) | INFO pra quem contrata, AGENDA ABERTA, WhatsApp com mensagem pronta | **publicada em 2026-11-14** |
 | 10 | (sem arquivo, ver `../andamento.md`) | intro mais curta, letra mínima 11 px, vista FILMES | **publicada em 2026-11-14** |
 | 11 | (sem arquivo, ver `../andamento.md`) | intro toca sozinha (sem rolagem), INFO se revela embaralhando | **publicada em 2026-11-14** |
+| 12 | (sem arquivo, ver `../andamento.md`) | o olhar dá a volta inteira: sem volta automática pro eixo no celular, giro pela borda não trava no HUD nem na mira, setas giram | no ar em 2026-11-17 (OK do Pedro) |
+| 13 | `rodada-13-luz.md` | a luz do Blender (bake) no corredor inteiro, atrás de `?luz=blender` | feita em 2026-11-17, prévia `rodada-13`, falta o OK do Pedro |
+| 14 | `rodada-14-gente.md` | manequim estilizado 3D no lugar dos recortes 2D, atrás de `?gente=manequim` | feita em 2026-11-17, prévia `rodada-13`, falta o OK do Pedro |
+| 15 | `rodada-15-fiel.md` | matéria do filme (concreto, piso polido, papel e fita, reflexo) em `?luz=blender` e o elenco (`?gente=elenco`) | feita em 2026-11-18; **cenário descartado pelo Pedro** (fica o corredor de antes); o elenco segue na rodada 16 |
+| 16 | `rodada-15-fiel.md` (parte do elenco) | o elenco vira o padrão, cenário intocado | prévia `rodada-16`, substituída pela 17 |
+| 17 | `rodada-15-fiel.md` + andamento 2026-11-18 | cenário do filme sem reflexo e sem luz no chão; elenco com cabeça, pele e cabelo | no ar (foi junto com a 20) |
+| 18 | `rodada-18-home.md` | home: entrada nova (credencial/visor), monitor do bastidor, colagem curta, rolagem leve | a credencial de entrada foi descartada; o resto no ar com a 20 |
+| 19 | andamento 2026-11-18 | volta a entrada das letras; janela única pro bastidor; sem contagens; pulseira sem mão | no ar com a 20 |
+| 20 | andamento 2026-11-18 | crachá com física de colar, WALLPAPER, mira, porta que abre | no ar com a 21 |
+| 21 | andamento 2026-11-18 | foto no nome, nomes da INFO, OUVIR O SHOW, fotômetro, monitor por artista, 404, FOTOGRAFAR | no ar (52bd36d) |
+| 22 | andamento 2026-11-18 | NA ESTRADA (diário de shows na INFO) e medição da Vercel (ligada) | no ar |
+| 23 | andamento 2026-11-18 | INFO com foto em sequência pra quem contrata; OUVIR O SHOW sai | no ar junto com a 24 |
+| 24 | andamento 2026-11-18 | INFO vira SOBRE: sem nome, sem rótulo numerado, títulos como frase, bio corrida | no ar (b3eb17d), com a foto do Pedro no Sobre mim |
 
 A ordem importa: a 3 usa os módulos da 2, e a 4 reaproveita o player de filme e os dados da 2 e o
 "tom" de cada foto da 3.

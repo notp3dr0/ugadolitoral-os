@@ -20,6 +20,7 @@ Português brasileiro, direto, natural e informal, sem formalidade artificial. P
 - Elogio de abertura ("ótima ideia") e resumo repetindo o que acabou de dizer no fim.
 - Travessão (—) em qualquer texto. Usar vírgula, ponto ou dois-pontos.
 - Lista pra tudo: frase corrida quando não for lista de verdade.
+- Em site e peça: rótulo numerado pequeno ("01 · JÁ REGISTREI" em vermelho), título que parece tópico e o meu nome repetido em destaque têm cara de feito por IA. Título vira frase normal, e o nome não volta onde eu tirei (2026-11-18).
 
 ## Estilo geral
 

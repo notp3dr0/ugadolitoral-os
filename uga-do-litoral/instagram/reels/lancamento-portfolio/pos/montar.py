@@ -6,6 +6,8 @@ som e escreve o MP4 direto num pipe pro ffmpeg. Tambem gera as folhas de revisao
   python pos/montar.py                      # filme inteiro -> saida/showreel-v2.mp4 (+ -leve) + saida/revisao/
   python pos/montar.py --raiz OUTRA/quadros # testa contra outra raiz de quadros (ex.: corredor sintetico)
   python pos/montar.py --de 200 --ate 260 --png DIR   # so um trecho, em PNG, sem MP4
+  python pos/montar.py --montagem montagem-v3-teste.json --saida saida/teste.mp4   # outra montagem
+  (entrada com "sem_flash": true na montagem: o laboratorio nao acende flash nela; o flash ja vem no render)
 """
 import argparse
 import json
@@ -16,12 +18,18 @@ import sys
 import time
 from pathlib import Path
 
+# --montagem precisa valer antes de importar comum (que le a montagem); os processos filhos herdam o ambiente
+if "--montagem" in sys.argv:
+    os.environ["MONTAGEM_ARQ"] = str(Path(sys.argv[sys.argv.index("--montagem") + 1]).resolve())
+if "--tempo" in sys.argv:
+    os.environ["TEMPO_ARQ"] = str(Path(sys.argv[sys.argv.index("--tempo") + 1]).resolve())
+
 import cv2
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from comum import (AUDIO, BATIDA_F, FPS, H, MONTAGEM, NQ, OITAVA_F, PROJ, REVISAO, SAIDA, SEMI_F, TEMPO, W,
-                   batida_do_quadro, enc, enc_f, lum)
+                   batida_do_quadro, dec, enc, enc_f, lum)
 import fontes
 import luz
 import revisao
@@ -88,7 +96,7 @@ def eventos_flash(es):
                 ev[fq] = {"tipo": "site", "fonte": e["fonte"]}
     for bq, fq in SEMI_F.items():
         if 28 <= bq < 31 and fq not in ev:
-            ev[fq] = {"tipo": "estrobo", "fonte": "B1_travessia"}
+            ev[fq] = {"tipo": "estrobo", "fonte": next(e["fonte"] for e in es if e["fonte"].startswith("B1_travessia"))}
     return ev
 
 
@@ -116,7 +124,7 @@ def resolve_fotos(seqs):
     fot = {k: v for k, v in fontes.FOTOS.items() if isinstance(v, dict)}
     p1 = dict(fot.get("p1_reserva", {}))
     p1["origem"] = "reserva (C2e sem foto declarada)"
-    c2e = seqs.get("C2e_mergulho")
+    c2e = next((s for k, s in seqs.items() if k.startswith("C2e_mergulho")), None)
     if c2e is not None and c2e.pronto:
         achado = _procura_foto(c2e.pronto)
         if achado:
@@ -181,7 +189,8 @@ class Montador:
         self.vel = fontes.FOTOS.get("velocidade_zoom_q", 0.0045)
         self.der = fontes.FOTOS.get("deriva_x_q", -0.0012)
         self.cartoes = set()
-        self.b1e = next(e for e in self.es if e["fonte"] == "B1_travessia")
+        self.b1e = next(e for e in self.es if e["fonte"].startswith("B1_travessia"))
+        self.idB1 = self.b1e["fonte"]
 
     def _base_pos(self, r0):
         """pos-imagem a partir do ultimo quadro antes do respiro (recalculado: cada processo tem o seu)"""
@@ -195,8 +204,8 @@ class Montador:
         vem do quadro mais claro da porta nos 16 quadros antes do respiro (a luz do palco na porta aberta)."""
         if r0 != RESPIRO2[0]:
             return r0 - 1
-        c7 = next(e for e in self.es if e["fonte"] == "C7_porta")
-        s = self.seqs["C7_porta"]
+        c7 = next(e for e in self.es if e["fonte"].startswith("C7_porta"))
+        s = self.seqs[c7["fonte"]]
         if not s.pronta:
             return r0 - 1
         melhor, fq = -1.0, r0 - 1
@@ -210,7 +219,7 @@ class Montador:
         return fq
 
     def preparar_revelacao(self):
-        s = self.seqs["B1_travessia"]
+        s = self.seqs[self.idB1]
         if s.pronta:
             self.rev.preparar(s, lambda f: local_de(self.b1e, f), SEC_B0, SEC_C0)
 
@@ -231,6 +240,11 @@ class Montador:
         src = e["fonte"]
         n = e["f1"] - e["f0"]
         k = f - e["f0"]
+        if src.startswith("FOTO:") and W > H:
+            # horizontal: as fotos sao verticais e nao se cortam; uma fila delas anda uma posicao por batida
+            ordem = ["p1", "p2", "p3", "p4"]
+            fila = [fontes.FOTOS.get("fila_h_antes", "photo-07-lg.webp")] + [self.fotos[x]["arquivo"] for x in ordem] +                    [fontes.FOTOS.get("fila_h_depois", "kayg-02-lg.webp")]
+            return fontes.foto_fila(tuple(fila), ordem.index(src[5:]) + 1, k, n)
         if src.startswith("FOTO:"):
             c = self.fotos[src[5:]]
             z0 = c.get("z0", 1.0)
@@ -251,6 +265,8 @@ class Montador:
                 continue
             # o flash pertence ao plano: so ilumina se o plano visivel e o mesmo que acendeu
             if ev["fonte"] != top["fonte"]:
+                continue
+            if top.get("sem_flash"):   # o flash dessa fonte ja vem renderizado (luz de verdade)
                 continue
             com_prof = q.prof is not None and not q.cartao
             g = GANHO[ev["tipo"]][0 if com_prof else 1] * luz.envelope_flash(a, com_prof)
@@ -278,7 +294,7 @@ class Montador:
 
         # secao A: laboratorio
         if f < SEC_B0:
-            q = self._seq("A1_planta", local_de(top, f), f, ("fio", "prof"))
+            q = self._seq(top["fonte"], local_de(top, f), f, ("fio", "prof"))
             p = luz.pulso_batida(f, [BATIDA_F[b] for b in range(16)])
             info["luz"] = p
             if f < BATIDA_F[0]:
@@ -290,12 +306,20 @@ class Montador:
                 # a linha "acende" no comeco
                 ramp = min(1.0, (f - BATIDA_F[0] + 1) / 10.0)
                 img = luz.laboratorio(fio, q.prof, p * ramp)
+                # v3: o corredor real sob luz vermelha "assombra" por baixo da linha no fim da secao A
+                sg = top.get("seg")
+                if sg and sg["de"] <= f < sg["ate"]:
+                    s_img = ler_seg(self.raiz / sg["fonte"] / "seg" / f"{local_de(top, f):06d}.jpg")
+                    if s_img is not None:
+                        u = (f - sg["de"]) / (sg["ate"] - sg["de"])
+                        k = sg["nivel"] * min(1.0, u / .15) * (1 - u) ** 1.3
+                        img = img + s_img * k
             return img, info
 
         # secao B: revelacao (mascaras ja calculadas em ordem pelo Revelador.preparar, presas ao mundo)
         if f < SEC_C0:
-            if top["fonte"] == "B1_travessia":
-                qb = self._seq("B1_travessia", local_de(self.b1e, f), f)
+            if top["fonte"] == self.idB1:
+                qb = self._seq(self.idB1, local_de(self.b1e, f), f)
                 if qb.cartao or f not in self.rev.estados:
                     img = qb.cor * 0.35
                 else:
@@ -307,6 +331,11 @@ class Montador:
                     # a linha continua por cima do que ja revelou e some entre as batidas 28 e 29
                     resto = 0.5 * float(np.clip((BATIDA_F[29] - f) / (BATIDA_F[29] - BATIDA_F[28]), 0, 1))
                     img = lab * (1 - m + m * resto) + dev * m
+                    # v3 (passe seg): o que ainda nao revelou mostra o corredor so sob a luz vermelha de seguranca
+                    if top.get("seg"):
+                        s_img = ler_seg(self.raiz / self.idB1 / "seg" / f"{local_de(self.b1e, f):06d}.jpg")
+                        if s_img is not None:
+                            img = img + s_img * (1 - m) * float(top["seg"])
                 q = qb
             else:
                 q = self._fonte(top, f)
@@ -346,10 +375,17 @@ class Montador:
                 img = luz.raio_x(img, q.fio)
                 info["raio_x"] = True
         # respiro 2: pos-imagem da porta
-        if RESPIRO2[0] <= f < RESPIRO2[1]:
+        if RESPIRO2[0] <= f < RESPIRO2[1] and not top.get("sem_pos_imagem"):
             k = f - RESPIRO2[0]
             img = img + luz.pos_imagem(self._base_pos(RESPIRO2[0]), k, amp=0.5)
         return img, info
+
+
+def ler_seg(arq):
+    """passe seg (JPG sRGB) -> linear; None se nao existe"""
+    if not Path(arq).exists():
+        return None
+    return dec(cv2.cvtColor(cv2.imread(str(arq)), cv2.COLOR_BGR2RGB))
 
 
 def grao(srgb, f):
@@ -410,6 +446,8 @@ def main():
     ap.add_argument("--ate", type=int, default=NQ)
     ap.add_argument("--png", default=None, help="grava PNGs desse trecho em vez do MP4")
     ap.add_argument("--processos", type=int, default=5)
+    ap.add_argument("--tempo", default=None)
+    ap.add_argument("--montagem", default=None, help="arquivo de montagem (padrao: montagem.json)")
     a = ap.parse_args()
 
     t0 = time.time()

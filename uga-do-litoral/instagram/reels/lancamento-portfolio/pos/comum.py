@@ -14,8 +14,10 @@ SAIDA = PROJ / "saida"
 REVISAO = SAIDA / "revisao"
 AUDIO = PROJ / "audio"
 
-TEMPO = json.loads((PROJ / "tempo.json").read_text(encoding="utf-8"))
-MONTAGEM = json.loads((PROJ / "montagem.json").read_text(encoding="utf-8"))
+# outro arquivo de tempo por variavel de ambiente (montar.py --tempo): o horizontal usa tempo-h.json (1920 x 1080)
+TEMPO = json.loads(Path(os.environ.get("TEMPO_ARQ") or (PROJ / "tempo.json")).read_text(encoding="utf-8"))
+# outra montagem por variavel de ambiente (montar.py --montagem); sem ela, a de sempre
+MONTAGEM = json.loads(Path(os.environ.get("MONTAGEM_ARQ") or (PROJ / "montagem.json")).read_text(encoding="utf-8"))
 
 FPS = TEMPO["fps"]
 W, H = TEMPO["largura"], TEMPO["altura"]

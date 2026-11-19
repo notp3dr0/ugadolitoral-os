@@ -20,6 +20,7 @@ const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); if (i < 0) return d; const v = args[i + 1]; args.splice(i, 2); return v; };
 const js = opt('--js', null);
 const de = Number(opt('--de', 0)), ate = opt('--ate', null), saidaBase = path.resolve(AQUI, opt('--saida', '../quadros'));
+const HZ = args.includes('--h'); if (HZ) args.splice(args.indexOf('--h'), 1);
 const semPronto = args.includes('--sem-pronto'); if (semPronto) args.splice(args.indexOf('--sem-pronto'), 1);
 const ids = args.includes('todos') ? ORDEM : args;
 if (!ids.length) { console.log('uso: node filmar.mjs <ID ...|todos> [--de N] [--ate M] [--saida pasta]'); process.exit(1); }
@@ -29,7 +30,8 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true, args:
 const relogio = fs.readFileSync(path.join(AQUI, 'relogio.js'), 'utf8');
 
 async function abrir(params) {
-  const ctx = await browser.newContext({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
+  const ctx = await browser.newContext({ viewport: HZ ? { width: 960, height: 540 } : { width: 540, height: 960 }, deviceScaleFactor: 2 });
+  if (HZ) await ctx.addInitScript(() => { window.__capFmt = 'h'; });
   await ctx.addInitScript({ content: relogio });
   await ctx.route('**/__captura/**', (route) => {
     const nome = new URL(route.request().url()).pathname.replace('/__captura/', '');
@@ -78,7 +80,7 @@ async function filmar(id) {
 }
 function writePronto(dir, quadros, passes, info) {
   const obs = info.obs || '';
-  const pronto = { quadros, passes, fps: 30, largura: 1080, altura: 1920,
+  const pronto = { quadros, passes, fps: 30, largura: HZ ? 1920 : 1080, altura: HZ ? 1080 : 1920,
     prof: 'PNG 16 bits em RG: distancia da camera em metros = (R*256+G)/65535*30; 65535 = nada (fundo). B=0',
     fio: 'tons de cinza, branco sobre preto (tingir depois)', ...info, obs };
   fs.writeFileSync(path.join(dir, 'pronto.json'), JSON.stringify(pronto, null, 2));

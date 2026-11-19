@@ -13,7 +13,7 @@
 // Desfoque de movimento: cada quadro é a média de SUB subquadros (obturador de 180 graus).
 import * as THREE from '../../../../portfolio/site-lab/vendor/three.module.min.js';
 import { photos } from '../../../../portfolio/site-lab/js/data.js';
-import { SITE, W, H, carregarTempo, semente, clamp, lerp, prog } from './comum.js';
+import { SITE, FMT, W, H, carregarTempo, semente, clamp, lerp, prog } from './comum.js';
 
 const tempo = await carregarTempo();
 const F0 = tempo.batidas.find(b => b.b === 44).f;
@@ -28,7 +28,7 @@ const rnd0 = semente(4471);
 const ordem = photos.map((p, i) => i);
 for (let i = ordem.length - 1; i > 0; i--) { const j = Math.floor(rnd0() * (i + 1)); [ordem[i], ordem[j]] = [ordem[j], ordem[i]]; }
 const fotos = ordem.map(i => photos[i]);
-const LINHAS = 12, GW = 2400, GAP = 10;
+const LINHAS = FMT === 'h' ? 7 : 12, GW = FMT === 'h' ? 2600 : 2400, GAP = 10;
 const asp = fotos.map(p => p.width / p.height);
 const total = asp.reduce((a, b) => a + b, 0);
 const celulas = [];
@@ -54,7 +54,7 @@ const celulas = [];
 const GH = window.GH;
 
 // ---------- quem voa: as 16 células mais perto do centro ----------
-const perto = celulas.map((c, i) => [i, Math.hypot(c.x * 1.7, c.y)]).sort((a, b) => a[1] - b[1]).slice(0, 16).map(a => a[0]);
+const perto = celulas.map((c, i) => [i, Math.hypot(FMT === 'h' ? c.x / 1.7 : c.x * 1.7, c.y)]).sort((a, b) => a[1] - b[1]).slice(0, 16).map(a => a[0]);
 const rnd = semente(90210);
 for (let i = perto.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perto[i], perto[j]] = [perto[j], perto[i]]; }
 const voo = new Map(); // índice da foto -> dados do voo
@@ -134,8 +134,8 @@ const itens = fotos.map((p, i) => {
 // ---------- câmera: uma curva só, contínua ----------
 // fase mesa (0..26): de cima, inclinada, deriva e gira devagar, abrindo um pouco
 // fase grade (26..56): abre em escala logarítmica, acelera e desacelera; o alvo vai pro centro, a inclinação zera
-const V0 = 1750, V26 = 1880;
-const VEND = Math.max(GH, GW * 16 / 9) * 1.035;
+const VK = FMT === 'h' ? .46 : 1, V0 = 1750 * VK, V26 = 1880 * VK; // no horizontal a mesa é vista mais de perto (a largura já sobra)
+const VEND = Math.max(GH, GW * H / W) * 1.035;
 const mesa = t => { const u = t / B46; return { x: lerp(-40, 30, u), y: lerp(90, -40, u), tilt: lerp(.30, .22, u), az: lerp(-.07, .03, u), lv: Math.log(lerp(V0, V26, u)) }; };
 const fimCam = { x: 0, y: 0, tilt: 0, az: 0, lv: Math.log(VEND) };
 function hermite(a, b, va, vb, t) { const t2 = t * t, t3 = t2 * t; return (2 * t3 - 3 * t2 + 1) * a + (t3 - 2 * t2 + t) * va + (-2 * t3 + 3 * t2) * b + (t3 - t2) * vb; }

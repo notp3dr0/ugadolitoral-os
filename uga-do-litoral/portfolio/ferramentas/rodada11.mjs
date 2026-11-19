@@ -25,7 +25,7 @@ for (const [rotulo, opts] of [
   page.on('console', m => { if (m.type() === 'error') erros.push(m.text()); });
   const estado = () => page.evaluate(() => ({ fim: window.portfolioIntroComplete, txt: document.querySelector('.intro-roles-visual').textContent, y: scrollY }));
 
-  await page.goto(`${srv.url}/`);
+  await page.goto(`${srv.url}/?entrada=nome`);
   await passo('a intro toca sozinha: embaralha no meio, resolve no fim, sem rolar', async () => {
     let viuEmbaralhado = false, t = 0;
     while (t < 6000) { const s = await estado(); if (SIMB.test(s.txt)) viuEmbaralhado = true; if (s.fim) break; await page.waitForTimeout(80); t += 80; }
@@ -43,15 +43,19 @@ for (const [rotulo, opts] of [
     const s = await estado(); exigir(s.fim && s.txt === LABEL, JSON.stringify(s));
   });
   await passo('INFO: textos curtos embaralham e depois resolvem', async () => {
-    await page.goto(`${srv.url}/#info`); await page.waitForTimeout(450);
-    const meio = await page.evaluate(() => [...document.querySelectorAll('.info-rotulo, .info-title > p, .info-servicos strong')].map(e => e.textContent).join('|'));
+    await page.goto(`${srv.url}/?entrada=nome#info`); await page.waitForTimeout(150);
+    // rodada 23: no celular a abertura começa pelas fotos; o primeiro texto curto (AGENDA ABERTA) vem logo abaixo
+    await page.evaluate(() => document.querySelector('.info-agenda').scrollIntoView({ block: 'center' })); await page.waitForTimeout(300);
+    const meio = await page.evaluate(() => [...document.querySelectorAll('.info-agenda, .info-servicos strong')].map(e => e.textContent).join('|'));
     await page.waitForTimeout(2200);
-    const depois = await page.evaluate(() => [...document.querySelectorAll('.info-rotulo, .info-title > p')].map(e => e.textContent).join('|'));
+    // rodada 24: sem rótulos nem a linha de funções; o texto curto que sobra no topo é o AGENDA ABERTA
+    const depois = await page.evaluate(() => document.querySelector('.info-agenda').textContent);
     exigir(/[%#&+*=]/.test(meio), 'nada embaralhado aos 450 ms');
-    exigir(!/[%#&+*=]/.test(depois) && depois.includes('JÁ REGISTREI') && depois.includes('FOTOGRAFIA · VÍDEO · EDIÇÃO · SÃO PAULO'), depois);
+    exigir(!/[%#&+*=]/.test(depois) && depois.includes('AGENDA ABERTA · ME CHAMA'), depois);
   });
   await passo('INFO: rolando ate o fim, tudo aparece (bio inclusive)', async () => {
-    for (let k = 0; k < 8; k++) { await page.mouse.wheel(0, 500); await page.waitForTimeout(150); }
+    // rodada 23: a INFO ficou mais longa (fotos e fecho): rola até o fim de fato
+    for (let k = 0; k < 30 && await page.evaluate(() => innerHeight + scrollY < document.documentElement.scrollHeight - 4); k++) { await page.mouse.wheel(0, 500); await page.waitForTimeout(150); }
     await page.waitForTimeout(1500);
     const r = await page.evaluate(() => {
       const els = [...document.querySelectorAll('#info .surge')];
@@ -65,7 +69,7 @@ for (const [rotulo, opts] of [
 
   // qualquer gesto pula
   const ctx2 = await browser.newContext(opts); const p2 = await ctx2.newPage();
-  await p2.goto(`${srv.url}/`);
+  await p2.goto(`${srv.url}/?entrada=nome`);
   await passo('um toque/rolagem no meio termina a intro na hora', async () => {
     await p2.waitForFunction(() => /[%#&+\/*=]/.test(document.querySelector('.intro-roles-visual').textContent), null, { timeout: 5000 });
     await p2.mouse.wheel(0, 120); await p2.waitForTimeout(120);
@@ -78,7 +82,7 @@ for (const [rotulo, opts] of [
 // menos movimento: nada anima
 {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' }); const page = await ctx.newPage();
-  await page.goto(`${srv.url}/`); await page.waitForTimeout(500);
+  await page.goto(`${srv.url}/?entrada=nome`); await page.waitForTimeout(500);
   console.log('\n== menos movimento');
   await passo('intro ja montada e INFO sem animacao', async () => {
     const s = await page.evaluate(() => ({ fim: window.portfolioIntroComplete, txt: document.querySelector('.intro-roles-visual').textContent, anima: document.documentElement.classList.contains('info-anima') }));

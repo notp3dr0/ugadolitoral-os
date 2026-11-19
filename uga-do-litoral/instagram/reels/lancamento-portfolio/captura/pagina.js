@@ -5,7 +5,8 @@ import { criarPlanos } from './planos.js';
 
 const B = window.__bastidor, W = B.world, plan = B.plan;
 const { scene, camera, renderer } = W;
-const FPS = 30, LARG = 1080, ALT = 1920;
+const HZ = window.__capFmt === 'h'; // horizontal: 1920 x 1080, campo de visão × 62/80 (igual ao Blender)
+const FPS = 30, LARG = HZ ? 1920 : 1080, ALT = HZ ? 1080 : 1920;
 const gl = renderer.getContext();
 
 // ---------------------------------------------------------------- o motor fica nas nossas mãos
@@ -13,8 +14,8 @@ W.pause();                      // o laço do site para; quem desenha agora é o
 W.debug.planta = true;          // desliga o corte por distância (o passe fio veria coisa aparecendo)
 W.sound.pulse = () => .5;       // luz estável: quem pulsa na batida é o laboratório
 W.controls.state.enabled = false;
-renderer.setPixelRatio(2); renderer.setSize(540, 960, false);
-camera.aspect = 540 / 960; camera.fov = 80; camera.far = 200; camera.updateProjectionMatrix();
+renderer.setPixelRatio(2); renderer.setSize(LARG / 2, ALT / 2, false);
+camera.aspect = LARG / ALT; camera.fov = 80; camera.far = 200; camera.updateProjectionMatrix();
 const FOG = scene.fog, FUNDO = scene.background;
 
 function tudoVisivel() {
@@ -413,7 +414,7 @@ let atual = null, T0 = 0, ultimoMs = null, preparado = false;
 function aplicarPose(p) {
   camera.position.set(p.x, p.y, p.z);
   camera.rotation.set(p.pitch || 0, p.yaw || 0, p.roll || 0);
-  const fov = p.fov ?? 80;
+  const fov = (p.fov ?? 80) * (HZ ? 62 / 80 : 1);
   if (camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
   camera.updateMatrixWorld(true);
 }

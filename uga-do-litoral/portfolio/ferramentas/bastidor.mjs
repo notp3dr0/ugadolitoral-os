@@ -134,13 +134,15 @@ const estado = p => p.evaluate(() => { const w = window.__bastidor.world, c = w.
     await page.mouse.click(b.x + b.width / 2, b.y + b.height / 2); await page.waitForTimeout(1500);
     exigir(await page.getAttribute('.cracha', 'data-face') === 'verso', 'nao virou');
   });
-  await passo('arrastar balanca o pendulo', async () => {
+  await passo('arrastar leva o cracha junto (cordao com fisica)', async () => {
     const b = await page.locator('.cracha-giro').boundingBox();
     await page.mouse.move(b.x + b.width / 2, b.y + b.height * .6); await page.mouse.down();
     for (let k = 1; k <= 10; k++) { await page.mouse.move(b.x + b.width / 2 + k * 14, b.y + b.height * .6); await page.waitForTimeout(16); }
-    const ang = await page.evaluate(() => parseFloat(document.querySelector('.cracha-pendulo').style.transform.replace('rotate(', '')));
+    // rodada 20: o cordão tem física; o crachá anda com o dedo (translate) e balança (rotate)
+    const t = await page.evaluate(() => document.querySelector('.cracha-pendulo').style.transform);
     await page.mouse.up();
-    exigir(ang > .15, `angulo ${ang}`);
+    const x = parseFloat((t.match(/translate\(([-\d.]+)px/) || [])[1]), ang = parseFloat((t.match(/rotate\(([-\d.]+)rad/) || [])[1]);
+    exigir(Math.abs(x) > 20 || Math.abs(ang) > .15, `nao mexeu: ${t}`);
   });
   await passo('a foto 3x4 muda com a visita', async () => {
     const q = await (await browser.newContext()).newPage();

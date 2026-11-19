@@ -17,14 +17,16 @@ const { servir } = await import(pathToFileURL(path.join(FERR, 'servidor.mjs')).h
 const args = process.argv.slice(2);
 const ateI = args.indexOf('--ate');
 const QUADROS = 110;
+const HZ = args.includes('--h'); // horizontal: layout de computador 1280x720 @1,5 = 1920x1080, saída em S1_site_h
+const OW = HZ ? 1920 : 1080, OH = HZ ? 1080 : 1920;
 const fim = ateI >= 0 ? Number(args[ateI + 1]) : QUADROS;
-const SAIDA = path.resolve(AQUI, '../quadros/S1_site');
-const BRUTO = path.join(AQUI, '_bruto_s1');
+const SAIDA = path.resolve(AQUI, HZ ? '../quadros/S1_site_h' : '../quadros/S1_site');
+const BRUTO = path.join(AQUI, HZ ? '_bruto_s1h' : '_bruto_s1');
 fs.rmSync(BRUTO, { recursive: true, force: true }); fs.mkdirSync(BRUTO, { recursive: true });
 
 const srv = await servir(SITE);
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist', '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--hide-scrollbars'] });
-const ctx = await browser.newContext({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
+const ctx = await browser.newContext({ viewport: HZ ? { width: 1280, height: 720 } : { width: 540, height: 960 }, deviceScaleFactor: HZ ? 1.5 : 2 });
 await ctx.addInitScript({ content: fs.readFileSync(path.join(AQUI, 'relogio.js'), 'utf8') });
 await ctx.addInitScript(() => {
   // vídeo nenhum toca sozinho: o arreio posiciona o currentTime a cada quadro
@@ -58,7 +60,7 @@ await page.evaluate(() => Promise.all([...document.images].map(i => i.decode().c
 // abertura do reel: o nome fica em duas linhas limpas (sem a rolagem que fecha uma linha na outra) e a linha
 // de serviços desce pra baixo do nome, maior e legível. Tudo em memória, só nesta página.
 await page.addStyleTag({ content: `
-  .intro-roles { top: calc(50% + min(27vw, 29svh) * .83 + 26px) !important; font-size: 22px !important; letter-spacing: .02em; }
+  .intro-roles { top: calc(50% + min(27vw, 29svh) * .83 + 26px) !important; font-size: ${HZ ? 26 : 22}px !important; letter-spacing: .02em; }
   .intro-roles-visual { opacity: 1 !important; transform: none !important; }
   .intro-name { transform: scale(.9); }` });
 await page.evaluate(() => {
@@ -114,7 +116,7 @@ for (let n = 0; n < fim; n++) {
   // ---- eventos do roteiro ----
   if (n === 27) { // corte pra colagem: pula a abertura e deixa a colagem assentar 1,5 s antes do quadro
     await page.evaluate(y => window.scrollTo({ top: y, behavior: 'instant' }), rolagem(27));
-    await preRolar(45);
+    await preRolar(HZ ? 90 : 45);
   }
   if (n === 56) {
     // a foto mais perto do centro (não filme) voa pra galeria
@@ -127,6 +129,9 @@ for (let n = 0; n < fim; n++) {
         const r = c.getBoundingClientRect();
         const cy = r.top + r.height / 2; if (cy < 160 || cy > innerHeight - 160) continue;
         const d = Math.abs(r.top + r.height / 2 - innerHeight * .48);
+        // o clique tem que cair nesse card mesmo (no computador os cards se sobrepõem e um filme pode estar por cima)
+        const topo = document.elementFromPoint(r.left + r.width / 2, cy)?.closest('.media');
+        if (topo !== c) continue;
         if (d < bd) { bd = d; best = [r.left + r.width / 2, r.top + r.height / 2]; }
       }
       return best;
@@ -135,7 +140,7 @@ for (let n = 0; n < fim; n++) {
   }
   if (n === 74) await page.keyboard.press('ArrowRight');
   if (n === 81) {
-    await page.evaluate(() => { document.querySelector('#gallery-dialog').close(); location.hash = '#fotos'; });
+    await page.evaluate(() => { document.querySelectorAll('dialog[open]').forEach(d => d.close()); location.hash = '#fotos'; });
     await page.waitForTimeout(50);
     await preRolar(45);
     yGrade = await page.evaluate(() => scrollY);
@@ -185,13 +190,13 @@ for n in range(fim):
     s = 1 + (.02 if m == 0 else .045) * u
     im = Image.open(os.path.join(src, f'{n:06d}.png')).convert('RGB')
     W, H = im.size; w, h = W / s, H / s
-    im = im.resize((1080, 1920), Image.LANCZOS, box=((W - w) / 2, (H - h) / 2, (W + w) / 2, (H + h) / 2))
+    im = im.resize((int(sys.argv[4]), int(sys.argv[5])), Image.LANCZOS, box=((W - w) / 2, (H - h) / 2, (W + w) / 2, (H + h) / 2))
     im.save(os.path.join(dst, f'{n:06d}.jpg'), quality=95)
-`, BRUTO, path.join(SAIDA, 'cor'), String(fim)]);
+`, BRUTO, path.join(SAIDA, 'cor'), String(fim), String(OW), String(OH)]);
 fs.rmSync(BRUTO, { recursive: true, force: true });
 if (fim === QUADROS) fs.writeFileSync(path.join(SAIDA, 'pronto.json'), JSON.stringify({
-  quadros: QUADROS, passes: ['cor'], fps: 30, largura: 1080, altura: 1920,
-  fonte: 'portfolio/site-lab/index.html?semente=fixa, layout de celular 540x960 @2x, relogio virtual (timers, rAF, animacoes CSS e videos posicionados por quadro)',
+  quadros: QUADROS, passes: ['cor'], fps: 30, largura: OW, altura: OH,
+  fonte: 'portfolio/site-lab/index.html?semente=fixa, ' + (HZ ? 'layout de computador 1280x720 @1,5x' : 'layout de celular 540x960 @2x') + ', relogio virtual (timers, rAF, animacoes CSS e videos posicionados por quadro)',
   momentos: {
     '0-26': 'abertura: PEDRO / AUGUSTO e FOTOGRAFIA · VIDEO · EDICAO embaralhando (algoritmo de js/intro.js aplicado tambem ao nome, em memoria) nos q0-12; nome assenta inteiro em duas linhas ~q12, servicos ~q13, abaixo do nome e maiores (22 px css); depois parado, fundo liquido vivo',
     '27-53': 'colagem com o fundo liquido (pre-rolagem de 1,5 s: entra ja revelada), peteleco de rolagem com inercia; revelam so as fotos que entram',

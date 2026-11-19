@@ -85,3 +85,8 @@ renders/
 # Código do portfólio: repositório git próprio, deploy na Vercel
 uga-do-litoral/portfolio/site/
 uga-do-litoral/portfolio/site-lab/
+
+# elenco do bastidor: fontes CC0 e glb sem compressão (refazíveis)
+uga-do-litoral/portfolio/elenco/fonte/
+uga-do-litoral/portfolio/elenco/bruto/
+uga-do-litoral/portfolio/elenco/previa/build.log
